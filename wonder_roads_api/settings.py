@@ -53,7 +53,8 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     'cloudinary',
     'rest_framework',
-    'profile',
+    'django_countries',
+    'profiles',
     
 ]
 
