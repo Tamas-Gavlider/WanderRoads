@@ -4,6 +4,9 @@ from django.conf import settings
 
 class ProfileSerializer(serializers.ModelSerializer):
     owner = serializers.ReadOnlyField(source='owner.username')
+    image = serializers.ImageField(required=False)
+    theme_song = serializers.FileField(required=False)
+    
 
     class Meta:
         model = Profile
@@ -11,5 +14,4 @@ class ProfileSerializer(serializers.ModelSerializer):
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'image', 'theme_song', 'experience', 'visited_countries', 'status',
         ]
-
     
