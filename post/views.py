@@ -59,7 +59,7 @@ class PostDetail(APIView):
             serializer.save()
             return Response(serializer.data)
         return Response(
-            serializer.errors, stats=status.HTTP_400_BAD_REQUEST
+            serializer.errors, status=status.HTTP_400_BAD_REQUEST
         )
     
     def delete(self,request,pk):
