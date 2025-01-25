@@ -10,13 +10,13 @@ class PostListViewTests(APITestCase):
         
     def test_can_list_posts(self):
         tamas = User.objects.get(username='tamas')
-        Post.objects.create(owner= tamas,title='test title')
+        Post.objects.create(owner= tamas,title='test title',country='SK')
         response = self.client.get('/post/')
         self.assertEqual(response.status_code, status.HTTP_200_OK )
         
     def test_logged_in_user_can_create_post(self):
         self.client.login(username='tamas', password='password')
-        response = self.client.post('/post/',{'title':'test title'})
+        response = self.client.post('/post/',{'title':'test title', 'country':'SK'})
         count = Post.objects.count()
         self.assertEqual(count,1)
         self.assertEqual(response.status_code, status.HTTP_201_CREATED)
