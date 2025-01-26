@@ -57,8 +57,6 @@ INSTALLED_APPS = [
     'profiles',
     'post',
     'comments',
-    'countries'
-    
 ]
 
 MIDDLEWARE = [

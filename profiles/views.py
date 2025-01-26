@@ -34,9 +34,12 @@ class ProfileDetail(APIView):
     
     def put(self, request, pk):
         profile = self.get_object(pk)
-        serializer = ProfileSerializer(profile, data=request.data, context={'request':request})
-        if serializer.is_valid():
-            serializer.save()
-            return Response(serializer.data)
-        return Response(serializer.errors, status= status.HTTP_400_BAD_REQUEST)
-        
+        visited_countries = request.data.get('visited_countries', [])
+        # Ensure visited_countries is a list of country codes (strings)
+        if isinstance(visited_countries, str):
+            visited_countries = [visited_countries]
+        # Update the visited_countries list in the model
+        profile.visited_countries = visited_countries
+        profile.save()
+        serializer = ProfileSerializer(profile, context={'request': request})
+        return Response(serializer.data)
