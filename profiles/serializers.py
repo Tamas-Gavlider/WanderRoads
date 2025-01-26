@@ -7,6 +7,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(required=False)
     theme_song = serializers.FileField(required=False)
     is_owner = serializers.SerializerMethodField()
+    visited_countries = serializers.PrimaryKeyRelatedField(queryset=Country.objects.all(), many=True, required=False)
     
     def get_is_owner(self, obj):
         request = self.context['request']
