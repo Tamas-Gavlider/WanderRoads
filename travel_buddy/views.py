@@ -14,11 +14,9 @@ class TravelBuddyList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         if self.request.user.is_authenticated:
-            # Return only travel buddy relationships involving the authenticated user
             return TravelBuddy.objects.filter(
                 Q(owner=self.request.user) | Q(travel_buddy=self.request.user)
             )
-        # For unauthenticated users, return an empty queryset
         return TravelBuddy.objects.none()
 
     def perform_create(self, serializer):
@@ -54,11 +52,9 @@ class TravelBuddyDetail(generics.RetrieveDestroyAPIView):
         if user not in [instance.owner, instance.travel_buddy]:
             return Response({'error': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
 
-        # Update the 'buddy' field to True when either party confirms the relationship
         if instance.buddy:
             return Response({'status': 'Travel buddy relationship already confirmed'}, status=status.HTTP_200_OK)
 
-        # Confirm the relationship by setting buddy to True
         instance.buddy = True
         instance.save()
 

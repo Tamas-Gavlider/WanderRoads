@@ -3,9 +3,9 @@ from rest_framework import serializers
 from .models import TravelBuddy
 
 class TravelBuddySerializer(serializers.ModelSerializer):
-    owner = serializers.ReadOnlyField(source='owner.username')  # Owner's username
-    buddy_name = serializers.ReadOnlyField(source='travel_buddy.username')  # Travel buddy's username
-    is_fully_confirmed = serializers.SerializerMethodField()  # Custom field to check if status is confirmed
+    owner = serializers.ReadOnlyField(source='owner.username') 
+    buddy_name = serializers.ReadOnlyField(source='travel_buddy.username')  
+    is_fully_confirmed = serializers.SerializerMethodField()  
 
     class Meta:
         model = TravelBuddy
@@ -22,7 +22,6 @@ class TravelBuddySerializer(serializers.ModelSerializer):
         owner = validated_data['owner']
         travel_buddy = validated_data['travel_buddy']
 
-        # Prevent adding oneself as a travel buddy
         if owner == travel_buddy:
             raise serializers.ValidationError("You cannot add yourself as a travel buddy.")
 

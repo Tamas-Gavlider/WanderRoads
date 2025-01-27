@@ -17,4 +17,4 @@ class Trip(models.Model):
         ordering = ['-created_at']
         
     def __str__(self):
-        return f'{owner}s upcoming trip to {destination}'
+        return f'{self.owner}s upcoming trip to {self.destination}'

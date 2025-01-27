@@ -24,4 +24,5 @@ urlpatterns = [
     path('', include('post.urls')),
     path('',include('comments.urls')),
     path('',include('travel_buddy.urls')),
+    path('',include('trip.urls')),
 ]
