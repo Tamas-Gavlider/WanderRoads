@@ -1,5 +1,5 @@
 from rest_framework import serializers
-from django_countries.fields import CountryField
+from django_countries.serializer_fields import CountryField
 from post.models import Post
 
 
@@ -10,7 +10,6 @@ class PostSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     image = serializers.ImageField(required=False)
     country = CountryField() 
-    
 
     def validate_image(self, value):
         if value.size > 3 * 1024 * 1024:
@@ -28,7 +27,6 @@ class PostSerializer(serializers.ModelSerializer):
     def get_is_owner(self, obj):
         request = self.context['request']
         return request.user == obj.owner
-    
     
     class Meta:
         model = Post

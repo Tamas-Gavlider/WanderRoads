@@ -1,3 +1,4 @@
+from rest_framework import generics
 from django.http import Http404
 from rest_framework import status
 from rest_framework.views import APIView
@@ -8,16 +9,22 @@ from wonder_roads_api.permissions import IsOwnerOrReadOnly
 
 # Create your views here.
 
-class ProfileList(APIView):
+class ProfileList(generics.ListAPIView):
+    """
+    List all profiles.
+    No create view as profile creation is handled by django signals.
+    """
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
+
     
-    def get(self, request):
-        profiles = Profile.objects.all()
-        serializer = ProfileSerializer(profiles, many=True, context={'request':request})
-        return Response(serializer.data)
-    
-class ProfileDetail(APIView):
-    serializer_class= ProfileSerializer
+class ProfileDetail(generics.RetrieveUpdateAPIView):
+    """
+    Retrieve or update a profile if you're the owner.
+    """
     permission_classes = [IsOwnerOrReadOnly]
+    queryset = Profile.objects.all()
+    serializer_class = ProfileSerializer
     
     def get_object(self, pk):
         try:
