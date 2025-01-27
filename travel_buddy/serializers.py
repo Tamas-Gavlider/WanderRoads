@@ -7,6 +7,7 @@ class TravelBuddySerializer(serializers.ModelSerializer):
     buddy_name = serializers.ReadOnlyField(source='travel_buddy.username')
     is_fully_confirmed = serializers.SerializerMethodField()
 
+
     class Meta:
         model = TravelBuddy
         fields = [

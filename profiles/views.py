@@ -17,8 +17,17 @@ class ProfileList(generics.ListAPIView):
     """
     queryset = Profile.objects.annotate(
         posts_count= Count('owner__post', distinct= True),
-    )
+        buddy_count= Count('owner__travel_buddy_partners', distinct=True),
+    ).order_by('-created_at')
     serializer_class = ProfileSerializer
+    filter_backends = [
+        filters.OrderingFilter
+    ]
+    ordering_fields = [
+        'posts_count',
+        'buddy_count',
+        'owner__travel_buddy_partners__created_at'
+    ]
 
     
 class ProfileDetail(generics.RetrieveUpdateAPIView):
@@ -26,7 +35,14 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     Retrieve or update a profile if you're the owner.
     """
     permission_classes = [IsOwnerOrReadOnly]
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.annotate(
+        posts_count= Count('owner__post', distinct= True),
+        buddy_count= Count('owner__travel_buddy_partners', distinct=True),
+    ).order_by('-created_at')
+    serializer_class = ProfileSerializer
+    filter_backends = [
+        filters.OrderingFilter
+    ]
     serializer_class = ProfileSerializer
     
     def get_object(self, pk):

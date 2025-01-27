@@ -11,6 +11,8 @@ class ProfileSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     visited_countries = serializers.ListField(child=serializers.CharField())
     travel_buddy_id = serializers.SerializerMethodField()
+    posts_count = serializers.ReadOnlyField()
+    buddy_count = serializers.ReadOnlyField()
     
     def get_is_owner(self, obj):
         request = self.context['request']
@@ -35,6 +37,6 @@ class ProfileSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'created_at', 'updated_at', 'name',
             'image', 'theme_song', 'experience', 'visited_countries', 'status', 'is_owner',
-            'travel_buddy_id'
+            'travel_buddy_id', 'posts_count', 'buddy_count'
         ]
     
