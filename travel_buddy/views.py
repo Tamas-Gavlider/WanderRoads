@@ -1,4 +1,4 @@
-from rest_framework import generics, permissions
+from rest_framework import generics, permissions, serializers
 from django.db.models import Q
 from wonder_roads_api.permissions import IsOwnerOrReadOnly
 from .models import TravelBuddy
@@ -22,6 +22,16 @@ class TravelBuddyList(generics.ListCreateAPIView):
         return TravelBuddy.objects.none()
 
     def perform_create(self, serializer):
+        travel_buddy = self.request.data.get('travel_buddy')
+        if travel_buddy == self.request.user.id:
+            raise serializers.ValidationError("You cannot add yourself as a travel buddy.")
+
+        if TravelBuddy.objects.filter(
+            Q(owner=self.request.user, travel_buddy=travel_buddy) |
+            Q(owner=travel_buddy, travel_buddy=self.request.user)
+        ).exists():
+            raise serializers.ValidationError("This travel buddy relationship already exists.")
+
         serializer.save(owner=self.request.user)
 
 
