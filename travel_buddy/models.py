@@ -17,6 +17,7 @@ class TravelBuddy(models.Model):
     )
     created_at = models.DateTimeField(auto_now_add=True)
     confirmed = models.BooleanField(default=False)  
+    confirmed_by_buddy = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
@@ -25,11 +26,20 @@ class TravelBuddy(models.Model):
     def __str__(self):
         return f'{self.owner.username} and {self.travel_buddy.username} - Confirmed: {self.confirmed}'
 
-    def confirm_travel(self):
+    def confirm_travel(self, user):
         """
-        Method to confirm that the two users have traveled together.
+        Confirm travel based on the user making the request.
         """
-        self.confirmed = True
+        if user == self.owner:
+            self.confirmed = True
+        elif user == self.travel_buddy:
+            self.confirmed_by_buddy = True
+
+        # Update confirmation status when both parties agree
+        if self.confirmed and self.confirmed_by_buddy:
+            self.save()
+            return True  
         self.save()
+        return False
 
    
