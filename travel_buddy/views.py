@@ -44,7 +44,12 @@ class TravelBuddyDetail(generics.RetrieveDestroyAPIView):
         if user not in [instance.owner, instance.travel_buddy]:
             return Response({'error': 'Permission denied'}, status=status.HTTP_403_FORBIDDEN)
 
-        if instance.confirm_travel(user):
-            return Response({'status': 'Travel buddy relationship fully confirmed'}, status=status.HTTP_200_OK)
+        # Update the 'buddy' field to True when either party confirms the relationship
+        if instance.buddy:
+            return Response({'status': 'Travel buddy relationship already confirmed'}, status=status.HTTP_200_OK)
 
-        return Response({'status': 'Confirmation saved, waiting for the other party to confirm.'}, status=status.HTTP_202_ACCEPTED)
+        # Confirm the relationship by setting buddy to True
+        instance.buddy = True
+        instance.save()
+
+        return Response({'status': 'Travel buddy relationship fully confirmed'}, status=status.HTTP_200_OK)

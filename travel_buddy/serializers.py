@@ -11,8 +11,18 @@ class TravelBuddySerializer(serializers.ModelSerializer):
         model = TravelBuddy
         fields = [
             'id', 'owner', 'created_at', 'travel_buddy', 
-            'buddy_name', 'confirmed', 'confirmed_by_buddy', 'is_fully_confirmed'
+            'buddy_name', 'buddy', 'is_fully_confirmed'
         ]
 
     def get_is_fully_confirmed(self, obj):
-        return obj.confirmed and obj.confirmed_by_buddy
+        return obj.buddy
+
+    def create(self, validated_data):
+        owner = validated_data['owner']
+        travel_buddy = validated_data['travel_buddy']
+
+        # Check if the relationship already exists
+        if TravelBuddy.objects.filter(owner=owner, travel_buddy=travel_buddy).exists():
+            raise serializers.ValidationError("This travel buddy relationship already exists.")
+        
+        return super().create(validated_data)

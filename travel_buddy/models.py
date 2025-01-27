@@ -16,30 +16,25 @@ class TravelBuddy(models.Model):
         User, related_name='travel_buddy_partners', on_delete=models.CASCADE
     )
     created_at = models.DateTimeField(auto_now_add=True)
-    confirmed = models.BooleanField(default=False)  
-    confirmed_by_buddy = models.BooleanField(default=False)
+    buddy = models.BooleanField(default=False)
 
     class Meta:
         ordering = ['-created_at']
         unique_together = ['owner', 'travel_buddy']
 
     def __str__(self):
-        return f'{self.owner.username} and {self.travel_buddy.username} - Confirmed: {self.confirmed}'
+        return f'{self.owner.username} and {self.travel_buddy.username} - Buddy: {self.buddy}'
 
-    def confirm_travel(self, user):
+    def confirm_buddy(self, user):
         """
-        Confirm travel based on the user making the request.
+        Confirm the buddy relationship when both users confirm.
+        If one of them confirms, set buddy to True.
         """
         if user == self.owner:
-            self.confirmed = True
+            self.buddy = True  
         elif user == self.travel_buddy:
-            self.confirmed_by_buddy = True
-
-        # Update confirmation status when both parties agree
-        if self.confirmed and self.confirmed_by_buddy:
-            self.save()
-            return True  
+            self.buddy = True  
         self.save()
-        return False
+        return self.buddy  
 
    

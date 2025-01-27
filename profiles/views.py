@@ -1,6 +1,7 @@
 from rest_framework import generics
+from django.db.models import Count
 from django.http import Http404
-from rest_framework import status
+from rest_framework import status, filters, generics
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Profile
@@ -14,7 +15,9 @@ class ProfileList(generics.ListAPIView):
     List all profiles.
     No create view as profile creation is handled by django signals.
     """
-    queryset = Profile.objects.all()
+    queryset = Profile.objects.annotate(
+        posts_count= Count('owner__post', distinct= True),
+    )
     serializer_class = ProfileSerializer
 
     
