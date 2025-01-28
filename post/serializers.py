@@ -10,6 +10,7 @@ class PostSerializer(serializers.ModelSerializer):
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     image = serializers.ImageField(required=False)
     country = CountryField() 
+    comments_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
         if value.size > 3 * 1024 * 1024:
@@ -33,5 +34,5 @@ class PostSerializer(serializers.ModelSerializer):
         fields = [
             'id', 'owner', 'is_owner', 'profile_id',
             'profile_image', 'created_at', 'updated_at',
-            'title', 'content', 'image', 'country'
+            'title', 'content', 'image', 'country','comments_count'
         ]
