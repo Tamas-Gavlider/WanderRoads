@@ -1,6 +1,7 @@
 from django.http import Http404
 from django.db.models import Count
 from rest_framework import permissions, generics, filters
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.response import Response
 from rest_framework.views import APIView
 from .models import Post
@@ -22,12 +23,19 @@ class PostList(generics.ListCreateAPIView):
     filter_backends = [
         filters.OrderingFilter,
         filters.SearchFilter,
+        DjangoFilterBackend
     ]
+    
+    filterset_fields = [
+        'owner__profile'
+    ]
+    
     search_fields = [
         'owner__username',
         'title',
         'country'
     ]
+
     ordering_fields = [
         'comments_count',
     ]

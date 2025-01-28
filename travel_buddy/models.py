@@ -4,46 +4,41 @@ from django.contrib.auth.models import User
 
 class TravelBuddy(models.Model):
     """
-    TravelBuddy model to represent a friendship-like relationship between users
-    who confirm they traveled together.
-    'owner' is a User who adds another User as a travel buddy.
-    'travel_buddy' is the User marked as a travel buddy by the owner.
+    TravelBuddy model to represent a friendship-like relationship between users.
+    A relationship is mutual if two records exist:
+    - User A marks User B as a travel buddy.
+    - User B also marks User A as a travel buddy.
     """
     
-    STATUS_CHOICES = [
-        ('pending', 'Pending'),
-        ('confirmed', 'Confirmed'),
-        ('rejected', 'Rejected'),
-    ]
-    
     owner = models.ForeignKey(
-        User, related_name='travel_buddy_owner', on_delete=models.CASCADE
+        User, related_name='travel_buddies_initiated', on_delete=models.CASCADE
     )
     travel_buddy = models.ForeignKey(
-        User, related_name='travel_buddy_partners', on_delete=models.CASCADE
+        User, related_name='travel_buddies_received', on_delete=models.CASCADE
     )
-    status = models.CharField(max_length=10, choices=STATUS_CHOICES, default='pending')
-    requested_at = models.DateTimeField(auto_now_add=True)
-    confirmed_at = models.DateTimeField(null=True, blank=True)
+    created_at = models.DateTimeField(auto_now_add=True)
 
     class Meta:
-        ordering = ['-requested_at']
-        unique_together = ['owner', 'travel_buddy']
-        
+        unique_together = ['owner', 'travel_buddy']  # Prevent duplicates
+        ordering = ['-created_at']
+
     def __str__(self):
-        return f'{self.owner.username} -> {self.travel_buddy.username} - Status: {self.status}'
+        return f'{self.owner.username} -> {self.travel_buddy.username}'
 
     def clean(self):
+        """
+        Prevent a user from marking themselves as their own travel buddy.
+        """
         if self.owner == self.travel_buddy:
             raise ValidationError("Owner and Travel Buddy cannot be the same user.")
-        
-    def confirm(self):
-        """Confirm the buddy request."""
-        self.status = 'confirmed'
-        self.confirmed_at = timezone.now()
-        self.save()
 
-    def reject(self):
-        """Reject the buddy request."""
-        self.status = 'rejected'
-        self.save()
+    @staticmethod
+    def is_mutual(owner, travel_buddy):
+        """
+        Check if a mutual TravelBuddy relationship exists.
+        """
+        return TravelBuddy.objects.filter(
+            owner=owner, travel_buddy=travel_buddy
+        ).exists() and TravelBuddy.objects.filter(
+            owner=travel_buddy, travel_buddy=owner
+        ).exists()

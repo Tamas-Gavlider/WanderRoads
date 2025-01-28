@@ -13,6 +13,9 @@ class TravelBuddyList(generics.ListCreateAPIView):
     serializer_class = TravelBuddySerializer
 
     def get_queryset(self):
+        """
+        Return the travel buddy relationships for the authenticated user.
+        """
         if self.request.user.is_authenticated:
             return TravelBuddy.objects.filter(
                 Q(owner=self.request.user) | Q(travel_buddy=self.request.user)
@@ -20,16 +23,22 @@ class TravelBuddyList(generics.ListCreateAPIView):
         return TravelBuddy.objects.none()
 
     def perform_create(self, serializer):
-        travel_buddy = self.request.data.get('travel_buddy')
-        if travel_buddy == self.request.user.id:
+        """
+        Create a new travel buddy relationship.
+        Ensure the user doesn't add themselves and that the relationship doesn't already exist.
+        """
+        travel_buddy_id = self.request.data.get('travel_buddy')
+        if travel_buddy_id == self.request.user.id:
             raise serializers.ValidationError("You cannot add yourself as a travel buddy.")
 
+        # Ensure the relationship is not already created in either direction
         if TravelBuddy.objects.filter(
-            Q(owner=self.request.user, travel_buddy=travel_buddy) |
-            Q(owner=travel_buddy, travel_buddy=self.request.user)
+            Q(owner=self.request.user, travel_buddy_id=travel_buddy_id) |
+            Q(owner_id=travel_buddy_id, travel_buddy=self.request.user)
         ).exists():
             raise serializers.ValidationError("This travel buddy relationship already exists.")
 
+        # Create the travel buddy relationship in both directions
         serializer.save(owner=self.request.user)
 
 
