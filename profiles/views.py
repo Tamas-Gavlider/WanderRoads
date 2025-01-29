@@ -27,8 +27,8 @@ class ProfileList(generics.ListAPIView):
     ]
     filterset_fields = [
         'owner',
-        'owner__travel_buddies_initiated',
-        'owner__travel_buddies_received',
+        'owner__travel_buddies_initiated__owner__profile',
+        'owner__travel_buddies_received__owner__profile',
     ]
     ordering_fields = [
         'posts_count',
