@@ -2,6 +2,7 @@ from rest_framework import generics
 from django.db.models import Count
 from django.http import Http404
 from rest_framework import status, filters, generics
+from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from rest_framework.response import Response
 from .models import Profile
@@ -17,10 +18,17 @@ class ProfileList(generics.ListAPIView):
     """
     queryset = Profile.objects.annotate(
         posts_count= Count('owner__post', distinct= True),
+        travel_buddy_count=Count('owner__travel_buddies_received', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
     filter_backends = [
-        filters.OrderingFilter
+        filters.OrderingFilter,
+        DjangoFilterBackend,
+    ]
+    filterset_fields = [
+        'owner',
+        'owner__travel_buddies_initiated',
+        'owner__travel_buddies_received',
     ]
     ordering_fields = [
         'posts_count',

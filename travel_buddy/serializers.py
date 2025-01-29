@@ -13,12 +13,6 @@ class TravelBuddySerializer(serializers.ModelSerializer):
             'buddy_name',
         ]
 
-    def get_is_mutual(self, obj):
-        """
-        Check if the travel buddy relationship is mutual (i.e., both users added each other).
-        """
-        return TravelBuddy.is_mutual(obj.owner, obj.travel_buddy)
-
     def create(self, validated_data):
         try:
             return super().create(validated_data)
