@@ -1,2 +1,2 @@
  release: python manage.py makemigrations && python manage.py migrate
- web: gunicorn wanderroads.wsgi
+ web: gunicorn wonder_roads_api.wsgi
