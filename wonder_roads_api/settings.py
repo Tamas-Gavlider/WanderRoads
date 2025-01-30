@@ -77,7 +77,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'dj_rest_auth.registration',
     'corsheaders',
     'cloudinary_storage',
     'django.contrib.staticfiles',
