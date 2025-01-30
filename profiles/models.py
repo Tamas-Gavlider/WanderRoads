@@ -19,10 +19,10 @@ class Profile(models.Model):
     owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    name = models.CharField(max_length=255, blank=True)
+    name = models.CharField(max_length=255, blank=True, null=True)
     image = CloudinaryField('image', default='pexels-nurseryart-346885_nj7aji')
     theme_song = CloudinaryField('audio',resource_type= 'video', default='travel-audio-oficial-243586_eehcqv')
-    experience = models.CharField(max_length=55, choices=EXPERIENCE_LEVEL)
+    experience = models.CharField(max_length=55, choices=EXPERIENCE_LEVEL, default='Wanderer')
     visited_countries = CountryField(multiple=True, blank=True)
     status = models.TextField(max_length=255, blank=True)
     
