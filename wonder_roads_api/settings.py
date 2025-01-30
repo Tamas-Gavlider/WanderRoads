@@ -98,7 +98,7 @@ INSTALLED_APPS = [
     'trip',
 ]
 
-SITE_ID = 1
+SITE_ID = 7
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',
