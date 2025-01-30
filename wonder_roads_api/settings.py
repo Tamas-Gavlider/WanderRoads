@@ -61,7 +61,8 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+DEBUG = True
+# 'DEV' in os.environ
 
 ALLOWED_HOSTS = ['127.0.0.1', 'localhost','https://wanderroads-c8ef8cb5f31c.herokuapp.com/']
 
