@@ -64,7 +64,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 DEBUG = True
 # 'DEV' in os.environ
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost','https://wanderroads-c8ef8cb5f31c.herokuapp.com/']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost' , 'wanderroads-c8ef8cb5f31c.herokuapp.com']
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-tamasgavlid-wanderroads-evupz6meoyw.ws.codeinstitute-ide.net',
