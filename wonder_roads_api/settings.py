@@ -96,6 +96,7 @@ INSTALLED_APPS = [
     'comments',
     'travel_buddy',
     'trip',
+    'travel_preference',
 ]
 
 SITE_ID = 7
