@@ -61,9 +61,9 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = 'DEV' in os.environ
+DEBUG = 'DEBUG' in os.environ
 
-ALLOWED_HOSTS = ['127.0.0.1', 'localhost' , 'wanderroads-c8ef8cb5f31c.herokuapp.com']
+ALLOWED_HOSTS = os.environ.get('ALLOWED_HOST')
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-tamasgavlid-wanderroads-evupz6meoyw.ws.codeinstitute-ide.net',
@@ -112,13 +112,9 @@ MIDDLEWARE = [
     'django.middleware.clickjacking.XFrameOptionsMiddleware',
 ]
 
-if 'CLIENT_ORIGIN' in os.environ:
-     CORS_ALLOWED_ORIGINS = [
-         os.environ.get('CLIENT_ORIGIN')
-     ]
-else:
-    CORS_ALLOWED_ORIGIN_REGEXES = [
-         r"^https:\/\/.*\.codeinstitute-ide\.net$",
+
+CORS_ALLOWED_ORIGINS = [
+    os.environ.get('CLIENT_ORIGIN')
      ]
 
 ROOT_URLCONF = 'wonder_roads_api.urls'
