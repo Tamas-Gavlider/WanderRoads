@@ -99,7 +99,10 @@ INSTALLED_APPS = [
     'travel_preference',
 ]
 
-SITE_ID = 7
+if 'DEV' in os.environ:
+    SITE_ID = 1
+else:
+    SITE_ID = 7
 
 MIDDLEWARE = [
     'corsheaders.middleware.CorsMiddleware',

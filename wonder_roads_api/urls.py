@@ -33,6 +33,7 @@ urlpatterns = [
     path('api/',include('comments.urls')),
     path('api/',include('travel_buddy.urls')),
     path('api/',include('trip.urls')),
+    path('api/',include('travel_preference.urls'))
 ]
 
 
