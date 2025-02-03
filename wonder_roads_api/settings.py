@@ -97,7 +97,7 @@ INSTALLED_APPS = [
     'travel_buddy',
     'trip',
     'travel_preference',
-    'travel_recommendation'
+    'travel_recommendation',
 ]
 
 if 'DEV' in os.environ:

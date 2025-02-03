@@ -1,0 +1,151 @@
+Continent,Climate,Activity,Budget,Travel Style,Duration,Destination
+Europe,Cold,Culture,Medium,Family,One_Week,Paris
+Europe,Mild,City,High,Luxury,Weekend,London
+Europe,Cold,Nature,Low,Backpacking,Two_Weeks,Reykjavik
+Europe,Mild,Beach,Medium,Solo,One_Week,Barcelona
+Europe,Cold,Adventure,Medium,Backpacking,Two_Weeks,Swiss Alps
+Asia,Hot,Beach,Low,Backpacking,Two_Weeks,Bali
+Asia,Mild,City,High,Luxury,Weekend,Tokyo
+Asia,Tropical,Nature,Medium,Solo,One_Week,Chiang Mai
+Asia,Hot,Culture,Medium,Family,One_Week,Kyoto
+Asia,Tropical,Adventure,Low,Backpacking,One_Week,Philippines
+North America,Cold,Culture,High,Luxury,Weekend,New York
+North America,Hot,Beach,Medium,Family,One_Week,Miami
+North America,Mild,Adventure,Medium,Solo,Two_Weeks,Banff
+North America,Cold,Nature,Low,Backpacking,Two_Weeks,Alaska
+North America,Mild,City,Medium,Solo,One_Week,San Francisco
+South America,Tropical,Adventure,Low,Backpacking,Two_Weeks,Machu Picchu
+South America,Hot,Beach,Medium,Family,One_Week,Rio de Janeiro
+South America,Mild,Culture,Medium,Solo,One_Week,Buenos Aires
+South America,Hot,Nature,Low,Backpacking,Two_Weeks,Amazon Rainforest
+South America,Tropical,City,High,Luxury,Weekend,Cartagena
+Africa,Hot,Safari,High,Luxury,One_Week,Serengeti
+Africa,Mild,Culture,Medium,Solo,One_Week,Marrakech
+Africa,Tropical,Beach,Low,Backpacking,Two_Weeks,Zanzibar
+Africa,Hot,Adventure,Medium,Family,One_Week,Cape Town
+Africa,Mild,Nature,Low,Backpacking,Two_Weeks,Victoria Falls
+Oceania,Hot,Beach,Medium,Family,One_Week,Sydney
+Oceania,Mild,City,High,Luxury,Weekend,Auckland
+Oceania,Cold,Adventure,Low,Backpacking,Two_Weeks,New Zealand
+Oceania,Tropical,Nature,Medium,Solo,One_Week,Fiji
+Oceania,Hot,Culture,Low,Backpacking,Two_Weeks,Papua New Guinea
+Europe,Cold,Culture,High,Luxury,One_Week,Vienna
+Europe,Mild,City,Medium,Solo,Weekend,Amsterdam
+Europe,Cold,Nature,Low,Backpacking,Two_Weeks,Norwegian Fjords
+Europe,Mild,Beach,High,Luxury,One_Week,Santorini
+Europe,Cold,Adventure,Medium,Backpacking,Two_Weeks,Lapland
+Europe,Mild,Food,Medium,Solo,One_Week,Rome
+Europe,Mild,Culture,High,Luxury,Weekend,Prague
+Europe,Cold,City,Medium,Family,One_Week,Berlin
+Europe,Mild,Adventure,Low,Backpacking,Two_Weeks,Dolomites
+Europe,Cold,Nature,Medium,Solo,One_Week,Edinburgh
+Asia,Tropical,Beach,Medium,Family,One_Week,Maldives
+Asia,Hot,City,High,Luxury,Weekend,Dubai
+Asia,Mild,Nature,Low,Backpacking,Two_Weeks,Vietnam
+Asia,Tropical,Culture,Medium,Solo,One_Week,Cambodia
+Asia,Hot,Adventure,Medium,Backpacking,Two_Weeks,Nepal
+Asia,Mild,Food,Medium,Solo,One_Week,Seoul
+Asia,Tropical,City,High,Luxury,Weekend,Singapore
+Asia,Hot,Culture,Low,Backpacking,Two_Weeks,India
+Asia,Mild,Adventure,Medium,Family,One_Week,Sri Lanka
+Asia,Hot,Nature,Medium,Solo,One_Week,Malaysia
+North America,Mild,Culture,Medium,Solo,Weekend,Mexico City
+North America,Hot,Beach,High,Luxury,One_Week,Cancun
+North America,Cold,Adventure,Low,Backpacking,Two_Weeks,Rocky Mountains
+North America,Mild,City,Medium,Family,One_Week,Los Angeles
+North America,Cold,Nature,Medium,Solo,One_Week,Yellowstone
+North America,Hot,Food,Medium,Solo,Weekend,New Orleans
+North America,Mild,Culture,High,Luxury,Weekend,Washington D.C.
+North America,Cold,Adventure,Low,Backpacking,Two_Weeks,Vancouver
+North America,Mild,Nature,Medium,Family,One_Week,Yosemite
+North America,Hot,City,Medium,Solo,One_Week,Las Vegas
+South America,Hot,Culture,Medium,Solo,Weekend,Lima
+South America,Tropical,Beach,High,Luxury,One_Week,Fernando de Noronha
+South America,Mild,Nature,Low,Backpacking,Two_Weeks,Torres del Paine
+South America,Hot,Adventure,Medium,Family,One_Week,Patagonia
+South America,Tropical,City,High,Luxury,Weekend,Santiago
+South America,Mild,Food,Medium,Solo,One_Week,Bogotá
+South America,Hot,Culture,Low,Backpacking,Two_Weeks,Quito
+South America,Tropical,Nature,Medium,Family,One_Week,Galápagos
+South America,Mild,Adventure,Medium,Solo,One_Week,Atacama Desert
+South America,Hot,City,Medium,Solo,One_Week,Montevideo
+Africa,Mild,Culture,Medium,Solo,Weekend,Cairo
+Africa,Hot,Safari,High,Luxury,One_Week,Kruger National Park
+Africa,Tropical,Beach,Low,Backpacking,Two_Weeks,Mauritius
+Africa,Hot,Adventure,Medium,Family,One_Week,Namibia
+Africa,Mild,Nature,Medium,Solo,One_Week,Ethiopia
+Africa,Hot,Food,Low,Backpacking,Two_Weeks,Senegal
+Africa,Mild,City,High,Luxury,Weekend,Johannesburg
+Africa,Tropical,Culture,Medium,Family,One_Week,Madagascar
+Africa,Hot,Adventure,Medium,Solo,One_Week,Uganda
+Africa,Mild,Nature,Medium,Family,One_Week,Botswana
+Oceania,Hot,Beach,Medium,Family,One_Week,Great Barrier Reef
+Oceania,Mild,City,High,Luxury,Weekend,Melbourne
+Oceania,Cold,Adventure,Low,Backpacking,Two_Weeks,Tasmania
+Oceania,Tropical,Nature,Medium,Solo,One_Week,Bora Bora
+Oceania,Hot,Culture,Low,Backpacking,Two_Weeks,Solomon Islands
+Oceania,Mild,Food,Medium,Solo,One_Week,Wellington
+Oceania,Hot,Adventure,High,Luxury,Weekend,Gold Coast
+Oceania,Tropical,City,Medium,Family,One_Week,Honolulu
+Oceania,Cold,Nature,Low,Backpacking,Two_Weeks,Southern Alps
+Oceania,Mild,Culture,Medium,Family,One_Week,Christchurch
+Europe,Mild,Culture,Medium,Solo,Weekend,Albania
+Europe,Cold,Nature,Low,Backpacking,Two_Weeks,Faroe Islands
+Europe,Mild,City,Medium,Family,One_Week,Riga
+Europe,Cold,Adventure,Low,Backpacking,Two_Weeks,Transylvania
+Europe,Mild,Food,Medium,Solo,One_Week,Ljubljana
+Europe,Cold,Culture,High,Luxury,Weekend,Kotor
+Europe,Mild,City,Medium,Family,One_Week,Vilnius
+Europe,Cold,Nature,Medium,Solo,One_Week,Svalbard
+Europe,Mild,Adventure,Low,Backpacking,Two_Weeks,Corsica
+Europe,Cold,City,Medium,Solo,One_Week,Sarajevo
+Asia,Tropical,Beach,Medium,Family,One_Week,Timor-Leste
+Asia,Hot,Culture,Low,Backpacking,Two_Weeks,Bhutan
+Asia,Mild,Nature,Medium,Solo,One_Week,Kyrgyzstan
+Asia,Tropical,Adventure,High,Luxury,Weekend,Brunei
+Asia,Hot,Food,Low,Backpacking,Two_Weeks,Uzbekistan
+Asia,Mild,City,Medium,Family,One_Week,Bishkek
+Asia,Tropical,Culture,Medium,Solo,One_Week,Laos
+Asia,Hot,Nature,High,Luxury,Weekend,Turkmenistan
+Asia,Mild,Adventure,Low,Backpacking,Two_Weeks,Pakistan
+Asia,Tropical,Beach,Medium,Family,One_Week,Andaman Islands
+North America,Mild,Nature,Medium,Solo,One_Week,Belize
+North America,Hot,Culture,Low,Backpacking,Two_Weeks,Honduras
+North America,Mild,Adventure,Medium,Family,One_Week,Guatemala
+North America,Cold,Nature,Medium,Solo,One_Week,Labrador
+North America,Hot,City,High,Luxury,Weekend,El Salvador
+North America,Mild,Culture,Medium,Solo,One_Week,Nicaragua
+North America,Hot,Beach,Low,Backpacking,Two_Weeks,Baja California
+North America,Cold,Adventure,Medium,Family,One_Week,Yukon
+North America,Mild,Food,Medium,Solo,One_Week,Saint Pierre and Miquelon
+North America,Hot,City,Medium,Solo,One_Week,Dominica
+South America,Hot,Culture,Medium,Solo,Weekend,Guyana
+South America,Tropical,Beach,High,Luxury,One_Week,Suriname
+South America,Mild,Nature,Low,Backpacking,Two_Weeks,Paraguay
+South America,Hot,Adventure,Medium,Family,One_Week,Pantanal
+South America,Tropical,City,High,Luxury,Weekend,Paramaribo
+South America,Mild,Food,Medium,Solo,One_Week,Asunción
+South America,Hot,Culture,Low,Backpacking,Two_Weeks,Chachapoyas
+South America,Tropical,Nature,Medium,Family,One_Week,Canaima National Park
+South America,Mild,Adventure,Medium,Solo,One_Week,La Guajira
+South America,Hot,City,Medium,Solo,One_Week,Leticia
+Africa,Mild,Culture,Medium,Solo,Weekend,São Tomé and Príncipe
+Africa,Hot,Safari,High,Luxury,One_Week,Chad
+Africa,Tropical,Beach,Low,Backpacking,Two_Weeks,Comoros
+Africa,Hot,Adventure,Medium,Family,One_Week,Benin
+Africa,Mild,Nature,Medium,Solo,One_Week,Lesotho
+Africa,Hot,Food,Low,Backpacking,Two_Weeks,Togo
+Africa,Mild,City,High,Luxury,Weekend,Djibouti
+Africa,Tropical,Culture,Medium,Family,One_Week,Burundi
+Africa,Hot,Adventure,Medium,Solo,One_Week,Gabon
+Africa,Mild,Nature,Medium,Family,One_Week,Malawi
+Oceania,Hot,Beach,Medium,Family,One_Week,Tuvalu
+Oceania,Mild,City,High,Luxury,Weekend,Nauru
+Oceania,Cold,Adventure,Low,Backpacking,Two_Weeks,Norfolk Island
+Oceania,Tropical,Nature,Medium,Solo,One_Week,Vanuatu
+Oceania,Hot,Culture,Low,Backpacking,Two_Weeks,Tonga
+Oceania,Mild,Food,Medium,Solo,One_Week,New Caledonia
+Oceania,Hot,Adventure,High,Luxury,Weekend,Cook Islands
+Oceania,Tropical,City,Medium,Family,One_Week,Samoa
+Oceania,Cold,Nature,Low,Backpacking,Two_Weeks,Chatham Islands
+Oceania,Mild,Culture,Medium,Family,One_Week,Wallis and Futuna
