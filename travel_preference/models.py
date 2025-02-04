@@ -1,6 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
-from django_countries.fields import CountryField
+from travel_recommendation.recommendation import generate_recommendation
 
 # Create your models here.
 
@@ -66,6 +66,10 @@ class TravelPreference(models.Model):
     budget = models.CharField(max_length=55, choices=BUDGET_CHOICES, default='ANY')
     travel_style = models.CharField(max_length=55, choices=TRAVEL_STYLE_CHOICES,default="ANY") 
     duration = models.CharField(max_length=55, choices=DURATION_CHOICES,default="ANY")
+
+    def save(self, *args, **kwargs):
+        super().save(*args, **kwargs) 
+        generate_recommendation(self.owner) 
     
     class Meta:
         ordering = ['-created_at']
