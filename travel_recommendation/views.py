@@ -14,10 +14,13 @@ class TravelRecommendationList(generics.ListAPIView):
     
     def get_queryset(self):
         user = self.request.user
-        if not TravelRecommendation.objects.filter(owner=user).exists():
-            generate_recommendation(user)  # Generate recommendations if none exist
-        return TravelRecommendation.objects.filter(owner=user)
+        travel_recommendation, created = TravelRecommendation.objects.get_or_create(owner=user)
+        
+        # Generate recommendation only if it doesn't exist or if the destination is empty
+        if not travel_recommendation.recommended_destination:
+            generate_recommendation(user)  # Generate recommendation if not exists
 
+        return TravelRecommendation.objects.filter(owner=user)
 
 class TravelRecommendationDetail(generics.RetrieveDestroyAPIView):
     """

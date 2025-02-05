@@ -8,6 +8,6 @@ class TravelRecommendationSerializer(serializers.ModelSerializer):
     class Meta:
         model = TravelRecommendation
         fields = [
-            'id', 'owner', 'created_at', 'updated_at', 'recommended_destination'
+            'id', 'owner', 'created_at', 'updated_at', 'recommended_destination',
         ]
 
