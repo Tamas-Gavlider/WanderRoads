@@ -51,11 +51,6 @@ setuptools==75.8.0
 simple-parsing==0.1.7
 six==1.17.0
 sqlparse==0.5.3
-tensorboard==2.16.2
-tensorboard-data-server==0.7.2
-tensorflow-datasets==4.9.7
-tensorflow-metadata==1.16.1
-tensorflow-recommenders==0.7.2
 toml==0.10.2
 tqdm==4.67.1
 tzdata==2025.1
