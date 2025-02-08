@@ -4,25 +4,24 @@ import Nav from 'react-bootstrap/Nav';
 import Navbar from 'react-bootstrap/Navbar';
 import logo from '../assets/logo.png'
 import styles from '../styles/NavBar.module.css'
+import {NavLink} from 'react-router-dom'
 
 
 const NavBar = () => {
   return (
     <Navbar expand="lg" className={styles.NavBar} fixed="to">
       <Container fluid>
-        <Navbar.Brand ><img src={logo} alt="logo" height="125"/></Navbar.Brand>
-        <Navbar.Toggle aria-controls="navbarScroll" />
-        <Navbar.Collapse id="navbarScroll">
-          <Nav
-            className="me-auto my-2 my-lg-0"
-            style={{ maxHeight: '100px' }}
-            navbarScroll
-          >
-            <Nav.Link href="#action1">Map</Nav.Link>
-            <Nav.Link href="#action2">Profile</Nav.Link>
-            <Nav.Link href="#action3">Posts</Nav.Link>
-            <Nav.Link href="#action4">Travel Buddies</Nav.Link>
-            <Nav.Link href="#action5">Logout</Nav.Link>
+        <NavLink to='/'>
+        <Navbar.Brand ><img src={logo} alt="logo" height="100"/></Navbar.Brand>
+        </NavLink>
+        <Navbar.Toggle aria-controls="basic-navbar-nav"/>
+        <Navbar.Collapse id="basic-navbar-nav">
+          <Nav className="ml-auto text-left">
+            <NavLink exact to="/" className={styles.NavLink} activeClassName={styles.Active}>Map</NavLink>
+            <NavLink to="/profile" className={styles.NavLink} activeClassName={styles.Active}>Profile</NavLink>
+            <NavLink to="/posts" className={styles.NavLink} activeClassName={styles.Active}>Posts</NavLink>
+            <NavLink to="/travel-buddies" className={styles.NavLink}activeClassName={styles.Active} >Travel Buddies</NavLink>
+            <NavLink to="/logout" className={styles.NavLink} activeClassName={styles.Active}>Logout</NavLink>
           </Nav>
         </Navbar.Collapse>
       </Container>
