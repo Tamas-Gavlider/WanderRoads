@@ -18,8 +18,11 @@ const NavBar = () => {
             style={{ maxHeight: '100px' }}
             navbarScroll
           >
-            <Nav.Link href="#action1">Home</Nav.Link>
-            <Nav.Link href="#action2">Link</Nav.Link>
+            <Nav.Link href="#action1">Map</Nav.Link>
+            <Nav.Link href="#action2">Profile</Nav.Link>
+            <Nav.Link href="#action3">Posts</Nav.Link>
+            <Nav.Link href="#action4">Travel Buddies</Nav.Link>
+            <Nav.Link href="#action5">Logout</Nav.Link>
           </Nav>
         </Navbar.Collapse>
       </Container>
