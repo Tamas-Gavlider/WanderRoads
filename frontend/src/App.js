@@ -1,13 +1,15 @@
 import styles from './App.module.css';
 import NavBar from "./components/NavBar";
 import Container from "react-bootstrap/Container";
-import {Route,Switch} from 'react-router-dom'
-import './api/axiosDefaults'
+import {Route,Switch} from 'react-router-dom';
+import './api/axiosDefaults';
+import Home from './components/Home';
 
 function App() {
   return (
     <div className={styles.App}>
-     < NavBar />
+     <Home />
+     {/*
      <Container>
       <Switch>
       <Route exact path='/' render={()=> <h1>Map</h1>}/>
@@ -18,6 +20,7 @@ function App() {
       <Route render={()=> <p>Page not found!</p>}/>
       </Switch>
      </Container>
+     */}
     </div>
   );
 }
