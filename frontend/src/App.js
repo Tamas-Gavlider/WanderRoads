@@ -4,15 +4,18 @@ import Container from "react-bootstrap/Container";
 import {Route,Switch} from 'react-router-dom';
 import './api/axiosDefaults';
 import Home from './components/Home';
-
+import SignUpForm from './pages/auth/SignUpForm'
+ 
 function App() {
   return (
     <div className={styles.App}>
-     <Home />
-     {/*
+     {
      <Container>
       <Switch>
-      <Route exact path='/' render={()=> <h1>Map</h1>}/>
+      <Route exact path='/' render={()=> <Home />}/>
+      <Route exact path='/signin' render={()=> <h1>Sign in</h1>}/>
+      <Route exact path='/signup' render={()=> < SignUpForm/>}/>
+      <Route exact path='/map' render={()=> <h1>Map</h1>}/>
       <Route exact path='/profile' render={()=> <h1>Profile</h1>}/>
       <Route exact path='/posts' render={()=> <h1>Posts</h1>}/>
       <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>
@@ -20,7 +23,7 @@ function App() {
       <Route render={()=> <p>Page not found!</p>}/>
       </Switch>
      </Container>
-     */}
+     }
     </div>
   );
 }
