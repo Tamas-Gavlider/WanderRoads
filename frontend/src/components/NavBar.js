@@ -5,9 +5,11 @@ import Navbar from 'react-bootstrap/Navbar';
 import logo from '../assets/logo.png'
 import styles from '../styles/NavBar.module.css'
 import {NavLink} from 'react-router-dom'
+import { useCurrentUser } from '../contexts/CurrentUserContext';
 
 
 const NavBar = () => {
+
   return (
     <Navbar expand="lg" className={styles.NavBar} fixed="to">
       <Container fluid>
