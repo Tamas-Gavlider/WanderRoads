@@ -45,7 +45,8 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer'
+    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer',
+    'TOKEN_SERIALIZER': 'dj_rest_auth.serializers.TokenSerializer',
 }
 
 CLOUDINARY_STORAGE = {
@@ -63,7 +64,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEBUG' in os.environ
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'),"localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = [
     'https://8000-tamasgavlid-wanderroads-evupz6meoyw.ws.codeinstitute-ide.net',
