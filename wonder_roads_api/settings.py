@@ -62,7 +62,7 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "127.0.0.1"]
 
