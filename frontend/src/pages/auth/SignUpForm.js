@@ -9,6 +9,7 @@ import {
   Form,
   Button,
   Col,
+  Image,
   Row,
   Container,
   Alert,
@@ -52,7 +53,7 @@ const SignUpForm = () => {
           <h1 className={styles.Header}>sign up</h1>
 
           <Form onSubmit={handleSubmit}>
-            <Form.Group controlId="username">
+            <Form.Group controlId="username" as={Row} className="mb-3">
               <Form.Label className="d-none">username</Form.Label>
               <Form.Control
                 className={styles.Input}
@@ -69,7 +70,7 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
-            <Form.Group controlId="password1">
+            <Form.Group controlId="password1" as={Row} className="mb-3">
               <Form.Label className="d-none">Password</Form.Label>
               <Form.Control
                 className={styles.Input}
@@ -86,7 +87,7 @@ const SignUpForm = () => {
               </Alert>
             ))}
 
-            <Form.Group controlId="password2">
+            <Form.Group controlId="password2" as={Row} className="mb-3">
               <Form.Label className="d-none">Confirm password</Form.Label>
               <Form.Control
                 className={styles.Input}
@@ -127,6 +128,15 @@ const SignUpForm = () => {
         md={6}
         className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
       >
+      </Col>
+      <Col
+        md={6}
+        className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
+      >
+     <Image
+          className={`${appStyles.FillerImage}`}
+          src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"}
+        />
       </Col>
     </Row>
   );
