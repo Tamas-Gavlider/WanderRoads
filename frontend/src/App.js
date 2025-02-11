@@ -1,7 +1,7 @@
 import styles from './App.module.css';
 /* import NavBar from "./components/NavBar"; */
 import Container from "react-bootstrap/Container";
-import {Route,Switch} from 'react-router-dom';
+import {Route,Switch, useLocation} from 'react-router-dom';
 import './api/axiosDefaults'
 import SignUpForm from './pages/auth/SignUpForm'
 import SignInForm from './pages/auth/SignInForm';
@@ -10,8 +10,11 @@ import LandingPage from './components/LandingPage';
 
 function App() {
 
+  const location = useLocation(); 
+  const isLandingPage = location.pathname === "/"; 
+
   return (
-    <div className={styles.App}>
+    <div className={`${styles.App} ${isLandingPage ? styles.LandingBackground : styles.NoBackground}`}>
       < NavBar />
      {
       <Container>

@@ -3,11 +3,19 @@
     font-family: "Anonymous Pro", serif;
     background-color: white;
     min-height: 100vh;
-    background-image: url('./assets/landing_page.jpg');
-    background-size: cover;
-    background-position: center;
-    background-repeat: no-repeat;
-    background-attachment: fixed;
+}
+
+.LandingBackground {
+  background-image: url('./assets/landing_page.jpg');
+  background-size: cover;
+  background-position: center;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+}
+
+/* Remove background for other pages */
+.NoBackground {
+  background: white;
 }
 
   a:hover {
@@ -93,10 +101,14 @@
 
 /* Smaller Screen Optimization */
 @media (max-width: 768px) {
-  .App {
+  .LandingBackground{
       background-size: cover;
       background-attachment: fixed;
       background-image: url('./assets/landing_page_mobile.jpg');
       flex-direction: column;
   }
+  /* Remove background for other pages */
+.NoBackground {
+  background: white;
+}
 }
