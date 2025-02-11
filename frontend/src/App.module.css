@@ -1,7 +1,13 @@
+
 .App {
     font-family: "Anonymous Pro", serif;
     background-color: white;
     min-height: 100vh;
+    background-image: url('./assets/landing_page.jpg');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    background-attachment: fixed;
 }
 
   a:hover {
@@ -84,3 +90,13 @@
   *::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
+
+/* Smaller Screen Optimization */
+@media (max-width: 768px) {
+  .App {
+      background-size: cover;
+      background-attachment: fixed;
+      background-image: url('./assets/landing_page_mobile.jpg');
+      flex-direction: column;
+  }
+}
