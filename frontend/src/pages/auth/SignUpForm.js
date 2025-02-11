@@ -1,10 +1,9 @@
 import React, { useState } from "react";
 import { Link, useHistory } from "react-router-dom";
-
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-
+import reg_img from "../../assets/reg_img.jpg";
 import {
   Form,
   Button,
@@ -14,7 +13,6 @@ import {
   Container,
   Alert,
 } from "react-bootstrap";
-
 import axios from "axios";
 
 const SignUpForm = () => {
@@ -40,7 +38,7 @@ const SignUpForm = () => {
     event.preventDefault();
     try {
       await axios.post("/dj-rest-auth/registration/", signUpData);
-      history.push("/signin");
+      history.push("/");
     } catch (err) {
       setErrors(err.response?.data);
     }
@@ -48,7 +46,7 @@ const SignUpForm = () => {
 
   return (
     <Row className={styles.Row}>
-      <Col className="my-auto py-2 p-md-2" md={6}>
+      <Col className="my-auto py-2 p-md-2 d-flex align-items-center" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
           <h1 className={styles.Header}>sign up</h1>
 
@@ -117,27 +115,18 @@ const SignUpForm = () => {
             ))}
           </Form>
         </Container>
-
-        <Container className={`mt-3 ${appStyles.Content}`}>
-          <Link className={styles.Link} to="/signin">
-            Already have an account? <span>Sign in</span>
-          </Link>
-        </Container>
       </Col>
       <Col
         md={6}
-        className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
+        className="d-none d-md-flex align-items-center justify-content-center"
       >
+        <Image className={`${appStyles.FillerImage}`} src={reg_img} fluid />
       </Col>
-      <Col
-        md={6}
-        className={`my-auto d-none d-md-block p-2 ${styles.SignUpCol}`}
-      >
-     <Image
-          className={`${appStyles.FillerImage}`}
-          src={"https://codeinstitute.s3.amazonaws.com/AdvancedReact/hero2.jpg"}
-        />
-      </Col>
+      <Container className={`mt-3 ${appStyles.Content}`}>
+        <Link className={styles.Link} to="/signin">
+          Already have an account? <span>Sign in</span>
+        </Link>
+      </Container>
     </Row>
   );
 };
