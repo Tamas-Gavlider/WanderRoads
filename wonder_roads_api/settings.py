@@ -39,7 +39,10 @@ if 'DEV' not in os.environ:
     ]
 
 REST_USE_JWT = True
-JWT_AUTH_SECURE = True
+if 'DEV' in os.environ:
+    JWT_AUTH_SECURE = False  # Allow HTTP (for local testing)
+else:
+    JWT_AUTH_SECURE = True   # Require HTTPS in production
 JWT_AUTH_COOKIE = 'my-app-auth'
 JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
@@ -67,7 +70,8 @@ DEBUG = 'DEBUG' in os.environ
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "127.0.0.1"]
 
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-tamasgavlid-wanderroads-evupz6meoyw.ws.codeinstitute-ide.net'
+    'https://8000-tamasgavlid-wanderroads-evupz6meoyw.ws.codeinstitute-ide.net' ,
+    os.environ.get('CLIENT_ORIGIN')
 ]
 
 # Application definition
@@ -123,6 +127,8 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN')
      ]
+
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'wonder_roads_api.urls'
 
