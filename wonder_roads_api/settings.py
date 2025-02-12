@@ -43,6 +43,7 @@ JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZERS = {
     'USER_DETAILS_SERIALIZER': 'wonder_roads_api.serializers.CurrentUserSerializer',
+    'TOKEN_SERIALIZER': 'dj_rest_auth.serializers.TokenSerializer',
 }
 
 CLOUDINARY_STORAGE = {
