@@ -44,3 +44,11 @@
 .SignUpCol {
   height: 375px;
 }
+
+ /* Smaller Screen Optimization */
+ @media (max-width: 768px) { 
+  /* Moves the sign in Link closer to the reg form */
+  .SignInLink {
+    margin-top: -80px;
+  }
+}
