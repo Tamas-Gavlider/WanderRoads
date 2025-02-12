@@ -11,9 +11,11 @@ import { useCurrentUser } from '../contexts/CurrentUserContext';
 const NavBar = () => {
   
   const currentUser = useCurrentUser();
+  console.log("Current user in NavBar:", currentUser);
 
   const loggedInLinks = (
     <>
+    {currentUser?.username}
     <NavLink exact to="/map" className={styles.NavLink} activeClassName={styles.Active}>Map</NavLink>
             <NavLink to="/profile" className={styles.NavLink} activeClassName={styles.Active}>Profile</NavLink>
             <NavLink to="/posts" className={styles.NavLink} activeClassName={styles.Active}>Posts</NavLink>
