@@ -1,4 +1,4 @@
-import { createContext, useContext, useEffect, useState } from "react";
+import { createContext, useContext, useEffect, useMemo, useState } from "react";
 import axios from "axios";
 
 export const CurrentUserContext = createContext();
@@ -24,6 +24,14 @@ export const CurrentUserProvider = ({ children }) => {
   useEffect(() => {
     handleMount();
   }, []);
+  
+  useEffect(() => {
+    console.log("Current user updated:", currentUser);
+  }, [currentUser]);
+
+  useMemo(() => {
+
+  })
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
