@@ -45,7 +45,7 @@ JWT_AUTH_REFRESH_COOKIE = 'my-refresh-token'
 JWT_AUTH_SAMESITE = 'None'
 
 REST_AUTH_SERIALIZERS = {
-    'USER_DETAILS_SERIALIZER': 'drf_api.serializers.CurrentUserSerializer',
+    'USER_DETAILS_SERIALIZER': 'wonder_roads_api.serializers.CurrentUserSerializer',
     'TOKEN_SERIALIZER': 'dj_rest_auth.serializers.TokenSerializer',
 }
 
@@ -90,6 +90,7 @@ INSTALLED_APPS = [
     'django_countries',
     'django_filters',
     'rest_framework.authtoken',
+    'rest_framework_simplejwt',
     'dj_rest_auth',
     'django.contrib.sites',
     'allauth',
@@ -127,6 +128,7 @@ MIDDLEWARE = [
 CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN')
      ]
+
 
 ROOT_URLCONF = 'wonder_roads_api.urls'
 
