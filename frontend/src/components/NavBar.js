@@ -14,7 +14,7 @@ import axios from "axios";
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
-
+  console.log("Current User:", currentUser);
   const handleSignOut = async () => {
     try {
       await axios.post("/dj-rest-auth/logout/");
@@ -63,7 +63,7 @@ const NavBar = () => {
       >
         Logout
       </NavLink>
-      <span>{currentUser?.username}</span>
+      <div>Logged in as {currentUser?.username}</div>
     </>
   );
   const loggedOutLinks = (
