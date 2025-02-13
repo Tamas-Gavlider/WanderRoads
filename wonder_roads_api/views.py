@@ -1,10 +1,11 @@
 from rest_framework.decorators import api_view
 from rest_framework.response import Response
-from .settings import (
-    JWT_AUTH_COOKIE, JWT_AUTH_REFRESH_COOKIE, JWT_AUTH_SAMESITE,
-    JWT_AUTH_SECURE,
-)
+from django.conf import settings
 
+JWT_AUTH_COOKIE = settings.REST_AUTH.get("JWT_AUTH_COOKIE", "default-cookie-name")
+JWT_AUTH_REFRESH_COOKIE = settings.REST_AUTH.get("JWT_AUTH_REFRESH_COOKIE", "default-refresh-cookie")
+JWT_AUTH_SAMESITE = settings.REST_AUTH.get("JWT_AUTH_SAMESITE", "Lax") 
+JWT_AUTH_SECURE = settings.REST_AUTH.get("JWT_AUTH_SECURE", False)
 
 @api_view()
 def root_route(request):

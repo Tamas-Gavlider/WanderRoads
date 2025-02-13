@@ -26,7 +26,7 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     handleMount();
-  }, []);
+  }, [handleMount]);
   
   useEffect(() => {
     console.log("Current user updated:", currentUser);
