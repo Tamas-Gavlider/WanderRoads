@@ -18,7 +18,6 @@ export const CurrentUserProvider = ({ children }) => {
       const { data } = await axios.get("/dj-rest-auth/user/");
         ;
       setCurrentUser(data.user);
-      console.log(currentUser)
     } catch (err) {
       console.log(err);
     }
@@ -26,11 +25,7 @@ export const CurrentUserProvider = ({ children }) => {
 
   useEffect(() => {
     handleMount();
-  }, [handleMount]);
-  
-  useEffect(() => {
-    console.log("Current user updated:", currentUser);
-  }, [currentUser]);
+  }, []);
 
   useMemo(() => {
     axiosReq.interceptors.request.use(
