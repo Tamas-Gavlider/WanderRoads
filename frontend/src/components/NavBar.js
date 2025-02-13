@@ -59,14 +59,14 @@ const NavBar = () => {
         Travel Buddies
       </NavLink>
       <NavLink
-        to="/logout"
+        to="/"
         onClick={handleSignOut}
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
         Logout
       </NavLink>
-      <div className={styles.NavLink}>Logged in as {currentUser?.profile_id}</div>
+      <span className={styles.NavLink}>Logged in as {currentUser}</span>
     </>
   );
   const loggedOutLinks = (
