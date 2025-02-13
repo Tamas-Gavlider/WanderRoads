@@ -2,15 +2,15 @@
     font-size: 30px;
     font-weight: bolder;
     color: #f9b248;
-    margin-top: 40%;
+    margin-top: 50%;
     text-align: center;
   }
 
   /* Smaller Screen Optimization */
 @media (max-width: 768px) {
     .tagline {
-      margin-top: 0;
-      margin-bottom: 300px;
+      margin-top: 70%;
+      margin-bottom: 110%;
       color: #0e2431;
   }
 }
