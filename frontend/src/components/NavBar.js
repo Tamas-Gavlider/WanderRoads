@@ -62,7 +62,6 @@ const NavBar = () => {
         to="/"
         onClick={handleSignOut}
         className={styles.NavLink}
-        activeClassName={styles.Active}
       >
         Logout
       </NavLink>
