@@ -45,6 +45,7 @@ const SignUpForm = () => {
   };
 
   return (
+    <Container className= {styles.Container} fluid>
     <Row className={styles.Row}>
       <Col className="my-auto py-2 p-md-2 d-flex align-items-center" md={6}>
         <Container className={`${appStyles.Content} p-4 `}>
@@ -120,7 +121,7 @@ const SignUpForm = () => {
         md={6}
         className="d-none d-md-flex align-items-center justify-content-center"
       >
-        <Image className={`${appStyles.FillerImage}`} src={reg_img} fluid />
+        <Image className={appStyles.FillerImageRegister} src={reg_img} fluid />
       </Col>
       <Container className='mt-3'>
         <Link className={`${styles.Link} ${styles.SignInLink}`} to="/signin">
@@ -128,6 +129,7 @@ const SignUpForm = () => {
         </Link>
       </Container>
     </Row>
+    </Container>
   );
 };
 
