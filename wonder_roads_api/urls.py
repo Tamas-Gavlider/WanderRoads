@@ -18,11 +18,7 @@ from django.contrib import admin
 from django.urls import path, include
 from django.views.generic import TemplateView
 from .views import logout_route
-from rest_framework_simplejwt.views import (
-    TokenObtainPairView,
-    TokenRefreshView,
-    TokenVerifyView,
-)
+
 
 urlpatterns = [
     path('', TemplateView.as_view(template_name='index.html')),
@@ -33,9 +29,6 @@ urlpatterns = [
     path(
         'api/dj-rest-auth/registration/', include('dj_rest_auth.registration.urls')
     ),
-    path('api/dj-rest-auth/token/', TokenObtainPairView.as_view(), name='token_obtain_pair'),
-    path('api/dj-rest-auth/token/refresh/', TokenRefreshView.as_view(), name='token_refresh'),
-    path('api/dj-rest-auth/token/verify/', TokenVerifyView.as_view(), name='token_verify'),
     path('api/', include('profiles.urls')),
     path('api/', include('post.urls')),
     path('api/',include('comments.urls')),
