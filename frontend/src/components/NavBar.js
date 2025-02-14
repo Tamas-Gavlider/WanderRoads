@@ -66,7 +66,7 @@ const NavBar = () => {
       >
         Logout
       </NavLink>
-      <span className={styles.NavLink}>Logged in as {currentUser}</span>
+      <span className={styles.NavLink}>Logged in as {currentUser?.username}</span>
     </>
   );
   const loggedOutLinks = (
