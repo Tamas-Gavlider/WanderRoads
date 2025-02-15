@@ -18,7 +18,7 @@ function App() {
     <div className={`${styles.App} ${isLandingPage ? styles.LandingBackground : styles.NoBackground}`}>
       < NavBar />
      {
-      <Container>
+      <Container className={styles.Main}>
       <Switch>
       <Route exact path='/' render={()=>  <LandingPage/>}/>
       <Route exact path='/signin' render={()=> < SignInForm />}/>

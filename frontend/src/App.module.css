@@ -5,6 +5,10 @@
     min-height: 100vh;
 }
 
+.Main {
+  padding-top: 81px;
+}
+
 .LandingBackground {
   background-image: url('./assets/landing_page.jpg');
   background-size: cover;
