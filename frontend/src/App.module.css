@@ -18,6 +18,11 @@
   background: white;
 }
 
+h1 {
+  position: fixed;
+  bottom: 50%;
+}
+
   a:hover {
     text-decoration:none;
   }
