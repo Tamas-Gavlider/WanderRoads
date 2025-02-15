@@ -7,6 +7,7 @@ import SignUpForm from './pages/auth/SignUpForm'
 import SignInForm from './pages/auth/SignInForm';
 import NavBar from './components/NavBar'
 import LandingPage from './components/LandingPage';
+import Map from './pages/map/Map';
 
 function App() {
 
@@ -22,7 +23,7 @@ function App() {
       <Route exact path='/' render={()=>  <LandingPage/>}/>
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
-      <Route exact path='/map' render={()=> <h1>Map</h1>}/>
+      <Route exact path='/map' render={()=> <Map />}/>
       <Route exact path='/profile' render={()=> <h1>Profile Test</h1>}/>
       <Route exact path='/posts' render={()=> <h1>Posts</h1>}/>
       <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>
