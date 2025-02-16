@@ -11,6 +11,7 @@ import {
 } from "../contexts/CurrentUserContext";
 import axios from "axios";
 import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
+import Avatar from "./Avatar";
 
 const NavBar = () => {
   const currentUser = useCurrentUser();
@@ -38,11 +39,10 @@ const NavBar = () => {
         Map
       </NavLink>
       <NavLink
-        to="/profile"
         className={styles.NavLink}
-        activeClassName={styles.Active}
+        to={`/profiles/${currentUser?.profile_id}`}
       >
-        Profile
+        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
       </NavLink>
       <NavLink
         to="/posts"

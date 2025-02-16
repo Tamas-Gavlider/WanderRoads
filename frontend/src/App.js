@@ -24,7 +24,7 @@ function App() {
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
-      <Route exact path='/profile' render={()=> <h1>Profile Test</h1>}/>
+      <Route exact path='/profiles' render={()=> <h1>Profile</h1>}/>
       <Route exact path='/posts' render={()=> <h1>Posts</h1>}/>
       <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
