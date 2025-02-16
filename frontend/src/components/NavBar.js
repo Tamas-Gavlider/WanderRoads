@@ -39,12 +39,6 @@ const NavBar = () => {
         Map
       </NavLink>
       <NavLink
-        className={styles.NavLink}
-        to={`/profiles/${currentUser?.profile_id}`}
-      >
-        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
-      </NavLink>
-      <NavLink
         to="/posts"
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -65,7 +59,14 @@ const NavBar = () => {
       >
         Logout
       </NavLink>
-      <span className={styles.NavLink}>Logged in as {currentUser?.username}</span>
+      <NavLink
+        className={styles.NavLink}
+        to={`/profiles/${currentUser?.profile_id}`}
+      >
+        <Avatar src={currentUser?.profile_image} text="Profile" height={40} />
+      </NavLink>
+      <br></br>
+      <span className={styles.NavLink}>Hello {currentUser?.username}</span>
     </>
   );
   const loggedOutLinks = (
