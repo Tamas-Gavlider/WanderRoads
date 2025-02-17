@@ -10,10 +10,14 @@ import LandingPage from './components/LandingPage';
 import Map from './pages/map/Map';
 import PostCreateForm from './pages/posts/PostCreateForm';
 import PostPage from './pages/posts/PostPage';
-import Post from './pages/posts/Post';
+import PostsPage from './pages/posts/PostsPage';
+import { useCurrentUser } from './contexts/CurrentUserContext';
+
 
 function App() {
 
+  const currentUser = useCurrentUser();
+  const profile_id = currentUser?.profile_id || ""
   const location = useLocation(); 
   const isLandingPage = location.pathname === "/"; 
 
@@ -23,12 +27,15 @@ function App() {
      {
       <Container className={styles.Main}>
       <Switch>
-      <Route exact path='/' render={()=>  <LandingPage/>}/>
+      <Route exact path='/' render={()=> <LandingPage/>}/>
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
       <Route exact path='/profiles' render={()=> <h1>Profile</h1>}/>
-      <Route exact path='/post' render={()=> < Post />}/>
+      <Route exact path='/posts' render={()=> <PostsPage 
+      message="No results found." 
+      filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />
+    }/>
       <Route exact path='/post/create' render={()=> <PostCreateForm />}/>
       <Route exact path="/post/:id" render={() => <PostPage />} />
       <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>

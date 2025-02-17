@@ -39,7 +39,7 @@ const NavBar = () => {
         Map
       </NavLink>
       <NavLink
-        to="/post"
+        to="/posts"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >

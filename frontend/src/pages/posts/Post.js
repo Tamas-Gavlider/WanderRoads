@@ -17,6 +17,7 @@ const Post = (props) => {
     image,
     updated_at,
     postPage,
+    country,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -37,6 +38,7 @@ const Post = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/post/${id}`}>
+      <p>{country}</p>
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
