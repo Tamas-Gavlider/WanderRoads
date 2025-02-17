@@ -26,8 +26,8 @@ function App() {
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
       <Route exact path='/profiles' render={()=> <h1>Profile</h1>}/>
-      <Route exact path='/posts' render={()=> <h1>Posts</h1>}/>
-      <Route exact path='/posts/create' render={()=> <PostCreateForm />}/>
+      <Route exact path='/post' render={()=> <h1>Posts</h1>}/>
+      <Route exact path='/post/create' render={()=> <PostCreateForm />}/>
       <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
       <Route render={()=> <p>Page not found!</p>}/>

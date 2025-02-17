@@ -39,7 +39,7 @@ const NavBar = () => {
         Map
       </NavLink>
       <NavLink
-        to="/posts"
+        to="/post"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
@@ -53,7 +53,7 @@ const NavBar = () => {
          <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/posts/create"
+      to="/post/create"
     >
     Add post
     </NavLink>
