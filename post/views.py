@@ -7,8 +7,17 @@ from rest_framework.views import APIView
 from .models import Post
 from .serializers import PostSerializer
 from wonder_roads_api.permissions import IsOwnerOrReadOnly
+from django_countries import countries
 
 # Create your views here.
+
+class CountryListView(APIView):
+    """
+    API endpoint that returns all available countries
+    """
+    def get(self, request):
+        country_list = [{"code": code, "name": name} for code, name in countries]
+        return Response(country_list)
 
 class PostList(generics.ListCreateAPIView):
     """

@@ -1,4 +1,4 @@
-import React, { useRef, useState } from "react";
+import React, { useRef, useState, useEffect } from "react";
 
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
@@ -9,7 +9,7 @@ import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 
 import Asset from "../../components/Asset";
-
+import axios from 'axios'
 import Upload from "../../assets/upload.png";
 
 import styles from "../../styles/PostCreateEditForm.module.css";
@@ -26,11 +26,27 @@ function PostCreateForm() {
     title: "",
     content: "",
     image: "",
+    country: "",
   });
-  const { title, content, image } = postData;
+
+  const { title, content, image, country } = postData;
+  const [countries, setCountries] = useState([]);
 
   const imageInput = useRef(null);
   const history = useHistory();
+
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const { data } = await axios.get("/countries/");
+        setCountries(data);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
 
   const handleChange = (event) => {
     setPostData({
@@ -56,10 +72,11 @@ function PostCreateForm() {
     formData.append("title", title);
     formData.append("content", content);
     formData.append("image", imageInput.current.files[0]);
+    formData.append("country", country);
 
     try {
       const { data } = await axiosReq.post("/post/", formData);
-      history.push(`/posts/${data.id}`);
+      history.push(`/post/${data.id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
@@ -100,6 +117,18 @@ function PostCreateForm() {
           {message}
         </Alert>
       ))}
+
+<Form.Group>
+  <Form.Label>Country</Form.Label>
+  <Form.Control as="select" name="country" value={country} onChange={handleChange} required>
+    <option value="">Select a country</option>
+    {countries.map((c) => (
+      <option key={c.code} value={c.code}>
+        {c.name}
+      </option>
+    ))}
+  </Form.Control>
+</Form.Group>
 
       <Button
         className={btnStyles.Button}

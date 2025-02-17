@@ -1,8 +1,9 @@
 from django.urls import path
-from post import views
+from .views import CountryListView, PostList, PostDetail 
 
 urlpatterns = [
-    path('post/', views.PostList.as_view()),
-    path('post/<int:pk>/',views.PostDetail.as_view()),
+    path('post/', PostList.as_view()),
+    path('post/<int:pk>/', PostDetail.as_view()),
+    path("countries/", CountryListView.as_view(), name="country-list"),
 
 ]
