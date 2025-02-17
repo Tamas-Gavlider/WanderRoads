@@ -10,6 +10,7 @@ import LandingPage from './components/LandingPage';
 import Map from './pages/map/Map';
 import PostCreateForm from './pages/posts/PostCreateForm';
 import PostPage from './pages/posts/PostPage';
+import Post from './pages/posts/Post';
 
 function App() {
 
@@ -27,7 +28,7 @@ function App() {
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
       <Route exact path='/profiles' render={()=> <h1>Profile</h1>}/>
-      <Route exact path='/post' render={()=> <h1>Posts</h1>}/>
+      <Route exact path='/post' render={()=> < Post />}/>
       <Route exact path='/post/create' render={()=> <PostCreateForm />}/>
       <Route exact path="/post/:id" render={() => <PostPage />} />
       <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>
