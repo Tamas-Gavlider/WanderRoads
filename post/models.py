@@ -11,9 +11,9 @@ class Post(models.Model):
     owner = models.ForeignKey(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
-    title = models.CharField(max_length=255)
-    content = models.TextField(blank=True)
-    image = CloudinaryField('image', default='accessories-bag', blank=True)
+    title = models.CharField(max_length=255 , blank=False, null=False)
+    content = models.TextField(blank=False, null=False)
+    image = CloudinaryField('image', default='accessories-bag', blank=False, null=False)
     country = CountryField(max_length=100)
  
     class Meta:
