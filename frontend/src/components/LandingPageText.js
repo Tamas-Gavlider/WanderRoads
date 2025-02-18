@@ -3,7 +3,7 @@ import Row from 'react-bootstrap/Row';
 import Col from 'react-bootstrap/Col';
 import styles from '../styles/LandingPage.module.css'
 
-function LandingPage() {
+function LandingPageText() {
   return (
     <Container>
       <Row>
@@ -20,4 +20,4 @@ function LandingPage() {
   );
 }
 
-export default LandingPage;
+export default LandingPageText;
