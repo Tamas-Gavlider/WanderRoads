@@ -57,7 +57,7 @@ const Post = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <p>{country.name}</p>
+      <p>{country}</p>
       <Link to={`/post/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
