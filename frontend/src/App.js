@@ -13,6 +13,7 @@ import PostPage from './pages/posts/PostPage';
 import PostsPage from './pages/posts/PostsPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import PostEditForm from './pages/posts/PostEditForm';
+import Post from './pages/posts/Post';
 
 
 function App() {
@@ -38,7 +39,7 @@ function App() {
       filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />
     }/>
       <Route exact path='/post/create' render={()=> <PostCreateForm />}/>
-      <Route exact path="/post/:id" render={() => <PostPage />} />
+      <Route exact path="/post/:id" render={() => <Post />} />
       <Route exact path="/post/:id/edit" render={() => <PostEditForm />} />
       <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
