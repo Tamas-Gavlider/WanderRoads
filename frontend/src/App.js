@@ -38,9 +38,9 @@ function App() {
       message="No results found." 
       filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />
     }/>
-      <Route exact path='/post/create' render={()=> <PostCreateForm />}/>
-      <Route exact path="/post/:id" render={() => <PostPage />} />
-      <Route exact path="/post/:id/edit" render={() => <PostEditForm />} />
+      <Route exact path='/posts/create' render={()=> <PostCreateForm />}/>
+      <Route exact path="/posts/:id" render={() => <PostPage />} />
+      <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
       <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
       <Route render={()=> <p>Page not found!</p>}/>

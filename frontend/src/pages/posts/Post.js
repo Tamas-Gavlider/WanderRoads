@@ -27,12 +27,12 @@ const Post = (props) => {
   const history = useHistory();
 
   const handleEdit = () => {
-    history.push(`/post/${id}/edit`);
+    history.push(`/posts/${id}/edit`);
   };
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/post/${id}/`);
+      await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
     } catch (err) {
       console.log(err);
@@ -58,14 +58,14 @@ const Post = (props) => {
         </Media>
       </Card.Body>
       <p>{country}</p>
-      <Link to={`/post/${id}`}>
+      <Link to={`/posts/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
-          <Link to={`/post/${id}`}>
+          <Link to={`/posts/${id}`}>
             <h1>Comment</h1>
           </Link>
           {comments_count}

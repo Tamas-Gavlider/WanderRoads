@@ -75,8 +75,8 @@ function PostEditForm() {
     formData.append("country",country);
 
     try {
-      await axiosReq.put(`/post/${id}/`, formData);
-      history.push(`/post/${id}`);
+      await axiosReq.put(`/posts/${id}/`, formData);
+      history.push(`/posts/${id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

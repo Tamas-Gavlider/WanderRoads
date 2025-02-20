@@ -72,9 +72,9 @@ function PostCreateForm() {
     formData.append("country", country);
 
     try {
-      const { data } = await axiosReq.post("/post/", formData);
+      const { data } = await axiosReq.post("/posts/", formData);
       console.log({data})
-      history.push(`/post/${data.id}`);
+      history.push(`/posts/${data.id}`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {
