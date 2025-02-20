@@ -10,6 +10,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Post from "./Post";
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Comment from "../comments/Comment";
 
 function PostPage() {
   const { id } = useParams();
@@ -26,9 +27,10 @@ function PostPage() {
           axiosReq.get(`/comments/?post=${id}`),
         ]);
         setPost({ results: [post] });
-        console.log(post);
+        setComments(comments);
       } catch (err) {
         console.log(err);
+        console.log("Where is the error ?")
       }
     };
 
@@ -52,6 +54,15 @@ function PostPage() {
           ) : comments.results.length ? (
             "Comments"
           ) : null}
+          {comments.results.length ? (
+            comments.results.map((comment) => (
+              <Comment key={comment.id} {...comment} />
+            ))
+          ) : currentUser ? (
+            <span>No comments yet, be the first to comment!</span>
+          ) : (
+            <span>No comments... yet</span>
+          )}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
