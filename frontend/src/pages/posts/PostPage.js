@@ -30,7 +30,6 @@ function PostPage() {
         setComments(comments);
       } catch (err) {
         console.log(err);
-        console.log("Where is the error ?")
       }
     };
 
