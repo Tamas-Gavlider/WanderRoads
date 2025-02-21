@@ -64,13 +64,11 @@ DEBUG = 'DEBUG' in os.environ
 
 ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "127.0.0.1"]
 
-"""
+
 CSRF_TRUSTED_ORIGINS = [
-    'https://8000-tamasgavlid-wanderroads-evupz6meoyw.ws.codeinstitute-ide.net' ,
-    "localhost", "127.0.0.1",
     os.environ.get('CLIENT_ORIGIN')
 ]
-"""
+
 
 # Application definition
 
