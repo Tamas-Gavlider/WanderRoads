@@ -53,7 +53,7 @@ const NavBar = () => {
          <NavLink
       className={styles.NavLink}
       activeClassName={styles.Active}
-      to="/post/create"
+      to="/posts/create"
     >
     Add post
     </NavLink>
