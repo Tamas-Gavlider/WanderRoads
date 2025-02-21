@@ -45,17 +45,21 @@ const NavBar = () => {
       >
         Posts
       </NavLink>
-      <NavLink to="/travel-buddies" className={styles.NavLink} activeClassName={styles.Active}>
-  Travel Buddies
-  </NavLink>
-  <NavLink className={styles.NavLink} activeClassName={styles.Active} to="/posts/create">
-    Add post
-  </NavLink>
       <NavLink
-        to="/"
-        onClick={handleSignOut}
         className={styles.NavLink}
+        activeClassName={styles.Active}
+        to="/posts/create"
       >
+        Add post
+      </NavLink>
+      <NavLink
+        to="/travel-buddies"
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+      >
+        Travel Buddies
+      </NavLink>
+      <NavLink to="/" onClick={handleSignOut} className={styles.NavLink}>
         Logout
       </NavLink>
       <NavLink
@@ -88,7 +92,12 @@ const NavBar = () => {
   );
 
   return (
-    <Navbar expanded={expanded} expand="md" className={styles.NavBar} fixed="top">
+    <Navbar
+      expanded={expanded}
+      expand="md"
+      className={styles.NavBar}
+      fixed="top"
+    >
       <Container fluid>
         <NavLink to="/">
           <Navbar.Brand>
