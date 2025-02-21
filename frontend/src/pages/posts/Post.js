@@ -37,7 +37,8 @@ const Post = (props) => {
     } catch (err) {
       console.log(err);
     }
-  };
+  }; 
+  console.log("Post Props:", { profile_id, profile_image, owner });
 
 
   return (
