@@ -1,122 +1,43 @@
-import React, { useEffect, useState } from "react";
-import { Col, Row, Container, Image } from "react-bootstrap";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useParams } from "react-router";
-import { axiosReq } from "../../api/axiosDefaults";
+import React, { useEffect } from "react";
+import { useParams } from "react-router-dom";
 import { useProfileData, useSetProfileData } from "../../contexts/ProfileDataContext";
-import InfiniteScroll from "react-infinite-scroll-component";
-import Post from "../posts/Post";
-import { fetchMoreData } from "../../utils/utils";
-import Asset from "../../components/Asset";
+import { fetchProfile } from "../../api/profileApi";
+import { Spinner, Container } from "react-bootstrap";
 
-import styles from "../../styles/ProfilePage.module.css";
-import appStyles from "../../App.module.css";
-import btnStyles from "../../styles/Button.module.css";
-
-import NoResults from "../../assets/logo.png";
-
-function ProfilePage() {
-  const [hasLoaded, setHasLoaded] = useState(false);
-  const [profilePosts, setProfilePosts] = useState({ results: [] });
-
+const ProfilePage = () => {
   const { id } = useParams();
-  const currentUser = useCurrentUser();
-  const setProfileData = useSetProfileData();
   const { pageProfile } = useProfileData();
-  
-  const profile = pageProfile?.results?.[0] || {};
-  const is_owner = currentUser?.username === profile?.owner;
+  const setProfileData = useSetProfileData();
 
   useEffect(() => {
-    const fetchData = async () => {
-      try {
-        const [{ data: pageProfile }, { data: profilePosts }] = await Promise.all([
-          axiosReq.get(`/profiles/${id}/`),
-          axiosReq.get(`/posts/?owner__profile=${id}`),
-        ]);
-
-        setProfileData((prevState) => ({
-          ...prevState,
-          pageProfile: { results: [pageProfile] },
-        }));
-        setProfilePosts(profilePosts);
-        setHasLoaded(true);
-      } catch (err) {
-        console.log(err);
-      }
-    };
-    fetchData();
+    fetchProfile(id, setProfileData);
   }, [id, setProfileData]);
 
-  const mainProfile = (
-    <>
-      <Row className="g-0 px-3 text-center">
-        <Col lg={3} className="text-lg-left">
-          <Image className={styles.ProfileImage} roundedCircle src={profile?.image} />
-        </Col>
-        <Col lg={6}>
-          <h3 className="m-2">{profile?.owner}</h3>
-          <Row className="justify-content-center g-0">
-            <Col xs={3} className="my-2">
-              <div>{profile?.posts_count || 0}</div>
-              <div>Posts</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>{profile?.experience || "N/A"}</div>
-              <div>Experience</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>{profile?.theme_song || "N/A"}</div>
-              <div>Theme Song</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>{profile?.visited_countries?.length || 0}</div>
-              <div>Visited Countries</div>
-            </Col>
-          </Row>
-        </Col>
-      </Row>
-    </>
-  );
+  if (!pageProfile.results.length) {
+    return (
+      <Container className="d-flex justify-content-center align-items-center" style={{ height: "100vh" }}>
+        <Spinner animation="border" role="status">
+          <span className="visually-hidden">Loading profile...</span>
+        </Spinner>
+      </Container>
+    );
+  }
 
-  const mainProfilePosts = (
-    <>
-      <hr />
-      <p className="text-center">{profile?.owner}'s posts</p>
-      <hr />
-      {profilePosts.results.length ? (
-        <InfiniteScroll
-          dataLength={profilePosts.results.length}
-          next={() => fetchMoreData(profilePosts, setProfilePosts)}
-          hasMore={!!profilePosts.next}
-          loader={<Asset spinner />}
-        >
-          {profilePosts.results.map((post) => (
-            <Post key={post.id} {...post} setPosts={setProfilePosts} />
-          ))}
-        </InfiniteScroll>
-      ) : (
-        <Asset src={NoResults} message={`No results found, ${profile?.owner} hasn't posted yet.`} />
-      )}
-    </>
-  );
+  const profile = pageProfile.results[0];
 
   return (
-    <Row>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <Container className={appStyles.Content}>
-          {hasLoaded ? (
-            <>
-              {mainProfile}
-              {mainProfilePosts}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
-        </Container>
-      </Col>
-    </Row>
+    <div>
+      <h1>{profile.name || "Unnamed User"}</h1>
+      <img src={profile.image} alt="Profile" width="150" />
+      <p>Experience Level: {profile.experience}</p>
+      <p>Status: {profile.status}</p>
+      <p>Visited Countries: {profile.visited_countries.join(", ")}</p>
+      <audio controls>
+        <source src={profile.theme_song} type="audio/mpeg" />
+        Your browser does not support the audio tag.
+      </audio>
+    </div>
   );
-}
+};
 
 export default ProfilePage;
