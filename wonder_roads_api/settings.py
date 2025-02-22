@@ -119,6 +119,7 @@ CORS_ALLOWED_ORIGINS = [
     os.environ.get('CLIENT_ORIGIN')
      ]
 
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'wonder_roads_api.urls'
 
