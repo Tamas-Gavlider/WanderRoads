@@ -31,7 +31,6 @@ const ProfilePage = () => {
       <img src={profile.image} alt="Profile" width="150" />
       <p>Experience Level: {profile.experience}</p>
       <p>Status: {profile.status}</p>
-      <p>Visited Countries: {profile.visited_countries?.length ? profile.visited_countries.join(", ") : "No countries visited yet"}</p>
       <audio controls>
         <source src={profile.theme_song} type="audio/mpeg" />
         Your browser does not support the audio tag.
