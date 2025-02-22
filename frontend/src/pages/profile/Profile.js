@@ -8,7 +8,7 @@ import { Button } from "react-bootstrap";
 
 const Profile = (props) => {
   const { profile, mobile, imageSize = 55 } = props;
-  const { id, status, image, owner } = profile;
+  const { id, status, image, owner, theme_song, experience, visited_countries } = profile;
 
   const currentUser = useCurrentUser();
   const is_owner = currentUser?.username === owner;
@@ -20,6 +20,7 @@ const Profile = (props) => {
       <div>
         <Link className="align-self-center" to={`/profiles/${id}`}>
           <Avatar src={image} height={imageSize} />
+          <p>{experience}</p>
         </Link>
       </div>
       <div className={`mx-2 ${styles.WordBreak}`}>

@@ -17,7 +17,7 @@ import {
   useProfileData,
   useSetProfileData,
 } from "../../contexts/ProfileDataContext";
-import { Button, Image } from "react-bootstrap";
+import { Image } from "react-bootstrap";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Post from "../posts/Post";
 import { fetchMoreData } from "../../utils/utils";
@@ -27,14 +27,13 @@ function ProfilePage() {
   const [hasLoaded, setHasLoaded] = useState(false);
   const [profilePosts, setProfilePosts] = useState({ results: [] });
 
+  const { id } = useParams(); 
   const currentUser = useCurrentUser();
-  const { id } = useParams();
-
   const setProfileData = useSetProfileData();
   const { pageProfile } = useProfileData();
-
-  const [profile] = pageProfile.results;
+  const [profile] = pageProfile.results || [];
   const is_owner = currentUser?.username === profile?.owner;
+
 
   useEffect(() => {
     const fetchData = async () => {
@@ -76,33 +75,18 @@ function ProfilePage() {
               <div>posts</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.followers_count}</div>
-              <div>followers</div>
+              <div>{profile?.experience}</div>
+              <div>Experience</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.following_count}</div>
-              <div>following</div>
+              <div>{profile?.theme_song}</div>
+              <div>Theme song</div>
+            </Col>
+            <Col xs={3} className="my-2">
+              <div>{profile?.visited_countries.length}</div>
+              <div>Visited countries</div>
             </Col>
           </Row>
-        </Col>
-        <Col lg={3} className="text-lg-right">
-          {currentUser &&
-            !is_owner &&
-            (profile?.following_id ? (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.BlackOutline}`}
-                onClick={() => {}}
-              >
-                unfollow
-              </Button>
-            ) : (
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.Black}`}
-                onClick={() => {}}
-              >
-                follow
-              </Button>
-            ))}
         </Col>
         {profile?.content && <Col className="p-3">{profile.content}</Col>}
       </Row>
