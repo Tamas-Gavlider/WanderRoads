@@ -62,7 +62,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEBUG' in os.environ
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "127.0.0.1"]
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "http://localhost:3000"]
 
 # Application definition
 
@@ -72,7 +72,6 @@ INSTALLED_APPS = [
     'django.contrib.contenttypes',
     'django.contrib.sessions',
     'django.contrib.messages',
-    'corsheaders',
     'cloudinary_storage',
     'django.contrib.staticfiles',
     'cloudinary',
@@ -87,6 +86,7 @@ INSTALLED_APPS = [
     'allauth.account',
     'allauth.socialaccount',
     'dj_rest_auth.registration',
+    'corsheaders',
     'profiles',
     'post',
     'comments',
@@ -116,10 +116,12 @@ MIDDLEWARE = [
 
 
 CORS_ALLOWED_ORIGINS = [
-    os.environ.get('CLIENT_ORIGIN')
-     ]
+    os.environ.get('CLIENT_ORIGIN'),
+    'http://localhost:3000',  
+    'http://127.0.0.1:3000'  
+]
 
-CORS_ALLOW_CREDENTIALS = False
+CORS_ALLOW_CREDENTIALS = True
 CSRF_COOKIE_SECURE = False 
 
 ROOT_URLCONF = 'wonder_roads_api.urls'
