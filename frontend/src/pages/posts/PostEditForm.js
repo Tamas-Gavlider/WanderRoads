@@ -7,7 +7,7 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
-
+import axios from 'axios'
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
@@ -22,10 +22,11 @@ function PostEditForm() {
     title: "",
     content: "",
     image: "",
-    country:"",
+    country: "",
   });
   const { title, content, image, country } = postData;
 
+  const [countries, setCountries] = useState([]);
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
@@ -36,7 +37,9 @@ function PostEditForm() {
         const { data } = await axiosReq.get(`/post/${id}/`);
         const { title, content, image, country, is_owner } = data;
 
-        is_owner ? setPostData({ title, content, image, country }) : history.push("/");
+        is_owner
+          ? setPostData({ title, content, image, country })
+          : history.push("/");
       } catch (err) {
         console.log(err);
       }
@@ -62,6 +65,19 @@ function PostEditForm() {
     }
   };
 
+  useEffect(() => {
+    const fetchCountries = async () => {
+      try {
+        const { data } = await axios.get("/countries/");
+        setCountries(data);
+      } catch (error) {
+        console.error("Error fetching countries:", error);
+      }
+    };
+
+    fetchCountries();
+  }, []);
+
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -72,7 +88,7 @@ function PostEditForm() {
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
-    formData.append("country",country);
+    formData.append("country", country);
 
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
@@ -117,11 +133,24 @@ function PostEditForm() {
           {message}
         </Alert>
       ))}
-
-      <Button
-        className={btnStyles.Button}
-        onClick={() => history.goBack()}
-      >
+      <Form.Group>
+        <Form.Label>Country</Form.Label>
+        <Form.Control
+          as="select"
+          name="country"
+          value={country}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select a country</option>
+          {countries.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
+        </Form.Control>
+      </Form.Group>
+      <Button className={btnStyles.Button} onClick={() => history.goBack()}>
         cancel
       </Button>
       <Button className={btnStyles.Button} type="submit">
