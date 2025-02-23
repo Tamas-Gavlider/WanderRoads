@@ -30,7 +30,7 @@ function PostsPage({ message, filter = "" }) {
         console.log(err);
       }
     };
-
+    
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchPosts();
@@ -44,7 +44,6 @@ function PostsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-        <p>Popular profiles mobile</p>
         <Form
           onSubmit={(event) => event.preventDefault()}
         >
@@ -81,7 +80,6 @@ function PostsPage({ message, filter = "" }) {
         )}
       </Col>
       <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-        <p>Popular profiles for desktop</p>
       </Col>
     </Row>
   );

@@ -38,7 +38,7 @@ const Post = (props) => {
       console.log(err);
     }
   }; 
-  console.log("Post Props:", { profile_id, profile_image, owner });
+  console.log("Post Props:", { owner, profile_image, title,content, image });
 
 
   return (
@@ -49,6 +49,7 @@ const Post = (props) => {
             <Avatar src={profile_image} height={55} />
             {owner}
           </Link>
+          <p>{country}</p>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
             {is_owner && postPage && <MoreDropdown
@@ -58,7 +59,6 @@ const Post = (props) => {
           </div>
         </Media>
       </Card.Body>
-      <p>{country}</p>
       <Link to={`/posts/${id}`}>
         <Card.Img src={image} alt={title} />
       </Link>
@@ -67,7 +67,7 @@ const Post = (props) => {
         {content && <Card.Text>{content}</Card.Text>}
         <div className={styles.PostBar}>
           <Link to={`/posts/${id}`}>
-            <h1>Comment</h1>
+            <h2>Comment</h2>
           </Link>
           {comments_count}
         </div>

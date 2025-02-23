@@ -21,6 +21,11 @@ const Profile = (props) => {
         <Link className="align-self-center" to={`/profiles/${id}`}>
           <Avatar src={image} height={imageSize} />
           <p>{experience}</p>
+          <p>{status}</p>
+          <audio controls>
+        <source src={theme_song} type="audio/mpeg" />
+        Your browser does not support the audio tag.
+      </audio>
         </Link>
       </div>
       <div className={`mx-2 ${styles.WordBreak}`}>

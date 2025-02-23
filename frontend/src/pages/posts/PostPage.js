@@ -16,7 +16,6 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
-import Avatar from "../../components/Avatar";
 
 function PostPage() {
   const { id } = useParams();
@@ -44,6 +43,8 @@ function PostPage() {
     handleMount();
   }, [id]);
 
+  console.log(profile_image)
+  
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
