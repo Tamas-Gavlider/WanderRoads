@@ -75,15 +75,15 @@ function ProfilePage() {
           <Row className="justify-content-center no-gutters">
             <Col xs={3} className="my-2">
               <div>{profile?.posts_count}</div>
-              <div>posts</div>
+              <div>Posts</div>
             </Col>
             <Col xs={3} className="my-2">
               <div>{profile?.followers_count}</div>
-              <div>followers</div>
+              <div>Travel Buddies</div>
             </Col>
             <Col xs={3} className="my-2">
               <div>{profile?.following_count}</div>
-              <div>following</div>
+              <div>Visited countries</div>
             </Col>
           </Row>
         </Col>
@@ -114,7 +114,8 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">{profile?.owner}'s posts</p>
+      <p className="text-center">{profile.owner}'s posts and test for{profile.id}</p>
+      <p>{profile.experience} Current profile experience</p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
