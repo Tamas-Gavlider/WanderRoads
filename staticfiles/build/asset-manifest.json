@@ -1,20 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.f5c4c020.css",
-    "main.js": "/static/js/main.8d3e07ad.js",
-    "static/js/453.e6765b69.chunk.js": "/static/js/453.e6765b69.chunk.js",
-    "static/media/landing_page.jpg": "/static/media/landing_page.fa488fe579416deab193.jpg",
-    "static/media/sign_in_img.jpg": "/static/media/sign_in_img.f2dab7010685d979953f.jpg",
-    "static/media/reg_img.jpg": "/static/media/reg_img.713160632ce6bde6fe45.jpg",
-    "static/media/landing_page_mobile.jpg": "/static/media/landing_page_mobile.e3225e4cd0de8df2fccc.jpg",
-    "static/media/logo.png": "/static/media/logo.822b8032c8eee385e15e.png",
+    "main.css": "/static/css/main.742589ac.chunk.css",
+    "main.js": "/static/js/main.229b845d.chunk.js",
+    "main.js.map": "/static/js/main.229b845d.chunk.js.map",
+    "runtime~main.js": "/static/js/runtime~main.b422058c.js",
+    "runtime~main.js.map": "/static/js/runtime~main.b422058c.js.map",
+    "static/js/2.af869640.chunk.js": "/static/js/2.af869640.chunk.js",
+    "static/js/2.af869640.chunk.js.map": "/static/js/2.af869640.chunk.js.map",
+    "static/js/3.4ead901e.chunk.js": "/static/js/3.4ead901e.chunk.js",
+    "static/js/3.4ead901e.chunk.js.map": "/static/js/3.4ead901e.chunk.js.map",
     "index.html": "/index.html",
-    "main.f5c4c020.css.map": "/static/css/main.f5c4c020.css.map",
-    "main.8d3e07ad.js.map": "/static/js/main.8d3e07ad.js.map",
-    "453.e6765b69.chunk.js.map": "/static/js/453.e6765b69.chunk.js.map"
-  },
-  "entrypoints": [
-    "static/css/main.f5c4c020.css",
-    "static/js/main.8d3e07ad.js"
-  ]
+    "precache-manifest.9ddc8205e38bac2bcfe4d6597e4a9650.js": "/precache-manifest.9ddc8205e38bac2bcfe4d6597e4a9650.js",
+    "service-worker.js": "/service-worker.js",
+    "static/css/main.742589ac.chunk.css.map": "/static/css/main.742589ac.chunk.css.map",
+    "static/media/App.module.css": "/static/media/landing_page_mobile.ba3b750f.jpg",
+    "static/media/logo.png": "/static/media/logo.d536d1c9.png",
+    "static/media/reg_img.jpg": "/static/media/reg_img.75b23e4b.jpg",
+    "static/media/sign_in_img.jpg": "/static/media/sign_in_img.ed50e9ba.jpg"
+  }
 }
