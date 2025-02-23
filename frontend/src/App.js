@@ -14,7 +14,6 @@ import PostPage from './pages/posts/PostPage';
 import PostsPage from './pages/posts/PostsPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import PostEditForm from './pages/posts/PostEditForm';
-import Profile from './pages/profile/Profile';
 import ProfilePage from './pages/profile/ProfilePage';
 
 
