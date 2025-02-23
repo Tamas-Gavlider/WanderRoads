@@ -78,11 +78,9 @@ function ProfilePage() {
               <div>Posts</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.followers_count}</div>
               <div>Travel Buddies</div>
             </Col>
             <Col xs={3} className="my-2">
-              <div>{profile?.following_count}</div>
               <div>Visited countries</div>
             </Col>
           </Row>
