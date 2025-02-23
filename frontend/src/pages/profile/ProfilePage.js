@@ -114,8 +114,8 @@ function ProfilePage() {
   const mainProfilePosts = (
     <>
       <hr />
-      <p className="text-center">{profile.owner}'s posts and test for{profile.id}</p>
-      <p>{profile.experience} Current profile experience</p>
+      <p className="text-center">{profile?.owner}'s posts</p>
+      <p>Current profile experience</p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
