@@ -1,16 +1,12 @@
 import React, { useEffect, useState } from "react";
-
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
 import Asset from "../../components/Asset";
-
 import styles from "../../styles/ProfilePage.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
-import Profile from './Profile'
+import Profile from './Profile';
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -30,6 +26,7 @@ function ProfilePage() {
   const currentUser = useCurrentUser();
   const { id } = useParams();
  
+
   const is_owner = currentUser?.username === profile?.owner;
 
   useEffect(() => {
@@ -37,7 +34,7 @@ function ProfilePage() {
       try {
         const [{ data: pageProfile }, { data: profilePosts }] =
           await Promise.all([
-            axiosReq.get(`/profiles/${currentUser.id}`),
+            axiosReq.get(`/profiles/${id}`), 
             axiosReq.get(`/posts/?owner__profile=${id}`),
           ]);
         setProfileData({ pageProfile: { results: [pageProfile] } });
@@ -48,11 +45,11 @@ function ProfilePage() {
       }
     };
     fetchData();
-  }, [id, currentUser.id]); 
+  }, [id]); 
 
   const mainProfile = (
     <>
-      {profile?.is_owner && <ProfileEditDropdown id={profile?.id} />}
+      {is_owner && <ProfileEditDropdown id={profile?.id} />}
       <Row noGutters className="px-3 text-center">
         <Col lg={3} className="text-lg-left">
           <Image
@@ -87,7 +84,6 @@ function ProfilePage() {
     <>
       <hr />
       <p className="text-center">{profile?.owner}'s posts</p>
-      <p>Current profile experience</p>
       <hr />
       {profilePosts.results.length ? (
         <InfiniteScroll
@@ -110,10 +106,10 @@ function ProfilePage() {
 
   return (
     <Row>
-      < ProfileEditForm />
+      {is_owner && <ProfileEditForm />}
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Container className={appStyles.Content}>
-        <Profile key={profile.id} profile={profile} />
+          <Profile key={profile.id} profile={profile} />
           {hasLoaded ? (
             <>
               {mainProfile}
