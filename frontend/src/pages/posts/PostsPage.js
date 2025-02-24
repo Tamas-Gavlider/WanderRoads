@@ -12,7 +12,6 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
-import PopularProfiles from '../profile/PopularProfiles'
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -44,7 +43,6 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
-      <PopularProfiles mobile />
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Form
           onSubmit={(event) => event.preventDefault()}
@@ -80,11 +78,6 @@ function PostsPage({ message, filter = "" }) {
             <Asset spinner />
           </Container>
         )}
-      </Col>
-      <Col md={4} className="d-none d-lg-block p-0 p-lg-2">
-      </Col>
-      <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">
-        <PopularProfiles />
       </Col>
     </Row>
   );
