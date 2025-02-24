@@ -47,77 +47,13 @@ function ProfilePage() {
     fetchData();
   }, [id]); 
 
-  const mainProfile = (
-    <>
-      {is_owner && <ProfileEditDropdown id={profile?.id} />}
-      <Row noGutters className="px-3 text-center">
-        <Col lg={3} className="text-lg-left">
-          <Image
-            className={styles.ProfileImage}
-            roundedCircle
-            src={profile?.image}
-          />
-        </Col>
-        <Col lg={6}>
-          <h3 className="m-2">{profile?.owner}</h3>
-          <Row className="justify-content-center no-gutters">
-            <Col xs={3} className="my-2">
-              <div>{profile?.posts_count}</div>
-              <div>Posts</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>Travel Buddies</div>
-            </Col>
-            <Col xs={3} className="my-2">
-              <div>Visited countries</div>
-            </Col>
-          </Row>
-        </Col>
-        <Col lg={3} className="text-lg-right">
-        </Col>
-        {profile?.content && <Col className="p-3">{profile.content}</Col>}
-      </Row>
-    </>
-  );
-
-  const mainProfilePosts = (
-    <>
-      <hr />
-      <p className="text-center">{profile?.owner}'s posts</p>
-      <hr />
-      {profilePosts.results.length ? (
-        <InfiniteScroll
-          children={profilePosts.results.map((post) => (
-            <Post key={post.id} {...post} setPosts={setProfilePosts} />
-          ))}
-          dataLength={profilePosts.results.length}
-          loader={<Asset spinner />}
-          hasMore={!!profilePosts.next}
-          next={() => fetchMoreData(profilePosts, setProfilePosts)}
-        />
-      ) : (
-        <Asset
-          src={NoResults}
-          message={`No results found, ${profile?.owner} hasn't posted yet.`}
-        />
-      )}
-    </>
-  );
-
+ 
   return (
     <Row>
       {is_owner && <ProfileEditForm />}
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Container className={appStyles.Content}>
           <Profile key={profile.id} profile={profile} />
-          {hasLoaded ? (
-            <>
-              {mainProfile}
-              {mainProfilePosts}
-            </>
-          ) : (
-            <Asset spinner />
-          )}
         </Container>
       </Col>
       <Col lg={4} className="d-none d-lg-block p-0 p-lg-2">

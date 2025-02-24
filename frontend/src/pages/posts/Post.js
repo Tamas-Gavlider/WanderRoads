@@ -1,8 +1,8 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media } from "react-bootstrap";
-import { Link , useHistory} from "react-router-dom";
+import { Card, Media, OverlayTrigger, Tooltip } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
@@ -14,12 +14,13 @@ const Post = (props) => {
     profile_id,
     profile_image,
     comments_count,
+    country,
     title,
     content,
     image,
     updated_at,
     postPage,
-    country,
+    setPosts,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -37,8 +38,7 @@ const Post = (props) => {
     } catch (err) {
       console.log(err);
     }
-  }; 
-  console.log("Post Props:", { owner, profile_image, title,content, image });
+  };
 
 
   return (
@@ -49,14 +49,16 @@ const Post = (props) => {
             <Avatar src={profile_image} height={55} />
             {owner}
           </Link>
-          <p>{country}</p>
           <div className="d-flex align-items-center">
             <span>{updated_at}</span>
-            {is_owner && postPage && <MoreDropdown
+            {is_owner && postPage && (
+              <MoreDropdown
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
-              />}
+              />
+            )}
           </div>
+          <p>{country}</p>
         </Media>
       </Card.Body>
       <Link to={`/posts/${id}`}>
@@ -65,12 +67,10 @@ const Post = (props) => {
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
-        <div className={styles.PostBar}>
           <Link to={`/posts/${id}`}>
-            <h2>Comment</h2>
+            <i className="far fa-comments" />
           </Link>
           {comments_count}
-        </div>
       </Card.Body>
     </Card>
   );
