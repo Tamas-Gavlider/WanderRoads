@@ -1,6 +1,6 @@
 import React, {useState, useRef} from "react";
 
-export default function Theme_song(props) {
+export default function ThemeSong(props) {
     const [isMuted, setIsMuted] = useState(true);
     const audioRef = useRef(null);
     
