@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -7,6 +7,8 @@ const Profile = () => {
   const { id } = useParams(); 
   const currentUser = useCurrentUser();
   const [profile, setProfile] = useState(null);
+  const [isMuted, setIsMuted] = useState(true);
+  const audioRef = useRef(null);
 
   useEffect(() => {
     axios
@@ -21,6 +23,17 @@ const Profile = () => {
   if (!profile) {
     return <p>Loading profile...</p>;
   }
+
+  const toggleMute = () => {
+    if (audioRef.current) {
+      if (isMuted) {
+        audioRef.current.play();
+      } else {
+        audioRef.current.pause();
+      }
+      setIsMuted(!isMuted);
+    }
+  };
 
   const isOwner = currentUser?.username === profile.owner;
 
@@ -38,10 +51,12 @@ const Profile = () => {
       <p><strong>Experience:</strong> {profile.experience}</p>
       <p><strong>Joined:</strong> {new Date(profile.created_at).toLocaleDateString()}</p>
       {profile.theme_song && (
-        <audio controls>
-          <source src={profile.theme_song} type="audio/mpeg" />
-          Your browser does not support the audio tag.
-        </audio>
+        <div>
+          <button onClick={toggleMute}>
+            <i className={`fa-solid ${isMuted ? "fa-volume-xmark" : "fa-volume-high"}`}></i>
+          </button>
+          <audio ref={audioRef} src={profile.theme_song} />
+        </div>
       )}
   </>
 
