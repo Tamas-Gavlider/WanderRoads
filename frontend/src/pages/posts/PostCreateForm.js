@@ -8,7 +8,7 @@ import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
 import Asset from "../../components/Asset";
-import axios from 'axios'
+import axios from "axios";
 import Upload from "../../assets/upload.png";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
@@ -75,7 +75,7 @@ function PostCreateForm() {
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      console.log({data})
+      console.log({ data });
       history.push(`/posts/${data.id}`);
     } catch (err) {
       console.log(err);
@@ -118,22 +118,25 @@ function PostCreateForm() {
         </Alert>
       ))}
 
-<Form.Group>
-  <Form.Label>Country</Form.Label>
-  <Form.Control as="select" name="country" value={country} onChange={handleChange} required>
-    <option value="">Select a country</option>
-    {countries.map((c) => (
-      <option key={c.code} value={c.code}>
-        {c.name}
-      </option>
-    ))}
-  </Form.Control>
-</Form.Group>
+      <Form.Group>
+        <Form.Label>Country</Form.Label>
+        <Form.Control
+          as="select"
+          name="country"
+          value={country}
+          onChange={handleChange}
+          required
+        >
+          <option value="">Select a country</option>
+          {countries.map((c) => (
+            <option key={c.code} value={c.code}>
+              {c.name}
+            </option>
+          ))}
+        </Form.Control>
+      </Form.Group>
 
-      <Button
-        className={btnStyles.Button}
-        onClick={() => history.goBack()}
-      >
+      <Button className={btnStyles.Button} onClick={() => history.goBack()}>
         cancel
       </Button>
       <Button className={btnStyles.Button} type="submit">

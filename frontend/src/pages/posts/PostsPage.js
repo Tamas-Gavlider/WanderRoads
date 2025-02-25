@@ -3,7 +3,7 @@ import { Form } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import { NavLink } from "react-router-dom";
+import { Link } from "react-router-dom";
 import Post from "./Post";
 import Asset from "../../components/Asset";
 import navStyle from '../../styles/NavBar.module.css' 
@@ -13,6 +13,7 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
+import PostCreateForm from "./PostCreateForm";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -46,13 +47,13 @@ function PostsPage({ message, filter = "" }) {
     <Row className="h-100">
        <Col className="py-2 p-0 p-lg-2" lg={8}>
       <span>Share your journey!</span>
-      <NavLink
+      <Link
         className={navStyle.NavLink}
         activeClassName={navStyle.Active}
         to="/posts/create"
       >
         Post your trip 
-      </NavLink></Col>
+      </Link></Col>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Form
           onSubmit={(event) => event.preventDefault()}

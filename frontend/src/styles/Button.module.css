@@ -7,26 +7,26 @@
   margin-left: 2px;
   margin-right: 2px;
   min-width: 20px;
-  background-color: #f9b248;
-  color: #0e2431;
+  background-color: #00bae2;
+  color: #281713;
 }
 
 .Button:hover {
   opacity: 0.8;
   border-color: transparent;
   cursor: pointer;
-  background-color: #fc3a52;
+  background-color: #ff0000;
 }
 
 .Button:hover:active {
-  background-color: #fc3a52 !important;
+  background-color: #ff0000 !important;
 }
 
 .Button:active {
-  background-color: #f9b248 !important;
+  background-color: #ff0000 !important;
 }
 
 .Button:focus {
-  background-color: #fc3a52;
+  background-color: #ff0000;
 }
 

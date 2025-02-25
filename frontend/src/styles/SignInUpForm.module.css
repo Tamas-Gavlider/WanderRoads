@@ -29,8 +29,12 @@
   margin: auto;
 }
 
+.Link span:hover {
+  color: #ff0000;
+}
+
 .Link span {
-  color: #ff9254;
+  color: #00bae2;
 }
 
 .Container {
