@@ -46,13 +46,12 @@ function PostsPage({ message, filter = "" }) {
   return (
     <Row className="h-100">
        <Col className="py-2 p-0 p-lg-2" lg={8}>
-      <span>Share your journey!</span>
       <Link
         className={navStyle.NavLink}
         activeClassName={navStyle.Active}
         to="/posts/create"
       >
-        Post your trip 
+        Share your journey! 
       </Link></Col>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Form

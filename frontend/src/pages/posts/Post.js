@@ -14,12 +14,12 @@ const Post = (props) => {
     profile_id,
     profile_image,
     comments_count,
-    country,
     country_name,
     title,
     content,
     image,
     updated_at,
+    created_at,
     postPage,
   } = props;
 
@@ -45,12 +45,12 @@ const Post = (props) => {
     <Card className={styles.Post}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
-          <Link to={`/profiles/${profile_id}`}>
+          <Link to={`/profiles/${profile_id}`} className={styles.Profile}>
             <Avatar src={profile_image} height={55} />
-            {owner}
+            <span>{owner}</span>
           </Link>
           <div className="d-flex align-items-center">
-            <span>{updated_at}</span>
+            <span>{created_at} - {country_name}</span>
             {is_owner && postPage && (
               <MoreDropdown
                 handleEdit={handleEdit}
@@ -58,7 +58,6 @@ const Post = (props) => {
               />
             )}
           </div>
-          <p>{country_name}</p>
         </Media>
       </Card.Body>
       <Link to={`/posts/${id}`}>
