@@ -9,7 +9,8 @@ class PostSerializer(serializers.ModelSerializer):
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
     image = serializers.ImageField(required=False)
-    country = CountryField() 
+    country = CountryField()
+    country_name = serializers.SerializerMethodField() 
     comments_count = serializers.ReadOnlyField()
 
     def validate_image(self, value):
@@ -29,10 +30,13 @@ class PostSerializer(serializers.ModelSerializer):
         request = self.context['request']
         return request.user == obj.owner
     
+    def get_country_name(self, obj):
+        return obj.country.name if obj.country else None 
+
     class Meta:
         model = Post
         fields = [
             'id', 'owner', 'is_owner', 'profile_id',
             'profile_image', 'created_at', 'updated_at',
-            'title', 'content', 'image', 'country','comments_count'
+            'title', 'content', 'image', 'country','comments_count',"country_name"
         ]
