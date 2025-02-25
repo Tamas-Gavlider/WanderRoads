@@ -1,3 +1,7 @@
-.WordBreak {
-    word-break: break-all;
-  }
+button {
+  border: none;
+  background-color: #ffff;
+}
+i:hover {
+  color: #ff0000;
+}

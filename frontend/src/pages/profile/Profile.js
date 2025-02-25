@@ -2,6 +2,7 @@ import React, { useEffect, useState, useRef } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import styles from '../../styles/Profile.module.css'
 
 const Profile = () => {
   const { id } = useParams(); 
