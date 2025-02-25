@@ -1,13 +1,21 @@
 .NavBar {
-    background-color: #e8d5b7;
+    background-color: #00bae2;
 }
 
 .NavLink {
     padding: 15px;
     text-decoration: none;
-    color: #0e2431;
+    color: #281713;
+}
+
+.NavLink:hover {
+    color: #ff0000
 }
 
 .Active {
-    color: #fc3a52;
+    color: #ff0000;
+}
+
+.Avatar {
+    margin-top: 6px;
 }
