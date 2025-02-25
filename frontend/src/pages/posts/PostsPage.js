@@ -3,9 +3,10 @@ import { Form } from "react-bootstrap";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
+import { NavLink } from "react-router-dom";
 import Post from "./Post";
 import Asset from "../../components/Asset";
+import navStyle from '../../styles/NavBar.module.css' 
 
 import appStyles from "../../App.module.css";
 import { useLocation } from "react-router";
@@ -43,6 +44,15 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
+       <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <span>Share your journey!</span>
+      <NavLink
+        className={navStyle.NavLink}
+        activeClassName={navStyle.Active}
+        to="/posts/create"
+      >
+        Post your trip 
+      </NavLink></Col>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <Form
           onSubmit={(event) => event.preventDefault()}
