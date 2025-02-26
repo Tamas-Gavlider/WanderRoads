@@ -16,6 +16,7 @@ import { useCurrentUser } from './contexts/CurrentUserContext';
 import PostEditForm from './pages/posts/PostEditForm';
 import Profile from './pages/profile/Profile';
 import TravelPreferenceEditForm from './pages/travel_preference/TravelPreferenceEditForm';
+import AddTravelPreference from './pages/travel_preference/AddTravelPreferences';
 
 
 
@@ -37,7 +38,8 @@ function App() {
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
       <Route path="/profiles/:id" render= {()=> <Profile />} />
-      <Route path='/travel-preference/1/edit' render= {()=> <TravelPreferenceEditForm />}/>
+      <Route path='/travel-preference/edit' render= {()=> <TravelPreferenceEditForm />}/>
+      <Route path='/travel-preference/' render= {()=> <AddTravelPreference />}/>
       <Route exact path='/posts' render={()=> <PostsPage 
       message="No results found." 
       filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />
