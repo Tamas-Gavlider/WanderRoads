@@ -40,6 +40,8 @@ function CommentCreateForm(props) {
       console.log(err);
     }
   };
+  console.log(post)
+  
 
   return (
     <Form className="mt-2" onSubmit={handleSubmit}>

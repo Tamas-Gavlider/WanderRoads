@@ -19,7 +19,6 @@ const Post = (props) => {
     content,
     image,
     created_at,
-    postPage,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -50,7 +49,7 @@ const Post = (props) => {
           </Link>
           <div className="d-flex align-items-center">
             <span>{created_at} - {country_name}</span>
-            {is_owner && postPage && (
+            {is_owner && (
               <MoreDropdown
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
