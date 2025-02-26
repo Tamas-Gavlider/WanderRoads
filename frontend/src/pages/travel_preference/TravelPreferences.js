@@ -2,6 +2,7 @@ import React, {useState, useEffect} from 'react';
 import axios from 'axios';
 import { useCurrentUser } from '../../contexts/CurrentUserContext';
 import { useParams } from 'react-router-dom/cjs/react-router-dom.min';
+import { Link } from 'react-router-dom/cjs/react-router-dom.min';
 
 
 export default function TravelPreferences() {
@@ -33,7 +34,8 @@ export default function TravelPreferences() {
           <p><strong>Budget:</strong> {preferences.budget}</p>
           <p><strong>Travel Style:</strong> {preferences.travel_style}</p>
           <p><strong>Duration:</strong> {preferences.duration}</p>
-          
+          <Link to={`/travel-preference/${id}/edit`}>
+          Edit preferences</Link>
         </div>
       ) : (
         <p>Loading...</p> 

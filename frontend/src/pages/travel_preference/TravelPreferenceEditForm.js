@@ -5,10 +5,8 @@ import btnStyles from "../../styles/Button.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 
-
-export default function TravelPreferencesEditForm() {
+export default function TravelPreferenceEditForm() {
   const [errors, setErrors] = useState({});
-  const [choices, setChoices] = useState({});
   const [postData, setPostData] = useState({
     preferred_continent: "",
     climate: "",
@@ -22,38 +20,77 @@ export default function TravelPreferencesEditForm() {
   const history = useHistory();
   const { id } = useParams();
 
+  
+  const CONTINENTS = [
+    ["ANY", "Any Continent"],
+    ["AF", "Africa"],
+    ["NA", "North America"],
+    ["OC", "Oceania"],
+    ["AN", "Antarctica"],
+    ["AS", "Asia"],
+    ["EU", "Europe"],
+    ["SA", "South America"],
+  ];
+
+  const CLIMATE_CHOICES = [
+    ["ANY", "Any"],
+    ["HOT", "Hot"],
+    ["COLD", "Cold"],
+    ["TROPICAL", "Tropical"],
+    ["MILD", "Mild"],
+  ];
+
+  const ACTIVITY_CHOICES = [
+    ["ANY", "Any"],
+    ["CULTURE", "Culture & History"],
+    ["NATURE", "Nature & Wildlife"],
+    ["BEACH", "Beaches & Islands"],
+    ["ADVENTURE", "Adventure & Hiking"],
+    ["CITY", "City & Nightlife"],
+    ["FOOD", "Food & Culinary"],
+  ];
+
+  const BUDGET_CHOICES = [
+    ["ANY", "Any"],
+    ["LOW", "Budget-Friendly"],
+    ["MEDIUM", "Mid-Range"],
+    ["HIGH", "Luxury"],
+  ];
+
+  const TRAVEL_STYLE_CHOICES = [
+    ["ANY", "Any"],
+    ["SOLO", "Solo Travel"],
+    ["FAMILY", "Family"],
+    ["BACKPACKING", "Backpacking"],
+    ["LUXURY", "Luxury Travel"],
+  ];
+
+  const DURATION_CHOICES = [
+    ["ANY", "Any"],
+    ["WEEKEND", "Weekend"],
+    ["ONE_WEEK", "1 Week"],
+    ["TWO_WEEKS", "2 Weeks"],
+    ["MONTH", "1 Month"],
+  ];
+
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axiosReq.get(`/travel-preference/${id}/`);
-        const {
-          preferred_continent,
-          climate,
-          activity,
-          budget,
-          travel_style,
+        const { data } = await axiosReq.get(`/travel-preference/${id}`);
+        const { 
+          preferred_continent, 
+          climate, 
+          activity, 
+          budget, 
+          travel_style, 
           duration,
-          is_owner,
-          preferred_continent_choices,
-          climate_choices,
-          activity_choices,
-          budget_choices,
-          travel_style_choices,
-          duration_choices,
+          owner,
         } = data;
 
-        if (!is_owner) {
+        if (!owner) {
           history.push("/");
         } else {
           setPostData({ preferred_continent, climate, activity, budget, travel_style, duration });
-          setChoices({
-            preferred_continent_choices,
-            climate_choices,
-            activity_choices,
-            budget_choices,
-            travel_style_choices,
-            duration_choices,
-          });
         }
       } catch (err) {
         console.log(err);
@@ -87,69 +124,78 @@ export default function TravelPreferencesEditForm() {
 
   return (
     <Form onSubmit={handleSubmit} className="text-center">
-      {/* Preferred Continent Dropdown */}
       <Form.Group>
         <Form.Label>Preferred Continent</Form.Label>
         <Form.Control as="select" name="preferred_continent" value={preferred_continent} onChange={handleChange}>
-          {choices.preferred_continent_choices?.map(([value, label]) => (
-            <option key={value} value={value}>{label}</option>
+          {CONTINENTS.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>
 
-      {/* Climate Dropdown */}
       <Form.Group>
         <Form.Label>Climate</Form.Label>
         <Form.Control as="select" name="climate" value={climate} onChange={handleChange}>
-          {choices.climate_choices?.map(([value, label]) => (
-            <option key={value} value={value}>{label}</option>
+          {CLIMATE_CHOICES.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>
 
-      {/* Activity Dropdown */}
       <Form.Group>
         <Form.Label>Activity</Form.Label>
         <Form.Control as="select" name="activity" value={activity} onChange={handleChange}>
-          {choices.activity_choices?.map(([value, label]) => (
-            <option key={value} value={value}>{label}</option>
+          {ACTIVITY_CHOICES.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>
 
-      {/* Budget Dropdown */}
       <Form.Group>
         <Form.Label>Budget</Form.Label>
         <Form.Control as="select" name="budget" value={budget} onChange={handleChange}>
-          {choices.budget_choices?.map(([value, label]) => (
-            <option key={value} value={value}>{label}</option>
+          {BUDGET_CHOICES.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>
 
-      {/* Travel Style Dropdown */}
       <Form.Group>
         <Form.Label>Travel Style</Form.Label>
         <Form.Control as="select" name="travel_style" value={travel_style} onChange={handleChange}>
-          {choices.travel_style_choices?.map(([value, label]) => (
-            <option key={value} value={value}>{label}</option>
+          {TRAVEL_STYLE_CHOICES.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>
 
-      {/* Duration Dropdown */}
       <Form.Group>
         <Form.Label>Duration</Form.Label>
         <Form.Control as="select" name="duration" value={duration} onChange={handleChange}>
-          {choices.duration_choices?.map(([value, label]) => (
-            <option key={value} value={value}>{label}</option>
+          {DURATION_CHOICES.map(([value, label]) => (
+            <option key={value} value={value}>
+              {label}
+            </option>
           ))}
         </Form.Control>
       </Form.Group>
 
-      {/* Submit and Cancel Buttons */}
-      <Button className={btnStyles.Button} onClick={() => history.goBack()}>Cancel</Button>
-      <Button className={btnStyles.Button} type="submit">Save</Button>
+      <Button className={btnStyles.Button} onClick={() => history.goBack()}>
+        Cancel
+      </Button>
+      <Button className={btnStyles.Button} type="submit">
+        Save
+      </Button>
     </Form>
   );
 }
