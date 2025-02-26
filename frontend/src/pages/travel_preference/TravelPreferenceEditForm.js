@@ -76,7 +76,7 @@ export default function TravelPreferenceEditForm() {
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axiosReq.get(`/travel-preference/${id}`);
+        const { data } = await axiosReq.get(`/travel-preference/1/`);
         const { 
           preferred_continent, 
           climate, 
@@ -111,8 +111,8 @@ export default function TravelPreferenceEditForm() {
     event.preventDefault();
 
     try {
-      await axiosReq.put(`/travel-preference/${id}/`, postData);
-      history.push(`/travel-preference/${id}`);
+      await axiosReq.put(`/travel-preference/1/`, postData);
+      history.push(`/travel-preference/1/`);
     } catch (err) {
       console.log(err);
       if (err.response?.status !== 401) {

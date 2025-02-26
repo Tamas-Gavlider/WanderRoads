@@ -37,7 +37,7 @@ function App() {
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
       <Route path="/profiles/:id" render= {()=> <Profile />} />
-      <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>
+      <Route path='/travel-preference/1/edit' render= {()=> <TravelPreferenceEditForm />}/>
       <Route exact path='/posts' render={()=> <PostsPage 
       message="No results found." 
       filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />

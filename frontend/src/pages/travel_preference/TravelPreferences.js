@@ -13,14 +13,16 @@ export default function TravelPreferences() {
   const isOwner = currentUser?.username === preferences?.owner;
 
   useEffect(() => {
-    axios
-      .get(`/travel-preference/${id}`)
-      .then((response) => {
-        console.log("Travel preferences:", response.data);
-        setPreferences(response.data);
-      })
-      .catch((error) => console.error("Error fetching profile:", error));
-  }, [id]);
+    if (currentUser) {
+      axios
+        .get(`/travel-preference/1/`)  
+        .then((response) => {
+          console.log("Travel preferences:", response.data);
+          setPreferences(response.data);
+        })
+        .catch((error) => console.error("Error", error));
+    }
+  }, [currentUser]);
   
   return (
     <div>
@@ -34,7 +36,7 @@ export default function TravelPreferences() {
           <p><strong>Budget:</strong> {preferences.budget}</p>
           <p><strong>Travel Style:</strong> {preferences.travel_style}</p>
           <p><strong>Duration:</strong> {preferences.duration}</p>
-          <Link to={`/travel-preference/${id}/edit`}>
+          <Link to={`/travel-preference/1/edit`}>
           Edit preferences</Link>
         </div>
       ) : (
