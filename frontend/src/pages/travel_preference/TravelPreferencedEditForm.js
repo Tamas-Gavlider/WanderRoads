@@ -1,41 +1,66 @@
-import React, {useState, useEffect} from 'react'
+import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import btnStyles from "../../styles/Button.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import Alert from "react-bootstrap/Alert";
 
-export default function TravelPreferencedEditForm() {
 
-    const [errors, setErrors] = useState({});
-    
-    const [postData, setPostData] = useState({
-        preferred_continent: "",
-        climate: "",
-        activity: "",
-        budget: "",
-        travel_style: "",
-        duration: "",
-      });
-    const { preferred_continent, climate, activity, budget, travel_style, duration } = postData;
-    const history = useHistory();
-    const { id } = useParams();
+export default function TravelPreferencesEditForm() {
+  const [errors, setErrors] = useState({});
+  const [choices, setChoices] = useState({});
+  const [postData, setPostData] = useState({
+    preferred_continent: "",
+    climate: "",
+    activity: "",
+    budget: "",
+    travel_style: "",
+    duration: "",
+  });
 
-    useEffect(() => {
-        const handleMount = async () => {
-          try {
-            const { data } = await axiosReq.get(`/travel-preference/${id}/`);
-            const { preferred_continent, climate, activity, budget, travel_style, duration, is_owner } = data;
-    
-            is_owner
-              ? setPostData({ preferred_continent, climate, activity, budget, travel_style, duration  })
-              : history.push("/");
-          } catch (err) {
-            console.log(err);
-          }
-        };
-        handleMount();
+  const { preferred_continent, climate, activity, budget, travel_style, duration } = postData;
+  const history = useHistory();
+  const { id } = useParams();
+
+  useEffect(() => {
+    const fetchData = async () => {
+      try {
+        const { data } = await axiosReq.get(`/travel-preference/${id}/`);
+        const {
+          preferred_continent,
+          climate,
+          activity,
+          budget,
+          travel_style,
+          duration,
+          is_owner,
+          preferred_continent_choices,
+          climate_choices,
+          activity_choices,
+          budget_choices,
+          travel_style_choices,
+          duration_choices,
+        } = data;
+
+        if (!is_owner) {
+          history.push("/");
+        } else {
+          setPostData({ preferred_continent, climate, activity, budget, travel_style, duration });
+          setChoices({
+            preferred_continent_choices,
+            climate_choices,
+            activity_choices,
+            budget_choices,
+            travel_style_choices,
+            duration_choices,
+          });
+        }
+      } catch (err) {
+        console.log(err);
+      }
+    };
+
+    fetchData();
   }, [history, id]);
 
   const handleChange = (event) => {
@@ -44,110 +69,87 @@ export default function TravelPreferencedEditForm() {
       [event.target.name]: event.target.value,
     });
   };
-   
-  const handleSubmit = async (event) => {
-      event.preventDefault();
-      const formData = new FormData();
-  
-      formData.append("preferred_continent", preferred_continent);
-      formData.append("climate", climate);
-      formData.append("activity", activity);
-      formData.append("budget", budget);
-      formData.append("travel_style", travel_style);
-      formData.append("duration", duration);
-  
-      try {
-        await axiosReq.put(`/travel-preference/${id}/`, formData);
-        history.push(`/travel-preference/${id}`);
-      } catch (err) {
-        console.log(err);
-        if (err.response?.status !== 401) {
-          setErrors(err.response?.data);
-        }
-      }
-    };
 
-    const textFields = (
-        <div className="text-center">
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+
+    try {
+      await axiosReq.put(`/travel-preference/${id}/`, postData);
+      history.push(`/travel-preference/${id}`);
+    } catch (err) {
+      console.log(err);
+      if (err.response?.status !== 401) {
+        setErrors(err.response?.data);
+        console.log(errors)
+      }
+    }
+  };
+
+  return (
+    <Form onSubmit={handleSubmit} className="text-center">
+      {/* Preferred Continent Dropdown */}
       <Form.Group>
         <Form.Label>Preferred Continent</Form.Label>
-        <Form.Control
-          type="text"
-          name="preferred_continent"
-          value={preferred_continent}
-          onChange={handleChange}
-        />
+        <Form.Control as="select" name="preferred_continent" value={preferred_continent} onChange={handleChange}>
+          {choices.preferred_continent_choices?.map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
+        </Form.Control>
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
 
+      {/* Climate Dropdown */}
       <Form.Group>
         <Form.Label>Climate</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={6}
-          name="climate"
-          value={climate}
-          onChange={handleChange}
-        />
+        <Form.Control as="select" name="climate" value={climate} onChange={handleChange}>
+          {choices.climate_choices?.map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
+        </Form.Control>
       </Form.Group>
-      {errors?.content?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+
+      {/* Activity Dropdown */}
       <Form.Group>
         <Form.Label>Activity</Form.Label>
-        <Form.Control
-          as="textarea"
-          name="activity"
-          value={activity}
-          onChange={handleChange}
-        >
+        <Form.Control as="select" name="activity" value={activity} onChange={handleChange}>
+          {choices.activity_choices?.map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
         </Form.Control>
       </Form.Group>
+
+      {/* Budget Dropdown */}
       <Form.Group>
         <Form.Label>Budget</Form.Label>
-        <Form.Control
-          as="textarea"
-          name="budget"
-          value={budget}
-          onChange={handleChange}
-        >
+        <Form.Control as="select" name="budget" value={budget} onChange={handleChange}>
+          {choices.budget_choices?.map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
         </Form.Control>
       </Form.Group>
+
+      {/* Travel Style Dropdown */}
       <Form.Group>
-        <Form.Label>Travel style</Form.Label>
-        <Form.Control
-          as="textarea"
-          name="travel_style"
-          value={travel_style}
-          onChange={handleChange}
-        >
+        <Form.Label>Travel Style</Form.Label>
+        <Form.Control as="select" name="travel_style" value={travel_style} onChange={handleChange}>
+          {choices.travel_style_choices?.map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
         </Form.Control>
       </Form.Group>
+
+      {/* Duration Dropdown */}
       <Form.Group>
         <Form.Label>Duration</Form.Label>
-        <Form.Control
-          as="textarea"
-          name="duration"
-          value={duration}
-          onChange={handleChange}
-        >
+        <Form.Control as="select" name="duration" value={duration} onChange={handleChange}>
+          {choices.duration_choices?.map(([value, label]) => (
+            <option key={value} value={value}>{label}</option>
+          ))}
         </Form.Control>
       </Form.Group>
-      <Button className={btnStyles.Button} onClick={() => history.goBack()}>
-        cancel
-      </Button>
-      <Button className={btnStyles.Button} type="submit">
-        save
-      </Button>
-    </div>
-    )
-  return (
-    <div>{textFields}</div>
-  )
+
+      {/* Submit and Cancel Buttons */}
+      <Button className={btnStyles.Button} onClick={() => history.goBack()}>Cancel</Button>
+      <Button className={btnStyles.Button} type="submit">Save</Button>
+    </Form>
+  );
 }
