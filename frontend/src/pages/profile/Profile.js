@@ -7,6 +7,7 @@ import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from '../../styles/Profile.module.css'
 import ThemeSong from "../../components/ThemeSong";
+import TravelPreferences from "../travel_preference/TravelPreferences";
 
 const Profile = () => {
   const { id } = useParams(); 
@@ -50,6 +51,7 @@ const Profile = () => {
       <p><strong>Experience:</strong> {profile.experience}</p>
       <p><strong>Visited Countries:</strong> {profile.visited_countries}</p>
       <p><strong>Joined:</strong> {new Date(profile.created_at).toLocaleDateString()}</p>
+      < TravelPreferences />
   </>
 
   const visitor = <>
