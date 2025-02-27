@@ -50,7 +50,7 @@ const Profile = () => {
       <p>{profile.status || "No status set"}</p>
       <p><strong>Username:</strong> {profile.owner}</p>
       <p><strong>Experience:</strong> {profile.experience}</p>
-      <p><strong>Visited Countries:</strong> {profile.visited_countries}</p>
+      <p><strong>Visited Countries:</strong> {profile.visited_countries.length}</p>
       <p><strong>Joined:</strong> {new Date(profile.created_at).toLocaleDateString()}</p>
       < TravelPreferences />
   </>
