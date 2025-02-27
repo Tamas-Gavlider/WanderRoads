@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
-import btnStyles from "../../styles/Button.module.css";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import btnStyles from "../../styles/Button.module.css";
 
 export default function TravelPreferenceEditForm() {
   const [errors, setErrors] = useState({});
@@ -16,89 +16,22 @@ export default function TravelPreferenceEditForm() {
     duration: "",
   });
 
-  const { preferred_continent, climate, activity, budget, travel_style, duration } = postData;
+  const { id } = useParams(); 
   const history = useHistory();
-  const { id } = useParams();
-
-  
-  const CONTINENTS = [
-    ["ANY", "Any Continent"],
-    ["AF", "Africa"],
-    ["NA", "North America"],
-    ["OC", "Oceania"],
-    ["AN", "Antarctica"],
-    ["AS", "Asia"],
-    ["EU", "Europe"],
-    ["SA", "South America"],
-  ];
-
-  const CLIMATE_CHOICES = [
-    ["ANY", "Any"],
-    ["HOT", "Hot"],
-    ["COLD", "Cold"],
-    ["TROPICAL", "Tropical"],
-    ["MILD", "Mild"],
-  ];
-
-  const ACTIVITY_CHOICES = [
-    ["ANY", "Any"],
-    ["CULTURE", "Culture & History"],
-    ["NATURE", "Nature & Wildlife"],
-    ["BEACH", "Beaches & Islands"],
-    ["ADVENTURE", "Adventure & Hiking"],
-    ["CITY", "City & Nightlife"],
-    ["FOOD", "Food & Culinary"],
-  ];
-
-  const BUDGET_CHOICES = [
-    ["ANY", "Any"],
-    ["LOW", "Budget-Friendly"],
-    ["MEDIUM", "Mid-Range"],
-    ["HIGH", "Luxury"],
-  ];
-
-  const TRAVEL_STYLE_CHOICES = [
-    ["ANY", "Any"],
-    ["SOLO", "Solo Travel"],
-    ["FAMILY", "Family"],
-    ["BACKPACKING", "Backpacking"],
-    ["LUXURY", "Luxury Travel"],
-  ];
-
-  const DURATION_CHOICES = [
-    ["ANY", "Any"],
-    ["WEEKEND", "Weekend"],
-    ["ONE_WEEK", "1 Week"],
-    ["TWO_WEEKS", "2 Weeks"],
-    ["MONTH", "1 Month"],
-  ];
 
   useEffect(() => {
     const fetchData = async () => {
       try {
-        const { data } = await axiosReq.get(`/travel-preference/`);
-        const { 
-          preferred_continent, 
-          climate, 
-          activity, 
-          budget, 
-          travel_style, 
-          duration,
-          owner,
-        } = data;
-
-        if (!owner) {
-          history.push("/");
-        } else {
-          setPostData({ preferred_continent, climate, activity, budget, travel_style, duration });
-        }
+        const { data } = await axiosReq.get(`/travel-preference/${id}/`); 
+        setPostData(data);
       } catch (err) {
-        console.log(err);
+        console.error("Error fetching travel preferences:", err);
+        history.push("/");
       }
     };
 
     fetchData();
-  }, [history, id]);
+  }, [id, history]);
 
   const handleChange = (event) => {
     setPostData({
@@ -109,16 +42,12 @@ export default function TravelPreferenceEditForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
     try {
-      await axiosReq.put(`/travel-preference/`, postData);
-      history.push(`/travel-preference/`);
+      await axiosReq.put(`/travel-preference/${id}/`, postData); 
+      history.push(`/travel-preference/${id}/`); 
     } catch (err) {
-      console.log(err);
-      if (err.response?.status !== 401) {
-        setErrors(err.response?.data);
-        console.log(errors)
-      }
+      console.error(err);
+      setErrors(err.response?.data || {});
     }
   };
 
@@ -126,67 +55,70 @@ export default function TravelPreferenceEditForm() {
     <Form onSubmit={handleSubmit} className="text-center">
       <Form.Group>
         <Form.Label>Preferred Continent</Form.Label>
-        <Form.Control as="select" name="preferred_continent" value={preferred_continent} onChange={handleChange}>
-          {CONTINENTS.map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
+        <Form.Control as="select" name="preferred_continent" value={postData.preferred_continent} onChange={handleChange}>
+          <option value="ANY">Any Continent</option>
+          <option value="AF">Africa</option>
+          <option value="NA">North America</option>
+          <option value="AS">Asia</option>
+          <option value="EU">Europe</option>
+          <option value="SA">South America</option>
         </Form.Control>
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Climate</Form.Label>
-        <Form.Control as="select" name="climate" value={climate} onChange={handleChange}>
-          {CLIMATE_CHOICES.map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
+        <Form.Control as="select" name="climate" value={postData.climate} onChange={handleChange}>
+          <option value="ANY">Any</option>
+          <option value="HOT">Hot</option>
+          <option value="COLD">Cold</option>
+          <option value="TROPICAL">Tropical</option>
+          <option value="MILD">Mild</option>
         </Form.Control>
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Activity</Form.Label>
-        <Form.Control as="select" name="activity" value={activity} onChange={handleChange}>
-          {ACTIVITY_CHOICES.map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
+        <Form.Control as="select" name="activity" value={postData.activity} onChange={handleChange}>
+          <option value="ANY">Any</option>
+          <option value="CULTURE">Culture & History</option>
+          <option value="NATURE">Nature & Wildlife</option>
+          <option value="BEACH">Beaches & Islands</option>
+          <option value="ADVENTURE">Adventure & Hiking</option>
+          <option value="CITY">City & Nightlife</option>
+          <option value="FOOD">Food & Culinary</option>
         </Form.Control>
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Budget</Form.Label>
-        <Form.Control as="select" name="budget" value={budget} onChange={handleChange}>
-          {BUDGET_CHOICES.map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
+        <Form.Control as="select" name="budget" value={postData.budget} onChange={handleChange}>
+          <option value="ANY">Any</option>
+          <option value="LOW">Budget-Friendly</option>
+          <option value="MEDIUM">Mid-Range</option>
+          <option value="HIGH">Luxury</option>
         </Form.Control>
       </Form.Group>
 
       <Form.Group>
         <Form.Label>Travel Style</Form.Label>
-        <Form.Control as="select" name="travel_style" value={travel_style} onChange={handleChange}>
-          {TRAVEL_STYLE_CHOICES.map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
+        <Form.Control as="select" name="travel_style" value={postData.travel_style} onChange={handleChange}>
+          <option value="ANY">Any</option>
+          <option value="SOLO">Solo Travel</option>
+          <option value="FAMILY">Family</option>
+          <option value="BACKPACKING">Backpacking</option>
+          <option value="LUXURY">Luxury Travel</option>
         </Form.Control>
       </Form.Group>
 
+      
       <Form.Group>
         <Form.Label>Duration</Form.Label>
-        <Form.Control as="select" name="duration" value={duration} onChange={handleChange}>
-          {DURATION_CHOICES.map(([value, label]) => (
-            <option key={value} value={value}>
-              {label}
-            </option>
-          ))}
+        <Form.Control as="select" name="duration" value={postData.duration} onChange={handleChange}>
+          <option value="ANY">Any</option>
+          <option value="WEEKEND">Weekend</option>
+          <option value="ONE_WEEK">1 Week</option>
+          <option value="TWO_WEEKS">2 Weeks</option>
+          <option value="MONTH">1 Month</option>
         </Form.Control>
       </Form.Group>
 

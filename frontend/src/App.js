@@ -38,7 +38,7 @@ function App() {
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
       <Route path="/profiles/:id" render= {()=> <Profile />} />
-      <Route path='/travel-preference/edit' render= {()=> <TravelPreferenceEditForm />}/>
+      <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>
       <Route path='/travel-preference/' render= {()=> <AddTravelPreference />}/>
       <Route exact path='/posts' render={()=> <PostsPage 
       message="No results found." 
