@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { useHistory } from "react-router-dom";
+import { useHistory, useParams } from "react-router-dom";
 import BtnStyle from '../../styles/Button.module.css'
 
 export default function AddTravelPreference() {
@@ -17,12 +17,13 @@ export default function AddTravelPreference() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [preferenceExists, setPreferenceExists] = useState(false);
   const history = useHistory();
+  const { id } = useParams(); 
   
 
   useEffect(() => {
     if (currentUser) {
       axios
-        .get("/travel-preference/")
+        .get(`/travel-preference/${id}`)
         .then((response) => {
           if (response.data) {
             setPreferenceExists(true);
@@ -32,7 +33,7 @@ export default function AddTravelPreference() {
           console.error("Error checking travel preferences:", error);
         });
     }
-  }, [currentUser]);
+  }, [currentUser], id);
 
   const handleChange = (e) => {
     setFormData({
@@ -52,7 +53,7 @@ export default function AddTravelPreference() {
         return;
       }
 
-      const response = await axios.post("/travel-preference/", formData);
+      const response = await axios.post(`/travel-preference/${id}`, formData);
       console.log("Travel Preference Created:", response.data);
     } catch (error) {
       console.error("Error creating travel preference:", error);

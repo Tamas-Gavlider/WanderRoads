@@ -6,6 +6,7 @@ import Asset from "../../components/Asset";
 import styles from "../../styles/TravelPreference.module.css";
 import BtnStyles from "../../styles/Button.module.css";
 import ListGroup from "react-bootstrap/ListGroup";
+import AddTravelPreference from "./AddTravelPreferences";
 
 export default function TravelPreferences() {
   const currentUser = useCurrentUser();
@@ -67,10 +68,7 @@ export default function TravelPreferences() {
         </div>
       ) : (
         <div>
-          <p>You have not set your travel preferences yet.</p>
-          <Link to="/travel-preference/create" className={BtnStyles.Button}>
-            Add Travel Preferences
-          </Link>
+          < AddTravelPreference />
         </div>
       )}
     </div>
