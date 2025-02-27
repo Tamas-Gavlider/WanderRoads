@@ -19,7 +19,7 @@ export default function TravelPreferenceEditForm() {
 
   const { id } = useParams(); 
   const history = useHistory();
-  const currentUser = useCurrentUser(); 
+  const currentUser = useCurrentUser();
 
   useEffect(() => {
     const fetchData = async () => {
@@ -46,7 +46,7 @@ export default function TravelPreferenceEditForm() {
     event.preventDefault();
     try {
       await axiosReq.put(`/travel-preference/${id}/`, postData); 
-      history.push(`/profile/${currentUser.id}/`); 
+      history.push(`/profiles/${currentUser.id}/`); 
     } catch (err) {
       console.error(err);
       setErrors(err.response?.data || {});

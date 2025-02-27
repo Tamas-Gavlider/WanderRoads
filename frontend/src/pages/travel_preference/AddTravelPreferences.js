@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory } from "react-router-dom";
+import BtnStyle from '../../styles/Button.module.css'
 
 export default function AddTravelPreference() {
   const currentUser = useCurrentUser();
@@ -16,6 +17,7 @@ export default function AddTravelPreference() {
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [preferenceExists, setPreferenceExists] = useState(false);
   const history = useHistory();
+  
 
   useEffect(() => {
     if (currentUser) {
@@ -46,7 +48,7 @@ export default function AddTravelPreference() {
     try {
       if (preferenceExists) {
         alert("You already have travel preferences.");
-        history.push("/profile"); 
+        history.push(`/profiles/${currentUser.id}/`); 
         return;
       }
 
@@ -63,7 +65,7 @@ export default function AddTravelPreference() {
     <div>
       <h2>Add Your Travel Preferences</h2>
       <form onSubmit={handleSubmit}>
-        <button type="submit" disabled={isSubmitting}>
+        <button type="submit" disabled={isSubmitting} className={BtnStyle.Button}>
           Create Preferences
         </button>
       </form>
