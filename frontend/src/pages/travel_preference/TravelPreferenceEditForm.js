@@ -59,9 +59,11 @@ export default function TravelPreferenceEditForm() {
           <option value="ANY">Any Continent</option>
           <option value="AF">Africa</option>
           <option value="NA">North America</option>
+          <option value="SA">South America</option> 
           <option value="AS">Asia</option>
           <option value="EU">Europe</option>
-          <option value="SA">South America</option>
+          <option value="OC">Oceania</option> 
+          <option value="AN">Antarctica</option> 
         </Form.Control>
       </Form.Group>
 

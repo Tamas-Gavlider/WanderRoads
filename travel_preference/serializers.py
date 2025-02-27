@@ -10,11 +10,11 @@ class TravelPreferenceSerializer(serializers.ModelSerializer):
         return request.user == obj.owner
     
     def to_representation(self, instance):
-        # Get the default representation from the ModelSerializer
         representation = super().to_representation(instance)
-
-        # Replace the continent field with the continent name
-        representation['preferred_continent'] = instance.get_preferred_continent_display()
+    
+        # Ensure the frontend gets the correct values that match the choices
+        representation['preferred_continent_display'] = instance.get_preferred_continent_display()
+    
         return representation
 
     class Meta:
