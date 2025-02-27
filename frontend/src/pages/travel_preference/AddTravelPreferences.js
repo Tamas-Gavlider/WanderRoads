@@ -48,7 +48,7 @@ export default function AddTravelPreference() {
     try {
       if (preferenceExists) {
         alert("You already have travel preferences.");
-        history.push(`/profiles/${currentUser.id}/`); 
+        history.goBack(); 
         return;
       }
 

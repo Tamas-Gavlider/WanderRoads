@@ -14,6 +14,7 @@ const Profile = () => {
   const currentUser = useCurrentUser();
   const [profile, setProfile] = useState(null);
 
+
   useEffect(() => {
     axios
       .get(`/profiles/${id}`)
