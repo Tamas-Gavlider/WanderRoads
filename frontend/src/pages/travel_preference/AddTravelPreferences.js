@@ -2,13 +2,12 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory } from "react-router-dom";
-import BtnStyle from '../../styles/Button.module.css'
+import BtnStyle from '../../styles/Button.module.css';
 
 export default function AddTravelPreference() {
   const currentUser = useCurrentUser();
   const history = useHistory();
-  
-  const [key, setKey] = useState(0); 
+
   const [formData, setFormData] = useState({
     preferred_continent: "ANY",
     climate: "ANY",
@@ -17,6 +16,7 @@ export default function AddTravelPreference() {
     travel_style: "ANY",
     duration: "ANY",
   });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [preferenceExists, setPreferenceExists] = useState(false);
 
@@ -33,7 +33,7 @@ export default function AddTravelPreference() {
           console.error("Error checking travel preferences:", error);
         });
     }
-  }, [currentUser, key]); 
+  }, [currentUser]);
 
   const handleChange = (e) => {
     setFormData({
@@ -49,14 +49,17 @@ export default function AddTravelPreference() {
     try {
       if (preferenceExists) {
         alert("You already have travel preferences.");
-        history.goBack(); 
+        history.goBack();
         return;
       }
 
-      const response = await axios.post(`/travel-preference/`, formData);
-      console.log("Travel Preference Created:", response.data);
-      
-      setKey((prevKey) => prevKey + 1); 
+      await axios.post(`/travel-preference/`, formData);
+
+      if (currentUser?.id) {
+        history.push(`/profiles/${currentUser.id}`);
+      } else {
+        history.push("/"); 
+      }
 
     } catch (error) {
       console.error("Error creating travel preference:", error);
@@ -66,11 +69,10 @@ export default function AddTravelPreference() {
   };
 
   return (
-    <div key={key}> 
-      <h2>Add Your Travel Preferences</h2>
+    <div>
       <form onSubmit={handleSubmit}>
         <button type="submit" disabled={isSubmitting} className={BtnStyle.Button}>
-          Create Preferences
+          Add your Travel Preferences
         </button>
       </form>
     </div>

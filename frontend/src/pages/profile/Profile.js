@@ -8,6 +8,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import styles from '../../styles/Profile.module.css'
 import ThemeSong from "../../components/ThemeSong";
 import TravelPreferences from "../travel_preference/TravelPreferences";
+import Asset from '../../components/Asset'
 
 const Profile = () => {
   const { id } = useParams(); 
@@ -26,7 +27,7 @@ const Profile = () => {
   }, [id]);
 
   if (!profile) {
-    return <p>Loading profile...</p>;
+    return <Asset />;
   }
 
 
