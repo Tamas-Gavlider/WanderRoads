@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Media} from "react-bootstrap";
+import { Card, Media } from "react-bootstrap";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -19,6 +19,8 @@ const Post = (props) => {
     content,
     image,
     created_at,
+    postPage,
+    setPosts,
   } = props;
 
   const currentUser = useCurrentUser();
@@ -38,7 +40,6 @@ const Post = (props) => {
     }
   };
 
-
   return (
     <Card className={styles.Post}>
       <Card.Body>
@@ -48,8 +49,10 @@ const Post = (props) => {
             <span>{owner}</span>
           </Link>
           <div className="d-flex align-items-center">
-            <span>{created_at} - {country_name}</span>
-            {is_owner && (
+            <span>
+              {created_at} - {country_name}
+            </span>
+            {is_owner && postPage && (
               <MoreDropdown
                 handleEdit={handleEdit}
                 handleDelete={handleDelete}
@@ -64,10 +67,10 @@ const Post = (props) => {
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
-          <Link to={`/posts/${id}`}>
-            <i className="far fa-comments" />
-          </Link>
-          {comments_count}
+        <Link to={`/posts/${id}`}>
+          <i className="far fa-comments" />
+        </Link>
+        {comments_count}
       </Card.Body>
     </Card>
   );

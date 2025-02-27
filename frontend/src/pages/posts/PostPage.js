@@ -35,7 +35,6 @@ function PostPage() {
         setPost({ results: [post] });
         setComments(comments);
         console.log(`Post number: ${post}`)
-        console.log(`Post results: ${post}`)
         console.log(`Post id: ${id}`)
       } catch (err) {
         console.log(err);
@@ -49,7 +48,7 @@ function PostPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-      {post.results.length > 0 ? <Post {...post.results[0]} setPosts={setPost} /> : <Asset spinner />}
+      {post.results.length > 0 ? <Post {...post.results[0]} setPosts={setPost} postPage /> : <Asset spinner />}
         <Container className={appStyles.Content}>
           {currentUser ? (
             <CommentCreateForm
