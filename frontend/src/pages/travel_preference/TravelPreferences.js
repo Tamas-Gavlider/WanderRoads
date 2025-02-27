@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
+import Asset from '../../components/Asset'
 
 export default function TravelPreferences() {
   const currentUser = useCurrentUser();
@@ -11,10 +12,10 @@ export default function TravelPreferences() {
   useEffect(() => {
     if (currentUser) {
       axios
-        .get("/travel-preference/") // No ID needed
+        .get("/travel-preference/") 
         .then((response) => {
-          if (response.data.length > 0) {
-            setPreferences(response.data[0]); // Only one preference exists
+          if (response.data) {
+            setPreferences(response.data); 
           }
           setLoading(false);
         })
@@ -25,29 +26,25 @@ export default function TravelPreferences() {
     }
   }, [currentUser]);
 
-  if (loading) return <p>Loading...</p>;
+  if (loading) return <Asset />
 
   return (
     <div>
       {preferences ? (
         <div>
-          <p>Travel Preferences</p>
+          <h3>Your Travel Preferences</h3>
           <p><strong>Continent:</strong> {preferences.preferred_continent}</p>
           <p><strong>Climate:</strong> {preferences.climate}</p>
           <p><strong>Activity:</strong> {preferences.activity}</p>
           <p><strong>Budget:</strong> {preferences.budget}</p>
           <p><strong>Travel Style:</strong> {preferences.travel_style}</p>
           <p><strong>Duration:</strong> {preferences.duration}</p>
-          <Link to={`/travel-preference/${preferences.id}/edit`}>
-            Edit Preferences
-          </Link>
+          <Link to={`/travel-preference/edit`}>Edit Preferences</Link>
         </div>
       ) : (
         <div>
           <p>You have not set your travel preferences yet.</p>
-          <Link to="/travel-preference/create">
-            Add Travel Preferences
-          </Link>
+          <Link to="/travel-preference/create">Add Travel Preferences</Link>
         </div>
       )}
     </div>

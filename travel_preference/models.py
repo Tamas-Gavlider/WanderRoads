@@ -56,7 +56,7 @@ DURATION_CHOICES = [
     ]
 
 class TravelPreference(models.Model):
-    owner = models.ForeignKey(User, on_delete=models.CASCADE)
+    owner = models.OneToOneField(User, on_delete=models.CASCADE)
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     preferred_continent = models.CharField(max_length=55, choices=CONTINENTS, default='ANY')

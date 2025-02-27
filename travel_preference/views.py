@@ -30,7 +30,7 @@ class TravelPreferenceList(generics.ListCreateAPIView):
 
 class TravelPreferenceDetail(generics.RetrieveUpdateDestroyAPIView):
     """
-    Retrieve or destroy a travel buddy relationship.
+    Retrieve or destroy a travel preference.
     Allow either party to confirm the relationship.
     """
     permission_classes = [IsOwnerOrReadOnly]
@@ -41,4 +41,15 @@ class TravelPreferenceDetail(generics.RetrieveUpdateDestroyAPIView):
         Ensure that only the travel preference of the logged-in user is accessible.
         """
         return TravelPreference.objects.filter(owner=self.request.user)
+
+    def get(self, request, *args, **kwargs):
+        """
+        Return travel preference or 404 if not found.
+        """
+        try:
+            travel_preference = self.get_object() 
+            serializer = self.get_serializer(travel_preference)
+            return Response(serializer.data)
+        except TravelPreference.DoesNotExist:
+            return Response({"detail": "No travel preference found."}, status=status.HTTP_404_NOT_FOUND)
 
