@@ -3,6 +3,10 @@ import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
 import Asset from '../../components/Asset'
+import styles from '../../styles/TravelPreference.module.css'
+import BtnStyles from '../../styles/Button.module.css'
+import ListGroup from 'react-bootstrap/ListGroup';
+
 
 export default function TravelPreferences() {
   const currentUser = useCurrentUser();
@@ -31,15 +35,19 @@ export default function TravelPreferences() {
   return (
     <div>
       {preferences ? (
-        <div>
-          <h3>Your Travel Preferences</h3>
-          <p><strong>Continent:</strong> {preferences.preferred_continent}</p>
-          <p><strong>Climate:</strong> {preferences.climate}</p>
-          <p><strong>Activity:</strong> {preferences.activity}</p>
-          <p><strong>Budget:</strong> {preferences.budget}</p>
-          <p><strong>Travel Style:</strong> {preferences.travel_style}</p>
-          <p><strong>Duration:</strong> {preferences.duration}</p>
-          <Link to={`/travel-preference/edit`}>Edit Preferences</Link>
+        <div className={styles.Border}>
+          <h3 className={styles.Title}>Travel Preferences</h3>
+          <ListGroup horizontal className="d-flex flex-wrap my-2">
+            <ListGroup.Item><p><strong>Continent:</strong> {preferences.preferred_continent}</p></ListGroup.Item>
+            <ListGroup.Item><p><strong>Climate:</strong> {preferences.climate}</p></ListGroup.Item>
+            <ListGroup.Item><p><strong>Activity:</strong> {preferences.activity}</p></ListGroup.Item>
+          </ListGroup>
+          <ListGroup horizontal className="d-flex flex-wrap my-2">
+            <ListGroup.Item><p><strong>Budget:</strong> {preferences.budget}</p></ListGroup.Item>
+            <ListGroup.Item><p><strong>Travel Style:</strong> {preferences.travel_style}</p></ListGroup.Item>
+            <ListGroup.Item><p><strong>Duration:</strong> {preferences.duration}</p></ListGroup.Item>
+          </ListGroup>
+          <Link to={`/travel-preference/edit`} className={BtnStyles.Button}>Edit Preferences</Link>
         </div>
       ) : (
         <div>
