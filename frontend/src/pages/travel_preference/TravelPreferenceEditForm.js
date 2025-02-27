@@ -4,6 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import btnStyles from "../../styles/Button.module.css";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 export default function TravelPreferenceEditForm() {
   const [errors, setErrors] = useState({});
@@ -18,6 +19,7 @@ export default function TravelPreferenceEditForm() {
 
   const { id } = useParams(); 
   const history = useHistory();
+  const currentUser = useCurrentUser(); 
 
   useEffect(() => {
     const fetchData = async () => {
@@ -44,7 +46,7 @@ export default function TravelPreferenceEditForm() {
     event.preventDefault();
     try {
       await axiosReq.put(`/travel-preference/${id}/`, postData); 
-      history.push(`/travel-preference/${id}/`); 
+      history.push(`/profile/${currentUser.id}/`); 
     } catch (err) {
       console.error(err);
       setErrors(err.response?.data || {});

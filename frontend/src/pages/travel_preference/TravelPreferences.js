@@ -37,27 +37,27 @@ export default function TravelPreferences() {
   return (
     <div>
       {preferences ? (
-        <div className={styles.Border}>
+        <div>
           <h3 className={styles.Title}>Travel Preferences</h3>
           <ListGroup horizontal className="d-flex flex-wrap my-2">
-            <ListGroup.Item>
+            <ListGroup.Item className={styles.BorderRed}>
               <p><strong>Continent:</strong> {preferences.preferred_continent}</p>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className={styles.BorderBlue}>
               <p><strong>Climate:</strong> {preferences.climate}</p>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className={styles.BorderRed}> 
               <p><strong>Activity:</strong> {preferences.activity}</p>
             </ListGroup.Item>
           </ListGroup>
           <ListGroup horizontal className="d-flex flex-wrap my-2">
-            <ListGroup.Item>
+            <ListGroup.Item className={styles.BorderBlue}>
               <p><strong>Budget:</strong> {preferences.budget}</p>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className={styles.BorderRed}>
               <p><strong>Travel Style:</strong> {preferences.travel_style}</p>
             </ListGroup.Item>
-            <ListGroup.Item>
+            <ListGroup.Item className={styles.BorderBlue}> 
               <p><strong>Duration:</strong> {preferences.duration}</p>
             </ListGroup.Item>
           </ListGroup>
