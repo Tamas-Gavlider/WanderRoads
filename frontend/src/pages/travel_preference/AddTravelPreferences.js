@@ -6,6 +6,9 @@ import BtnStyle from '../../styles/Button.module.css'
 
 export default function AddTravelPreference() {
   const currentUser = useCurrentUser();
+  const history = useHistory();
+  
+  const [key, setKey] = useState(0); 
   const [formData, setFormData] = useState({
     preferred_continent: "ANY",
     climate: "ANY",
@@ -16,8 +19,6 @@ export default function AddTravelPreference() {
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [preferenceExists, setPreferenceExists] = useState(false);
-  const history = useHistory(); 
-  
 
   useEffect(() => {
     if (currentUser) {
@@ -32,7 +33,7 @@ export default function AddTravelPreference() {
           console.error("Error checking travel preferences:", error);
         });
     }
-  }, [currentUser]);
+  }, [currentUser, key]); 
 
   const handleChange = (e) => {
     setFormData({
@@ -54,6 +55,9 @@ export default function AddTravelPreference() {
 
       const response = await axios.post(`/travel-preference/`, formData);
       console.log("Travel Preference Created:", response.data);
+      
+      setKey((prevKey) => prevKey + 1); 
+
     } catch (error) {
       console.error("Error creating travel preference:", error);
     } finally {
@@ -62,7 +66,7 @@ export default function AddTravelPreference() {
   };
 
   return (
-    <div>
+    <div key={key}> 
       <h2>Add Your Travel Preferences</h2>
       <form onSubmit={handleSubmit}>
         <button type="submit" disabled={isSubmitting} className={BtnStyle.Button}>

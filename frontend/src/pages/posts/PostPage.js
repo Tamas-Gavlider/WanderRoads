@@ -34,7 +34,9 @@ function PostPage() {
         ]);
         setPost({ results: [post] });
         setComments(comments);
-        console.log(post)
+        console.log(`Post number: ${post}`)
+        console.log(`Post results: ${post}`)
+        console.log(`Post id: ${id}`)
       } catch (err) {
         console.log(err);
       }
