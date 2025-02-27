@@ -41,7 +41,7 @@ const NavBar = () => {
         Map
       </NavLink>
       <NavLink
-        to="/posts"
+        to="/feed"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >

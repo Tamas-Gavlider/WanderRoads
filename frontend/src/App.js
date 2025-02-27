@@ -40,7 +40,7 @@ function App() {
       <Route path="/profiles/:id" render= {()=> <Profile />} />
       <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>
       <Route path='/travel-preference/' render= {()=> <AddTravelPreference />}/>
-      <Route exact path='/posts' render={()=> <PostsPage 
+      <Route exact path='/feed' render={()=> <PostsPage 
       message="No results found." 
       filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />
     }/>
