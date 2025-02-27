@@ -45,7 +45,6 @@ function PostPage() {
     handleMount();
   }, [id]);
   
-  console.log(profile_image)
   
   return (
     <Row className="h-100">
