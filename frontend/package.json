@@ -51,7 +51,7 @@
     "@babel/preset-react": "^7.26.3",
     "msw": "^2.7.1"
   },
-  "proxy": "http://localhost:3000/",
+  "proxy": "http://localhost:8000/",
   "engines": {
     "node": ">=18",
     "npm": ">=9"
