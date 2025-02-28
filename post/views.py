@@ -1,4 +1,4 @@
-from django.http import Http404
+from django.http import Http404, JsonResponse
 from django.db.models import Count
 from rest_framework import permissions, generics, filters
 from django_filters.rest_framework import DjangoFilterBackend
@@ -8,6 +8,7 @@ from .models import Post
 from .serializers import PostSerializer
 from wonder_roads_api.permissions import IsOwnerOrReadOnly
 from django_countries import countries
+
 
 # Create your views here.
 
@@ -55,11 +56,14 @@ class PostList(generics.ListCreateAPIView):
                         
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
-    """
-    Retrieve a post and edit or delete it if you own it.
-    """
     serializer_class = PostSerializer
-    permission_classes = [AllowAny]
+    permission_classes = [IsOwnerOrReadOnly]
     queryset = Post.objects.annotate(
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
+
+    def get(self, request, *args, **kwargs):
+        print("User making request:", request.user)
+        if not request.user.is_authenticated:
+            return JsonResponse({"error": "Authentication required"}, status=403)
+        return super().get(request, *args, **kwargs)
