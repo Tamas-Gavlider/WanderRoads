@@ -97,7 +97,7 @@ INSTALLED_APPS = [
 ]
 
 if 'DEV' in os.environ:
-    SITE_ID = 1
+    SITE_ID = 7
 else:
     SITE_ID = 7
 
