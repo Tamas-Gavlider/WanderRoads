@@ -26,21 +26,21 @@ function PostPage() {
   const [comments, setComments] = useState({ results: [] });
 
   useEffect(() => {
+    console.log(`Fetching post with id: ${id}`);
     const handleMount = async () => {
       try {
         const [{ data: post }, { data: comments }] = await Promise.all([
           axiosReq.get(`/posts/${id}`),
-          axiosReq.get(`/comments/?post=${id}`),
+          axiosReq.get(`/comments/?posts=${id}`),
         ]);
+        console.log("Fetched post:", post);
         setPost({ results: [post] });
         setComments(comments);
-        console.log(`Post number: ${post}`)
-        console.log(`Post id: ${id}`)
       } catch (err) {
-        console.log(err);
+        console.error("Error fetching post:", err);
       }
     };
-
+  
     handleMount();
   }, [id]);
   
@@ -48,7 +48,7 @@ function PostPage() {
   return (
     <Row className="h-100">
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-     <Post {...post.results[0]} setPosts={setPost} postPage />
+     <Post {...post.results[0]} setPosts={setPost} postPage /> : <Asset spinner />}
         <Container className={appStyles.Content}>
           {currentUser ? (
             <CommentCreateForm
