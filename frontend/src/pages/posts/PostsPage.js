@@ -1,9 +1,9 @@
 import React, { useEffect, useState } from "react";
-import { Form } from "react-bootstrap";
+import Form  from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import { Link } from "react-router-dom";
+import  {Link}  from "react-router-dom";
 import Post from "./Post";
 import Asset from "../../components/Asset";
 import navStyle from '../../styles/NavBar.module.css' 
@@ -13,13 +13,13 @@ import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
-
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
   const [hasLoaded, setHasLoaded] = useState(false);
   const { pathname } = useLocation();
-
+  const currentUser = useCurrentUser();
   const [query, setQuery] = useState("");
 
   useEffect(() => {
@@ -41,7 +41,7 @@ function PostsPage({ message, filter = "" }) {
     return () => {
       clearTimeout(timer);
     };
-  }, [filter, query, pathname]);
+  }, [filter, query, pathname, currentUser]);
 
   return (
     <Row className="h-100">
@@ -70,12 +70,19 @@ function PostsPage({ message, filter = "" }) {
             {posts.results.length ? (
               <InfiniteScroll
               children={posts.results.map((post) => (
+
                 <Post key={post.id} {...post} setPosts={setPosts} />
+
               ))}
+
               dataLength={posts.results.length}
+
               loader={<Asset spinner />}
+
               hasMore={!!posts.next}
+
               next={() => fetchMoreData(posts, setPosts)}
+
             />
             ) : (
               <Container className={appStyles.Content}>
