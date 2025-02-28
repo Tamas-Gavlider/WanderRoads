@@ -59,7 +59,7 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     Retrieve a post and edit or delete it if you own it.
     """
     serializer_class = PostSerializer
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [AllowAny]
     queryset = Post.objects.annotate(
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
