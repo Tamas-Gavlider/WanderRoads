@@ -32,7 +32,7 @@ const Post = (props) => {
 
   const handleDelete = async () => {
     try {
-      await axiosRes.delete(`/posts/${id}`);
+      await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
     } catch (err) {
       console.log(err);
@@ -45,7 +45,7 @@ const Post = (props) => {
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`} className={styles.Profile}>
             <Avatar src={profile_image} height={55} />
-            <span>{owner}</span>
+            {owner}
           </Link>
           <div className="d-flex align-items-center">
             <span>
