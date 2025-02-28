@@ -62,8 +62,7 @@ SECRET_KEY = os.getenv('SECRET_KEY')
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = 'DEBUG' in os.environ
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "http://localhost:3000",'127.0.0.1:8000',
-'127.0.0.1']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "http://localhost:3000",'127.0.0.1:8000','127.0.0.1']
 
 # Application definition
 
@@ -121,8 +120,8 @@ CORS_ALLOWED_ORIGINS = [
     'http://localhost:3000'
 ]
 
-# CSRF_COOKIE_SECURE = False 
-# CORS_ALLOW_CREDENTIALS = True
+
+CORS_ALLOW_CREDENTIALS = True
 
 ROOT_URLCONF = 'wonder_roads_api.urls'
 
@@ -193,11 +192,13 @@ USE_I18N = True
 
 USE_TZ = True
 
+USE_L10N = True
+
 
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/5.1/howto/static-files/
 
-STATIC_URL = 'static/'
+STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
 STATICFILES_STORAGE = "cloudinary_storage.storage.StaticCloudinaryStorage"
