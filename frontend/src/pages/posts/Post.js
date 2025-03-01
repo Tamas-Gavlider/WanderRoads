@@ -7,6 +7,7 @@ import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import iconStyles from '../../styles/MoreDropdown.module.css'
 
 const Post = (props) => {
   const {
@@ -69,7 +70,7 @@ const Post = (props) => {
         {title && <Card.Title className="text-center">{title}</Card.Title>}
         {content && <Card.Text>{content}</Card.Text>}
         <Link to={`/posts/${id}`}>
-          <i className="far fa-comments" />
+          <i className={`far fa-comments ${iconStyles.Icon}`}/>
         </Link>
         {comments_count}
       </Card.Body>
