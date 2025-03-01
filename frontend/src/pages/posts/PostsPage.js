@@ -7,7 +7,7 @@ import  {Link}  from "react-router-dom";
 import Post from "./Post";
 import Asset from "../../components/Asset";
 import navStyle from '../../styles/NavBar.module.css' 
-
+import styles from '../../styles/PostsPage.module.css'
 import appStyles from "../../App.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -54,7 +54,9 @@ function PostsPage({ message, filter = "" }) {
         Share your journey! 
       </Link></Col>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <i className={`fas fa-search ${styles.SearchIcon}`} />
         <Form
+        className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
           <Form.Control
