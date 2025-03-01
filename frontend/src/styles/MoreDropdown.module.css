@@ -1,6 +1,6 @@
 .DropdownItem {
     display: inline-block;
-    max-width: 50%;
+    max-width: 40%;
     padding: 0px;
   }
   
@@ -9,3 +9,11 @@
     right: 0;
     z-index: 99;
   }
+
+.Icon {
+  color: #ff0000
+}
+
+.Icon:hover {
+  color: #00bae2;
+}
