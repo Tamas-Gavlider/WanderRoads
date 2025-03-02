@@ -9,6 +9,8 @@ import styles from '../../styles/Profile.module.css'
 import ThemeSong from "../../components/ThemeSong";
 import TravelPreferences from "../travel_preference/TravelPreferences";
 import Asset from '../../components/Asset'
+import { Link } from "react-router-dom/cjs/react-router-dom.min";
+
 
 const Profile = () => {
   const { id } = useParams(); 
@@ -48,6 +50,9 @@ const Profile = () => {
         </Col>
        </Row>
       )}
+       <Link to={`/profiles/${id}/edit`}>
+        <button>Edit Profile</button>
+      </Link>
       <p>{profile.status || "No status set"}</p>
       <p><strong>Username:</strong> {profile.owner}</p>
       <p><strong>Experience:</strong> {profile.experience}</p>

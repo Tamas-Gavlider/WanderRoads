@@ -17,6 +17,7 @@ import PostEditForm from './pages/posts/PostEditForm';
 import Profile from './pages/profile/Profile';
 import TravelPreferenceEditForm from './pages/travel_preference/TravelPreferenceEditForm';
 import AddTravelPreference from './pages/travel_preference/AddTravelPreferences';
+import EditProfile from './pages/profile/EditProfile';
 
 
 
@@ -37,6 +38,7 @@ function App() {
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
+      <Route path="/profiles/:id/edit" render= {()=> <EditProfile />} />
       <Route path="/profiles/:id" render= {()=> <Profile />} />
       <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>
       <Route path='/travel-preference/' render= {()=> <AddTravelPreference />}/>
