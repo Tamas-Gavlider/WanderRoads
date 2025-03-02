@@ -8,10 +8,10 @@ import { useParams, useHistory } from "react-router-dom";
 
 export default function EditProfile() {
   const { id } = useParams();
-  const history = useHistory(); 
+  const history = useHistory();
   const [profile, setProfile] = useState({
     status: "",
-    visited_countries: [], 
+    visited_countries: [],
     theme_song: null,
   });
 
@@ -61,18 +61,18 @@ export default function EditProfile() {
 
   const handleAddCountry = () => {
     if (selectedCountry && !profile.visited_countries.includes(selectedCountry)) {
-      setProfile({
-        ...profile,
-        visited_countries: [...profile.visited_countries, selectedCountry], 
-      });
+      setProfile((prevProfile) => ({
+        ...prevProfile,
+        visited_countries: [...prevProfile.visited_countries, selectedCountry],
+      }));
     }
   };
 
   const handleRemoveCountry = (countryToRemove) => {
-    setProfile({
-      ...profile,
-      visited_countries: profile.visited_countries.filter((c) => c !== countryToRemove),
-    });
+    setProfile((prevProfile) => ({
+      ...prevProfile,
+      visited_countries: prevProfile.visited_countries.filter((c) => c !== countryToRemove),
+    }));
   };
 
   const handleSave = async () => {
@@ -85,8 +85,8 @@ export default function EditProfile() {
     }
 
     try {
-      await axios.put(`/profiles/${id}`, formData);
-      history(`/profiles/${id}`);
+      await axios.put(`/profiles/${id}/`, formData);
+      history.push(`/profiles/${id}`);
     } catch (error) {
       console.error("Error updating profile:", error);
       setErrors("Failed to update profile. Please try again.");
