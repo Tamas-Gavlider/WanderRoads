@@ -4,13 +4,14 @@ import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
-import { useParams } from "react-router-dom";
+import { useParams, useHistory } from "react-router-dom";
 
 export default function EditProfile() {
   const { id } = useParams();
+  const history = useHistory(); 
   const [profile, setProfile] = useState({
     status: "",
-    visited_countries: [],
+    visited_countries: [], 
     theme_song: null,
   });
 
@@ -18,7 +19,6 @@ export default function EditProfile() {
   const [selectedCountry, setSelectedCountry] = useState("");
   const [errors, setErrors] = useState(null);
 
-  // Fetch existing profile details
   useEffect(() => {
     const fetchProfile = async () => {
       try {
@@ -36,7 +36,6 @@ export default function EditProfile() {
     fetchProfile();
   }, [id]);
 
-  // Fetch country list
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -50,29 +49,25 @@ export default function EditProfile() {
     fetchCountries();
   }, []);
 
-  // Handle status change
   const handleChange = (e) => {
     setProfile({ ...profile, [e.target.name]: e.target.value });
   };
 
-  // Handle theme song upload
   const handleThemeSongUpload = (e) => {
     if (e.target.files.length) {
       setProfile({ ...profile, theme_song: e.target.files[0] });
     }
   };
 
-  // Add country to visited list
   const handleAddCountry = () => {
     if (selectedCountry && !profile.visited_countries.includes(selectedCountry)) {
       setProfile({
         ...profile,
-        visited_countries: [...profile.visited_countries, selectedCountry],
+        visited_countries: [...profile.visited_countries, selectedCountry], 
       });
     }
   };
 
-  // Remove country from visited list
   const handleRemoveCountry = (countryToRemove) => {
     setProfile({
       ...profile,
@@ -80,7 +75,6 @@ export default function EditProfile() {
     });
   };
 
-  // Save profile updates
   const handleSave = async () => {
     const formData = new FormData();
     formData.append("status", profile.status);
@@ -91,7 +85,8 @@ export default function EditProfile() {
     }
 
     try {
-      await axios.put(`/profiles/${id}`, formData)
+      await axios.put(`/profiles/${id}`, formData);
+      history(`/profiles/${id}`);
     } catch (error) {
       console.error("Error updating profile:", error);
       setErrors("Failed to update profile. Please try again.");
@@ -104,7 +99,6 @@ export default function EditProfile() {
 
       {errors && <Alert variant="danger">{errors}</Alert>}
 
-     
       <Form.Group controlId="status">
         <Form.Label>Status</Form.Label>
         <Form.Control
@@ -136,7 +130,6 @@ export default function EditProfile() {
         Add Country
       </Button>
 
-      
       <h4 className="mt-4">Visited Countries:</h4>
       <ul>
         {profile.visited_countries.map((country, index) => (
@@ -149,7 +142,6 @@ export default function EditProfile() {
         ))}
       </ul>
 
-     
       <Form.Group controlId="themeSong">
         <Form.Label>Upload Theme Song</Form.Label>
         <Form.File
@@ -159,7 +151,6 @@ export default function EditProfile() {
         {profile.theme_song && <p>Current song: {profile.theme_song.name}</p>}
       </Form.Group>
 
-     
       <Button variant="success" onClick={handleSave} className="mt-3">
         Save Profile
       </Button>
