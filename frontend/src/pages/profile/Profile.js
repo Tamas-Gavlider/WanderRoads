@@ -62,6 +62,7 @@ const Profile = () => {
       <p><strong>Joined:</strong> {new Date(profile.created_at).toLocaleDateString()}</p>
       < TravelPreferences />
       < TravelRecommendation />
+     
   </>
 
   const visitor = <>

@@ -19,6 +19,7 @@ import TravelPreferenceEditForm from './pages/travel_preference/TravelPreference
 import AddTravelPreference from './pages/travel_preference/AddTravelPreferences';
 import EditProfile from './pages/profile/EditProfile';
 import TravelRecommendation from './pages/travel_recommendation/TravelRecommendation';
+import TravelBuddies from './pages/travel_buddies/TravelBuddies';
 
 
 
@@ -51,7 +52,7 @@ function App() {
       <Route exact path='/posts/create' render={()=> <PostCreateForm />}/>
       <Route exact path="/posts/:id" render={() => <PostPage />} />
       <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
-      <Route exact path='/travel-buddies' render={()=> <h1>Travel Buddies</h1>}/>
+      <Route exact path='/travel-buddies/' render={()=> <TravelBuddies />}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
       <Route render={()=> <p>Page not found!</p>}/>
       </Switch>

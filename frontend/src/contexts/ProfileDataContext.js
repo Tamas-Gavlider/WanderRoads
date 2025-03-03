@@ -18,15 +18,20 @@ export const ProfileDataProvider = ({ children }) => {
   const currentUser = useCurrentUser();
 
   const handleFriendRequest = async (clickedProfile) => {
+    if (clickedProfile.travel_buddies_initiated_id) {
+      console.log("Already a travel buddy.");
+      return;
+    }
+  
     try {
       const { data } = await axiosRes.post("/travel-buddy/", {
-          travel_buddy: clickedProfile.id,
+        travel_buddy: clickedProfile.id,
       });
-
+  
       setProfileData((prevState) => ({
         ...prevState,
-        pageProfile: {
-          results: prevState.pageProfile.results.map((profile) =>
+        allProfiles: {
+          results: prevState.allProfiles.results.map((profile) =>
             travelBuddyHelper(profile, clickedProfile, data.id)
           ),
         },
@@ -37,13 +42,18 @@ export const ProfileDataProvider = ({ children }) => {
   };
 
   const handleUnFriend = async (clickedProfile) => {
+    if (!clickedProfile.travel_buddies_initiated_id) {
+      console.log("Not a travel buddy.");
+      return;
+    }
+  
     try {
-      await axiosRes.delete(`/followers/${clickedProfile.travel_buddies_initiated_id}/`);
-
+      await axiosRes.delete(`/travel-buddy/${clickedProfile.travel_buddies_initiated_id}/`);
+  
       setProfileData((prevState) => ({
         ...prevState,
-        pageProfile: {
-          results: prevState.pageProfile.results.map((profile) =>
+        allProfiles: {
+          results: prevState.allProfiles.results.map((profile) =>
             unFriendHelper(profile, clickedProfile)
           ),
         },
@@ -58,11 +68,11 @@ export const ProfileDataProvider = ({ children }) => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(
-          "/profiles/?ordering=-posts_count"
+          "/profiles/"
         );
         setProfileData((prevState) => ({
           ...prevState,
-          popularProfiles: data,
+          allProfiles: data,
         }));
       } catch (err) {
         console.log(err);
