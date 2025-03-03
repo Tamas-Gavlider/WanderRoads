@@ -11,6 +11,7 @@ import TravelPreferences from "../travel_preference/TravelPreferences";
 import Asset from '../../components/Asset'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import BtnStyles from '../../styles/Button.module.css'
+import TravelRecommendation from "../travel_recommendation/TravelRecommendation";
 
 
 const Profile = () => {
@@ -60,6 +61,7 @@ const Profile = () => {
       <p><strong>Visited Countries:</strong> {profile.visited_countries.length}</p>
       <p><strong>Joined:</strong> {new Date(profile.created_at).toLocaleDateString()}</p>
       < TravelPreferences />
+      < TravelRecommendation />
   </>
 
   const visitor = <>

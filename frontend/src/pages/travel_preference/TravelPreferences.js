@@ -18,11 +18,11 @@ export default function TravelPreferences() {
       axios
         .get("/travel-preference/")
         .then((response) => {
-          console.log("Response data:", response.data);  // Debugging
+          console.log("Response data:", response.data);  
           if (response.data && response.data.id) {
-            setPreferences(response.data);  // Directly set the object as preferences
+            setPreferences(response.data); 
           } else {
-            setPreferences(null); // No preferences set
+            setPreferences(null); 
           }
           setLoading(false);
         })

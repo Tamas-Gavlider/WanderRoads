@@ -18,6 +18,7 @@ import Profile from './pages/profile/Profile';
 import TravelPreferenceEditForm from './pages/travel_preference/TravelPreferenceEditForm';
 import AddTravelPreference from './pages/travel_preference/AddTravelPreferences';
 import EditProfile from './pages/profile/EditProfile';
+import TravelRecommendation from './pages/travel_recommendation/TravelRecommendation';
 
 
 
@@ -42,6 +43,7 @@ function App() {
       <Route path="/profiles/:id" render= {()=> <Profile />} />
       <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>
       <Route path='/travel-preference/' render= {()=> <AddTravelPreference />}/>
+      <Route path='/travel-recommendation/' render= {()=> <TravelRecommendation />}/>
       <Route exact path='/feed' render={()=> <PostsPage 
       message="No results found." 
       filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />
