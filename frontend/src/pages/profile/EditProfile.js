@@ -24,7 +24,7 @@ export default function EditProfile() {
   useEffect(() => {
     const fetchProfile = async () => {
       try {
-        const { data } = await axios.get(`/profiles/${id}/`);
+        const { data } = await axios.get(`/profiles/${id}`);
         setProfile(prevState => ({
           ...prevState,
           status: data.status || "",
@@ -88,8 +88,8 @@ export default function EditProfile() {
     }
 
     try {
-      await axios.put(`/profiles/${id}/`, formData);
-      history.push(`/profiles/${id}`);
+      await axios.put(`/profiles/${id}`, formData);
+      history.goBack();
     } catch (error) {
       console.error("Error updating profile:", error);
       setErrors("Failed to update profile. Please try again.");
@@ -152,7 +152,7 @@ export default function EditProfile() {
           accept="audio/*"
           onChange={handleThemeSongUpload}
         />
-        {profile.theme_song && <p>Current song: {profile.theme_song.name}</p>}
+        {profile.theme_song && <p>Current song: {profile.theme_song.slice(49)}</p>}
       </Form.Group>
 
       <Button variant="success" onClick={handleSave} className={`mt-3 ${btnStyles.Button}`}>

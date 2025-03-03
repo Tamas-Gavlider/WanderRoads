@@ -21,6 +21,12 @@ class ProfileSerializer(serializers.ModelSerializer):
     def get_visited_countries(self, obj):
         # If visited_countries is a list, return the list directly (no need for .all())
         return [str(country) for country in obj.visited_countries]
+
+    def update(self, instance, validated_data):
+        visited_countries = validated_data.pop('visited_countries', None)
+        if visited_countries is not None:
+            instance.visited_countries = list(set(visited_countries))  
+        return super().update(instance, validated_data)
     
     def get_travel_buddy_id(self, obj):
         user = self.context['request'].user
