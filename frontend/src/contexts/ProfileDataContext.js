@@ -74,6 +74,7 @@ export const ProfileDataProvider = ({ children }) => {
           ...prevState,
           allProfiles: data,
         }));
+        console.log(data)
       } catch (err) {
         console.log(err);
       }
@@ -81,7 +82,7 @@ export const ProfileDataProvider = ({ children }) => {
 
     handleMount();
   }, [currentUser]);
-
+  
   return (
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider
