@@ -25,12 +25,11 @@ export default function EditProfile() {
     const fetchProfile = async () => {
       try {
         const { data } = await axios.get(`/profiles/${id}`);
-        setProfile(prevState => ({
-          ...prevState,
-          status: data.status || "",
+        setProfile(
+          {status: data.status || "",
           visited_countries: data.visited_countries || [],
-          theme_song: data.theme_song || null,
-        }));
+          theme_song: data.theme_song || null,}
+        );
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
@@ -81,9 +80,11 @@ export default function EditProfile() {
   const handleSave = async () => {
     const formData = new FormData();
     formData.append("status", profile.status);
-    formData.append("visited_countries", JSON.stringify(profile.visited_countries));
+    profile.visited_countries.forEach((country) => {
+      formData.append("visited_countries", country);
+    });
 
-    if (profile.theme_song) {
+    if (profile.theme_song instanceof File) {
       formData.append("theme_song", profile.theme_song);
     }
 
