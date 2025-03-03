@@ -10,7 +10,6 @@ export default function TravelRecommendation() {
       axios
         .get("/travel-recommendation/")
         .then((response) => {
-          console.log("Response data:", response.data);
           setRecommendation(response.data);
         })
         .catch((error) => {

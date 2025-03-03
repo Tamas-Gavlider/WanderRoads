@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { axiosReq } from "../api/axiosDefaults";
+import { axiosReq, axiosRes } from "../api/axiosDefaults";
 import { useCurrentUser } from "../contexts/CurrentUserContext";
+import { travelBuddyHelper, unFriendHelper } from "../utils/utils";
 
 
 const ProfileDataContext = createContext();
@@ -15,6 +16,42 @@ export const ProfileDataProvider = ({ children }) => {
   });
 
   const currentUser = useCurrentUser();
+
+  const handleFriendRequest = async (clickedProfile) => {
+    try {
+      const { data } = await axiosRes.post("/travel-buddy/", {
+          travel_buddy: clickedProfile.id,
+      });
+
+      setProfileData((prevState) => ({
+        ...prevState,
+        pageProfile: {
+          results: prevState.pageProfile.results.map((profile) =>
+            travelBuddyHelper(profile, clickedProfile, data.id)
+          ),
+        },
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
+  const handleUnFriend = async (clickedProfile) => {
+    try {
+      await axiosRes.delete(`/followers/${clickedProfile.travel_buddies_initiated_id}/`);
+
+      setProfileData((prevState) => ({
+        ...prevState,
+        pageProfile: {
+          results: prevState.pageProfile.results.map((profile) =>
+            unFriendHelper(profile, clickedProfile)
+          ),
+        },
+      }));
+    } catch (err) {
+      console.log(err);
+    }
+  };
 
 
   useEffect(() => {
@@ -38,7 +75,7 @@ export const ProfileDataProvider = ({ children }) => {
   return (
     <ProfileDataContext.Provider value={profileData}>
       <SetProfileDataContext.Provider
-        value={{ setProfileData }}
+        value={{ setProfileData, handleFriendRequest, handleUnFriend }}
       >
         {children}
       </SetProfileDataContext.Provider>
