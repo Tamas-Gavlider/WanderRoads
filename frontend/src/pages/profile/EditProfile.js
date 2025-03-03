@@ -5,6 +5,8 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import { useParams, useHistory } from "react-router-dom";
+import btnStyles from '../../styles/Button.module.css'
+import styles from '../../styles/EditProfile.module.css'
 
 export default function EditProfile() {
   const { id } = useParams();
@@ -23,11 +25,12 @@ export default function EditProfile() {
     const fetchProfile = async () => {
       try {
         const { data } = await axios.get(`/profiles/${id}/`);
-        setProfile({
+        setProfile(prevState => ({
+          ...prevState,
           status: data.status || "",
           visited_countries: data.visited_countries || [],
           theme_song: data.theme_song || null,
-        });
+        }));
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
@@ -94,7 +97,7 @@ export default function EditProfile() {
   };
 
   return (
-    <Container>
+    <Container className="d-flex flex-column justify-content-center">
       <h2>Edit Profile</h2>
 
       {errors && <Alert variant="danger">{errors}</Alert>}
@@ -126,23 +129,24 @@ export default function EditProfile() {
         </Form.Control>
       </Form.Group>
 
-      <Button variant="primary" onClick={handleAddCountry} className="mt-2">
+      <Button variant="primary" onClick={handleAddCountry} className={`mt-2 ${btnStyles.Button}`} >
         Add Country
       </Button>
 
       <h4 className="mt-4">Visited Countries:</h4>
       <ul>
         {profile.visited_countries.map((country, index) => (
-          <li key={index}>
+          <li key={index} className={styles.Country}>
             {country}{" "}
-            <Button variant="danger" size="sm" onClick={() => handleRemoveCountry(country)}>
+            <Button variant="danger" size="sm"
+              onClick={() => handleRemoveCountry(country)}>
               Remove
             </Button>
           </li>
         ))}
       </ul>
 
-      <Form.Group controlId="themeSong">
+      <Form.Group controlId="themeSong" className={styles.Audio}>
         <Form.Label>Upload Theme Song</Form.Label>
         <Form.File
           accept="audio/*"
@@ -151,7 +155,7 @@ export default function EditProfile() {
         {profile.theme_song && <p>Current song: {profile.theme_song.name}</p>}
       </Form.Group>
 
-      <Button variant="success" onClick={handleSave} className="mt-3">
+      <Button variant="success" onClick={handleSave} className={`mt-3 ${btnStyles.Button}`}>
         Save Profile
       </Button>
     </Container>

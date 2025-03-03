@@ -172,7 +172,7 @@ function PostEditForm() {
               </figure>
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button} ${btnStyles.Blue} btn`}
+                  className={`${btnStyles.Button} btn`}
                   htmlFor="image-upload"
                 >
                   Change the image

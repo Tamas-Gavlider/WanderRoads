@@ -10,6 +10,7 @@ import ThemeSong from "../../components/ThemeSong";
 import TravelPreferences from "../travel_preference/TravelPreferences";
 import Asset from '../../components/Asset'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import BtnStyles from '../../styles/Button.module.css'
 
 
 const Profile = () => {
@@ -51,7 +52,7 @@ const Profile = () => {
        </Row>
       )}
        <Link to={`/profiles/${id}/edit`}>
-        <button>Edit Profile</button>
+        <button className={BtnStyles.Button}>Edit Profile</button>
       </Link>
       <p>{profile.status || "No status set"}</p>
       <p><strong>Username:</strong> {profile.owner}</p>
