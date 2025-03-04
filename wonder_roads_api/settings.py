@@ -60,12 +60,10 @@ DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 SECRET_KEY = os.getenv('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = False
-
-SECURE_SSL_REDIRECT = True
+DEBUG = 'DEBUG' in os.environ
 
 
-ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "localhost:3000",'127.0.0.1:8000','127.0.0.1']
+ALLOWED_HOSTS = [os.environ.get('ALLOWED_HOST'), "localhost", "http://localhost:3000",'127.0.0.1:8000','127.0.0.1']
 
 # Application definition
 
@@ -205,7 +203,7 @@ USE_L10N = True
 STATIC_URL = '/static/'
 STATIC_ROOT = BASE_DIR / 'staticfiles'
 WHITENOISE_ROOT = BASE_DIR / 'staticfiles' / 'build'
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+STATICFILES_STORAGE = "cloudinary_storage.storage.StaticCloudinaryStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/5.1/ref/settings/#default-auto-field
