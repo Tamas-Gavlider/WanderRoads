@@ -145,20 +145,22 @@ export default function EditProfile() {
       </Button>
 
       <h4 className="mt-4">Visited Countries:</h4>
-      <ul>
+      <div className="row">
         {profile.visited_countries.map((country, index) => (
-          <li key={index} className={styles.Country}>
-            {country}{" "}
-            <Button
-              variant="danger"
-              size="sm"
-              onClick={() => handleRemoveCountry(country)}
-            >
-              Remove
-            </Button>
-          </li>
+          <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3" key={index}>
+            <div className={styles.Country}>
+              {country}{" "}
+              <Button
+                variant="danger"
+                size="sm"
+                onClick={() => handleRemoveCountry(country)}
+              >
+                Remove
+              </Button>
+            </div>
+          </div>
         ))}
-      </ul>
+      </div>
 
       <Form.Group controlId="themeSong" className={styles.Audio}>
         <Form.Label>Upload Theme Song</Form.Label>
