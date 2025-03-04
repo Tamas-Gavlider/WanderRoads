@@ -41,7 +41,7 @@ const Post = (props) => {
       console.log(err);
     }
   };
-  console.log("Posts state:", setPosts);
+
 
   return (
     <Card className={styles.Post}>

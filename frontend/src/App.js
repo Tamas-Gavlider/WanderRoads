@@ -45,13 +45,13 @@ function App() {
       <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>
       <Route path='/travel-preference/' render= {()=> <AddTravelPreference />}/>
       <Route path='/travel-recommendation/' render= {()=> <TravelRecommendation />}/>
+      <Route exact path='/posts/create' render={()=> <PostCreateForm />}/>
+      <Route exact path="/posts/:id" component={PostPage} />
+      <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
       <Route exact path='/feed' render={()=> <PostsPage 
       message="No results found." 
       filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />
     }/>
-      <Route exact path='/posts/create' render={()=> <PostCreateForm />}/>
-      <Route exact path="/posts/:id" render={() => <PostPage />} />
-      <Route exact path="/posts/:id/edit" render={() => <PostEditForm />} />
       <Route exact path='/travel-buddies/' render={()=> <TravelBuddies />}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
       <Route render={()=> <p>Page not found!</p>}/>
