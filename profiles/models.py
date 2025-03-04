@@ -25,6 +25,28 @@ class Profile(models.Model):
     experience = models.CharField(max_length=55, choices=EXPERIENCE_LEVEL, default='Wanderer')
     visited_countries = CountryField(multiple=True, blank=True)
     status = models.TextField(max_length=255, blank=True)
+
+    def update_experience_level(self):
+        # update the experience level based on the number of visited countries
+        num_countries = len(self.visited_countries)
+
+        if num_countries >= 50:
+            self.experience = 'Global Legend'
+        elif num_countries >= 40:
+            self.experience = 'World Voyager'
+        elif num_countries >= 30:
+            self.experience = 'Cultural Ambassador'
+        elif num_countries >= 20:
+            self.experience = 'Explorer'
+        elif num_countries >= 10:
+            self.experience = 'Pathfinder'
+        else:
+            self.experience = 'Wanderer'
+
+    def save(self, *args, **kwargs):
+        """Override save method to update experience level before saving."""
+        self.update_experience_level()
+        super().save(*args, **kwargs)
     
     def set_visited_countries(self, countries):
         # Ensure countries are stored as a set (no duplicates)
