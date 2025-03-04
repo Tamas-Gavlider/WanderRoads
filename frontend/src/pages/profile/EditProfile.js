@@ -5,8 +5,8 @@ import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import { useParams, useHistory } from "react-router-dom";
-import btnStyles from '../../styles/Button.module.css'
-import styles from '../../styles/EditProfile.module.css'
+import btnStyles from "../../styles/Button.module.css";
+import styles from "../../styles/EditProfile.module.css";
 
 export default function EditProfile() {
   const { id } = useParams();
@@ -25,11 +25,11 @@ export default function EditProfile() {
     const fetchProfile = async () => {
       try {
         const { data } = await axios.get(`/profiles/${id}`);
-        setProfile(
-          {status: data.status || "",
+        setProfile({
+          status: data.status || "",
           visited_countries: data.visited_countries || [],
-          theme_song: data.theme_song || null,}
-        );
+          theme_song: data.theme_song || null,
+        });
       } catch (error) {
         console.error("Error fetching profile:", error);
       }
@@ -57,12 +57,16 @@ export default function EditProfile() {
 
   const handleThemeSongUpload = (e) => {
     if (e.target.files.length) {
-      setProfile({ ...profile, theme_song: e.target.files[0] });
+      const file = e.target.files[0];
+      setProfile({ ...profile, theme_song: file });
     }
   };
 
   const handleAddCountry = () => {
-    if (selectedCountry && !profile.visited_countries.includes(selectedCountry)) {
+    if (
+      selectedCountry &&
+      !profile.visited_countries.includes(selectedCountry)
+    ) {
       setProfile((prevProfile) => ({
         ...prevProfile,
         visited_countries: [...prevProfile.visited_countries, selectedCountry],
@@ -73,7 +77,9 @@ export default function EditProfile() {
   const handleRemoveCountry = (countryToRemove) => {
     setProfile((prevProfile) => ({
       ...prevProfile,
-      visited_countries: prevProfile.visited_countries.filter((c) => c !== countryToRemove),
+      visited_countries: prevProfile.visited_countries.filter(
+        (c) => c !== countryToRemove
+      ),
     }));
   };
 
@@ -130,7 +136,11 @@ export default function EditProfile() {
         </Form.Control>
       </Form.Group>
 
-      <Button variant="primary" onClick={handleAddCountry} className={`mt-2 ${btnStyles.Button}`} >
+      <Button
+        variant="primary"
+        onClick={handleAddCountry}
+        className={`mt-2 ${btnStyles.Button}`}
+      >
         Add Country
       </Button>
 
@@ -139,8 +149,11 @@ export default function EditProfile() {
         {profile.visited_countries.map((country, index) => (
           <li key={index} className={styles.Country}>
             {country}{" "}
-            <Button variant="danger" size="sm"
-              onClick={() => handleRemoveCountry(country)}>
+            <Button
+              variant="danger"
+              size="sm"
+              onClick={() => handleRemoveCountry(country)}
+            >
               Remove
             </Button>
           </li>
@@ -149,14 +162,24 @@ export default function EditProfile() {
 
       <Form.Group controlId="themeSong" className={styles.Audio}>
         <Form.Label>Upload Theme Song</Form.Label>
-        <Form.File
-          accept="audio/*"
-          onChange={handleThemeSongUpload}
-        />
-        {profile.theme_song && <p>Current song: {profile.theme_song.slice(49)}</p>}
+        <Form.File accept="audio/*" onChange={handleThemeSongUpload} />
+        {profile.theme_song && (
+          <p>
+            Current song:{" "}
+            {profile.theme_song instanceof File
+              ? profile.theme_song.name
+              : profile.theme_song.slice(
+                  profile.theme_song.lastIndexOf("/") + 1
+                )}
+          </p>
+        )}
       </Form.Group>
 
-      <Button variant="success" onClick={handleSave} className={`mt-3 ${btnStyles.Button}`}>
+      <Button
+        variant="success"
+        onClick={handleSave}
+        className={`mt-3 ${btnStyles.Button}`}
+      >
         Save Profile
       </Button>
     </Container>
