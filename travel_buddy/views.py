@@ -1,8 +1,7 @@
 from rest_framework import generics, permissions
-from wonder_roads_api.permissions import IsOwnerOrReadOnly
 from .models import TravelBuddy
 from .serializers import TravelBuddySerializer
-
+from django.db import IntegrityError
 
 class TravelBuddyList(generics.ListCreateAPIView):
     """
@@ -13,13 +12,23 @@ class TravelBuddyList(generics.ListCreateAPIView):
     queryset = TravelBuddy.objects.all()
 
     def perform_create(self, serializer):
-        serializer.save(owner=self.request.user)
+        # Check if the request user is the 'owner' of the travel buddy relationship
+        owner = self.request.user
+        travel_buddy = serializer.validated_data['travel_buddy']
+
+        # Check if the reverse relationship already exists
+        if TravelBuddy.objects.filter(owner=travel_buddy, travel_buddy=owner).exists():
+            raise serializers.ValidationError({'detail': 'This travel buddy relationship already exists from the other side.'})
+
+        # Save the travel buddy relationship
+        serializer.save(owner=owner)
+
 
 class TravelBuddyDetail(generics.RetrieveDestroyAPIView):
     """
     Retrieve or destroy a travel buddy relationship.
     Allow either party to confirm the relationship.
     """
-    permission_classes = [IsOwnerOrReadOnly]
+    permission_classes = [permissions.IsAuthenticatedOrReadOnly]
     queryset = TravelBuddy.objects.all()
     serializer_class = TravelBuddySerializer

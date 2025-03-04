@@ -35,21 +35,15 @@ export const travelBuddyHelper = (profile, clickedProfile, travel_buddies_initia
 };
 
 export const unFriendHelper = (profile, clickedProfile) => {
-  return profile.id === clickedProfile.id
-    ? // This is the profile I clicked on,
-      // update its travel buddy count and set its travel buddy id
-      {
-        ...profile,
-        travel_buddies_received_count: profile.travel_buddies_received_count - 1,
-        travel_buddies_initiated_id: null,
-      }
-    : profile.is_owner
-    ? // This is the profile of the logged in user
-      // update its travel buddy count
-      { ...profile, travel_buddies_initiated_count: profile.travel_buddies_initiated_count - 1 }
-    : // this is not the profile the user clicked on or the profile
-      // the user owns, so just return it unchanged
-      profile;
+  return {
+    ...profile,
+    travel_buddies_initiated_id: profile.travel_buddies_initiated_id.filter(
+      (id) => id !== clickedProfile.id
+    ),
+    travel_buddies_received_id: profile.travel_buddies_received_id.filter(
+      (id) => id !== clickedProfile.id
+    ),
+  };
 };
 
 export const setTokenTimestamp = (data) => {
