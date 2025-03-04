@@ -1,9 +1,20 @@
-.Audio {
-    border: 0.5px solid ;
-    border-radius: 10px;
+.Audio:hover {
+    color: #ff0000;
+}
+
+.Border {
+    border-top: #00bae2 2px solid;
 }
 
 .Country {
     padding-top: 5px;
     padding-bottom: 5px;
+}
+
+.Delete:hover {
+    background-color: #00bae2;
+}
+
+.Status {
+    padding-bottom: 15px;
 }

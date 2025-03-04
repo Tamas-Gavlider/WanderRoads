@@ -109,7 +109,7 @@ export default function EditProfile() {
 
       {errors && <Alert variant="danger">{errors}</Alert>}
 
-      <Form.Group controlId="status">
+      <Form.Group controlId="status" className={styles.Status}>
         <Form.Label>Status</Form.Label>
         <Form.Control
           type="text"
@@ -120,7 +120,7 @@ export default function EditProfile() {
         />
       </Form.Group>
 
-      <Form.Group controlId="countrySelect">
+      <Form.Group controlId="countrySelect" className={styles.Border}>
         <Form.Label>Select a Country</Form.Label>
         <Form.Control
           as="select"
@@ -149,22 +149,25 @@ export default function EditProfile() {
         {profile.visited_countries.map((country, index) => (
           <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3" key={index}>
             <div className={styles.Country}>
-              {country}{" "}
-              <Button
+            <Button
                 variant="danger"
                 size="sm"
                 onClick={() => handleRemoveCountry(country)}
+                className={styles.Delete}
               >
                 Remove
               </Button>
+              <span> </span>
+              {country}{" "}
             </div>
           </div>
         ))}
       </div>
 
-      <Form.Group controlId="themeSong" className={styles.Audio}>
-        <Form.Label>Upload Theme Song</Form.Label>
-        <Form.File accept="audio/*" onChange={handleThemeSongUpload} />
+      <Form.Group controlId="themeSong" className={styles.Border}>
+        <span>Change theme song</span>
+        <Form.Label className={styles.Audio}><i class="fa-solid fa-music"></i></Form.Label>
+        <Form.File accept="audio/*" onChange={handleThemeSongUpload}/>
         {profile.theme_song && (
           <p>
             Current song:{" "}
