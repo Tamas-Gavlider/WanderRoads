@@ -20,6 +20,8 @@ import AddTravelPreference from './pages/travel_preference/AddTravelPreferences'
 import EditProfile from './pages/profile/EditProfile';
 import TravelRecommendation from './pages/travel_recommendation/TravelRecommendation';
 import TravelBuddies from './pages/travel_buddies/TravelBuddies';
+import Trip from './pages/trip/Trip';
+import AddTrip from './pages/trip/AddTrip';
 
 
 
@@ -42,6 +44,8 @@ function App() {
       <Route exact path='/map' render={()=> <Map />}/>
       <Route path="/profiles/:id/edit" render= {()=> <EditProfile />} />
       <Route path="/profiles/:id" render= {()=> <Profile />} />
+      <Route path="/trip/create" render={() => <AddTrip />}/>
+      <Route path="/trip/" render= {() => <Trip />} />
       <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>
       <Route path='/travel-preference/' render= {()=> <AddTravelPreference />}/>
       <Route path='/travel-recommendation/' render= {()=> <TravelRecommendation />}/>

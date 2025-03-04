@@ -50,6 +50,7 @@ const Profile = () => {
           thumbnail
         />
         </Col>
+        <Link to='/trip/'>Check your upcoming trips!</Link>
        </Row>
       )}
        <Link to={`/profiles/${id}/edit`}>
