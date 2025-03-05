@@ -2,8 +2,7 @@ import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import axios from "axios";
 import { Link } from "react-router-dom/cjs/react-router-dom";
-import { Card, Button, Container, Row, Col } from "react-bootstrap";
-import btnStyles from '../../styles/Button.module.css'
+import { Card,Container, Row, Col } from "react-bootstrap";
 import styles from '../../styles/Trip.module.css'
 
 export default function Trip() {
@@ -29,7 +28,7 @@ export default function Trip() {
       <h2 className="text-center mb-4">Upcoming Trips</h2>
       <div className="d-flex justify-content-start mb-3">
         <Link to="/trip/create">
-          <Button className={btnStyles.Button}>Add Trip</Button>
+        <i class="fa-solid fa-plus"></i>
         </Link>
       </div>
       {trip && trip.results && trip.results.length > 0 ? (
@@ -37,7 +36,7 @@ export default function Trip() {
           {trip.results.map((t, index) => (
             <Col md={6} lg={4} key={index}>
               <Card
-                className={`shadow-sm border-0 ${t.days_until_trip < 5 ? styles.Soon : styles.Color}`}>
+                className={`shadow-sm border-0 ${t.days_until_trip > 5 ? styles.Card : styles.Soon}`}>
                 <Card.Body>
                   <Card.Title>{t.destination}</Card.Title>
                   <Card.Subtitle className="mb-2">
