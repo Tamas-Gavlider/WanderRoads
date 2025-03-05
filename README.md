@@ -1,131 +1,354 @@
-![CI logo](https://codeinstitute.s3.amazonaws.com/fullstack/ci_logo_small.png)
+# WanderRoads
 
-Welcome Tamas Gavlider,
+<strong>WanderRoads</strong> is a social media platform for travelers, where users can share their journeys, post travel stories on an interactive world map, and receive AI-driven travel recommendations based on their preferences. Unlike other social media platforms that prioritize likes and followers, WanderRoads focuses on sharing experiences and discovering more about different cultures and countries.
 
-This is the Code Institute student template for Gitpod. We have preinstalled all of the tools you need to get started. It's perfectly ok to use this template as the basis for your project submissions.
+The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.herokuapp.com/)
 
-You can safely delete this README.md file or change it for your own project. Please do read it at least once, though! It contains some important information about Gitpod and the extensions we use. Some of this information has been updated since the video content was created. The last update to this file was: **June 18, 2024**
+## Contents
 
-## Gitpod Reminders
+- [Agile Development](#agile-development)
+- [User Experience(UX)](#user-experienceux)
+  - [Project Goals](#project-goals)
+  - [User Stories](#user-stories)
+- [Design](#design)
+  - [Structure](#structure)
+  - [Colour Scheme](#colour-scheme)
+  - [Typography](#typography)
+  - [Features](#features)
+    - [Home](#home)
+    - [Map](#)
+    - [Posts](#)
+    - [Post](#)
+    - [Create Post](#)
+    - [Edit Post](#)
+    - [Profile](#)
+    - [Update Profile](#)
+    - [Delete Profile](#)
+    - [Travel Preferences](#)
+    - [Add Preferences](#)
+    - [Edit Preferences](#)
+    - [Travel Recommendation](#)
+    - [Trip](#)
+    - [Add Trip](#)
+    - [Edit Trip](#)
+    - [Delete Trip](#)
+    - [Future Implementation](#future-implementations)
+- [Technologies, Languages, and Programs used](#technologies-languages-and-programs-used)
+- [Deployment & Local Development](#deployment--local-development)
+  - [Local Deployment](#local-deployment)
+  - [Testing](#testing)
+    - [CSS](#css)
+    - [JavaScript](#javascript)
+    - [Python](#python)
+    - [Lighthouse](#lighthouse)
+    - [Wave](#wave)
+    - [Automated Testing](#automated-testing)
+    - [Manual Testing](#manual-testing)
+    - [Full Testing](#full-testing)
+    - [Bugs](#bugs)
+    - [Known Bugs](#known-bugs)
+- [Credits](#credits)
+  - [Media](#media)
+  - [Content](#content)
+  - [Acknowledgments](#acknowledgments)
 
-To run a frontend (HTML, CSS, Javascript only) application in Gitpod, in the terminal, type:
+## Agile Development
 
-`python3 -m http.server`
+User stories were prioritized using MoSCoW.
+The Agile process emphasizes incremental development and user-focused delivery.
 
-A blue button should appear to click: _Make Public_,
+## User Experience(UX)
 
-Another blue button should appear to click: _Open Browser_.
+### Project Goals
 
-To run a backend Python file, type `python3 app.py` if your Python file is named `app.py`, of course.
+The primary goals of the app is to provide a platform for travelers to share experiences and learn about different cultures and countries. Allow users to post stories on an interactive world map, making travel memories more immersive. uggest travel destinations based on user preferences using AI-driven recommendations. Help travelers find and connect with like-minded individuals through the TravelBuddy feature.
 
-A blue button should appear to click: _Make Public_,
+### User Stories
 
-Another blue button should appear to click: _Open Browser_.
+User Stories were tracked throughout the project as [GitHub issues](https://github.com/users/Tamas-Gavlider/projects/8).
 
-By Default, Gitpod gives you superuser security privileges. Therefore, you do not need to use the `sudo` (superuser do) command in the bash terminal in any of the lessons.
+## Design
 
-To log into the Heroku toolbelt CLI:
+### Structure
 
-1. Log in to your Heroku account and go to *Account Settings* in the menu under your avatar.
-2. Scroll down to the *API Key* and click *Reveal*
-3. Copy the key
-4. In Gitpod, from the terminal, run `heroku_config`
-5. Paste in your API key when asked
+The diagram below represents the database structure for WanderRoads, illustrating the relationships between different entities within the platform.
 
-You can now use the `heroku` CLI program - try running `heroku apps` to confirm it works. This API key is unique and private to you, so do not share it. If you accidentally make it public, you can create a new one with _Regenerate API Key_.
+- User: Stores authentication details (username, email, password). Each user has a related profile.
+- Profile: Contains user details such as name, profile image, theme song, travel experience, visited countries, and status.
+- Post: Represents travel stories shared by users, including title, content, images, and country tags.
+- Comment: Allows users to interact with posts by leaving comments.
+- Travel Buddy: Establishes a relationship between users who have traveled together.
+- Travel Preference: Stores user preferences for travel recommendations, such as preferred continent, climate, activities, budget, and duration.
+- Travel Recommendation: AI-generated travel suggestions for users based on their preferences.
+- Trip: Logs trips taken by users, including destination, start and end dates, and notes.
 
-### Connecting your Mongo database
+The database follows a relational structure, with users having a one-to-one relationship with profiles, while other entities, such as posts, comments, and trips, are linked through one-to-many relationships.
 
-- **Connect to Mongo CLI on a IDE**
-- navigate to your MongoDB Clusters Sandbox
-- click **"Connect"** button
-- select **"Connect with the MongoDB shell"**
-- select **"I have the mongo shell installed"**
-- choose **mongosh (2.0 or later)** for : **"Select your mongo shell version"**
-- choose option: **"Run your connection string in your command line"**
-- in the terminal, paste the copied code `mongo "mongodb+srv://<CLUSTER-NAME>.mongodb.net/<DBname>" --apiVersion 1 --username <USERNAME>`
-  - replace all `<angle-bracket>` keys with your own data
-- enter password _(will not echo **\*\*\*\*** on screen)_
+![Models](/docs/erd.png)
 
-------
+### Colour Scheme
 
-## Release History
+![colour](/docs/color_palette.png)
 
-We continually tweak and adjust this template to help give you the best experience. Here is the version history:
+1. #FF0000 (Red) – A bold, attention-grabbing color often associated with energy, passion, and urgency.
+2. #00BAE2 (Cyan/Light Blue) – A vibrant and refreshing color that conveys trust, calmness, and modernity.
+3. #281713 (Dark Brown) – A deep, earthy tone that adds warmth and a grounded, sophisticated feel.
+   The chosen color palette creates a visually striking and dynamic experience:
 
-**June 18, 2024,** Add Mongo back into template
+- <strong>Contrast & Readability</strong>: The bold red and vibrant cyan provide strong contrast, making elements stand out. However, careful consideration is needed for text readability when using these colors together.
+- <strong>Balance</strong>: The deep brown serves as a grounding element, making it suitable for backgrounds or accents to provide visual stability.
+- <strong>Vibe</strong>: This combination blends high-energy red, fresh and modern cyan, and an earthy brown, reflecting an adventurous and engaging brand identity.
 
-**June 14, 2024,** Temporarily remove Mongo until the key issue is resolved
+### Typography
 
-**May 28 2024:** Fix Mongo and Links installs
+TheAnonymous Pro font, available via Google Fonts.
+Anonymous Pro is a family of four fixed-width fonts designed especially with coding in mind. It is inspired by Anonymous 9, a freeware Macintosh bitmap font developed in the mid-'90s by Susan Lesch and David Lamkins, that was intended as a more legible alternative to Monaco, the fixed-width Macintosh system font.
 
-**April 26 2024:** Update node version to 16
+Characters that could be mistaken for one another (O, 0, I, l, 1, etc.) have distinct shapes to make them easier to tell apart in the context of source code. The regular and bold styles have embedded bitmaps for the smallest sizes (10-13 ppem.)
 
-**September 20 2023:** Update Python version to 3.9.17.
+### Features
 
-**September 1 2021:** Remove `PGHOSTADDR` environment variable.
+All pages feature a fully responsive navbar that transforms into a hamburger menu on smaller screens and a [favicon](/docs/favicon.png) in the browser tab.<br>
+Navbar if user logged in
+![Logged in]()
 
-**July 19 2021:** Remove `font_fix` script now that the terminal font issue is fixed.
+Navbar is user logged out/not registered
+![Logged out]()
 
-**July 2 2021:** Remove extensions that are not available in Open VSX.
+#### Home
 
-**June 30 2021:** Combined the P4 and P5 templates into one file, added the uptime script. See the FAQ at the end of this file.
+![Backgorund]()
 
-**June 10 2021:** Added: `font_fix` script and alias to fix the Terminal font issue
+#### Map
 
-**May 10 2021:** Added `heroku_config` script to allow Heroku API key to be stored as an environment variable.
+#### Posts
 
-**April 7 2021:** Upgraded the template for VS Code instead of Theia.
+#### Post
 
-**October 21 2020:** Versions of the HTMLHint, Prettier, Bootstrap4 CDN and Auto Close extensions updated. The Python extension needs to stay the same version for now.
+#### Create Post
 
-**October 08 2020:** Additional large Gitpod files (`core.mongo*` and `core.python*`) are now hidden in the Explorer, and have been added to the `.gitignore` by default.
+#### Edit Post
 
-**September 22 2020:** Gitpod occasionally creates large `core.Microsoft` files. These are now hidden in the Explorer. A `.gitignore` file has been created to make sure these files will not be committed, along with other common files.
+#### Profile
 
-**April 16 2020:** The template now automatically installs MySQL instead of relying on the Gitpod MySQL image. The message about a Python linter not being installed has been dealt with, and the set-up files are now hidden in the Gitpod file explorer.
+#### Update Profile
 
-**April 13 2020:** Added the _Prettier_ code beautifier extension instead of the code formatter built-in to Gitpod.
+The Edit Profile page allows users to manage and update their account details conveniently. Users can:
 
-**February 2020:** The initialisation files now _do not_ auto-delete. They will remain in your project. You can safely ignore them. They just make sure that your workspace is configured correctly each time you open it. It will also prevent the Gitpod configuration popup from appearing.
+- Change their status.
+- Add their first name and last name.
+- Change username
+- Change password
+- Change theme song.
+- Add/Remove visited countries.
 
-**December 2019:** Added Eventyret's Bootstrap 4 extension. Type `!bscdn` in a HTML file to add the Bootstrap boilerplate. Check out the <a href="https://github.com/Eventyret/vscode-bcdn" target="_blank">README.md file at the official repo</a> for more options.
+#### Delete Profile
 
-------
+#### Travel Preferences
 
-## FAQ about the uptime script
+#### Add Preferences
 
-**Why have you added this script?**
+#### Edit Preferences
 
-It will help us to calculate how many running workspaces there are at any one time, which greatly helps us with cost and capacity planning. It will help us decide on the future direction of our cloud-based IDE strategy.
+#### Travel Recommendation
 
-**How will this affect me?**
+#### Trip
 
-For everyday usage of Gitpod, it doesn’t have any effect at all. The script only captures the following data:
+#### Add Trip
 
-- An ID that is randomly generated each time the workspace is started.
-- The current date and time
-- The workspace status of “started” or “running”, which is sent every 5 minutes.
+#### Edit Trip
 
-It is not possible for us or anyone else to trace the random ID back to an individual, and no personal data is being captured. It will not slow down the workspace or affect your work.
+#### Delete Trip
 
-**So….?**
+#### Future Implementations
 
-We want to tell you this so that we are being completely transparent about the data we collect and what we do with it.
+- Trip Fundraising: Users will be able to request funds for their trips by setting up a fundraising goal. Other users can contribute to help them reach their destination.
+- Flight Search Integration: A feature will be added to allow users to search for flights directly within the platform, making trip planning more convenient.
 
-**Can I opt out?**
+## Technologies, Languages, and Programs used
 
-Yes, you can. Since no personally identifiable information is being captured, we'd appreciate it if you let the script run; however if you are unhappy with the idea, simply run the following commands from the terminal window after creating the workspace, and this will remove the uptime script:
+- CSS - Stylesheet language for styling the appearance of web pages.
+- Bootstrap - A framework for building responsive, mobile-first sites.
+- React - A JavaScript library used for building user interfaces, particularly for single-page applications. It allows developers to build reusable UI components.
+- Javascript - A programming language used for writing dynamic code in React. It’s the primary language for frontend development in React.
+- Python - The programming language used for the project backend.
+- Django REST Framework
+- Djano Allauth - Used for authentication, registration, login & password reset.
+- gunicorn - a Python WSGI HTTP Server
+- psycopg2 - allow us to connect with a postgres database
+- PostgreSQL - The database used to store transactions data, user information, and other relevant data for the application.
+- Chrome Dev Tools - To troubleshoot, test features and solve issues with responsiveness and styling
+- GitHub - Web-based platform for version control and collaboration on software projects.
+- Google Fonts - Library of free and open-source web fonts.
+- Heroku - Used to deploy the project for hosting and managing the live application.
+- Favicon.io - To create Favicon.
+- [DBDiagram](https://dbdiagram.io/d) - To create ER Diagram
+- [FreeConvert](https://www.freeconvert.com/convert/video-to-gif) - to convert screenrecordings to GIF
 
-```
-pkill uptime.sh
-rm .vscode/uptime.sh
-```
+## Deployment & Local Development
 
-**Anything more?**
+The project is deployed using Heroku. To deploy the project:
 
-Yes! We'd strongly encourage you to look at the source code of the `uptime.sh` file so that you know what it's doing. As future software developers, it will be great practice to see how these shell scripts work.
+1. Create a live database - The database used in this project was provided by Code Institute.
+2. Heroku app setup:
+   1. From the Heroku dashboard, click the new button in the top right corner and select create new app.
+   2. Give your app a name (this must be unique), select the region that is closest to you and then click the create app button bottom left.
+   3. Open the settings tab and create a new config var of DATABASE_URL and paste the database URL(the value should not have quotation marks around it).
+3. Prepare for deployment in GitPod:
+   1. Install dj_database_url and psycopg2 (they are both needed for connecting to the external database you've just set up)<br>
+      -- pip3 install dj-database-url==2.2.0 psycopg2 --
+   2. Update your requirements.txt file with the installed packages.<br>
+      -- pip3 freeze --local > requirements.txt --
+   3. In settings.py underneath import os, add -- import dj_database_url --.
+   4. To prevent your database URL from being misused, you can store it in the env.py file and add this file to .gitignore to keep it secure. Using the os library, you can then retrieve the database URL in your code instead of directly including it in settings.py.
+   5. In the terminal, run the show migrations command to confirm connection to the external database.<br>
+      -- python3 manage.py runserver --
+   6. If you have to the database correctly, you can now run migrations to migrate the models to the new database.<br>
+      -- python3 manage.py migrate --
+   7. Create a superuser for the new database.<br>
+      -- python3 manage.py createsuperuser --
+   8. Install gunicorn which will act as our webserver and freeze this to the requirements.txt file.<br>
+      -- pip3 install gunicorn --
+   9. Create a Procfile in the root directory. This tells Heroku to create a web dyno which runs gunicorn and serves our django app. Add the following to the file:<br>
+      -- release: python manage.py makemigrations && python manage.py migrate
+      web: gunicorn wonder_roads_api.wsgi:application
+      --
+   10. Add the Heroku app and localhost (which will allow GitPod to still work) to ALLOWED_HOSTS = [] in settings.py:<br>
+       
+   11. Install whitenoise. It will allow your Heroku app to serve its own static files without relying on any external file hosting services like a content delivery network (CDN). Then add it to the requirements.txt.
+       <br>
+       -- pip3 install whitenoise~=5.3.0 --
+       <br>
+       The WhiteNoise middleware must be placed directly after the Django SecurityMiddleware in settings.py<br>
+       -- 'whitenoise.middleware.WhiteNoiseMiddleware', --
+   12. Add the following path to settings.py<br>
+       -- STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') --
+   13. Collect static files -- python3 manage.py collectstatic -- and add a runtime.txt file to your app's root directory. Check your Python version and copy the runtime closest to the one used in your IDE.
+       [Python support](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version)
+   14. Save, add, commit and push the changes to GitHub.
+   15. To enable automatic deploys on Heroku, go to the deploy tab and click the connect to GitHub button in the deployment method section. Search for the projects repository and then click connect. Click enable automatic deploys at the bottom of the page.
+4. Django automatically sets a secret key when you create your project, however we shouldn't use this default key in our deployed version. We can use a random key generator to create a new SECRET_KEY which we can then add to our Heroku config vars.
+5. The following entries must be added to the Heroku config vars:
 
----
 
-Happy coding!
+### Local Deployment
+
+This repository can be cloned and run locally with the following steps:
+
+- Login to GitHub.
+- Select repository named: https://github.com/Tamas-Gavlider/WanderRoads
+- Click code toggle button and copy the url (https://github.com/Tamas-Gavlider/WanderRoads.git).
+- In your IDE, open the terminal and run the git clone command (git clone https://github.com/Tamas-Gavlider/WanderRoads.git). The repository will now be cloned in your workspace.
+
+### Testing
+
+I have used Chrome Developer tool while building the web page and troubleshoot any issues immediately.<br>
+The following issues were raised during my mid project meeting with my mentor:
+
+#### CSS
+
+[W3C](https://validator.w3.org/) was used to validate the CSS.
+
+
+#### JavaScript
+
+
+
+#### Python
+
+[Code Institute Python Linter](https://pep8ci.herokuapp.com/) was used to validate the python files.
+
+| File                      | Result |                                                       Screenshot |
+| ------------------------- | :----: | ---------------------------------------------------------------: |
+|       |  Pass  |             |
+|       |  Pass  |               |
+|         |  Pass  |              |
+|          |  Pass  |                |
+|      |  Pass  |       |
+|     |  Pass  |      |
+|       |  Pass  |          |
+|        |  Pass  |            |
+|       |  Pass  |          |
+|       |  Pass  |           |
+|        |  Pass  |        |
+|       |  Pass  |             |
+|       |  Pass  |                |
+|  |  Pass  |   |
+|  |  Pass  |  |
+|  |  Pass  |      |
+|   |  Pass  |      |
+|   |  Pass  |    |
+|      |  Pass  |        |
+|        |  Pass  |          |
+
+#### Lighthouse
+
+I have used Lighthouse to test the performance, accessibility, best practices and SEO of the site.
+
+
+
+#### Wave
+
+WAVE(Web Accessibility Evaluation Tool) allows developers to create content that is more accessible to users with disabilities. It does this by identifying accessibility and WGAC errors.
+
+
+#### Automated testing
+
+Automated testing for this project was carried out with [Django TestCase](https://docs.djangoproject.com/en/4.1/topics/testing/overview/).
+
+#### Manual Testing
+
+- All buttons, anchor tags, and forms were thoroughly tested to verify that they performed the expected actions.
+- Responsiveness: The application was tested on multiple screen sizes (e.g., mobile,and desktop) to confirm that the layout adapts correctly and elements adjust according to the screen size.
+- Edge Case Scenarios: Manual testing was performed for edge cases such as entering invalid data, uploading incorrect file format and checking system behavior under unusual conditions (e.g., comment is too long, image size exceed the max limit).
+- User Flow: Testing ensured that the user flow was seamless and intuitive, including actions such as logging in, making payments, sending funds, and updating account details.
+
+Registration<br>
+
+Edit profile<br>
+
+Login and password reset<br>
+
+
+#### Full Testing
+
+Full testing was performed on the following devices:
+
+- Mobile:
+  - Iphone 11 - tested browsers Chrome and Safari
+  - Iphone 13 - tested browser Safari
+- Laptop:
+  - Macbook Pro 2019 13 inch screen - tested browsers Safari and Chrome
+  - Mackbook Pro 2014 15 inch screen - tested browsers Safari, Chrome and Firefox
+- Desktop:
+  - iMac 2013 21.5 inch - tested browsers Safari and Chrome
+
+#### Bugs
+
+Bugs were tracked throughout the project as [GitHub issues](https://github.com/users/Tamas-Gavlider/projects/5/views/1).
+The following bugs were identified during the testing:
+
+
+#### Known Bugs
+
+## Credits
+
+### Media
+
+The background image was downloaded from [Pexels](https://www.pexels.com/).
+<br>
+The favicon logo was created on [FreeLogoDesign](https://www.freelogodesign.org/)
+<br>
+All screenshots used in this README file were taken by myself.
+
+### Content
+
+[W3Schools](https://www.w3schools.com/) to review how certain libraries function and for React tutorials.
+
+Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects.
+
+### Acknowledgments
+
+I would like to acknowledge:
+
+- My Code Institute mentor for her valuable advices.
