@@ -50,7 +50,7 @@ const Profile = () => {
           thumbnail
         />
         </Col>
-        <Link to='/trip/'>Check your upcoming trips!</Link>
+        <Link to='/trip/' className={styles.Link}>Check your upcoming trips!</Link>
        </Row>
       )}
        <Link to={`/profiles/${id}/edit`}>

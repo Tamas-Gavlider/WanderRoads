@@ -14,3 +14,7 @@ i:hover {
 .Profile {
   padding-top: 40px;
 }
+
+.Link {
+  text-decoration: none;
+}
