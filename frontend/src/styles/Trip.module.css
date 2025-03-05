@@ -1,0 +1,20 @@
+.Card {
+    background-color: #00bae2;
+    border-radius: 15px;
+    color: #281713;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
+
+.Card:hover {
+    transform: translateY(-10px);
+    box-shadow: 10px 30px 50px rgba(255, 0, 0, 0.2); 
+}
+
+.Soon {
+    background-color: #ff0000;
+    border-radius: 15px;
+    color: #281713;
+    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+    transition: all 0.3s ease-in-out;
+}
