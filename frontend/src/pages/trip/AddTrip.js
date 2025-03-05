@@ -58,6 +58,7 @@ export default function AddTrip() {
         console.log(err);
         if (err.response?.status !== 401) {
           setErrors(err.response?.data);
+          console.log(errors)
         }
       }
     };
@@ -74,9 +75,9 @@ export default function AddTrip() {
           required
         >
           <option value="">Select a country</option>
-          {countries.map((c) => (
-            <option key={c.code} value={c.code}>
-              {c.name}
+          {countries.map((country) => (
+            <option key={country.code} value={country.name}>
+              {country.name}
             </option>
           ))}
         </Form.Control>
@@ -100,10 +101,19 @@ export default function AddTrip() {
           onChange={handleChange}
         />
       </Form.Group>
+      <Form.Group controlId="notes">
+        <Form.Label>Notes</Form.Label>
+        <Form.Control
+          type="text"
+          name="notes"
+          value={notes}
+          onChange={handleChange}
+        />
+      </Form.Group>
       <Button className={btnStyles.Button} onClick={() => history.goBack()}>
         cancel
       </Button>
-      <Button className={btnStyles.Button} type="submit">
+      <Button className={btnStyles.Button} type="submit" onClick={handleSubmit}>
         create
       </Button>
     </div>
