@@ -14,6 +14,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import Loading from "../../components/Loading";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -52,10 +53,10 @@ function PostsPage({ message, filter = "" }) {
         activeClassName={navStyle.Active}
         to="/posts/create"
       >
-       <i class="fa-solid fa-plane-departure"></i>
+       <i className="fa-solid fa-plane-departure"></i>
       </Link></Col>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-      <i className={`fas fa-search ${styles.SearchIcon}`} />
+      <i className={`fas fa-search ${styles.SearchIcon}`}></i>
         <Form
         className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
@@ -80,7 +81,7 @@ function PostsPage({ message, filter = "" }) {
 
               dataLength={posts.results.length}
 
-              loader={<Asset spinner />}
+              loader={<Loading />}
 
               hasMore={!!posts.next}
 
@@ -95,7 +96,7 @@ function PostsPage({ message, filter = "" }) {
           </>
         ) : (
           <Container className={appStyles.Content}>
-            <Asset spinner />
+            <Loading />
           </Container>
         )}
       </Col>
