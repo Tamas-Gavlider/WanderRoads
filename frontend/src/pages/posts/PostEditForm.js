@@ -34,7 +34,7 @@ function PostEditForm() {
   useEffect(() => {
     const handleMount = async () => {
       try {
-        const { data } = await axiosReq.get(`/post/${id}/`);
+        const { data } = await axiosReq.get(`/posts/${id}/`);
         const { title, content, image, country, is_owner } = data;
 
         is_owner
