@@ -5,7 +5,6 @@ import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
 import  {Link}  from "react-router-dom";
 import Post from "./Post";
-import Asset from "../../components/Asset";
 import navStyle from '../../styles/NavBar.module.css' 
 import styles from '../../styles/PostsPage.module.css'
 import appStyles from "../../App.module.css";

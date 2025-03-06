@@ -61,7 +61,7 @@ def generate_recommendation(user: User):
 
     # **Step 4: Select destinations (remove duplicates)**
     primary_destination = perfect_match["destination"].iloc[0] if not perfect_match.empty else None
-    additional_destinations = best_match["destination"].head(3).tolist()
+    additional_destinations = best_match["destination"].head(5).tolist()
 
     # Remove duplicates and filter out None values
     unique_destinations = list(set(filter(None, [primary_destination] + additional_destinations)))
