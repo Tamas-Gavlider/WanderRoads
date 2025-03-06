@@ -58,6 +58,10 @@ export default function EditProfile() {
   const handleThemeSongUpload = (e) => {
     if (e.target.files.length) {
       const file = e.target.files[0];
+      if (file.type !== "audio/mpeg") {
+        alert("Please upload an MP3 file.");
+        return;
+      }
       setProfile({ ...profile, theme_song: file });
     }
   };
