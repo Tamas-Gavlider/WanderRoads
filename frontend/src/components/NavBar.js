@@ -54,6 +54,12 @@ const NavBar = () => {
       >
         Travel Buddies
       </NavLink>
+      <NavLink
+      to="/trip/"
+      className={styles.NavLink}
+        activeClassName={styles.Active}>
+          Trips
+      </NavLink>
       <NavLink to="/" onClick={handleSignOut} className={styles.NavLink}>
         Logout
       </NavLink>

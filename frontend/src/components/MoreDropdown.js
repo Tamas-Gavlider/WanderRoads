@@ -54,21 +54,21 @@ export const ProfileEditDropdown = ({ id }) => {
           onClick={() => history.push(`/profiles/${id}/edit`)}
           aria-label="edit-profile"
         >
-          <i className="fas fa-edit" /> edit profile
+          <i className="fas fa-edit" /> <span>edit profile</span>
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/username`)}
           aria-label="edit-username"
         >
           <i className="far fa-id-card" />
-          change username
+          <span>change username</span>
         </Dropdown.Item>
         <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/password`)}
           aria-label="edit-password"
         >
           <i className="fas fa-key" />
-          change password
+          <span>change password</span>
         </Dropdown.Item>
       </Dropdown.Menu>
     </Dropdown>
