@@ -12,6 +12,7 @@ import Asset from '../../components/Asset'
 import { Link } from "react-router-dom/cjs/react-router-dom.min";
 import BtnStyles from '../../styles/Button.module.css'
 import TravelRecommendation from "../travel_recommendation/TravelRecommendation";
+import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
 
 const Profile = () => {
@@ -42,6 +43,7 @@ const Profile = () => {
   {profile.image && profile.theme_song && (
     <Row>
       <ThemeSong theme_song={profile.theme_song} />
+      <ProfileEditDropdown id={profile?.id}/>
       <Col xs={6} md={4}>
         <Image 
           src={profile.image} 
@@ -53,9 +55,6 @@ const Profile = () => {
         <Link to='/trip/' className={styles.Link}>Check your upcoming trips!</Link>
        </Row>
       )}
-       <Link to={`/profiles/${id}/edit`}>
-        <button className={BtnStyles.Button}>Edit Profile</button>
-      </Link>
       <p>{profile.status || "No status set"}</p>
       <p><strong>Username:</strong> {profile.owner}</p>
       <p><strong>Experience:</strong> {profile.experience}</p>

@@ -22,7 +22,8 @@ import TravelRecommendation from './pages/travel_recommendation/TravelRecommenda
 import TravelBuddies from './pages/travel_buddies/TravelBuddies';
 import Trip from './pages/trip/Trip';
 import AddTrip from './pages/trip/AddTrip';
-
+import UsernameForm from './pages/profile/UsernameForm'
+import UserPasswordForm from './pages/profile/UserPasswordForm'
 
 
 function App() {
@@ -42,6 +43,8 @@ function App() {
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
+      <Route exact path="/profiles/:id/edit/username" render={()=> <UsernameForm />}/>
+      <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
       <Route path="/profiles/:id/edit" render= {()=> <EditProfile />} />
       <Route path="/profiles/:id" render= {()=> <Profile />} />
       <Route path="/trip/create" render={() => <AddTrip />}/>
