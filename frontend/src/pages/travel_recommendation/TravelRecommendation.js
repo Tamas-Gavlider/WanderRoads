@@ -24,7 +24,7 @@ export default function TravelRecommendation() {
 
   return (
     <div>
-        <h2>Travel Recommendation</h2>
+        <h4>Places you may enjoy</h4>
         {recommendation && recommendation.results.length > 0 ? (
             <ul>
                 {recommendation.results[0].recommended_destination.map((destination, index) => (
