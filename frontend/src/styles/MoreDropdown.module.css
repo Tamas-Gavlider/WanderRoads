@@ -11,7 +11,9 @@
   }
 
 .Icon {
-  color: #ff0000
+  color: #ff0000;
+  padding-right: 5px;
+  font-size:larger;
 }
 
 .Icon:hover {
