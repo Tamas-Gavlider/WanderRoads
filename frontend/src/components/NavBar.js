@@ -57,16 +57,10 @@ const NavBar = () => {
       <NavLink to="/" onClick={handleSignOut} className={styles.NavLink}>
         Logout
       </NavLink>
-      <NavLink
-        className={styles.NavLink}
-        to={`/profiles/${currentUser?.profile_id}`}
-      >Profile
-      </NavLink>
-      <div className={styles.Avatar}>
-      <span className={styles.NavLink}>Logged in as {currentUser?.username}</span>
-      <Avatar src={currentUser?.profile_image} 
-      height={45} />
-      </div>
+      <NavLink to={`/profiles/${currentUser?.profile_id}`} className={styles.NavLink}>
+      {currentUser?.username}
+    </NavLink>
+    <Avatar src={currentUser?.profile_image} height={45}/>
     </>
   );
   const loggedOutLinks = (
