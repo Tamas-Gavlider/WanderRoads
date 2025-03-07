@@ -2,12 +2,10 @@ import React, { useState, useEffect } from "react";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Link } from "react-router-dom";
-import Asset from "../../components/Asset";
 import styles from "../../styles/TravelPreference.module.css";
-import BtnStyles from "../../styles/Button.module.css";
-import AddTravelPreference from "./AddTravelPreferences";
+import AddTravelPreferences from "./AddTravelPreferences";
 import { Row, Col, Tooltip, OverlayTrigger } from 'react-bootstrap';
-import Loading from '../../components/Loading'
+import Loading from '../../components/Loading';
 
 // Mapping of continent codes to full names
 const continentMapping = {
@@ -24,6 +22,7 @@ export default function TravelPreferences() {
   const currentUser = useCurrentUser();
   const [preferences, setPreferences] = useState(null);
   const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(null); 
 
   useEffect(() => {
     if (currentUser) {
@@ -31,38 +30,39 @@ export default function TravelPreferences() {
         .get("/travel-preference/")
         .then((response) => {
           console.log("Response data:", response.data);  
-          if (response.data && response.data.id) {
-            setPreferences(response.data); 
+          if (response.data) {
+            setPreferences(response.data);
           } else {
-            setPreferences(null); 
+            setPreferences(null);
           }
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching travel preferences:", error);
+          console.error("Error fetching travel preferences:", error.response);
           setLoading(false);
         });
     }
   }, [currentUser]);
+  
 
-  if (loading) return <Loading/>;
+  if (loading) return <Loading />;
+  if (error) return <p className={styles.Error}>{error}</p>;
 
-  const continentName = continentMapping[preferences.preferred_continent] || preferences.preferred_continent;
+  const continentCode = preferences?.preferred_continent;
+  const continentName = continentMapping[continentCode] || continentCode || "Not specified";
 
   return (
     <div>
       {preferences ? (
         <div>
           <h4 className={styles.Title}>Travel Desires</h4>
-          <Link to={`/travel-preference/${preferences.id}/edit`}>
-          <i class="fa-solid fa-pen"></i>
+          <Link to={`/travel-preference/${preferences.id}/edit`} className={styles.EditIcon}>
+            <i className="fa-solid fa-pen"></i>
           </Link>
+
           <Row>
             <Col md={4}>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="continent-tooltip">Represents the preferred continent for travel.</Tooltip>}
-              >
+              <OverlayTrigger placement="top" overlay={<Tooltip>Preferred continent</Tooltip>}>
                 <div className={styles.PreferenceItem}>
                   <i className="fa-solid fa-globe"></i>
                   <p>{continentName}</p>
@@ -70,66 +70,52 @@ export default function TravelPreferences() {
               </OverlayTrigger>
             </Col>
             <Col md={4}>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="climate-tooltip">Represents the preferred climate for travel.</Tooltip>}
-              >
+              <OverlayTrigger placement="top" overlay={<Tooltip>Preferred climate</Tooltip>}>
                 <div className={styles.PreferenceItem}>
                   <i className="fa-solid fa-temperature-half"></i>
-                  <p>{preferences.climate}</p>
+                  <p>{preferences.climate || "Not specified"}</p>
                 </div>
               </OverlayTrigger>
             </Col>
             <Col md={4}>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="activity-tooltip">Represents the preferred activity for travel.</Tooltip>}
-              >
+              <OverlayTrigger placement="top" overlay={<Tooltip>Preferred activity</Tooltip>}>
                 <div className={styles.PreferenceItem}>
                   <i className="fa-solid fa-person-hiking"></i>
-                  <p>{preferences.activity}</p>
+                  <p>{preferences.activity || "Not specified"}</p>
                 </div>
               </OverlayTrigger>
             </Col>
           </Row>
+
           <Row>
             <Col md={4}>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="budget-tooltip">Represents the budget for travel.</Tooltip>}
-              >
+              <OverlayTrigger placement="top" overlay={<Tooltip>Budget preference</Tooltip>}>
                 <div className={styles.PreferenceItem}>
                   <i className="fa-solid fa-money-check-dollar"></i>
-                  <p>{preferences.budget}</p>
+                  <p>{preferences.budget || "Not specified"}</p>
                 </div>
               </OverlayTrigger>
             </Col>
             <Col md={4}>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="travel-style-tooltip">Represents the preferred travel style.</Tooltip>}
-              >
+              <OverlayTrigger placement="top" overlay={<Tooltip>Travel style</Tooltip>}>
                 <div className={styles.PreferenceItem}>
                   <i className="fa-solid fa-route"></i>
-                  <p>{preferences.travel_style}</p>
+                  <p>{preferences.travel_style || "Not specified"}</p>
                 </div>
               </OverlayTrigger>
             </Col>
             <Col md={4}>
-              <OverlayTrigger
-                placement="top"
-                overlay={<Tooltip id="duration-tooltip">Represents the preferred duration of travel.</Tooltip>}
-              >
+              <OverlayTrigger placement="top" overlay={<Tooltip>Preferred trip duration</Tooltip>}>
                 <div className={styles.PreferenceItem}>
                   <i className="fa-solid fa-calendar-days"></i>
-                  <p>{preferences.duration}</p>
+                  <p>{preferences.duration || "Not specified"}</p>
                 </div>
               </OverlayTrigger>
             </Col>
           </Row>
         </div>
       ) : (
-        <AddTravelPreference />
+        <AddTravelPreferences />
       )}
     </div>
   );
