@@ -47,6 +47,7 @@ function App() {
       <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
       <Route path="/profiles/:id/edit" render= {()=> <EditProfile />} />
       <Route path="/profiles/:id" render= {()=> <Profile />} />
+      <Route path="/trip/:id/edit" render={() => <EditTrip />}/>
       <Route path="/trip/create" render={() => <AddTrip />}/>
       <Route path="/trip/" render= {() => <Trip />} />
       <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>

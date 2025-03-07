@@ -4,10 +4,15 @@ import axios from "axios";
 import { Link } from "react-router-dom";
 import { Card, Container, Row, Col } from "react-bootstrap";
 import styles from '../../styles/Trip.module.css'
+import { axiosRes } from "../../api/axiosDefaults";
+import { useHistory } from "react-router-dom/cjs/react-router-dom";
+import {MoreDropDown} from '../../components/MoreDropdown'
+
 
 export default function Trip() {
   const currentUser = useCurrentUser();
   const [trip, setTrip] = useState(null);
+  const history = useHistory()
 
   useEffect(() => {
     if (currentUser) {
@@ -29,6 +34,19 @@ export default function Trip() {
     }
   }, [currentUser]);
 
+  const handleEdit = () => {
+    history.push(`/trip/${trip.id}/edit`);
+  };
+
+  const handleDelete = async () => {
+    try {
+      await axiosRes.delete(`/trip/${trip.id}/`);
+      history.goBack();
+    } catch (err) {
+      console.log(err);
+    }
+  };
+
   return (
     <Container className="mt-4">
       <h2 className="text-center mb-4">Upcoming Trips</h2>
@@ -39,6 +57,9 @@ export default function Trip() {
       </div>
       {trip && trip.results && trip.results.length > 0 ? (
         <Row className="g-4">
+          < MoreDropDown 
+          handleEdit={handleEdit}
+          handleDelete={handleDelete}/>
           {trip.results.map((t, index) => (
             <Col md={6} lg={4} key={index}>
               <Card
