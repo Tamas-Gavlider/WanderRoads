@@ -13,7 +13,12 @@ class TriptList(generics.ListCreateAPIView):
     permission_classes = [
         permissions.IsAuthenticatedOrReadOnly
     ]
-    queryset = Trip.objects.all()
+
+    def get_queryset(self):
+        """
+        This view returns a list of all trips for the currently logged-in user.
+        """
+        return Trip.objects.filter(owner=self.request.user)
                         
 class TripDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
