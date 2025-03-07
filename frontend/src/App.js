@@ -21,6 +21,7 @@ import EditProfile from './pages/profile/EditProfile';
 import TravelRecommendation from './pages/travel_recommendation/TravelRecommendation';
 import TravelBuddies from './pages/travel_buddies/TravelBuddies';
 import Trip from './pages/trip/Trip';
+import TripEditForm from './pages/trip/TripEditForm';
 import AddTrip from './pages/trip/AddTrip';
 import UsernameForm from './pages/profile/UsernameForm'
 import UserPasswordForm from './pages/profile/UserPasswordForm'
@@ -47,7 +48,7 @@ function App() {
       <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
       <Route path="/profiles/:id/edit" render= {()=> <EditProfile />} />
       <Route path="/profiles/:id" render= {()=> <Profile />} />
-      <Route path="/trip/:id/edit" render={() => <EditTrip />}/>
+      <Route path="/trip/:id/edit" render={() => <TripEditForm />}/> 
       <Route path="/trip/create" render={() => <AddTrip />}/>
       <Route path="/trip/" render= {() => <Trip />} />
       <Route path='/travel-preference/:id/edit' render= {()=> <TravelPreferenceEditForm />}/>

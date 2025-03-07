@@ -6,7 +6,7 @@ import { Card, Container, Row, Col } from "react-bootstrap";
 import styles from '../../styles/Trip.module.css'
 import { axiosRes } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom/cjs/react-router-dom";
-import {MoreDropDown} from '../../components/MoreDropdown'
+
 
 
 export default function Trip() {
@@ -34,18 +34,23 @@ export default function Trip() {
     }
   }, [currentUser]);
 
-  const handleEdit = () => {
-    history.push(`/trip/${trip.id}/edit`);
+  const handleEdit = (tripId) => {
+    history.push(`/trip/${tripId}/edit`);
   };
-
-  const handleDelete = async () => {
+  
+  const handleDelete = async (tripId) => {
     try {
-      await axiosRes.delete(`/trip/${trip.id}/`);
-      history.goBack();
+      await axiosRes.delete(`/trip/${tripId}/`);
+      setTrip((prevTrip) => ({
+        ...prevTrip,
+        results: prevTrip.results.filter((t) => t.id !== tripId),
+      }));
+      
     } catch (err) {
       console.log(err);
     }
   };
+
 
   return (
     <Container className="mt-4">
@@ -57,9 +62,7 @@ export default function Trip() {
       </div>
       {trip && trip.results && trip.results.length > 0 ? (
         <Row className="g-4">
-          < MoreDropDown 
-          handleEdit={handleEdit}
-          handleDelete={handleDelete}/>
+       
           {trip.results.map((t, index) => (
             <Col md={6} lg={4} key={index}>
               <Card
