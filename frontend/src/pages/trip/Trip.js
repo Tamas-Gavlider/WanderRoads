@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import axios from "axios";
-import { Link } from "react-router-dom/cjs/react-router-dom";
-import { Card,Container, Row, Col } from "react-bootstrap";
+import { Link } from "react-router-dom";
+import { Card, Container, Row, Col } from "react-bootstrap";
 import styles from '../../styles/Trip.module.css'
 
 export default function Trip() {
@@ -15,7 +15,13 @@ export default function Trip() {
         .get("/trip/")
         .then((response) => {
           console.log("Trip: ", response.data);
-          setTrip(response.data);
+          
+          // Sort trips by start_date (ascending order)
+          const sortedTrips = response.data.results.sort((a, b) => {
+            return new Date(a.start_date) - new Date(b.start_date); // Sorting based on start date
+          });
+          
+          setTrip({ ...response.data, results: sortedTrips }); // Set sorted trips in state
         })
         .catch((error) => {
           console.error("Error fetching travel preferences:", error);
@@ -28,7 +34,7 @@ export default function Trip() {
       <h2 className="text-center mb-4">Upcoming Trips</h2>
       <div className="d-flex justify-content-start mb-3">
         <Link to="/trip/create">
-        <i class="fa-solid fa-plus"></i>
+          <i className="fa-solid fa-plus"></i>
         </Link>
       </div>
       {trip && trip.results && trip.results.length > 0 ? (
