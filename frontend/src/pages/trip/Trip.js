@@ -41,7 +41,7 @@ export default function Trip() {
 
   const handleDelete = async (tripId) => {
     try {
-      await axiosRes.delete(`/trip/${tripId}/`); 
+      await axiosRes.delete(`/trip/${tripId}`); 
       setTrip((prevTrip) => ({
         ...prevTrip,
         results: prevTrip.results.filter((t) => t.id !== tripId), 

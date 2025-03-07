@@ -45,14 +45,25 @@ export default function TripEditForm() {
   }, [id, history]);
 
   const handleChange = (event) => {
-    setTripData({
-      ...tripData,
-      [event.target.name]: event.target.value,
-    });
+    const { name, value } = event.target;
+    const updatedTripData = { ...tripData, [name]: value };
+    if (name === "end_date" && updatedTripData.end_date < updatedTripData.start_date) {
+      setErrors({ ...errors, end_date: "End date cannot be earlier than start date." });
+    } else {
+      setErrors({ ...errors, end_date: "" }); 
+    }
+
+    setTripData(updatedTripData);
   };
 
+  
   const handleSubmit = async (event) => {
     event.preventDefault();
+    if (new Date(tripData.end_date) < new Date(tripData.start_date)) {
+      setErrors({ ...errors, end_date: "End date cannot be earlier than start date." });
+      return; 
+    }
+
     try {
       await axiosReq.put(`/trip/${id}`, tripData);
       history.goBack();
