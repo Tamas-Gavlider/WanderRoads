@@ -17,8 +17,10 @@ class CountryListView(APIView):
     API endpoint that returns all available countries
     """
     def get(self, request):
-        country_list = [{"code": code, "name": name} for code, name in countries]
+        country_list = [{"code": code, "name": name} for code,
+                        name in countries]
         return Response(country_list)
+
 
 class PostList(generics.ListCreateAPIView):
     """
@@ -35,11 +37,11 @@ class PostList(generics.ListCreateAPIView):
         filters.SearchFilter,
         DjangoFilterBackend
     ]
-    
+
     filterset_fields = [
         'owner__profile'
     ]
-    
+
     search_fields = [
         'owner__username',
         'title',
@@ -49,11 +51,10 @@ class PostList(generics.ListCreateAPIView):
     ordering_fields = [
         'comments_count',
     ]
-    
 
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
-                        
+
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
@@ -65,5 +66,6 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     def get(self, request, *args, **kwargs):
         print("User making request:", request.user)
         if not request.user.is_authenticated:
-            return JsonResponse({"error": "Authentication required"}, status=403)
+            return JsonResponse({"error": "Authentication required"},
+                                status=403)
         return super().get(request, *args, **kwargs)
