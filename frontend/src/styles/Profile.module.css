@@ -18,3 +18,10 @@ i:hover {
 .Link {
   text-decoration: none;
 }
+
+.Status {
+  font-family: "Kranky", serif;
+  font-weight: 400;
+  font-style: normal;
+  font-size: larger;
+}

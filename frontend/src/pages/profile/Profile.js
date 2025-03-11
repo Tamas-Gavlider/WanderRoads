@@ -9,8 +9,6 @@ import styles from "../../styles/Profile.module.css";
 import ThemeSong from "../../components/ThemeSong";
 import TravelPreferences from "../travel_preference/TravelPreferences";
 import Asset from "../../components/Asset";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
-import BtnStyles from "../../styles/Button.module.css";
 import TravelRecommendation from "../travel_recommendation/TravelRecommendation";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
 
@@ -48,7 +46,7 @@ const Profile = () => {
               thumbnail
             />
              <ThemeSong theme_song={profile.theme_song} />
-            <p>{profile.status || "No status set"}</p>
+            <p className={styles.Status}>{profile.status || "No status set"}</p>
             <p>
               <strong>Username:</strong> {profile.owner}
             </p>
