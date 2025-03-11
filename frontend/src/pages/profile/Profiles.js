@@ -3,7 +3,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Link } from "react-router-dom";
 import { Row, Col, Card } from "react-bootstrap";
 import ThemeSong from "../../components/ThemeSong";
-import styles from "../../styles/TravelBuddies.module.css";
+import styles from "../../styles/Profiles.module.css";
 
 const UserList = () => {
   const [profiles, setProfiles] = useState([]);
