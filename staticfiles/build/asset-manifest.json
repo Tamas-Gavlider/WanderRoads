@@ -1,21 +1,28 @@
 {
   "files": {
-    "main.css": "/static/css/main.c930db22.chunk.css",
-    "main.js": "/static/js/main.f8893a89.chunk.js",
-    "main.js.map": "/static/js/main.f8893a89.chunk.js.map",
-    "runtime~main.js": "/static/js/runtime~main.ea749b83.js",
-    "runtime~main.js.map": "/static/js/runtime~main.ea749b83.js.map",
-    "static/js/2.6ce3a995.chunk.js": "/static/js/2.6ce3a995.chunk.js",
-    "static/js/2.6ce3a995.chunk.js.map": "/static/js/2.6ce3a995.chunk.js.map",
-    "static/js/3.0b30db6d.chunk.js": "/static/js/3.0b30db6d.chunk.js",
-    "static/js/3.0b30db6d.chunk.js.map": "/static/js/3.0b30db6d.chunk.js.map",
+    "main.css": "/static/css/main.17c42cdb.chunk.css",
+    "main.js": "/static/js/main.71f2e2da.chunk.js",
+    "main.js.map": "/static/js/main.71f2e2da.chunk.js.map",
+    "runtime-main.js": "/static/js/runtime-main.984f2de9.js",
+    "runtime-main.js.map": "/static/js/runtime-main.984f2de9.js.map",
+    "static/js/2.28176f25.chunk.js": "/static/js/2.28176f25.chunk.js",
+    "static/js/2.28176f25.chunk.js.map": "/static/js/2.28176f25.chunk.js.map",
+    "static/js/3.58e34116.chunk.js": "/static/js/3.58e34116.chunk.js",
+    "static/js/3.58e34116.chunk.js.map": "/static/js/3.58e34116.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.17c7cfcb745f7bd39fa655679e7cb170.js": "/precache-manifest.17c7cfcb745f7bd39fa655679e7cb170.js",
+    "precache-manifest.7ec56ad0b38663ab4beed92a68e8ac69.js": "/precache-manifest.7ec56ad0b38663ab4beed92a68e8ac69.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/main.c930db22.chunk.css.map": "/static/css/main.c930db22.chunk.css.map",
+    "static/css/main.17c42cdb.chunk.css.map": "/static/css/main.17c42cdb.chunk.css.map",
+    "static/js/2.28176f25.chunk.js.LICENSE.txt": "/static/js/2.28176f25.chunk.js.LICENSE.txt",
     "static/media/App.module.css": "/static/media/landing_page_mobile.ba3b750f.jpg",
     "static/media/logo.png": "/static/media/logo.d536d1c9.png",
     "static/media/reg_img.jpg": "/static/media/reg_img.75b23e4b.jpg",
     "static/media/sign_in_img.jpg": "/static/media/sign_in_img.ed50e9ba.jpg"
-  }
+  },
+  "entrypoints": [
+    "static/js/runtime-main.984f2de9.js",
+    "static/js/2.28176f25.chunk.js",
+    "static/css/main.17c42cdb.chunk.css",
+    "static/js/main.71f2e2da.chunk.js"
+  ]
 }
