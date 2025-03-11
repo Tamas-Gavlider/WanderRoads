@@ -32,7 +32,6 @@ urlpatterns = [
     path('api/', include('profiles.urls')),
     path('api/', include('post.urls')),
     path('api/',include('comments.urls')),
-    path('api/',include('travel_buddy.urls')),
     path('api/',include('trip.urls')),
     path('api/',include('travel_preference.urls')),
     path('api/', include('travel_recommendation.urls'))

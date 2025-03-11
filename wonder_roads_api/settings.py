@@ -91,7 +91,6 @@ INSTALLED_APPS = [
     'profiles',
     'post',
     'comments',
-    'travel_buddy',
     'trip',
     'travel_preference',
     'travel_recommendation',

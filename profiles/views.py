@@ -18,7 +18,6 @@ class ProfileList(generics.ListAPIView):
     """
     queryset = Profile.objects.annotate(
         posts_count= Count('owner__post', distinct= True),
-        travel_buddy_count=Count('owner__travel_buddies_received', distinct=True)
     ).order_by('-created_at')
     serializer_class = ProfileSerializer
     filter_backends = [
@@ -27,8 +26,6 @@ class ProfileList(generics.ListAPIView):
     ]
     filterset_fields = [
         'owner',
-        'owner__travel_buddies_initiated__owner__profile',
-        'owner__travel_buddies_received__owner__profile',
     ]
     ordering_fields = [
         'posts_count',
