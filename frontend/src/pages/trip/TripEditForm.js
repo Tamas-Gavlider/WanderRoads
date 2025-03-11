@@ -4,6 +4,7 @@ import { useHistory, useParams } from "react-router";
 import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
 import Button from "react-bootstrap/Button";
+import { Col } from "react-bootstrap";
 import btnStyles from "../../styles/Button.module.css";
 
 export default function TripEditForm() {
@@ -83,6 +84,7 @@ export default function TripEditForm() {
           value={tripData.destination}
           onChange={handleChange}
           required
+          className="text-center"
         >
           <option value="">Select a country</option>
           {countries.map((c) => (
@@ -99,6 +101,7 @@ export default function TripEditForm() {
           name="start_date"
           value={tripData.start_date}
           onChange={handleChange}
+          className="text-center"
         />
       </Form.Group>
       <Form.Group>
@@ -108,6 +111,7 @@ export default function TripEditForm() {
           name="end_date"
           value={tripData.end_date}
           onChange={handleChange}
+          className="text-center"
         />
       </Form.Group>
       <Form.Group>
@@ -117,14 +121,19 @@ export default function TripEditForm() {
           name="notes"
           value={tripData.notes}
           onChange={handleChange}
+          className="text-center"
         />
       </Form.Group>
-      <Button className={btnStyles.Button} onClick={() => history.goBack()}>
+      <Col className="py-2 mx-auto text-center" >
+      <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} onClick={() => history.goBack()}>
         Cancel
       </Button>
-      <Button className={btnStyles.Button} type="submit">
+      </Col>
+      <Col className="py-2 mx-auto text-center" >
+      <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} type="submit">
         Save
       </Button>
+      </Col>
     </Form>
   );
 }
