@@ -58,13 +58,14 @@ const UserPasswordForm = () => {
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label>New password</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 placeholder="new password"
                 type="password"
                 value={new_password1}
                 onChange={handleChange}
                 name="new_password1"
+                className="text-center"
               />
             </Form.Group>
             {errors?.new_password1?.map((message, idx) => (
@@ -73,13 +74,14 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Form.Group>
-              <Form.Label>Confirm password</Form.Label>
+              <Form.Label></Form.Label>
               <Form.Control
                 placeholder="confirm new password"
                 type="password"
                 value={new_password2}
                 onChange={handleChange}
                 name="new_password2"
+                className="text-center"
               />
             </Form.Group>
             {errors?.new_password2?.map((message, idx) => (
@@ -87,18 +89,22 @@ const UserPasswordForm = () => {
                 {message}
               </Alert>
             ))}
+            <Col className="py-2 mx-auto text-center" >
             <Button
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
+            </Col>
+            <Col className="py-2 mx-auto text-center" >
             <Button
               type="submit"
-              className={`${btnStyles.Button} ${btnStyles.Blue}`}
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
             >
               save
             </Button>
+            </Col>
           </Form>
         </Container>
       </Col>
