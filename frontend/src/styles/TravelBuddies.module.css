@@ -1,0 +1,8 @@
+.Users {
+    padding-top: 15px;
+    padding-bottom: 10px;
+}
+
+.UserCard {
+    box-shadow: 4px 8px 4px -2px #ccc,  0px 0px 6px -2px #ccc;
+}

@@ -3,7 +3,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { Link } from "react-router-dom";
 import { Row, Col, Card } from "react-bootstrap";
 import ThemeSong from "../../components/ThemeSong";
-import styles from "../../styles/TravelBuddy.module.css";
+import styles from "../../styles/TravelBuddies.module.css";
 
 const UserList = () => {
   const [profiles, setProfiles] = useState([]);
@@ -26,7 +26,7 @@ const UserList = () => {
       <Row className="g-4">
         {profiles.map((user) => (
           <Col xs={12} sm={6} md={4} lg={3} key={user.id}>
-            <Card className="h-100">
+            <Card className={`h-100 ${styles.UserCard}`}>
               <Card.Img variant="top" src={user.image} />
               <Card.Body>
                 <Card.Title>
