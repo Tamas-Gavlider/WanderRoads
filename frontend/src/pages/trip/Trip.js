@@ -18,15 +18,27 @@ export default function Trip() {
     if (currentUser) {
       axios
         .get("/trip/")
-        .then((response) => {
+        .then(async (response) => {
           console.log("Trip: ", response.data);
-
-          // Sort trips by start_date (ascending order)
-          const sortedTrips = response.data.results.sort((a, b) => {
-            return new Date(a.start_date) - new Date(b.start_date); // Sorting based on start date
-          });
-
-          setTrip({ ...response.data, results: sortedTrips }); // Set sorted trips in state
+  
+          // Filter out expired trips
+          const validTrips = response.data.results.filter((t) => t.days_until_trip >= 0);
+  
+          // Sort trips by start_date 
+          const sortedTrips = validTrips.sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
+  
+          setTrip({ ...response.data, results: sortedTrips }); 
+  
+          // Automatically delete expired trips from the backend
+          const expiredTrips = response.data.results.filter((t) => t.days_until_trip < 0);
+          for (let trip of expiredTrips) {
+            try {
+              await axiosRes.delete(`/trip/${trip.id}`);
+              console.log(`Deleted expired trip: ${trip.destination}`);
+            } catch (err) {
+              console.error(`Error deleting expired trip ${trip.id}:`, err);
+            }
+          }
         })
         .catch((error) => {
           console.error("Error fetching trips:", error);
