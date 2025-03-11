@@ -55,7 +55,7 @@ export default function TravelPreferenceEditForm() {
     <Form onSubmit={handleSubmit} className="text-center">
       <Form.Group>
         <Form.Label>Preferred Continent</Form.Label>
-        <Form.Control as="select" name="preferred_continent" value={preferencesData.preferred_continent} onChange={handleChange}>
+        <Form.Control as="select" name="preferred_continent" className="text-center" value={preferencesData.preferred_continent} onChange={handleChange}>
           <option value="ANY">Any Continent</option>
           <option value="AF">Africa</option>
           <option value="NA">North America</option>
@@ -69,7 +69,7 @@ export default function TravelPreferenceEditForm() {
 
       <Form.Group>
         <Form.Label>Climate</Form.Label>
-        <Form.Control as="select" name="climate" value={preferencesData.climate} onChange={handleChange}>
+        <Form.Control as="select" name="climate" className="text-center" value={preferencesData.climate} onChange={handleChange}>
           <option value="ANY">Any</option>
           <option value="HOT">Hot</option>
           <option value="COLD">Cold</option>
@@ -80,7 +80,7 @@ export default function TravelPreferenceEditForm() {
 
       <Form.Group>
         <Form.Label>Activity</Form.Label>
-        <Form.Control as="select" name="activity" value={preferencesData.activity} onChange={handleChange}>
+        <Form.Control as="select" name="activity" className="text-center" value={preferencesData.activity} onChange={handleChange}>
           <option value="ANY">Any</option>
           <option value="CULTURE">Culture & History</option>
           <option value="NATURE">Nature & Wildlife</option>
@@ -93,7 +93,7 @@ export default function TravelPreferenceEditForm() {
 
       <Form.Group>
         <Form.Label>Budget</Form.Label>
-        <Form.Control as="select" name="budget" value={preferencesData.budget} onChange={handleChange}>
+        <Form.Control as="select" name="budget" className="text-center" value={preferencesData.budget} onChange={handleChange}>
           <option value="ANY">Any</option>
           <option value="LOW">Budget-Friendly</option>
           <option value="MEDIUM">Mid-Range</option>
@@ -103,7 +103,7 @@ export default function TravelPreferenceEditForm() {
 
       <Form.Group>
         <Form.Label>Travel Style</Form.Label>
-        <Form.Control as="select" name="travel_style" value={preferencesData.travel_style} onChange={handleChange}>
+        <Form.Control as="select" name="travel_style" className="text-center" value={preferencesData.travel_style} onChange={handleChange}>
           <option value="ANY">Any</option>
           <option value="SOLO">Solo Travel</option>
           <option value="FAMILY">Family</option>
@@ -115,7 +115,7 @@ export default function TravelPreferenceEditForm() {
       
       <Form.Group>
         <Form.Label>Duration</Form.Label>
-        <Form.Control as="select" name="duration" value={preferencesData.duration} onChange={handleChange}>
+        <Form.Control as="select" name="duration" className="text-center" value={preferencesData.duration} onChange={handleChange}>
           <option value="ANY">Any</option>
           <option value="WEEKEND">Weekend</option>
           <option value="ONE_WEEK">1 Week</option>
