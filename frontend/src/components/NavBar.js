@@ -48,7 +48,7 @@ const NavBar = () => {
         Posts
       </NavLink>
       <NavLink
-        to="/travel-buddies"
+        to="/travelers"
         className={styles.NavLink}
         activeClassName={styles.Active}
       >

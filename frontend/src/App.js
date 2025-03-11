@@ -15,11 +15,11 @@ import PostsPage from './pages/posts/PostsPage';
 import { useCurrentUser } from './contexts/CurrentUserContext';
 import PostEditForm from './pages/posts/PostEditForm';
 import Profile from './pages/profile/Profile';
+import Profiles from './pages/profile/Profiles';
 import TravelPreferenceEditForm from './pages/travel_preference/TravelPreferenceEditForm';
 import AddTravelPreference from './pages/travel_preference/AddTravelPreferences';
 import EditProfile from './pages/profile/EditProfile';
 import TravelRecommendation from './pages/travel_recommendation/TravelRecommendation';
-import TravelBuddies from './pages/travel_buddies/TravelBuddies';
 import Trip from './pages/trip/Trip';
 import TripEditForm from './pages/trip/TripEditForm';
 import AddTrip from './pages/trip/AddTrip';
@@ -61,7 +61,7 @@ function App() {
       message="No results found." 
       filter={`owner__travel_buddies_initiated__owner__profile=${profile_id}&`} />
     }/>
-      <Route exact path='/travel-buddies/' render={()=> <TravelBuddies />}/>
+      <Route exact path='/travelers/' render={()=> <Profiles />}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
       <Route render={()=> <p>Page not found!</p>}/>
       </Switch>
