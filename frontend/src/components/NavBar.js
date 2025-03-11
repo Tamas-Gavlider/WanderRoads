@@ -52,7 +52,7 @@ const NavBar = () => {
         className={styles.NavLink}
         activeClassName={styles.Active}
       >
-        Travel Buddies
+        Travelers
       </NavLink>
       <NavLink
       to="/trip/"
