@@ -124,10 +124,10 @@ export default function TravelPreferenceEditForm() {
         </Form.Control>
       </Form.Group>
 
-      <Button className={btnStyles.Button} onClick={() => history.goBack()}>
+      <Button className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`} onClick={() => history.goBack()}>
         Cancel
       </Button>
-      <Button className={btnStyles.Button} type="submit">
+      <Button className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`} type="submit">
         Save
       </Button>
     </Form>
