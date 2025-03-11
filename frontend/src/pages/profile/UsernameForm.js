@@ -64,6 +64,7 @@ const UsernameForm = () => {
                 type="text"
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
+                className="text-center"
               />
             </Form.Group>
             {errors?.username?.map((message, idx) => (
@@ -71,18 +72,22 @@ const UsernameForm = () => {
                 {message}
               </Alert>
             ))}
+            <Col className="py-2 mx-auto text-center" >
             <Button
-              className={btnStyles.Button}
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
               onClick={() => history.goBack()}
             >
               cancel
             </Button>
+            </Col>
+            <Col className="py-2 mx-auto text-center" >
             <Button
-              className={btnStyles.Button}
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
               type="submit"
             >
               save
             </Button>
+            </Col>
           </Form>
         </Container>
       </Col>
