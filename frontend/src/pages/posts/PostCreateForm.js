@@ -135,12 +135,11 @@ function PostCreateForm() {
           ))}
         </Form.Control>
       </Form.Group>
-
-      <Button className={btnStyles.Button} onClick={() => history.goBack()}>
-        cancel
-      </Button>
-      <Button className={btnStyles.Button} type="submit">
+      <Button className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`} type="submit">
         create
+      </Button>
+      <Button className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`} onClick={() => history.goBack()}>
+        cancel
       </Button>
     </div>
   );
