@@ -31,6 +31,12 @@
   background-color: #ff0000;
 }
 
+.Button:disabled {
+  background-color: #d3d3d3; 
+  color: #888; 
+  cursor: not-allowed; 
+}
+
 .Wide {
   padding: 10px 50px;
   width: 100%;
