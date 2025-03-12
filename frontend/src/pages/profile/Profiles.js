@@ -4,11 +4,11 @@ import { Link } from "react-router-dom";
 import { Row, Col, Card, Dropdown } from "react-bootstrap";
 import ThemeSong from "../../components/ThemeSong";
 import styles from "../../styles/Profiles.module.css";
-import btnStyles from '../../styles/Button.module.css'
+import btnStyles from "../../styles/Button.module.css";
 
 const UserList = () => {
   const [profiles, setProfiles] = useState([]);
-  const [sortBy, setSortBy] = useState('visited_countries_count');
+  const [sortBy, setSortBy] = useState("owner");
 
   useEffect(() => {
     const fetchProfiles = async () => {
@@ -27,14 +27,15 @@ const UserList = () => {
     <div className={styles.Users}>
       <Dropdown onSelect={(eventKey) => setSortBy(eventKey)}>
         <Dropdown.Toggle id="dropdown-basic" className={btnStyles.Button}>
-          Sort By: {sortBy === 'visited_countries_count' ? 'Visited Countries' : 'Posts Count'}
+          Sort By: {sortBy === "owner" ? "Username" : "Posts Count"}
         </Dropdown.Toggle>
 
         <Dropdown.Menu>
-          <Dropdown.Item eventKey="visited_countries_count">Visited Countries</Dropdown.Item>
+          <Dropdown.Item eventKey="owner">Username</Dropdown.Item>
           <Dropdown.Item eventKey="posts_count">Posts Count</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+
       <Row className="g-4">
         {profiles.map((user) => (
           <Col xs={12} sm={6} md={4} lg={3} key={user.id}>
@@ -47,6 +48,7 @@ const UserList = () => {
                 </Card.Title>
                 <Card.Text>
                   <p>Visited countries: {user.visited_countries.length}</p>
+                  <p>Total posts: {user.posts_count}</p>
                   {user.status}
                 </Card.Text>
               </Card.Body>
