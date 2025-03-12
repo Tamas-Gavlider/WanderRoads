@@ -1,17 +1,19 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Link } from "react-router-dom";
-import { Row, Col, Card } from "react-bootstrap";
+import { Row, Col, Card, Dropdown } from "react-bootstrap";
 import ThemeSong from "../../components/ThemeSong";
 import styles from "../../styles/Profiles.module.css";
+import btnStyles from '../../styles/Button.module.css'
 
 const UserList = () => {
   const [profiles, setProfiles] = useState([]);
+  const [sortBy, setSortBy] = useState('visited_countries_count');
 
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
-        const { data } = await axiosReq.get("/profiles/");
+        const { data } = await axiosReq.get(`/profiles/?ordering=${sortBy}`);
         setProfiles(data.results);
       } catch (err) {
         console.error("Error fetching profiles:", err);
@@ -19,10 +21,20 @@ const UserList = () => {
     };
 
     fetchProfiles();
-  }, []);
+  }, [sortBy]);
 
   return (
     <div className={styles.Users}>
+      <Dropdown onSelect={(eventKey) => setSortBy(eventKey)}>
+        <Dropdown.Toggle id="dropdown-basic" className={btnStyles.Button}>
+          Sort By: {sortBy === 'visited_countries_count' ? 'Visited Countries' : 'Posts Count'}
+        </Dropdown.Toggle>
+
+        <Dropdown.Menu>
+          <Dropdown.Item eventKey="visited_countries_count">Visited Countries</Dropdown.Item>
+          <Dropdown.Item eventKey="posts_count">Posts Count</Dropdown.Item>
+        </Dropdown.Menu>
+      </Dropdown>
       <Row className="g-4">
         {profiles.map((user) => (
           <Col xs={12} sm={6} md={4} lg={3} key={user.id}>

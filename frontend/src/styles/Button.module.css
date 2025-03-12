@@ -2,12 +2,12 @@
   font-size: 0.8rem;
   align-self: center;
   border-radius: 100px;
-  border-color: transparent;
+  border-color: transparent !important;
   padding: 4px 10px;
   margin-left: 2px;
   margin-right: 2px;
   min-width: 20px;
-  background-color: #00bae2;
+  background-color: #00bae2 !important;
   color: #281713;
   text-decoration: none;
 }
@@ -16,7 +16,7 @@
   opacity: 0.8;
   border-color: transparent;
   cursor: pointer;
-  background-color: #ff0000;
+  background-color: #ff0000 !important;
 }
 
 .Button:hover:active {
