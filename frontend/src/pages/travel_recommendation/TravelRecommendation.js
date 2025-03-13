@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { ListGroup } from "react-bootstrap";
 
 export default function TravelRecommendation() {
   const currentUser = useCurrentUser();
@@ -26,11 +27,11 @@ export default function TravelRecommendation() {
     <div>
         <h4>Places you may enjoy</h4>
         {recommendation && recommendation.results.length > 0 ? (
-            <ul>
+            <ListGroup horizontal='md'>
                 {recommendation.results[0].recommended_destination.map((destination, index) => (
-                    <li key={index}>{capitalize(destination)}</li>
+                    <ListGroup.Item key={index}>{capitalize(destination)}</ListGroup.Item>
                 ))}
-            </ul>
+            </ListGroup>
         ) : (
             <p>No recommendations available.</p>
         )}
