@@ -22,3 +22,7 @@
     font-size: large;
     color: #ff0000;
   }
+
+.SearchField {
+    width: 42%;
+}
