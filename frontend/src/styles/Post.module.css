@@ -23,3 +23,10 @@
     padding-left: 5px;
   }
   
+  .User {
+    color:#281713
+  }
+
+  .User:hover {
+    color: #ff0000;
+  }

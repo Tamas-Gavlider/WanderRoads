@@ -49,7 +49,7 @@ const Post = (props) => {
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`} className={styles.Profile}>
             <Avatar src={profile_image} height={55} />
-            {owner}
+            <span className={styles.User}>{owner}</span>
           </Link>
           <div className="d-flex align-items-center">
             {is_owner && postPage && (
