@@ -49,24 +49,35 @@ export default function ProfileImageChangeForm() {
         }
     };
 
-      const handleSubmit = async (event) => {
-          event.preventDefault();
-          const formData = new FormData();
-      
-          if (imageInput?.current?.files[0]) {
-            formData.append("image", imageInput.current.files[0]);
-          }
-      
-          try {
-            await axiosReq.put(`/profiles/${id}`, formData);
-            history.push(`/profiles/${id}`);
-          } catch (err) {
-            console.log(err);
-            if (err.response?.status !== 401) {
-              setErrors(err.response?.data);
-            }
-          }
-        };
+    const handleSubmit = async (event) => {
+      event.preventDefault();
+      const formData = new FormData();
+    
+      if (imageInput?.current?.files[0]) {
+        formData.append("image", imageInput.current.files[0]);
+      }
+    
+      try {
+        // First, fetch the existing profile data
+        const { data } = await axiosReq.get(`/profiles/${id}/`);
+    
+        // Ensure that we include existing `visited_countries`
+        formData.append("visited_countries", data.visited_countries || []);
+    
+        await axiosReq.put(`/profiles/${id}/`, formData, {
+          headers: {
+            "Content-Type": "multipart/form-data",
+          },
+        });
+    
+        history.push(`/profiles/${id}`);
+      } catch (err) {
+        console.log("Error Response:", err.response);
+        if (err.response?.status !== 401) {
+          setErrors(err.response?.data);
+        }
+      }
+    };
         console.log("Image URL:", image);
   return (
     <div>
