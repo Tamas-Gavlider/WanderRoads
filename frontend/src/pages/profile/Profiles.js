@@ -42,14 +42,16 @@ const UserList = () => {
             <Card className={`h-100 ${styles.UserCard}`}>
               <Card.Img variant="top" src={user.image} />
               <Card.Body>
-                <Card.Title>
-                  <Link to={`/profiles/${user.id}`}>{user.owner}</Link>
-                  <ThemeSong theme_song={user.theme_song} />
+                <Card.Title className="d-flex align-items-center gap-2">
+                  <Link to={`/profiles/${user.id}`} className={styles.User}>
+                    {user.owner}'s vibe: 
+                  </Link>
+                    <ThemeSong theme_song={user.theme_song} />
                 </Card.Title>
                 <Card.Text>
+                  <p className={styles.Status}>{user.status}</p>
                   <p>Visited countries: {user.visited_countries.length}</p>
                   <p>Total posts: {user.posts_count}</p>
-                  {user.status}
                 </Card.Text>
               </Card.Body>
             </Card>
