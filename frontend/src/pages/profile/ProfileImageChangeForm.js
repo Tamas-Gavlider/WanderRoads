@@ -119,7 +119,6 @@ export default function ProfileImageChangeForm() {
             
           </Container>
         </Col>
-        {buttons}
       </Row>
     </Form>
   );
