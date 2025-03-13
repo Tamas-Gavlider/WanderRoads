@@ -1,5 +1,6 @@
 .Button {
   font-size: 0.8rem;
+  width: 100%;
   align-self: center;
   border-radius: 100px;
   border-color: transparent !important;
@@ -8,7 +9,7 @@
   margin-right: 2px;
   min-width: 20px;
   background-color: #00bae2 !important;
-  color: #281713;
+  color: #281713 !important; 
   text-decoration: none;
 }
 

@@ -8,7 +8,7 @@ class ProfileSerializer(serializers.ModelSerializer):
     image = serializers.ImageField(required=False)
     theme_song = serializers.FileField(required=False)
     is_owner = serializers.SerializerMethodField()
-    visited_countries = serializers.ListField(child=serializers.CharField())
+    visited_countries = serializers.ListField(child=serializers.CharField(), required=False)
     posts_count = serializers.ReadOnlyField()
     
     def get_is_owner(self, obj):
