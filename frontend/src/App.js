@@ -25,6 +25,7 @@ import TripEditForm from './pages/trip/TripEditForm';
 import AddTrip from './pages/trip/AddTrip';
 import UsernameForm from './pages/profile/UsernameForm'
 import UserPasswordForm from './pages/profile/UserPasswordForm'
+import ProfileImageChangeForm from './pages/profile/ProfileImageChangeForm';
 
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
+      <Route path="/profiles/:id/change-image" render= {() => <ProfileImageChangeForm />} />
       <Route exact path="/profiles/:id/edit/username" render={()=> <UsernameForm />}/>
       <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
       <Route path="/profiles/:id/edit" render= {()=> <EditProfile />} />

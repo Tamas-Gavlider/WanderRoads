@@ -57,6 +57,12 @@ export const ProfileEditDropdown = ({ id }) => {
           <i className="fas fa-edit" /> <span>edit profile</span>
         </Dropdown.Item>
         <Dropdown.Item
+          onClick={() => history.push(`/profiles/${id}/change-image`)}
+          aria-label="edit-profile"
+        >
+          <i class="fa-solid fa-camera" /> <span>change image</span>
+        </Dropdown.Item>
+        <Dropdown.Item
           onClick={() => history.push(`/profiles/${id}/edit/username`)}
           aria-label="edit-username"
         >
