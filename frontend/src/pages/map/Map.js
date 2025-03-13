@@ -29,18 +29,18 @@ export default function Map() {
     };
     fetchPostCounts();
   }, []);
-  console.log(countryPosts)
+
 
   return (
     <div>
       <ComposableMap
         projectionConfig={{
           center: [0, 3],
-          scale: 200,
+          scale: 300,
         }}
         className={styles.Map}
       >
-        <ZoomableGroup>
+        <ZoomableGroup zoom={1} maxZoom={3}>
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
@@ -53,7 +53,7 @@ export default function Map() {
                     placement="top"
                     overlay={
                       <Tooltip id={`tooltip-${geo.rsmKey}`}>
-                        {countryName} - {postCount} posts
+                        {countryName} - {postCount} {postCount < 2 ? 'post' : 'posts'}
                       </Tooltip>
                     }
                   >

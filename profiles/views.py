@@ -23,6 +23,7 @@ class ProfileList(generics.ListAPIView):
     serializer_class = ProfileSerializer
     filter_backends = [
         filters.OrderingFilter,
+        filters.SearchFilter,
         DjangoFilterBackend,
     ]
     filterset_fields = [
@@ -31,6 +32,9 @@ class ProfileList(generics.ListAPIView):
     ordering_fields = [
         '-posts_count',
         'owner'
+    ]
+    search_fields = [
+        'owner__username'
     ]
 
     

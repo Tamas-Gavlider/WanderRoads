@@ -55,6 +55,23 @@ class PostList(generics.ListCreateAPIView):
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
+    def get(self, request, *args, **kwargs):
+        country_post_counts = (
+            Post.objects.values('country')
+            .annotate(post_count=Count('id'))
+            .order_by('-post_count')
+        )
+
+        country_data = {}
+        for entry in country_post_counts:
+            country_name = countries.name(entry['country']) 
+            country_data[country_name] = entry['post_count']
+
+       
+        response = super().get(request, *args, **kwargs)
+        response.data["country_post_counts"] = country_data
+        return response
+
 
 class PostDetail(generics.RetrieveUpdateDestroyAPIView):
     serializer_class = PostSerializer
