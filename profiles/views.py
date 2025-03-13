@@ -5,6 +5,7 @@ from rest_framework import status, filters, generics
 from django_filters.rest_framework import DjangoFilterBackend
 from rest_framework.views import APIView
 from rest_framework.response import Response
+from rest_framework.exceptions import ValidationError
 from .models import Profile
 from .serializers import ProfileSerializer
 from wonder_roads_api.permissions import IsOwnerOrReadOnly
@@ -17,9 +18,8 @@ class ProfileList(generics.ListAPIView):
     No create view as profile creation is handled by django signals.
     """
     queryset = Profile.objects.annotate(
-        posts_count= Count('owner__post', distinct= True),
-        visited_countries_count=Count('visited_countries', distinct=True)
-    ).order_by('-created_at')
+        posts_count= Count('owner__post', distinct= True)
+    ).order_by('-posts_count', 'owner')
     serializer_class = ProfileSerializer
     filter_backends = [
         filters.OrderingFilter,
@@ -29,8 +29,8 @@ class ProfileList(generics.ListAPIView):
         'owner',
     ]
     ordering_fields = [
-        'posts_count',
-        'visited_countries_count'
+        '-posts_count',
+        'owner'
     ]
 
     
