@@ -11,7 +11,7 @@ import TravelPreferences from "../travel_preference/TravelPreferences";
 import Asset from "../../components/Asset";
 import TravelRecommendation from "../travel_recommendation/TravelRecommendation";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
-import { Link } from "react-router-dom/cjs/react-router-dom.min";
+import UserPosts from '../posts/UserPosts'
 
 const Profile = () => {
   const { id } = useParams();
@@ -107,7 +107,9 @@ const Profile = () => {
   );
 
   return (
-    <div className={styles.Profile}>{isOwner ? profileOwner : visitor}</div>
+    <div className={styles.Profile}>{isOwner ? profileOwner : visitor}
+     <UserPosts />
+     </div>
   );
 };
 
