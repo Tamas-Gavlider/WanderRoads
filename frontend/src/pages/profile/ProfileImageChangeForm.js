@@ -70,12 +70,12 @@ export default function ProfileImageChangeForm() {
   const buttons = (
     <>
       <Col className="py-2 mx-auto text-center" xs={12} sm={12} md={12} lg={12}>
-        <Button className={`${btnStyles.Button} btn`} type="submit">
+        <Button className={`${btnStyles.Button} ${btnStyles.Wide} btn`} type="submit">
           Save
         </Button>
       </Col>
       <Col className="py-2 mx-auto text-center" xs={12} sm={12} md={12} lg={12}>
-        <Button className={`${btnStyles.Button} btn`} onClick={() => history.goBack()}>
+        <Button className={`${btnStyles.Button} ${btnStyles.Wide} btn`} onClick={() => history.goBack()}>
           Cancel
         </Button>
       </Col>
@@ -95,7 +95,7 @@ export default function ProfileImageChangeForm() {
               </figure>
               <div>
                 <Form.Label
-                  className={`${btnStyles.Button} btn`}
+                  className={`${btnStyles.Button} ${btnStyles.Wide} btn`}
                   htmlFor="image-upload"
                   xs={12} sm={6} md={6} lg={8}
                 >
