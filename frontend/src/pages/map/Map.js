@@ -52,7 +52,7 @@ export default function Map() {
         }}
         className={styles.Map}
       >
-        <ZoomableGroup zoom={zoomLevel} minZoom={1} maxZoom={5} enableTouchZoom={false} enablePan={true} >
+        <ZoomableGroup zoom={zoomLevel} minZoom={1} maxZoom={3} enableTouchZoom={false} enablePan={true} >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
