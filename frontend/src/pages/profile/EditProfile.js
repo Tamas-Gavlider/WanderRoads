@@ -1,12 +1,13 @@
 import React, { useState, useEffect } from "react";
 import axios from "axios";
-import Form from "react-bootstrap/Form";
-import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
+import Button from "react-bootstrap/Button";
 import { useParams, useHistory } from "react-router-dom";
 import btnStyles from "../../styles/Button.module.css";
-import styles from "../../styles/EditProfile.module.css";
+import EditStatus from "./EditStatus";
+import AddCountry from "./AddCountry";
+import ChangeThemeSong from "./ChangeThemeSong";
 
 export default function EditProfile() {
   const { id } = useParams();
@@ -110,85 +111,23 @@ export default function EditProfile() {
   return (
     <Container className="d-flex flex-column justify-content-center">
       <h2>Edit Profile</h2>
-
       {errors && <Alert variant="danger">{errors}</Alert>}
+      
+      <EditStatus status={profile.status} handleChange={handleChange} />
+      <AddCountry
+        countries={countries}
+        selectedCountry={selectedCountry}
+        setSelectedCountry={setSelectedCountry}
+        visitedCountries={profile.visited_countries}
+        handleAddCountry={handleAddCountry}
+        handleRemoveCountry={handleRemoveCountry}
+      />
+      <ChangeThemeSong
+        themeSong={profile.theme_song}
+        handleThemeSongUpload={handleThemeSongUpload}
+      />
 
-      <Form.Group controlId="status" className={styles.Status}>
-        <Form.Label>Status</Form.Label>
-        <Form.Control
-          type="text"
-          name="status"
-          value={profile.status}
-          onChange={handleChange}
-          placeholder="Update your status..."
-        />
-      </Form.Group>
-
-      <Form.Group controlId="countrySelect" className={styles.Border}>
-        <Form.Label>Select a Country</Form.Label>
-        <Form.Control
-          as="select"
-          value={selectedCountry}
-          onChange={(e) => setSelectedCountry(e.target.value)}
-        >
-          <option value="">Choose a country</option>
-          {countries.map((c) => (
-            <option key={c.code} value={c.name}>
-              {c.name}
-            </option>
-          ))}
-        </Form.Control>
-      </Form.Group>
-
-      <Button
-        variant="primary"
-        onClick={handleAddCountry}
-        className={`mt-2 ${btnStyles.Button}`}
-      >
-        Add Country
-      </Button>
-
-      <h4 className="mt-4">Visited Countries:</h4>
-      <div className="row">
-        {profile.visited_countries.map((country, index) => (
-          <div className="col-xs-12 col-sm-6 col-md-4 col-lg-3" key={index}>
-            <div className={styles.Country}>
-            <Button
-                variant="danger"
-                size="sm"
-                onClick={() => handleRemoveCountry(country)}
-                className={styles.Delete}
-              >
-                Remove
-              </Button>
-              <span> </span>
-              {country}{" "}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      <Form.Group controlId="themeSong" className={styles.Border}>
-        <span>Change theme song</span>
-        <Form.Label className={styles.Audio}><i class="fa-solid fa-music"></i></Form.Label>
-        <Form.File accept="audio/*" onChange={handleThemeSongUpload}/>
-        {profile.theme_song && (
-          <p>
-            Current song:{" "}
-            {profile.theme_song instanceof File
-              ? profile.theme_song.name
-              : profile.theme_song.slice(
-                  profile.theme_song.lastIndexOf("/") + 1
-                )}
-          </p>
-        )}
-      </Form.Group>
-
-      <Button
-        variant="success"
-        onClick={handleSave}
-        className={`mt-3 ${btnStyles.Button}`}
-      >
+      <Button variant="success" onClick={handleSave} className={`mt-3 ${btnStyles.Button}`}>
         Save Profile
       </Button>
     </Container>

@@ -26,6 +26,9 @@ import AddTrip from './pages/trip/AddTrip';
 import UsernameForm from './pages/profile/UsernameForm'
 import UserPasswordForm from './pages/profile/UserPasswordForm'
 import ProfileImageChangeForm from './pages/profile/ProfileImageChangeForm';
+import EditStatus from './pages/profile/EditStatus';
+import AddCountry from './pages/profile/AddCountry';
+import ChangeThemeSong from './pages/profile/ChangeThemeSong';
 
 
 function App() {
@@ -45,6 +48,9 @@ function App() {
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
       <Route exact path='/map' render={()=> <Map />}/>
+      <Route path="/profiles/:id/edit/status" render= {()=> <EditStatus/>}/>
+      <Route path="/profiles/:id/edit/countries" render={() => <AddCountry/>}/>
+      <Route path="/profiles/:id/edit/theme-song" render={() => <ChangeThemeSong />}/>
       <Route path="/profiles/:id/change-image" render= {() => <ProfileImageChangeForm />} />
       <Route exact path="/profiles/:id/edit/username" render={()=> <UsernameForm />}/>
       <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
