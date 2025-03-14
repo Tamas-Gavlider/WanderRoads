@@ -85,6 +85,7 @@ const Profile = () => {
               src={profile.image}
               alt={`${profile.owner}'s profile`}
               className={`${styles.ProfileImage} img-fluid`}
+             
               thumbnail
             />
           )}

@@ -7,7 +7,7 @@ i:hover {
 }
 
 .ProfileImage {
-  width: 100%;
+  width: 80%;
   border-radius: 5%;
   box-shadow: 4px 8px 4px -2px #ccc,  0px 0px 6px -2px #ccc;
 }
