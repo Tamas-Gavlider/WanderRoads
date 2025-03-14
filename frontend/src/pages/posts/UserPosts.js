@@ -26,7 +26,7 @@ const UserPosts = () => {
     <Row className="g-4">
       {userPosts.length > 0 ? (
         userPosts.map((post) => (
-            <Col xs={12} sm={6} md={6} lg={4} key={post.id}>
+            <Col xs={6} sm={6} md={4} lg={2} key={post.id}>
           <Card className={styles.Card}>
             <Card.Body className={styles.Card}>
               <Link to={`/posts/${post.id}`}>
