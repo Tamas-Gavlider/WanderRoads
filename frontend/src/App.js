@@ -1,6 +1,5 @@
 import React from 'react'
 import styles from './App.module.css';
-/* import NavBar from "./components/NavBar"; */
 import Container from "react-bootstrap/Container";
 import {Route,Switch, useLocation} from 'react-router-dom';
 import './api/axiosDefaults'
@@ -18,7 +17,6 @@ import Profile from './pages/profile/Profile';
 import Profiles from './pages/profile/Profiles';
 import TravelPreferenceEditForm from './pages/travel_preference/TravelPreferenceEditForm';
 import AddTravelPreference from './pages/travel_preference/AddTravelPreferences';
-import EditProfile from './pages/profile/EditProfile';
 import TravelRecommendation from './pages/travel_recommendation/TravelRecommendation';
 import Trip from './pages/trip/Trip';
 import TripEditForm from './pages/trip/TripEditForm';
@@ -54,7 +52,6 @@ function App() {
       <Route path="/profiles/:id/change-image" render= {() => <ProfileImageChangeForm />} />
       <Route exact path="/profiles/:id/edit/username" render={()=> <UsernameForm />}/>
       <Route exact path="/profiles/:id/edit/password" render={() => <UserPasswordForm />}/>
-      <Route path="/profiles/:id/edit" render= {()=> <EditProfile />} />
       <Route path="/profiles/:id" render= {()=> <Profile />} />
       <Route path="/trip/:id/edit" render={() => <TripEditForm />}/> 
       <Route path="/trip/create" render={() => <AddTrip />}/>
