@@ -7,20 +7,20 @@ import {
 } from "react-simple-maps";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import styles from "../../styles/Map.module.css";
-import { axiosReq } from "../../api/axiosDefaults"; // Import your API call function
+import { axiosReq } from "../../api/axiosDefaults";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-// URL to the topojson file
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 export default function Map() {
   const [tooltipContent, setTooltipContent] = useState("");
-  const [countryPosts, setCountryPosts] = useState({}); 
+  const [countryPosts, setCountryPosts] = useState({});
+  const [zoomLevel, setZoomLevel] = useState(1);
 
   useEffect(() => {
     const fetchPostCounts = async () => {
       try {
-        const { data } = await axiosReq.get("/posts/"); 
+        const { data } = await axiosReq.get("/posts/");
         const postCounts = data.country_post_counts || {};
         setCountryPosts(postCounts);
       } catch (err) {
@@ -30,17 +30,29 @@ export default function Map() {
     fetchPostCounts();
   }, []);
 
+  const handleZoomIn = () => {
+    setZoomLevel((prevZoom) => Math.min(prevZoom * 1.5, 3));
+  };
+
+  const handleZoomOut = () => {
+    setZoomLevel((prevZoom) => Math.max(prevZoom / 1.5, 1));
+  };
 
   return (
-    <div>
+    <div className={styles.mapContainer}>
+      <div className={styles.zoomControls}>
+        <button onClick={handleZoomIn}>+</button>
+        <button onClick={handleZoomOut}>−</button>
+      </div>
+
       <ComposableMap
         projectionConfig={{
           center: [0, 3],
-          scale: 300,
+          scale: 150,
         }}
         className={styles.Map}
       >
-        <ZoomableGroup zoom={1} maxZoom={3}>
+        <ZoomableGroup zoom={zoomLevel} minZoom={1} maxZoom={5} enableTouchZoom={false} enablePan={true} >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
