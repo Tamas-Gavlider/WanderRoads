@@ -18,7 +18,7 @@ const continentMapping = {
   SA: "South America",
 };
 
-export default function TravelPreferences({ profileOwnerId }) {
+export default function TravelPreferences() {
   const currentUser = useCurrentUser();
   const [preferences, setPreferences] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -47,20 +47,18 @@ export default function TravelPreferences({ profileOwnerId }) {
   if (loading) return <Loading />;
   if (error) return <p className={styles.Error}>{error}</p>;
 
-  // Check if the current user is the owner of the profile
-  const isOwner = currentUser?.id === profileOwnerId;
-
   const continentCode = preferences?.preferred_continent;
   const continentName =
     continentMapping[continentCode] || continentCode || "Not specified";
 
+  const isOwner = currentUser?.id === preferences?.user?.id;
+
   return (
     <div>
-      {preferences && currentUser ? (
+      {preferences ? (
         <div>
           <h4 className={styles.Title}>Travel Desires</h4>
-
-          {/* Only show edit button if the current user is the profile owner */}
+          {/* Only show edit icon if the current user is the owner */}
           {isOwner && (
             <Link
               to={`/travel-preference/${preferences.id}/edit`}

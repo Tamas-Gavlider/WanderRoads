@@ -1,17 +1,16 @@
 import React, { useEffect, useState } from "react";
 import axios from "axios";
-import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
-import Col from "react-bootstrap/Col";
 import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { Container, Row, Col, Image, Nav, Tab } from "react-bootstrap";
 import styles from "../../styles/Profile.module.css";
 import ThemeSong from "../../components/ThemeSong";
 import TravelPreferences from "../travel_preference/TravelPreferences";
-import Asset from "../../components/Asset";
 import TravelRecommendation from "../travel_recommendation/TravelRecommendation";
+import UserPosts from "../posts/UserPosts";
+import Asset from "../../components/Asset";
 import { ProfileEditDropdown } from "../../components/MoreDropdown";
-import UserPosts from '../posts/UserPosts'
+import backgroundImage from "../../assets/background.webp";
 
 const Profile = () => {
   const { id } = useParams();
@@ -21,10 +20,7 @@ const Profile = () => {
   useEffect(() => {
     axios
       .get(`/profiles/${id}`)
-      .then((response) => {
-        console.log("Profile Data:", response.data);
-        setProfile(response.data);
-      })
+      .then((response) => setProfile(response.data))
       .catch((error) => console.error("Error fetching profile:", error));
   }, [id]);
 
@@ -34,90 +30,47 @@ const Profile = () => {
 
   const isOwner = currentUser?.username === profile.owner;
 
-  const profileOwner = (
-    <>
-      {profile.image && profile.theme_song && (
-        <Row className="mb-3">
-          <ProfileEditDropdown id={profile?.id} />
-          <Col>
-            <Image
-              src={profile.image}
-              alt={`${profile.owner}'s profile`}
-              className={`${styles.ProfileImage} img-fluid`}
-              thumbnail
-            />
-            <ThemeSong theme_song={profile.theme_song} />
-            <p className={styles.Status}>{profile.status || "No status set"}</p>
-            <p>
-              <strong>Username:</strong> {profile.owner}
-            </p>
-            <p>
-              <strong>Experience:</strong> {profile.experience}
-            </p>
-            <p>
-              <strong>Visited Countries:</strong>{" "}
-              {profile.visited_countries.length}
-            </p>
-            <p>
-              <strong>Joined:</strong>{" "}
-              {new Date(profile.created_at).toLocaleDateString()}
-            </p>
-          </Col>
-          <Col xs={12} md={8}>
-            <div className="d-flex flex-column">
-            <TravelPreferences/>
-              <TravelRecommendation />
-            </div>
-          </Col>
-        </Row>
-      )}
-    </>
-  );
-
-  const visitor = (
-    <>
-      <h4>{profile.owner}'s vibe today: <ThemeSong theme_song={profile.theme_song} /></h4>
-      <p className={styles.Status}>{profile.status || "No status set"}</p>
-      <Row>
-        <Col xs={12} md={4}>
-          {profile.image && (
-            <Image
-              src={profile.image}
-              alt={`${profile.owner}'s profile`}
-              className={`${styles.ProfileImage} img-fluid`}
-             
-              thumbnail
-            />
-          )}
-        </Col>
-        <Col xs={12} md={8}>
-            <div className="d-flex flex-column">
-            <TravelPreferences profileOwnerId={profile.id} />
-              <TravelRecommendation />
-            </div>
-          </Col>
-      </Row>
-      <p>
-      <ThemeSong theme_song={profile.theme_song} />
-        <strong>Username:</strong> {profile.owner}
-      </p>
-      <p>
-        <strong>Experience:</strong> {profile.experience}
-      </p>
-      <p>
-        <strong>Visited Countries:</strong> {profile.visited_countries.length}
-      </p>
-      <p>
-        <strong>Joined:</strong>{" "}
-        {new Date(profile.created_at).toLocaleDateString()}
-      </p>
-    </>
-  );
-
   return (
-    <div className={styles.Profile}>{isOwner ? profileOwner : visitor}
-     <UserPosts />
-     </div>
+    <Container className={styles.ProfileContainer}>
+      <div className={styles.HeroSection} style={{ backgroundImage: `url(${backgroundImage})` }}>
+        <div className={styles.Overlay}></div>
+        <div className={styles.ProfileContent}>
+          <Image src={profile.image} alt={profile.owner} className={styles.ProfileImage} roundedCircle />
+          <div className={styles.ProfileText}>
+            <h2>{profile.owner}</h2>
+            <p className={styles.Status}>{profile.status || "No status set"}</p>
+            <ThemeSong theme_song={profile.theme_song} className={styles.ThemeSong} />  
+          </div>
+          {isOwner && <ProfileEditDropdown id={profile.id} />}
+        </div>
+      </div>
+
+      <Tab.Container defaultActiveKey="posts">
+        <Nav variant="tabs" className={styles.ProfileNav}>
+          <Nav.Item>
+            <Nav.Link eventKey="posts">Posts</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="preferences">Travel Preferences</Nav.Link>
+          </Nav.Item>
+          <Nav.Item>
+            <Nav.Link eventKey="recommendations">Recommendations</Nav.Link>
+          </Nav.Item>
+        </Nav>
+
+        <Tab.Content className={styles.TabContent}>
+          <Tab.Pane eventKey="posts">
+            <UserPosts />
+          </Tab.Pane>
+          <Tab.Pane eventKey="preferences">
+            <TravelPreferences profileOwnerId={profile.id} />
+          </Tab.Pane>
+          <Tab.Pane eventKey="recommendations">
+            <TravelRecommendation />
+          </Tab.Pane>
+        </Tab.Content>
+      </Tab.Container>
+    </Container>
   );
 };
 
