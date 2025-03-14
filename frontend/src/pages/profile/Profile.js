@@ -39,14 +39,14 @@ const Profile = () => {
       {profile.image && profile.theme_song && (
         <Row className="mb-3">
           <ProfileEditDropdown id={profile?.id} />
-          <Col xs={12} md={4}>
+          <Col>
             <Image
               src={profile.image}
               alt={`${profile.owner}'s profile`}
               className={`${styles.ProfileImage} img-fluid`}
               thumbnail
             />
-             <ThemeSong theme_song={profile.theme_song} />
+            <ThemeSong theme_song={profile.theme_song} />
             <p className={styles.Status}>{profile.status || "No status set"}</p>
             <p>
               <strong>Username:</strong> {profile.owner}
@@ -65,7 +65,7 @@ const Profile = () => {
           </Col>
           <Col xs={12} md={8}>
             <div className="d-flex flex-column">
-              <TravelPreferences />
+            <TravelPreferences/>
               <TravelRecommendation />
             </div>
           </Col>
@@ -76,8 +76,8 @@ const Profile = () => {
 
   const visitor = (
     <>
-      <h1>Profile of {profile.owner}</h1>
-      <p>{profile.status || "No status set"}</p>
+      <h4>{profile.owner}'s vibe today: <ThemeSong theme_song={profile.theme_song} /></h4>
+      <p className={styles.Status}>{profile.status || "No status set"}</p>
       <Row>
         <Col xs={12} md={4}>
           {profile.image && (
@@ -90,8 +90,15 @@ const Profile = () => {
             />
           )}
         </Col>
+        <Col xs={12} md={8}>
+            <div className="d-flex flex-column">
+            <TravelPreferences profileOwnerId={profile.id} />
+              <TravelRecommendation />
+            </div>
+          </Col>
       </Row>
       <p>
+      <ThemeSong theme_song={profile.theme_song} />
         <strong>Username:</strong> {profile.owner}
       </p>
       <p>
