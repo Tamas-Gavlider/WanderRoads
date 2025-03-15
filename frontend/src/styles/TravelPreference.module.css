@@ -1,12 +1,6 @@
 
-.BorderRed {
-    border-width: 5px;
-    border-color: #ff0000;
-}
-
-.BorderBlue {
-    border-width: 5px;
-    border-color: #00bae2;
+.EditIcon:hover {
+    color: #ff0000;
 }
 
 .PreferenceItem {

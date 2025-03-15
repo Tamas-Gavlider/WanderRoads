@@ -61,9 +61,8 @@ export default function TravelPreferences({profileOwner}) {
           {isOwner && (
             <Link
               to={`/travel-preference/${preferences.id}/edit`}
-              className={styles.EditIcon}
             >
-              <i className="fa-solid fa-pen"></i>
+              <i className={`fa-solid fa-pen ${styles.EditIcon}`}> Edit</i>
             </Link>
           )}
 
