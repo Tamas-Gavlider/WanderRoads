@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Container, Row, Col, Image, Nav, Tab } from "react-bootstrap";
+import { Container, Image, Nav, Tab } from "react-bootstrap";
 import styles from "../../styles/Profile.module.css";
 import ThemeSong from "../../components/ThemeSong";
 import TravelPreferences from "../travel_preference/TravelPreferences";
@@ -10,14 +10,12 @@ import TravelRecommendation from "../travel_recommendation/TravelRecommendation"
 import UserPosts from "../posts/UserPosts";
 import Asset from "../../components/Asset";
 import backgroundImage from "../../assets/background.webp";
-import { useHistory } from "react-router";
 import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { id } = useParams();
   const currentUser = useCurrentUser();
   const [profile, setProfile] = useState(null);
-  const history = useHistory();
 
   useEffect(() => {
     axios
