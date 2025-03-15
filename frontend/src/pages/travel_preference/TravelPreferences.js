@@ -18,7 +18,7 @@ const continentMapping = {
   SA: "South America",
 };
 
-export default function TravelPreferences() {
+export default function TravelPreferences({profileOwner}) {
   const currentUser = useCurrentUser();
   const [preferences, setPreferences] = useState(null);
   const [loading, setLoading] = useState(true);
@@ -51,7 +51,7 @@ export default function TravelPreferences() {
   const continentName =
     continentMapping[continentCode] || continentCode || "Not specified";
 
-  const isOwner = currentUser?.id === preferences?.user?.id;
+  const isOwner = preferences.owner === profileOwner;
 
   return (
     <div>

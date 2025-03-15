@@ -63,7 +63,7 @@ const Profile = () => {
             <UserPosts />
           </Tab.Pane>
           <Tab.Pane eventKey="preferences">
-            <TravelPreferences profileOwnerId={profile.id} />
+            <TravelPreferences profileOwner={profile.owner} />
           </Tab.Pane>
           <Tab.Pane eventKey="recommendations">
             <TravelRecommendation />
