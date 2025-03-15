@@ -1,7 +1,6 @@
 import React from "react";
 import Dropdown from "react-bootstrap/Dropdown";
 import styles from "../styles/MoreDropdown.module.css";
-import { useHistory } from "react-router";
 
 // The forwardRef is important!!
 // Dropdown needs access to the DOM node in order to position the Menu
@@ -44,51 +43,3 @@ export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   );
 };
 
-export const ProfileEditDropdown = ({ id }) => {
-  const history = useHistory();
-  return (
-    <Dropdown className={`ml-auto px-3 ${styles.Absolute}`} drop="left">
-      <Dropdown.Toggle as={ThreeDots} />
-      <Dropdown.Menu>
-        <Dropdown.Item
-          onClick={() => history.push(`/profiles/${id}/change-image`)}
-          aria-label="edit-profile"
-        >
-          <i class="fa-solid fa-camera" /> <span>change image</span>
-        </Dropdown.Item>
-        <Dropdown.Item
-          onClick={() => history.push(`/profiles/${id}/edit/username`)}
-          aria-label="edit-username"
-        >
-          <i className="far fa-id-card" />
-          <span>change username</span>
-        </Dropdown.Item>
-        <Dropdown.Item
-          onClick={() => history.push(`/profiles/${id}/edit/password`)}
-          aria-label="edit-password"
-        >
-          <i className="fas fa-key" />
-          <span>change password</span>
-        </Dropdown.Item>
-        <Dropdown.Item
-          onClick={() => history.push(`/profiles/${id}/edit/status`)}
-          aria-label="edit-status"
-        >
-          <i className="fas fa-comment" /> <span>Edit Status</span>
-        </Dropdown.Item>
-        <Dropdown.Item
-          onClick={() => history.push(`/profiles/${id}/edit/countries`)}
-          aria-label="edit-visited-countries"
-        >
-          <i className="fas fa-globe" /> <span>Edit Visited Countries</span>
-        </Dropdown.Item>
-        <Dropdown.Item
-          onClick={() => history.push(`/profiles/${id}/edit/theme-song`)}
-          aria-label="edit-theme-song"
-        >
-          <i className="fas fa-music" /> <span>Change Theme Song</span>
-        </Dropdown.Item>
-      </Dropdown.Menu>
-    </Dropdown>
-  );
-};

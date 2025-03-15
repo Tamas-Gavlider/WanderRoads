@@ -4,12 +4,6 @@
     padding: 0px;
   }
   
-  .Absolute {
-    position: absolute;
-    right: 0;
-    z-index: 99;
-  }
-
 .Icon {
   color: #ff0000;
   padding-right: 5px;
