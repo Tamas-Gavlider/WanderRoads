@@ -62,4 +62,27 @@
 
 .TabContent {
   margin-top: 20px;
+  color: #00bae2;
+  padding-bottom: 10px;
+}
+
+.NavLink {
+  color: #00bae2;
+}
+
+.NavLink:hover {
+  color: #ff0000;
+}
+
+.Active {
+  color: yellow;
+}
+
+.EditIcon {
+  text-decoration: none;
+  color: #00bae2;
+}
+
+.EditIcon:hover {
+   color: #ff0000;
 }

@@ -11,6 +11,7 @@ import UserPosts from "../posts/UserPosts";
 import Asset from "../../components/Asset";
 import backgroundImage from "../../assets/background.webp";
 import { useHistory } from "react-router";
+import { Link } from "react-router-dom";
 
 const Profile = () => {
   const { id } = useParams();
@@ -61,20 +62,21 @@ const Profile = () => {
       <Tab.Container defaultActiveKey="posts">
         <Nav variant="tabs" className={styles.ProfileNav}>
           <Nav.Item>
-            <Nav.Link eventKey="posts">Posts</Nav.Link>
+            <Nav.Link eventKey="posts" className={styles.NavLink}>Posts</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="preferences">Travel Preferences</Nav.Link>
+            <Nav.Link eventKey="preferences" className={styles.NavLink}>Travel Preferences</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="recommendations">Recommendations</Nav.Link>
+            <Nav.Link eventKey="recommendations" className={styles.NavLink}>Recommendations</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="visited_countries">Visited countries</Nav.Link>
+            <Nav.Link eventKey="visited_countries" className={styles.NavLink}>Visited countries</Nav.Link>
           </Nav.Item>
+          {isOwner &&
           <Nav.Item>
-            <Nav.Link eventKey="edit_profile">Edit profile</Nav.Link>
-          </Nav.Item>
+            <Nav.Link eventKey="edit_profile" className={styles.NavLink}>Edit profile</Nav.Link>
+          </Nav.Item>}
         </Nav>
 
         <Tab.Content className={styles.TabContent}>
@@ -98,58 +100,39 @@ const Profile = () => {
           </Tab.Pane>
           {isOwner && (
             <Tab.Pane eventKey="edit_profile">
-              <h4>Edit Your Profile</h4>
-              <ul className="list-group">
-                <li
-                  className="list-group-item"
-                  onClick={() =>
-                    history.push(`/profiles/${profile.id}/change-image`)
-                  }
-                >
-                  <i className="fa-solid fa-camera"></i> Change Image
-                </li>
-                <li
-                  className="list-group-item"
-                  onClick={() =>
-                    history.push(`/profiles/${profile.id}/edit/username`)
-                  }
-                >
-                  <i className="far fa-id-card"></i> Change Username
-                </li>
-                <li
-                  className="list-group-item"
-                  onClick={() =>
-                    history.push(`/profiles/${profile.id}/edit/password`)
-                  }
-                >
-                  <i className="fas fa-key"></i> Change Password
-                </li>
-                <li
-                  className="list-group-item"
-                  onClick={() =>
-                    history.push(`/profiles/${profile.id}/edit/status`)
-                  }
-                >
-                  <i className="fas fa-comment"></i> Edit Status
-                </li>
-                <li
-                  className="list-group-item"
-                  onClick={() =>
-                    history.push(`/profiles/${profile.id}/edit/countries`)
-                  }
-                >
-                  <i className="fas fa-globe"></i> Edit Visited Countries
-                </li>
-                <li
-                  className="list-group-item"
-                  onClick={() =>
-                    history.push(`/profiles/${profile.id}/edit/theme-song`)
-                  }
-                >
-                  <i className="fas fa-music"></i> Change Theme Song
-                </li>
-              </ul>
-            </Tab.Pane>
+            <ul className="list-group">
+              <li className="list-group-item">
+                <Link to={`/profiles/${profile.id}/change-image`}>
+                  <i className={`fa-solid fa-camera ${styles.EditIcon}`}> Change Image</i>
+                </Link>
+              </li>
+              <li className="list-group-item">
+                <Link to={`/profiles/${profile.id}/edit/username`}>
+                  <i className={`far fa-id-card ${styles.EditIcon}`}> Change Username</i>
+                </Link>
+              </li>
+              <li className="list-group-item">
+                <Link to={`/profiles/${profile.id}/edit/password`}>
+                  <i className={`fas fa-key ${styles.EditIcon}`}> Change Password</i>
+                </Link>
+              </li>
+              <li className="list-group-item">
+                <Link to={`/profiles/${profile.id}/edit/status`}>
+                  <i className={`fas fa-comment ${styles.EditIcon}`}> Edit Status</i>
+                </Link>
+              </li>
+              <li className="list-group-item">
+                <Link to={`/profiles/${profile.id}/edit/countries`}>
+                  <i className={`fas fa-globe ${styles.EditIcon}`}> Edit Visited Countries</i>
+                </Link>
+              </li>
+              <li className="list-group-item">
+                <Link to={`/profiles/${profile.id}/edit/theme-song`}>
+                  <i className={`fas fa-music ${styles.EditIcon}`}> Change Theme Song</i>
+                </Link>
+              </li>
+            </ul>
+          </Tab.Pane>
           )}
         </Tab.Content>
       </Tab.Container>

@@ -57,7 +57,6 @@ export default function TravelPreferences({profileOwner}) {
     <div>
       {preferences ? (
         <div>
-          <h4 className={styles.Title}>Travel Desires</h4>
           {/* Only show edit icon if the current user is the owner */}
           {isOwner && (
             <Link
