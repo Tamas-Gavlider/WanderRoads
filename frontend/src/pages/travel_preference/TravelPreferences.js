@@ -25,13 +25,13 @@ export default function TravelPreferences({profileOwner}) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching preferences for:", profileOwner); // Debug log
+    console.log("Fetching preferences for:", profileOwner);
 
     if (profileOwner) {
       axios
         .get(`/travel-preference/?user=${profileOwner}`)
         .then((response) => {
-          console.log("Response data:", response.data); // Log API response
+          console.log("Response data:", response.data); 
           if (response.data) {
             setPreferences(response.data);
           } else {
