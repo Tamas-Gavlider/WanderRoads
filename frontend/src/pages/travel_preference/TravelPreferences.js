@@ -25,11 +25,13 @@ export default function TravelPreferences({profileOwner}) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    if (currentUser) {
+    console.log("Fetching preferences for:", profileOwner); // Debug log
+
+    if (profileOwner) {
       axios
-        .get("/travel-preference/")
+        .get(`/travel-preference/?user=${profileOwner}`)
         .then((response) => {
-          console.log("Response data:", response.data);
+          console.log("Response data:", response.data); // Log API response
           if (response.data) {
             setPreferences(response.data);
           } else {
@@ -42,7 +44,8 @@ export default function TravelPreferences({profileOwner}) {
           setLoading(false);
         });
     }
-  }, [currentUser]);
+  }, [profileOwner]);
+  console.log(preferences)
 
   if (loading) return <Loading />;
   if (error) return <p className={styles.Error}>{error}</p>;
@@ -51,7 +54,7 @@ export default function TravelPreferences({profileOwner}) {
   const continentName =
     continentMapping[continentCode] || continentCode || "Not specified";
 
-  const isOwner = preferences.owner === profileOwner;
+    const isOwner = currentUser?.username === profileOwner
 
   return (
     <div>
