@@ -47,7 +47,7 @@ export default function Map() {
       <ComposableMap
         projectionConfig={{
           center: [0, 0],
-          scale: 200,
+          scale: 150,
         }}
         className={styles.Map}
       >
