@@ -65,7 +65,7 @@ export default function Trip() {
 
   return (
     <Container className="mt-4">
-      <h2 className="text-center mb-4">Upcoming Trips</h2>
+      <h2 className={`text-center mb-4 ${styles.Title}`}>Upcoming Trips</h2>
       <div className="d-flex justify-content-start mb-3">
         <Link to="/trip/create">
           <i className="fa-solid fa-plus"></i> 
