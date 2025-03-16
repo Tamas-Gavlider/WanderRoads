@@ -1,7 +1,7 @@
 
 .App {
     font-family: "Anonymous Pro", serif;
-    background-color: white;
+    background-color: white !important;
     min-height: 100vh;
 }
 

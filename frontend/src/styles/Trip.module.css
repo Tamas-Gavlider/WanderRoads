@@ -1,24 +1,61 @@
+/* Trip.module.css */
+
+/* Card Styling */
 .Card {
-    background-color: #00bae2;
-    border-radius: 15px;
-    color: #281713;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-}
-
-.Card:hover {
-    transform: translateY(-10px);
-    box-shadow: 10px 30px 50px rgba(255, 0, 0, 0.2); 
-}
-
-.Soon {
-    background-color: #ff0000;
-    border-radius: 15px;
-    color: #281713;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-    transition: all 0.3s ease-in-out;
-}
-
-i {
-    color: #00bae2;
-}
+    background: linear-gradient(135deg, #ffffff, #f8f9fa);
+    border-radius: 12px;
+    padding: 15px;
+    transition: transform 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+  }
+  
+  .Card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 15px rgba(0, 0, 0, 0.15);
+  }
+  
+  /* Highlight Trips Happening Soon */
+  .Soon {
+    background: linear-gradient(135deg, #ff4b5c, #ff758c);
+    color: white !important;
+  }
+  
+  .Soon:hover {
+    transform: translateY(-5px);
+    box-shadow: 0px 5px 15px rgba(255, 75, 92, 0.3);
+  }
+  
+  /* Title Styling */
+  .Card h5 {
+    font-size: 1.4rem;
+    font-weight: bold;
+    text-transform: uppercase;
+    margin-bottom: 8px;
+  }
+  
+  /* Subtitle Styling */
+  .Card .mb-2 {
+    font-size: 1.1rem;
+    color: #6c757d;
+  }
+  
+  /* Text & Info */
+  .Card p {
+    font-size: 0.95rem;
+    color: #495057;
+  }
+  
+  /* Add Trip Button */
+  .fa-plus {
+    font-size: 1.5rem;
+    color: #007bff;
+    padding: 8px;
+    border-radius: 50%;
+    background-color: white;
+    transition: background-color 0.2s ease-in-out;
+  }
+  
+  .fa-plus:hover {
+    background-color: #007bff;
+    color: white;
+  }
+  

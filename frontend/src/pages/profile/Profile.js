@@ -11,7 +11,7 @@ import UserPosts from "../posts/UserPosts";
 import Asset from "../../components/Asset";
 import backgroundImage from "../../assets/background.webp";
 import { Link } from "react-router-dom";
-import Trip from '../trip/Trip';
+
 
 const Profile = () => {
   const { id } = useParams();
@@ -77,9 +77,6 @@ const Profile = () => {
           <Nav.Item>
             <Nav.Link eventKey="edit_profile" className={styles.NavLink}>Edit profile</Nav.Link>
           </Nav.Item>
-           <Nav.Item>
-           <Nav.Link eventKey="upcoming_trips" className={styles.NavLink}>Upcoming Trips</Nav.Link>
-         </Nav.Item>
          </>
          }
         </Nav>
@@ -137,9 +134,6 @@ const Profile = () => {
                 </Link>
               </li>
             </ul>
-          </Tab.Pane>
-          <Tab.Pane eventKey="upcoming_trips">
-            <Trip />
           </Tab.Pane>
           </>)}
         </Tab.Content>
