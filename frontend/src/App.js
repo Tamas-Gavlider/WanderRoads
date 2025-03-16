@@ -40,7 +40,7 @@ function App() {
     <div className={`${styles.App} ${isLandingPage ? styles.LandingBackground : styles.NoBackground}`}>
       < NavBar />
      {
-      <Container className={styles.Main}>
+      <div className={styles.Main}>
       <Switch>
       <Route exact path='/' render={()=> <LandingPageText/>}/>
       <Route exact path='/signin' render={()=> < SignInForm />}/>
@@ -70,7 +70,7 @@ function App() {
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
       <Route render={()=> <p>Page not found!</p>}/>
       </Switch>
-     </Container>
+     </div>
      }
     </div>
   );

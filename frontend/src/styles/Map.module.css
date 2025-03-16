@@ -1,50 +1,61 @@
 .Map path {
-    outline: none;
-  }
+  outline: none;
+}
 
+.mapContainer {
+  position: relative;
+  width: 100%; /* Use 100% instead of 100vw */
+  height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  overflow: hidden;
+  margin-left: 0;
+}
+
+.Map {
+  width: 100%; 
+  height: 100%;
+  overflow-x: hidden;
+}
+
+.zoomControls {
+  position: absolute;
+  top: 10px;
+  left: 50%;
+  transform: translateX(-50%);
+  display: flex;
+  flex-direction: row;
+  gap: 10px;
+  z-index: 1000; 
+}
+
+.zoomControls button {
+  width: 40px;
+  height: 40px;
+  font-size: 20px;
+  font-weight: bold;
+  border: none;
+  background-color: #ff0000;
+  color: white;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.zoomControls button:hover {
+  background-color: #cc0000;
+}
+
+@media (max-width: 768px) {
   .Map {
-    margin-left: -10px;
-    margin-top: -40px;
-    height: 1366px;
+    margin-bottom: 350px;
+    height: 950px;
   }
+}
 
-  .mapContainer {
-    position: fixed;
-    width: 100%;
-    height: 100%;
+@media (min-width: 950px) {
+  .Map {
+    height: 1300px; 
   }
-  
-  .zoomControls {
-    position: absolute;
-    top: 10px;
-    left: 10px;
-    display: flex;
-    flex-direction: row;
-    gap: 5px;
-  }
-  
-  .zoomControls button {
-    width: 40px;
-    height: 40px;
-    font-size: 20px;
-    font-weight: bold;
-    border: none;
-    background-color: #ff0000;
-    color: white;
-    border-radius: 5px;
-    cursor: pointer;
-    transition: background 0.3s;
-  }
-
-  @media (max-width: 768px) {
-    .Map {
-      width: 100%;
-      height: 50%;
-    }
-  }
-
-  @media (min-width: 950px) {
-    .Map {
-      margin-left: -312px;
-    }
-  }
+}

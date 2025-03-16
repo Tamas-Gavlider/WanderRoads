@@ -44,15 +44,14 @@ export default function Map() {
         <button onClick={handleZoomIn} className="text-center">+</button>
         <button onClick={handleZoomOut} className="text-center">−</button>
       </div>
-
       <ComposableMap
         projectionConfig={{
-          center: [0, 3],
-          scale: 150,
+          center: [0, 0],
+          scale: 200,
         }}
         className={styles.Map}
       >
-        <ZoomableGroup zoom={zoomLevel} minZoom={1} maxZoom={3} enableTouchZoom={false} enablePan={true} >
+        <ZoomableGroup zoom={zoomLevel} minZoom={0.5} maxZoom={3} enablePan={true} >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {

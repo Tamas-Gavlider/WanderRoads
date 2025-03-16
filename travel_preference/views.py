@@ -14,12 +14,20 @@ class TravelPreferenceList(generics.ListCreateAPIView):
 
     def get(self, request, *args, **kwargs):
         """
-        Ensure that only the travel preference of the logged-in user is shown.
+        Return the travel preference for the requested user (if provided) 
+        or the logged-in user by default.
         """
-        preference = TravelPreference.objects.filter(owner=request.user).first()
+        username = request.query_params.get("user", None)
+        
+        if username:
+            preference = TravelPreference.objects.filter(owner__username=username).first()
+        else:
+            preference = TravelPreference.objects.filter(owner=request.user).first()
+        
         if preference:
             serializer = self.get_serializer(preference)
             return Response(serializer.data)
+        
         return Response({"detail": "No travel preference found."}, status=status.HTTP_404_NOT_FOUND)
 
     def perform_create(self, serializer):

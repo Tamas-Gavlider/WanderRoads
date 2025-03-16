@@ -24,13 +24,15 @@
   
   .Main {
     padding-top: 90px;
+    padding-left: 10px;
+    padding-right: 10px;
   }
   
   .Content {
     padding: 10px;
     border-radius: 20%;
   }
-  
+
   .FillerImage {
     object-fit: cover;
     height: 100%;
