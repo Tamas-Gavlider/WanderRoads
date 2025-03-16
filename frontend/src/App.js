@@ -40,12 +40,14 @@ function App() {
     <div className={`${styles.App} ${isLandingPage ? styles.LandingBackground : styles.NoBackground}`}>
       < NavBar />
      {
-      <div className={styles.Main}>
       <Switch>
+       {/* Keep the map page outside the container. Container prevented to render the map
+       on the whole page */}
+      <Route exact path='/map' render={()=> <Map />}/>
+      <Container fluid className={styles.Main}>
       <Route exact path='/' render={()=> <LandingPageText/>}/>
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
-      <Route exact path='/map' render={()=> <Map />}/>
       <Route path="/profiles/:id/edit/status" render= {()=> <EditStatus/>}/>
       <Route path="/profiles/:id/edit/countries" render={() => <AddCountry/>}/>
       <Route path="/profiles/:id/edit/theme-song" render={() => <ChangeThemeSong />}/>
@@ -69,8 +71,8 @@ function App() {
       <Route exact path='/travelers/' render={()=> <Profiles />}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
       <Route render={()=> <p>Page not found!</p>}/>
+      </Container>
       </Switch>
-     </div>
      }
     </div>
   );
