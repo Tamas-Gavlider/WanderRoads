@@ -67,18 +67,21 @@ const Profile = () => {
             <Nav.Link eventKey="preferences" className={styles.NavLink}>Travel Preferences</Nav.Link>
           </Nav.Item>
           <Nav.Item>
-            <Nav.Link eventKey="recommendations" className={styles.NavLink}>Recommendations</Nav.Link>
-          </Nav.Item>
-          <Nav.Item>
             <Nav.Link eventKey="visited_countries" className={styles.NavLink}>Visited countries</Nav.Link>
           </Nav.Item>
           {isOwner &&
+          <>
+          <Nav.Item>
+            <Nav.Link eventKey="recommendations" className={styles.NavLink}>Recommendations</Nav.Link>
+          </Nav.Item>
           <Nav.Item>
             <Nav.Link eventKey="edit_profile" className={styles.NavLink}>Edit profile</Nav.Link>
-          </Nav.Item>}
-          <Nav.Item>
-            <Nav.Link eventKey="upcoming_trips" className={styles.NavLink}>Upcoming Trips</Nav.Link>
           </Nav.Item>
+           <Nav.Item>
+           <Nav.Link eventKey="upcoming_trips" className={styles.NavLink}>Upcoming Trips</Nav.Link>
+         </Nav.Item>
+         </>
+         }
         </Nav>
 
         <Tab.Content className={styles.TabContent}>
@@ -87,9 +90,6 @@ const Profile = () => {
           </Tab.Pane>
           <Tab.Pane eventKey="preferences">
             <TravelPreferences profileOwner={profile.owner} />
-          </Tab.Pane>
-          <Tab.Pane eventKey="recommendations">
-            <TravelRecommendation />
           </Tab.Pane>
           <Tab.Pane eventKey="visited_countries">
             <ul className="d-flex flex-wrap gap-2 list-unstyled">
@@ -100,7 +100,10 @@ const Profile = () => {
               ))}
             </ul>
           </Tab.Pane>
-          {isOwner && (
+          {isOwner && (<>
+            <Tab.Pane eventKey="recommendations">
+            <TravelRecommendation />
+          </Tab.Pane>
             <Tab.Pane eventKey="edit_profile">
             <ul className="list-group">
               <li className="list-group-item">
@@ -135,10 +138,10 @@ const Profile = () => {
               </li>
             </ul>
           </Tab.Pane>
-          )}
           <Tab.Pane eventKey="upcoming_trips">
             <Trip />
           </Tab.Pane>
+          </>)}
         </Tab.Content>
       </Tab.Container>
     </Container>
