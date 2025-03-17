@@ -17,7 +17,6 @@ export default function AddTravelPreference() {
     duration: "ANY",
   });
 
-  const profileId = currentUser?.profile_id
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [preferenceExists, setPreferenceExists] = useState(false);
 
@@ -56,9 +55,8 @@ export default function AddTravelPreference() {
 
       await axios.post(`/travel-preference/`, formData);
 
-      if (currentUser?.id) {
-        history.push(`/profiles/${profileId}`);
-        console.log(currentUser.pk)
+      if (currentUser?.profile_id) {
+        history.push(`/profiles/${currentUser?.profile_id}`);
       } else {
         history.push("/"); 
       }
@@ -69,7 +67,7 @@ export default function AddTravelPreference() {
       setIsSubmitting(false);
     }
   };
-  
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
