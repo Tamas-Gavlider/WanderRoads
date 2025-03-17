@@ -1,3 +1,7 @@
+.Row {
+  padding: 5px;
+}
+
 .SearchBar input {
     border-radius: 20px;
     color: #281713;
@@ -25,9 +29,8 @@
 
   .ShareIcon:hover {
     color: #ff0000;
-    font-size: larger;
   }
-  
+
   @media (min-width: 992px) {
     .CreatePost {
       position: fixed;

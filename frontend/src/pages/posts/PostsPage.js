@@ -45,7 +45,7 @@ function PostsPage({ message, filter = "" }) {
   }, [filter, query, pathname, currentUser]);
 
   return (
-    <Row className="h-100">
+    <Row className={`h-100 ${styles.Row}`}>
      <div className={styles.CreatePost}>
      <video autoPlay muted loop>
   <source src={video} type="video/mp4" />

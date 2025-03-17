@@ -3,7 +3,6 @@ import React, { useEffect, useState } from "react";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-
 import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -12,15 +11,16 @@ import Comment from "../comments/Comment";
 
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-
+import styles from '../../styles/PostsPage.module.css';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
+import PopularDestinations from "../../components/PopularDestinations";
 
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
-
+  const [popularDestinations, setPopularDestinations] = useState([]);
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
   const [comments, setComments] = useState({ results: [] });
@@ -46,7 +46,7 @@ function PostPage() {
   
   console.log("Posts state:", post);
   return (
-    <Row className="h-100">
+    <Row className={`h-100 ${styles.Row}`}>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
       <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container className={appStyles.Content}>
@@ -82,6 +82,9 @@ function PostPage() {
             <span>No comments... yet</span>
           )}
         </Container>
+      </Col>
+      <Col>
+      <PopularDestinations popularDestinations={popularDestinations} />
       </Col>
     </Row>
   );
