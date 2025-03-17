@@ -14,6 +14,7 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Loading from "../../components/Loading";
+import video from '../../assets/bg-video.mp4';
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -45,15 +46,23 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <Row className="h-100">
-       <Col className="py-2 p-0 p-lg-2" lg={8}>
-       <span> Share your journey! </span>
-      <Link
-        className={navStyle.NavLink}
-        activeClassName={navStyle.Active}
-        to="/posts/create"
-      >
-       <i className="fa-solid fa-plane-departure"></i>
-      </Link></Col>
+     <div className={styles.CreatePost}>
+     <video autoPlay muted loop>
+  <source src={video} type="video/mp4" />
+  Your browser does not support the video tag.
+</video>
+  
+  <Col className="py-2 p-0 p-lg-2" lg={8}>
+    <span className={styles.ShareText}> Share your journey! </span>
+    <Link
+      className={navStyle.NavLink}
+      activeClassName={navStyle.Active}
+      to="/posts/create"
+    >
+      <i className={`fa-solid fa-plane-departure ${styles.ShareIcon}`}></i>
+    </Link>
+  </Col>
+</div>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
       <i className={`fas fa-search ${styles.SearchIcon}`}></i>
         <Form

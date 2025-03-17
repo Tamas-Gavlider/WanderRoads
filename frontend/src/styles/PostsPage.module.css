@@ -16,3 +16,52 @@
     cursor: default;
     color: #ff0000;
   }
+
+  .CreatePost {
+    font-family: "Kranky", serif;
+    font-size: 140%;
+    color: #00bae2;
+  }
+
+  .ShareIcon:hover {
+    color: #ff0000;
+    font-size: larger;
+  }
+  
+  @media (min-width: 992px) {
+    .CreatePost {
+      position: fixed;
+      top: 86px;
+      right: 0;
+      width: 33%;
+      height: 100%;
+      text-align: right;
+      font-size: larger;
+    }
+  
+    .CreatePost video {
+      position: absolute;
+      top: 0;
+      left: 0;
+      width: 100%;
+      height: 100%;
+      object-fit: cover; 
+      z-index: -1; 
+    }
+  
+    .ShareText {
+      font-size: 420%;
+      font-weight: bold;
+      color: #ff0000; 
+    }
+    
+    .ShareIcon {
+      font-size: 400%;
+    }
+  }
+
+  @media (max-width: 991px) {
+    .CreatePost video {
+      display: none; 
+    }
+  }
