@@ -3,7 +3,7 @@
     color: #281713;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
-    background: linear-gradient(135deg, #00bae2, #4be35c)
+    background: linear-gradient(135deg, #41f456, #00bae2)
 }
 
 .Card:hover {
@@ -23,7 +23,7 @@
     color: #281713;
     box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
     transition: all 0.3s ease-in-out;
-    background: linear-gradient(135deg, #ff0000, #d6d635)
+    background: linear-gradient(135deg, #d6d635, #ff0000)
 }
 
 i {
