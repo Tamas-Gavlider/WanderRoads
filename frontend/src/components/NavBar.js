@@ -92,7 +92,7 @@ const NavBar = () => {
     <Navbar
       expanded={expanded}
       expand="md"
-      className={styles.NavBar}
+      className={`${styles.NavBar} shadow`}
       fixed="top"
     >
       <Container fluid>
