@@ -4,7 +4,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import styles from "../../styles/EditProfile.module.css";
+import styles from "../../styles/AddCountry.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 export default function AddCountry() {
@@ -63,9 +63,7 @@ export default function AddCountry() {
   };
 
   return (
-    <Container className="d-flex flex-column justify-content-center">
-      <h2>Add Visited Countries</h2>
-
+    <Container className={`d-flex flex-column justify-content-center ${styles.Container}`}>
       <Form.Group controlId="countrySelect">
         <Form.Label>Select a Country</Form.Label>
         <Form.Control
@@ -103,8 +101,7 @@ export default function AddCountry() {
               >
                 Remove
               </Button>
-              <span> </span>
-              {country}{" "}
+              <span className={styles.Visited}> {country}</span>
             </div>
           </div>
         ))}

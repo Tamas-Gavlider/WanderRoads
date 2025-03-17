@@ -2,11 +2,6 @@
     color: #ff0000;
 }
 
-.Country {
-    padding-top: 5px;
-    padding-bottom: 5px;
-}
-
 .Delete:hover {
     background-color: #00bae2;
 }
