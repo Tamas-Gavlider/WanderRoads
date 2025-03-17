@@ -63,9 +63,12 @@ const Profile = () => {
           <Nav.Item>
             <Nav.Link eventKey="posts" className={styles.NavLink}>Posts</Nav.Link>
           </Nav.Item>
-          <Nav.Item>
+          {isOwner && 
+          <>
+           <Nav.Item>
             <Nav.Link eventKey="edit_profile" className={styles.NavLink}>Edit profile</Nav.Link>
           </Nav.Item>
+          </>}
           <Nav.Item>
             <Nav.Link eventKey="visited_countries" className={styles.NavLink}>Visited countries</Nav.Link>
           </Nav.Item>
