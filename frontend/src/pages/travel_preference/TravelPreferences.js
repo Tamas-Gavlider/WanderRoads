@@ -25,13 +25,11 @@ export default function TravelPreferences({profileOwner}) {
   const [error, setError] = useState(null);
 
   useEffect(() => {
-    console.log("Fetching preferences for:", profileOwner);
 
     if (profileOwner) {
       axios
         .get(`/travel-preference/?user=${profileOwner}`)
         .then((response) => {
-          console.log("Response data:", response.data); 
           if (response.data) {
             setPreferences(response.data);
           } else {
@@ -40,12 +38,10 @@ export default function TravelPreferences({profileOwner}) {
           setLoading(false);
         })
         .catch((error) => {
-          console.error("Error fetching travel preferences:", error.response);
           setLoading(false);
         });
     }
   }, [profileOwner]);
-  console.log(preferences)
 
   if (loading) return <Loading />;
   if (error) return <p className={styles.Error}>{error}</p>;
