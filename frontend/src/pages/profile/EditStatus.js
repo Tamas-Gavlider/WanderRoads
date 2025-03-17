@@ -3,6 +3,8 @@ import { useParams, useHistory } from "react-router-dom";
 import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
+import Container from "react-bootstrap/Container";
+import styles from "../../styles/EditStatus.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 export default function EditStatus() {
@@ -20,19 +22,27 @@ export default function EditStatus() {
   };
 
   return (
-    <div>
-      <h2>Edit Status</h2>
-      <Form.Group>
-        <Form.Label>Status</Form.Label>
-        <Form.Control
-          type="text"
-          value={status}
-          onChange={(e) => setStatus(e.target.value)}
-        />
-      </Form.Group>
-      <Button className={`mt-3 ${btnStyles.Button}`} onClick={handleSave}>
-        Save
-      </Button>
-    </div>
+    <Container className={styles.StatusContainer}>
+      <div className={styles.StatusCard}>
+        <h2 className={styles.StatusHeading}>Update Your Status</h2>
+
+        <Form.Group>
+          <Form.Control
+            type="text"
+            placeholder="What's on your mind?"
+            value={status}
+            onChange={(e) => setStatus(e.target.value)}
+            className={styles.StatusInput}
+          />
+        </Form.Group>
+
+        <Button
+          className={`mt-3 ${btnStyles.Button} ${styles.SaveButton}`}
+          onClick={handleSave}
+        >
+         Update Status
+        </Button>
+      </div>
+    </Container>
   );
 }
