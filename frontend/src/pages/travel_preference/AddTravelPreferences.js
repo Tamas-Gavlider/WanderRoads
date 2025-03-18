@@ -19,6 +19,7 @@ export default function AddTravelPreference() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [preferenceExists, setPreferenceExists] = useState(false);
+
   useEffect(() => {
     if (currentUser?.pk) {  
       axios
@@ -35,33 +36,32 @@ export default function AddTravelPreference() {
   }, [currentUser]);
 
   const handleSubmit = async (e) => {
-  e.preventDefault();
+    e.preventDefault();
 
-  if (!currentUser) {
-    console.error("No current user found. Redirecting to login.");
-    history.push("/signin"); 
-    return;
-  }
-
-  setIsSubmitting(true);
-
-  try {
-    if (preferenceExists) {
-      alert("You already have travel preferences.");
-      return; 
+    if (!currentUser) {
+      console.error("No current user found. Redirecting to login.");
+      history.push("/signin"); 
+      return;
     }
 
-    await axios.post(`/travel-preference/`, formData);
+    setIsSubmitting(true);
 
-    history.push(`/profiles/${currentUser?.profile_id || ""}`);
+    try {
+      if (preferenceExists) {
+        alert("You already have travel preferences.");
+        history.push(`/edit-travel-preference/${currentUser?.pk}`); // Redirect to edit page if preferences already exist
+        return; 
+      }
 
-  } catch (error) {
-    console.error("Error creating travel preference:", error);
-  } finally {
-    setIsSubmitting(false);
-  }
-};
+      await axios.post(`/travel-preference/`, formData);
+      history.push(`/edit-travel-preference/${currentUser?.pk}`); // Redirect to edit page after preferences are created
 
+    } catch (error) {
+      console.error("Error creating travel preference:", error);
+    } finally {
+      setIsSubmitting(false);
+    }
+  };
 
   return (
     <div className="text-center">
