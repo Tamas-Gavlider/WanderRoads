@@ -8,6 +8,7 @@ export default function AddTravelPreference() {
   const currentUser = useCurrentUser();
   const history = useHistory();
 
+
   const [formData, setFormData] = useState({
     preferred_continent: "ANY",
     climate: "ANY",
@@ -21,52 +22,51 @@ export default function AddTravelPreference() {
   const [preferenceExists, setPreferenceExists] = useState(false);
 
   useEffect(() => {
-    if (currentUser) {
-      axios
-        .get(`/travel-preference/`)
-        .then((response) => {
-          if (response.data) {
-            setPreferenceExists(true);
-          }
-        })
-        .catch((error) => {
-          console.error("Error checking travel preferences:", error);
-        });
+    if (currentUser?.profile_id) { 
+        axios
+            .get(`/travel-preference/`)
+            .then((response) => {
+                if (response.data) {
+                    setPreferenceExists(true);
+                }
+            })
+            .catch((error) => {
+                console.error("Error checking travel preferences:", error);
+            });
     }
-  }, [currentUser]);
-
-  const handleChange = (e) => {
-    setFormData({
-      ...formData,
-      [e.target.name]: e.target.value,
-    });
-  };
+}, [currentUser]);
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsSubmitting(true);
 
-    try {
-      if (preferenceExists) {
-        alert("You already have travel preferences.");
-        history.goBack();
+    if (!currentUser) {
+        console.error("No current user found.");
         return;
-      }
+    }
 
-      await axios.post(`/travel-preference/`, formData);
+    try {
+        if (preferenceExists) {
+            alert("You already have travel preferences.");
+            history.goBack();
+            return;
+        }
 
+        await axios.post(`/travel-preference/`, formData);
         
-      history.push(`/profiles/${currentUser?.profile_id}`);
-     console.log(`Directing user back to profile ID: ${currentUser?.profile_id}`)
+        history.push(`/profiles/${currentUser.profile_id}`);
 
     } catch (error) {
-      console.error("Error creating travel preference:", error);
+        console.error("Error creating travel preference:", error);
     } finally {
-      setIsSubmitting(false);
+        setIsSubmitting(false);
     }
-  };
+};
+  console.log(`Directing user back to profile ID: ${currentUser?.profile_id}`)
 console.log(` Current user: ${currentUser}`)
-console.log(`ID ${currentUser.profile_id}`)
+console.log(currentUser?.profile_id)
+console.log(currentUser?.profile_id)
+
   return (
     <div>
       <form onSubmit={handleSubmit}>
