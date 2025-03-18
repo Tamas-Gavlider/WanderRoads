@@ -28,6 +28,7 @@ import EditStatus from './pages/profile/EditStatus';
 import AddCountry from './pages/profile/AddCountry';
 import ChangeThemeSong from './pages/profile/ChangeThemeSong';
 import Confirmation from './pages/travel_preference/Confirmation';
+import NotFoundPage from './components/NotFoundPage';
 
 
 function App() {
@@ -70,7 +71,7 @@ function App() {
     }/>
       <Route exact path='/travelers/' render={()=> <Profiles />}/>
       <Route exact path='/logout' render={()=> <h1>Logout</h1>}/>
-      <Route render={() => <h1>404 - Page Not Found</h1>} />
+      <Route render={() => < NotFoundPage />} />
       </Switch>
       </Container>
      }
