@@ -1,6 +1,9 @@
+.Container {
+  margin-top: 10%;
+}
 /* Hero Section */
 .heroRow {
-  padding: 70px 0;
+  padding: 10px 0;
   text-align: center;
   color: #ff0000;
 }
