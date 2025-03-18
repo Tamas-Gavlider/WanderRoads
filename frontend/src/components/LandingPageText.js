@@ -1,21 +1,19 @@
-import Container from 'react-bootstrap/Container';
-import Row from 'react-bootstrap/Row';
-import Col from 'react-bootstrap/Col';
-import styles from '../styles/LandingPage.module.css'
-import React from 'react'
+import React from 'react';
+import { Container, Row, Col } from 'react-bootstrap';
+import styles from '../styles/LandingPage.module.css';
+import { Link } from 'react-router-dom/cjs/react-router-dom';
 
 function LandingPageText() {
   return (
     <Container>
-      <Row>
-        <Col><p className={styles.tagline}>Your Journey</p></Col>
-        <Col></Col>
-        <Col><p className={styles.tagline}>Your Memory</p></Col>
-      </Row>
-      <Row>
-        <Col></Col>
-        <Col xs={5}><p className={styles.tagline}>Your Story</p></Col>
-        <Col></Col>
+      <Row className={styles.heroRow}>
+        <Col>
+          <h1 className={styles.heading}>Explore the World, Share Your Adventures</h1>
+          <p className={styles.subheading}>Connect with travelers, share memories, and get recommendations for your next journey.</p>
+          <Link to="/signup">
+              <button className={styles.ctaButton}>Start Your Journey</button>
+            </Link>
+        </Col>
       </Row>
     </Container>
   );
