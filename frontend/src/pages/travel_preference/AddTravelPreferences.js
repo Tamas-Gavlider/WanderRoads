@@ -55,11 +55,9 @@ export default function AddTravelPreference() {
 
       await axios.post(`/travel-preference/`, formData);
 
-      if (currentUser?.profile_id) {
-        history.push(`/profiles/${currentUser?.profile_id}`);
-      } else {
-        history.push("/"); 
-      }
+        
+      history.push(`/profiles/${currentUser?.profile_id}`);
+     console.log(`Directing user back to profile ID: ${currentUser?.profile_id}`)
 
     } catch (error) {
       console.error("Error creating travel preference:", error);
@@ -67,7 +65,8 @@ export default function AddTravelPreference() {
       setIsSubmitting(false);
     }
   };
-
+console.log(` Current user: ${currentUser}`)
+console.log(`ID ${currentUser.profile_id}`)
   return (
     <div>
       <form onSubmit={handleSubmit}>

@@ -51,7 +51,7 @@ export default function TravelPreferences({profileOwner}) {
     continentMapping[continentCode] || continentCode || "Not specified";
 
     const isOwner = currentUser?.username === profileOwner
-
+ console.log(`Is owner: ${isOwner}`)
   return (
     <div>
       {preferences ? (
