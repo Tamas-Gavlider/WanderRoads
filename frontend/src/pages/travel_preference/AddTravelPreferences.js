@@ -33,7 +33,7 @@ export default function AddTravelPreference() {
         });
     }
   }, [currentUser]);
-  
+
   const handleSubmit = async (e) => {
   e.preventDefault();
 
@@ -64,7 +64,7 @@ export default function AddTravelPreference() {
 
 
   return (
-    <div>
+    <div className="text-center">
       <form onSubmit={handleSubmit}>
         <button type="submit" disabled={isSubmitting} className={BtnStyle.Button}>
           Add your Travel Preferences
