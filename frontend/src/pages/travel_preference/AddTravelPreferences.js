@@ -49,12 +49,11 @@ export default function AddTravelPreference() {
     try {
       if (preferenceExists) {
         alert("You already have travel preferences.");
-        history.push(`/profiles/${currentUser?.pk}`); // Redirect to profile page if preferences already exist
         return; 
       }
 
       await axios.post(`/travel-preference/`, formData);
-      history.push(`/profiles/${currentUser?.pk}`); // Redirect to profile page after preferences are created
+      history.push("/confirmation");
 
     } catch (error) {
       console.error("Error creating travel preference:", error);

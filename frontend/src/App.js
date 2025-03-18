@@ -27,6 +27,7 @@ import ProfileImageChangeForm from './pages/profile/ProfileImageChangeForm';
 import EditStatus from './pages/profile/EditStatus';
 import AddCountry from './pages/profile/AddCountry';
 import ChangeThemeSong from './pages/profile/ChangeThemeSong';
+import Confirmation from './pages/travel_preference/Confirmation';
 
 
 function App() {
@@ -46,6 +47,7 @@ function App() {
       <Route exact path='/' render={()=> <LandingPageText/>}/>
       <Route exact path='/signin' render={()=> < SignInForm />}/>
       <Route exact path='/signup' render={()=> < SignUpForm/>}/>
+      <Route exact path='/confirmation' render={() => < Confirmation />}/>
       <Route path="/profiles/:id/edit/status" render= {()=> <EditStatus/>}/>
       <Route path="/profiles/:id/edit/countries" render={() => <AddCountry/>}/>
       <Route path="/profiles/:id/edit/theme-song" render={() => <ChangeThemeSong />}/>
