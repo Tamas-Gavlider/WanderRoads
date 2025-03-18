@@ -7,8 +7,7 @@ import BtnStyle from '../../styles/Button.module.css';
 export default function AddTravelPreference() {
   const currentUser = useCurrentUser();
   const history = useHistory();
-
-
+  
   const [formData, setFormData] = useState({
     preferred_continent: "ANY",
     climate: "ANY",
@@ -20,52 +19,49 @@ export default function AddTravelPreference() {
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [preferenceExists, setPreferenceExists] = useState(false);
-
   useEffect(() => {
-    if (currentUser?.profile_id) { 
-        axios
-            .get(`/travel-preference/`)
-            .then((response) => {
-                if (response.data) {
-                    setPreferenceExists(true);
-                }
-            })
-            .catch((error) => {
-                console.error("Error checking travel preferences:", error);
-            });
+    if (currentUser?.pk) {  
+      axios
+        .get(`/travel-preference/`)
+        .then((response) => {
+          if (response.data) {
+            setPreferenceExists(true);
+          }
+        })
+        .catch((error) => {
+          console.error("Error checking travel preferences:", error);
+        });
     }
-}, [currentUser]);
-
+  }, [currentUser]);
+  
   const handleSubmit = async (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
+  e.preventDefault();
 
-    if (!currentUser) {
-        console.error("No current user found.");
-        return;
+  if (!currentUser) {
+    console.error("No current user found. Redirecting to login.");
+    history.push("/signin"); 
+    return;
+  }
+
+  setIsSubmitting(true);
+
+  try {
+    if (preferenceExists) {
+      alert("You already have travel preferences.");
+      return; 
     }
 
-    try {
-        if (preferenceExists) {
-            alert("You already have travel preferences.");
-            history.goBack();
-            return;
-        }
+    await axios.post(`/travel-preference/`, formData);
 
-        await axios.post(`/travel-preference/`, formData);
-        
-        history.push(`/profiles/${currentUser.profile_id}`);
+    history.push(`/profiles/${currentUser?.profile_id || ""}`);
 
-    } catch (error) {
-        console.error("Error creating travel preference:", error);
-    } finally {
-        setIsSubmitting(false);
-    }
+  } catch (error) {
+    console.error("Error creating travel preference:", error);
+  } finally {
+    setIsSubmitting(false);
+  }
 };
-  console.log(`Directing user back to profile ID: ${currentUser?.profile_id}`)
-console.log(` Current user: ${currentUser}`)
-console.log(currentUser?.profile_id)
-console.log(currentUser?.profile_id)
+
 
   return (
     <div>
