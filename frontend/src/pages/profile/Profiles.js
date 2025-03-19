@@ -58,7 +58,7 @@ const UserList = () => {
         {profiles.map((user) => (
           <Col xs={12} sm={6} md={4} lg={3} key={user.id}>
             <Card className={`h-100 ${styles.UserCard}`}>
-              <Card.Img variant="top" src={user.image} />
+              <Card.Img variant="top" src={user.image} alt={`${user.owner}'s profile picture`} />
               <Card.Body>
                 <Card.Title className="d-flex align-items-center gap-2">
                   <Link to={`/profiles/${user.id}`} className={styles.User}>
