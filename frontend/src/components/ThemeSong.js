@@ -20,6 +20,7 @@ export default function ThemeSong(props) {
         <div className={styles.Container}>
             <button onClick={toggleMute} className={styles.Button}>
                 <i className={`fa-solid ${isMuted ? "fa-volume-xmark" : "fa-volume-high"}`}></i>
+                <p className={styles.Hidden}>hidden text</p>
             </button>
             <audio ref={audioRef} src={props.theme_song} />
         </div>

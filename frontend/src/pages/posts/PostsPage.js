@@ -60,6 +60,7 @@ function PostsPage({ message, filter = "" }) {
       to="/posts/create"
     >
       <i className={`fa-solid fa-plane-departure ${styles.ShareIcon}`}></i>
+      <p className={styles.Hidden}>hidden text</p>
     </Link>
   </Col>
 </div>
@@ -75,6 +76,7 @@ function PostsPage({ message, filter = "" }) {
             type="text"
             className="mr-sm-2"
             placeholder="Search posts"
+            aria-label="search posts"
           />
         </Form>
         {hasLoaded ? (

@@ -40,6 +40,7 @@ const UserList = () => {
           placeholder="Search users..."
           value={query}
           onChange={(e) => setQuery(e.target.value)}
+          aria-label="serach users"
         />
       </Form>
       </Col>
@@ -61,8 +62,8 @@ const UserList = () => {
               <Card.Img variant="top" src={user.image} alt={`${user.owner}'s profile picture`} />
               <Card.Body>
                 <Card.Title className="d-flex align-items-center gap-2">
-                  <Link to={`/profiles/${user.id}`} className={styles.User}>
-                    {user.owner}'s vibe:
+                  <Link to={`/profiles/${user.id}`} className={styles.User} >
+                    <span>{user.owner}'s vibe:</span>
                   </Link>
                   <ThemeSong theme_song={user.theme_song} />
                 </Card.Title>

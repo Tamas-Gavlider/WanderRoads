@@ -94,6 +94,7 @@ function PostCreateForm() {
           name="title"
           value={title}
           onChange={handleChange}
+          aria-label="title"
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (
@@ -110,6 +111,7 @@ function PostCreateForm() {
           name="content"
           value={content}
           onChange={handleChange}
+          aria-label="content"
         />
       </Form.Group>
       {errors?.content?.map((message, idx) => (
@@ -126,6 +128,7 @@ function PostCreateForm() {
           value={country}
           onChange={handleChange}
           required
+          aria-label="country"
         >
           <option value="">Select a country</option>
           {countries.map((c) => (

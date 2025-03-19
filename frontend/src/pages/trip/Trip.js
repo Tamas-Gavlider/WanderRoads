@@ -69,6 +69,7 @@ export default function Trip() {
       <div className="d-flex justify-content-start mb-3">
         <Link to="/trip/create">
           <i className="fa-solid fa-plus"></i> 
+          <p className={styles.Hidden}>hidden text</p>
         </Link>
       </div>
 

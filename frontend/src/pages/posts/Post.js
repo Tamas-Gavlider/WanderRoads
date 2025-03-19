@@ -72,6 +72,7 @@ const Post = (props) => {
         {content && <Card.Text>{content}</Card.Text>}
         <Link to={`/posts/${id}/`}>
           <i className={`far fa-comments ${iconStyles.Icon}`}/>
+          <p className={styles.Hidden}>hidden text</p>
         </Link>
         {comments_count}
       </Card.Body>

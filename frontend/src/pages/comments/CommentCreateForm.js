@@ -55,6 +55,7 @@ function CommentCreateForm(props) {
             value={content}
             onChange={handleChange}
             rows={2}
+            aria-label="comment"
           />
         </InputGroup>
       </Form.Group>

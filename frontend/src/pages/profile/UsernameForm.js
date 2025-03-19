@@ -65,6 +65,7 @@ const UsernameForm = () => {
                 value={username}
                 onChange={(event) => setUsername(event.target.value)}
                 className="text-center"
+                aria-label="username"
               />
             </Form.Group>
             {errors?.username?.map((message, idx) => (

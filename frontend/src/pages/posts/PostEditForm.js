@@ -110,6 +110,7 @@ function PostEditForm() {
           name="title"
           value={title}
           onChange={handleChange}
+          aria-label="title"
         />
       </Form.Group>
       {errors?.title?.map((message, idx) => (
@@ -126,6 +127,7 @@ function PostEditForm() {
           name="content"
           value={content}
           onChange={handleChange}
+          aria-label="content"
         />
       </Form.Group>
       {errors?.content?.map((message, idx) => (
@@ -141,6 +143,7 @@ function PostEditForm() {
           value={country}
           onChange={handleChange}
           required
+          aria-label="country"
         >
           <option value="">Select a country</option>
           {countries.map((c) => (
@@ -168,7 +171,7 @@ function PostEditForm() {
           >
             <Form.Group className="text-center">
               <figure>
-                <Image className={appStyles.Image} src={image} rounded />
+                <Image className={appStyles.Image} src={image} rounded alt="post image"/>
               </figure>
               <div>
                 <Form.Label

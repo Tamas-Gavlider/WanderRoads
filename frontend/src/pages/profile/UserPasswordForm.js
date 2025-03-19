@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { lazy, useEffect, useState } from "react";
 
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
@@ -58,7 +58,7 @@ const UserPasswordForm = () => {
         <Container className={appStyles.Content}>
           <Form onSubmit={handleSubmit}>
             <Form.Group>
-              <Form.Label></Form.Label>
+              <Form.Label>Password</Form.Label>
               <Form.Control
                 placeholder="new password"
                 type="password"
@@ -66,6 +66,7 @@ const UserPasswordForm = () => {
                 onChange={handleChange}
                 name="new_password1"
                 className="text-center"
+                aria-label="new password"
               />
             </Form.Group>
             {errors?.new_password1?.map((message, idx) => (
@@ -74,7 +75,7 @@ const UserPasswordForm = () => {
               </Alert>
             ))}
             <Form.Group>
-              <Form.Label></Form.Label>
+              <Form.Label>New password</Form.Label>
               <Form.Control
                 placeholder="confirm new password"
                 type="password"
@@ -82,6 +83,7 @@ const UserPasswordForm = () => {
                 onChange={handleChange}
                 name="new_password2"
                 className="text-center"
+                aria-label="confirm new password"
               />
             </Form.Group>
             {errors?.new_password2?.map((message, idx) => (

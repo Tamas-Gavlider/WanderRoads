@@ -33,6 +33,7 @@ export default function EditStatus() {
             value={status}
             onChange={(e) => setStatus(e.target.value)}
             className={styles.StatusInput}
+            aria-label="status"
           />
         </Form.Group>
 

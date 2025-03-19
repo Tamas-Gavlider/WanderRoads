@@ -91,7 +91,7 @@ export default function ProfileImageChangeForm() {
           >
             <Form.Group className="text-center">
               <figure>
-                <Image className={appStyles.Image} src={image} rounded />
+                <Image className={appStyles.Image} src={image} rounded alt="profile image" />
               </figure>
               <div>
                 <Form.Label

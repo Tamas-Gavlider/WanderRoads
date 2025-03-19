@@ -4,6 +4,12 @@
   padding-top: 20px;
 }
 
+.Countries {
+  background: linear-gradient(135deg, #ff0000, #00bae2);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;  
+}
+
 .HeroSection {
   position: relative;
   height: 300px;
@@ -78,7 +84,7 @@
 }
 
 .NavLink {
-  color: #00bae2;
+  color: #281713;
 }
 
 .NavLink:hover {
@@ -91,7 +97,9 @@
 
 .EditIcon {
   text-decoration: none;
-  color: #00bae2;
+  background: linear-gradient(135deg, #ff0000, #00bae2);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;  
 }
 
 .EditIcon:hover {

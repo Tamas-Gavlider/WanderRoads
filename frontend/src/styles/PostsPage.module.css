@@ -2,6 +2,10 @@
   padding: 5px;
 }
 
+.Hidden {
+  display: none;
+}
+
 .SearchBar input {
     border-radius: 20px;
     color: #281713;
