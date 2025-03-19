@@ -1,6 +1,7 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
 import styles from '../styles/LandingPage.module.css';
+import btnStyles from '../styles/Button.module.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { useCurrentUser } from "../contexts/CurrentUserContext";
 
@@ -12,8 +13,8 @@ function LandingPageText() {
         <Col>
           <h1 className={styles.heading}>Explore the World, Share Your Adventures</h1>
           <p className={styles.subheading}>Connect with travelers, share memories, and get recommendations for your next journey.</p>
-          {!currentUser && <Link to="/signup">
-              <button className={styles.ctaButton}>Start Your Journey</button>
+          {!currentUser && <Link to="/signup" className={btnStyles.Button}>
+              Start Your Journey
             </Link> }
         </Col>
       </Row>

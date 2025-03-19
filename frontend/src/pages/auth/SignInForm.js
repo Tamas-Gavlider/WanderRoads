@@ -66,6 +66,7 @@ function SignInForm() {
                 className={styles.Input}
                 value={username}
                 onChange={handleChange}
+                aria-label="Username"
               />
             </Form.Group>
             {errors.username?.map((message, idx) => (
@@ -83,6 +84,7 @@ function SignInForm() {
                 className={styles.Input}
                 value={password}
                 onChange={handleChange}
+                aria-label="Password"
               />
             </Form.Group>
             {errors.password?.map((message, idx) => (
@@ -104,9 +106,9 @@ function SignInForm() {
           </Form>
         </Container>
         <Container className='mt-3'>
-          <Link className={styles.Link} to="/signup">
-            Don't have an account? <span>Sign up now!</span>
-          </Link>
+        <Link className={styles.Link} to="/signup">
+  Don't have an account? Sign up now!
+</Link>
         </Container>
       </Col>
       <Col
@@ -116,6 +118,7 @@ function SignInForm() {
         <Image
           className={`${appStyles.FillerImage}`}
           src={image}
+          alt='signin'
         />
       </Col>
     </Row>

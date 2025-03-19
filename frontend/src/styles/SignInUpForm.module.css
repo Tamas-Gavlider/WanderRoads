@@ -29,12 +29,12 @@
   margin: auto;
 }
 
-.Link span:hover {
+.Link:hover {
   color: #ff0000;
 }
 
-.Link span {
-  color: #00bae2;
+.Link {
+  color: #281713;
 }
 
 .Container {
