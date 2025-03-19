@@ -1,5 +1,5 @@
 .NavBar {
-    background-color: #00bae2;
+    background-color: #b9b9b9;
 }
 
 .NavLink {
@@ -14,5 +14,7 @@
 }
 
 .Active {
-    color: #ff0000;
+    background: linear-gradient(to right top, #00bae2, #40a3ff, #c173ef, #ff0093, #ff0000);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;  
 }

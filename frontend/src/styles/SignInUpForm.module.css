@@ -27,18 +27,11 @@
   text-align: center;
   display: block;
   margin: auto;
+  color: #281713;
 }
 
 .Link:hover {
   color: #ff0000;
-}
-
-.Link {
-  color: #281713;
-}
-
-.Container {
-  padding: 50px 10px;
 }
 
 .SignInCol {

@@ -127,11 +127,12 @@ const SignUpForm = () => {
         md={6}
         className="d-none d-md-flex align-items-center justify-content-center"
       >
-        <Image className={appStyles.FillerImageRegister} src={reg_img} fluid />
+        <Image className={appStyles.FillerImageRegister} src={reg_img} fluid alt="signup" />
       </Col>
       <Container className='mt-3'>
         <Link className={`${styles.Link} ${styles.SignInLink}`} to="/signin">
-          Already have an account? <span>Sign in</span>
+          Already have an account?
+          Sign in
         </Link>
       </Container>
     </Row>
