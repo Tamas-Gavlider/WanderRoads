@@ -1,25 +1,26 @@
-.Container {
-    background-image: url('../assets/404.webp'); 
-    background-size: contain; 
-    background-repeat: no-repeat; 
-    background-position: center; 
+  .NotFound {
+    font-size: 120px;
+    font-family: "Kranky", serif;
+    padding-top: 20px;
+    background: linear-gradient(135deg, #ff0000, #00bae2);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;  
     
   }
-  
-  .Overlay {
-    background: rgba(0, 0, 0, 0.5); 
-    padding: 50px; 
-    border-radius: 10px; 
-    max-width: 800px; 
-    margin: 0 auto;
-  }
-  
+
   .Text {
-    font-size: 3rem; 
-    color: #ff0000 !important;
+    margin-top: 70px;
+    font-family: "Kranky", serif;
+    font-size: 10px; 
+    background: linear-gradient(135deg, #ff0000, #00bae2);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;  
   }
   
   p {
-    font-size: 1.2rem;
+    font-size: 25px;
+    background: linear-gradient(135deg, #ff0000, #00bae2);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;  
   }
   

@@ -12,9 +12,10 @@ const NotFoundPage = () => {
 
   return (
     <div className={` text-center ${styles.Container}`}>
-      <div className={styles.Overlay}>
+      <div>
+        <h1 className={`${styles.NotFound}`}>404</h1>
         <div className={`mb-3 ${styles.Text}`}>
-          <h2 className={`display-4 ${styles.Heading}`}>Looks like you've wandered off the beaten path!</h2>
+          <h2 className='display-4'>Looks like you've wandered off the beaten path!</h2>
           <p>Not all who wander are lost... but you are right now.</p>
         </div>
         <button className={buttonStyles.Button} onClick={handleRedirect}>
