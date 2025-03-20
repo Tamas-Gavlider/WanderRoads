@@ -1,12 +1,12 @@
 import React, { useEffect, useState } from "react";
-import Form  from "react-bootstrap/Form";
+import Form from "react-bootstrap/Form";
 import Col from "react-bootstrap/Col";
 import Row from "react-bootstrap/Row";
 import Container from "react-bootstrap/Container";
-import  {Link}  from "react-router-dom";
+import { Link } from "react-router-dom";
 import Post from "./Post";
-import navStyle from '../../styles/NavBar.module.css' 
-import styles from '../../styles/PostsPage.module.css'
+import navStyle from "../../styles/NavBar.module.css";
+import styles from "../../styles/PostsPage.module.css";
 import appStyles from "../../App.module.css";
 import { useLocation } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
@@ -34,12 +34,12 @@ function PostsPage({ message, filter = "" }) {
         setError("Failed to load posts. Please try again.");
       }
     };
-  
+
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchPosts();
     }, 1000);
-  
+
     return () => {
       clearTimeout(timer);
     };
@@ -48,23 +48,25 @@ function PostsPage({ message, filter = "" }) {
   return (
     <Row className={`h-100 ${styles.Row}`}>
       {error && <p className={appStyles.Error}>{error}</p>}
-     <div className={styles.CreatePost}>
-  <Col className="py-2 p-0 p-lg-2" lg={8}>
-    <span className={styles.ShareText}> Share your journey! </span>
-    <Link
-      className={navStyle.NavLink}
-      activeClassName={navStyle.Active}
-      to="/posts/create"
-    >
-      <i className={`fa-solid fa-plane-departure ${styles.ShareIcon}`}></i>
-      <p className={styles.Hidden}>hidden text</p>
-    </Link>
-  </Col>
-</div>
+      <div className={styles.CreatePost}>
+        <Col className="py-2 p-0 p-lg-2" sm={6} md={6} lg={8}>
+          <span className={styles.ShareText}> Share your journey! </span>
+          <Link
+            className={navStyle.NavLink}
+            activeClassName={navStyle.Active}
+            to="/posts/create"
+          >
+            <i
+              className={`fa-solid fa-plane-departure ${styles.ShareIcon}`}
+            ></i>
+            <p className={styles.Hidden}>hidden text</p>
+          </Link>
+        </Col>
+      </div>
       <Col className="py-2 p-0 p-lg-2" lg={8}>
-      <i className={`fas fa-search ${styles.SearchIcon}`}></i>
+        <i className={`fas fa-search ${styles.SearchIcon}`}></i>
         <Form
-        className={styles.SearchBar}
+          className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
         >
           <Form.Control
@@ -80,25 +82,19 @@ function PostsPage({ message, filter = "" }) {
           <>
             {posts.results.length ? (
               <InfiniteScroll
-              children={posts.results.map((post) => (
-
-                <Post key={post.id} {...post} setPosts={setPosts} />
-
-              ))}
-
-              dataLength={posts.results.length}
-
-              loader={<Loading />}
-
-              hasMore={!!posts.next}
-
-              next={() => fetchMoreData(posts, setPosts)}
-
-            />
+              className={styles.Post}
+                children={posts.results.map((post) => (
+                  <Post key={post.id} {...post} setPosts={setPosts} />
+                ))}
+                dataLength={posts.results.length}
+                loader={<Loading />}
+                hasMore={!!posts.next}
+                next={() => fetchMoreData(posts, setPosts)}
+              />
             ) : (
               <Container className={appStyles.Content}>
-              <p>{message} </p>
-            </Container>
+                <p>{message} </p>
+              </Container>
             )}
           </>
         ) : (

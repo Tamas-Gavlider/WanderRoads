@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import Card from "react-bootstrap/Card";
+import { Card, Col} from "react-bootstrap";
 import Media from "react-bootstrap/Media";
 import { Link, useHistory } from "react-router-dom";
 import Avatar from "../../components/Avatar";
@@ -44,6 +44,7 @@ const Post = (props) => {
 
 
   return (
+  <Col xs={10} sm={8} md={7} lg={8}>
     <Card className={styles.Post}>
       <Card.Body>
         <Media className="align-items-center justify-content-between">
@@ -65,7 +66,7 @@ const Post = (props) => {
         </Media>
       </Card.Body>
       <Link to={`/posts/${id}/`}>
-        <Card.Img src={image} alt={title} className={styles.Image}/>
+        <Card.Img src={image} alt={title} />
       </Link>
       <Card.Body>
         {title && <Card.Title className="text-center">{title}</Card.Title>}
@@ -77,6 +78,7 @@ const Post = (props) => {
         {comments_count}
       </Card.Body>
     </Card>
+    </Col>
   );
 };
 
