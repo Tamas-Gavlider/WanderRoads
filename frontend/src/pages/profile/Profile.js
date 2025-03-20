@@ -11,6 +11,7 @@ import UserPosts from "../posts/UserPosts";
 import Asset from "../../components/Asset";
 import backgroundImage from "../../assets/background.webp";
 import { Link } from "react-router-dom";
+import Image from "react-bootstrap/Image";
 
 
 const Profile = () => {
