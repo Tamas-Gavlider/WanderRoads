@@ -65,7 +65,12 @@ const NavBar = () => {
       <NavLink to={`/profiles/${currentUser?.profile_id}`} className={styles.NavLink}>
       {currentUser?.username}
     </NavLink>
-    <Avatar src={currentUser?.profile_image} height={45}/>
+    <Avatar 
+    src={currentUser?.profile_image.replace(
+      "/upload/",
+      "/upload/w_300,h_300,c_fill,q_auto,f_auto/"
+    )}
+    height={45}/>
     </>
   );
   const loggedOutLinks = (

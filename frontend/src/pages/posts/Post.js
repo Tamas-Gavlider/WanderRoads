@@ -41,7 +41,7 @@ const Post = (props) => {
       console.log(err);
     }
   };
-
+console.log(image)
 
   return (
   <Col xs={10} sm={8} md={7} lg={8}>
@@ -49,7 +49,8 @@ const Post = (props) => {
       <Card.Body>
         <Media className="align-items-center justify-content-between">
           <Link to={`/profiles/${profile_id}`} className={styles.Profile}>
-            <Avatar src={profile_image} height={55} />
+            <Avatar src={profile_image} 
+            height={55} />
             <span className={styles.User}>{owner}</span>
           </Link>
           <div className="d-flex align-items-center">
