@@ -57,7 +57,7 @@ CLOUDINARY_STORAGE = {
 }
 
 WHITENOISE_ADD_HEADERS = {
-    'Cache-Control': 'no-cache, no-store, must-revalidate', 
+    'Cache-Control': 'public, max-age=31536000, immutable',
 }
 
 MEDIA_URL = '/media/'
