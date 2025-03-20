@@ -2,23 +2,31 @@
   outline: none;
 }
 
-.Map {
-  width: 100%; 
-  height: 490px;
- 
+.mapContainer {
+  position: relative;
+  width: 100%;
+  height: 85vh; 
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
 
+.Map {
+  width: 100%;
+  max-width: 1200px;
+  height: auto;
 }
 
 .zoomControls {
   position: absolute;
-  top: 10px;
+  top: 20px;
   left: 50%;
   transform: translateX(-50%);
   display: flex;
   flex-direction: row;
   gap: 10px;
   z-index: 1000; 
-  margin-top: 90px;
+  margin-top: 10px;
 }
 
 .zoomControls button {
@@ -40,7 +48,7 @@
 
 @media (max-width: 949px) and (min-width: 480px) {
   .Map {
-    margin-bottom: 350px;
+    margin-bottom: 100px;
     height: 700px;
   }
 }
