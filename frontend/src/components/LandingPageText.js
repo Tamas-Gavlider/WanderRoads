@@ -9,10 +9,10 @@ function LandingPageText() {
   const currentUser = useCurrentUser();
   return (
     <Container className={styles.Container}>
-      <Row className={styles.heroRow}>
+      <Row className={styles.HeroRow}>
         <Col>
-          <h1 className={styles.heading}>Explore the World, Share Your Adventures</h1>
-          <p className={styles.subheading}>Connect with travelers, share memories, and get recommendations for your next journey.</p>
+          <h1 className={styles.Heading}>Explore the World, Share Your Adventures</h1>
+          <p className={styles.Subheading}>Connect with travelers, share memories, and get recommendations for your next journey.</p>
           {!currentUser && <Link to="/signup" className={btnStyles.Button}>
               Start Your Journey
             </Link> }
