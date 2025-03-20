@@ -5,19 +5,6 @@
     min-height: 100vh;
 }
 
-.LandingBackground {
-  background-image: url('./assets/landing_page.webp');
-  background-size: cover;
-  background-position: center;
-  background-repeat: no-repeat;
-  background-attachment: fixed;
-}
-
-/* Remove background for other pages */
-.NoBackground {
-  background: white;
-}
-
   a:hover {
     text-decoration:none;
   }
@@ -88,14 +75,8 @@
   *::-webkit-scrollbar-thumb:hover {
     background: #555;
   }
-
-/* Smaller Screen Optimization */
-@media (max-width: 768px) {
-  .LandingBackground{
-      background: white;
+  @media (max-width: 768px) {
+    .LandingBackground {
+      background-image: none !important;
+    }
   }
-  /* Remove background for other pages */
-.NoBackground {
-  background: white;
-}
-}

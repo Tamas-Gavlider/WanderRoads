@@ -29,6 +29,7 @@ import AddCountry from './pages/profile/AddCountry';
 import ChangeThemeSong from './pages/profile/ChangeThemeSong';
 import Confirmation from './pages/travel_preference/Confirmation';
 import NotFoundPage from './components/NotFoundPage';
+import landingPageImage from './assets/landing_page.webp';
 
 
 function App() {
@@ -37,9 +38,18 @@ function App() {
   const profile_id = currentUser?.profile_id || ""
   const location = useLocation(); 
   const isLandingPage = location.pathname === "/"; 
-  console.log(profile_id)
+  
   return (
-    <div className={`${styles.App} ${isLandingPage ? styles.LandingBackground : styles.NoBackground}`}>
+    <div
+    style={{
+      backgroundImage: isLandingPage ? `url(${landingPageImage})` : "none",
+      backgroundSize: "cover",
+      backgroundPosition: "center",
+      backgroundRepeat: "no-repeat",
+      backgroundAttachment: "fixed",
+    }}
+    className={`${styles.App} ${styles.LandingBackground}`}
+  >
       < NavBar />
      {
        <Container fluid className={styles.Main}>
