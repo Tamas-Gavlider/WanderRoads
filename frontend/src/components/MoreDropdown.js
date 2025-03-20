@@ -15,6 +15,9 @@ const ThreeDots = React.forwardRef(({ onClick }, ref) => (
   />
 ));
 
+// Set the display name for the component due to eslint error
+ThreeDots.displayName = "ThreeDots";
+
 export const MoreDropdown = ({ handleEdit, handleDelete }) => {
   return (
     <Dropdown className="ml-auto" drop="left">

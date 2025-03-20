@@ -7,7 +7,7 @@ import styles from "../../styles/EditTravelPreferences.module.css";
 import btnStyles from "../../styles/Button.module.css"
 
 export default function TravelPreferenceEditForm() {
-  const [errors, setErrors] = useState({});
+  const [error, setErrors] = useState({});
   const [preferencesData, setPreferencesData] = useState({
     preferred_continent: "",
     climate: "",
@@ -50,6 +50,8 @@ export default function TravelPreferenceEditForm() {
       setErrors(err.response?.data || {});
     }
   };
+
+  if (error) return <p>{error}</p>;
 
   return (
     <div className={styles.EditPrefContainer}>

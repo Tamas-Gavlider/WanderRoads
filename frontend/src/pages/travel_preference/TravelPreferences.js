@@ -38,13 +38,14 @@ export default function TravelPreferences({profileOwner}) {
           setLoading(false);
         })
         .catch((error) => {
+          setError(error);
           setLoading(false);
         });
     }
   }, [profileOwner]);
 
   if (loading) return <Loading />;
-  if (error) return <p className={styles.Error}>{error}</p>;
+  if (error) return <p>{error}</p>;
 
   const continentCode = preferences?.preferred_continent;
   const continentName =

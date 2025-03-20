@@ -15,7 +15,7 @@ const NotFoundPage = () => {
       <div>
         <h1 className={`${styles.NotFound}`}>404</h1>
         <div className={`mb-3 ${styles.Text}`}>
-          <h2 className='display-4'>Looks like you've wandered off the beaten path!</h2>
+          <h2 className='display-4'>Looks like you&apos;ve wandered off the beaten path!</h2>
           <p>Not all who wander are lost... but you are right now.</p>
         </div>
         <button className={buttonStyles.Button} onClick={handleRedirect}>

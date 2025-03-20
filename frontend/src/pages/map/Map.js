@@ -13,7 +13,6 @@ import "bootstrap/dist/css/bootstrap.min.css";
 const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 export default function Map() {
-  const [tooltipContent, setTooltipContent] = useState("");
   const [countryPosts, setCountryPosts] = useState({});
   const [zoomLevel, setZoomLevel] = useState(1);
 
@@ -70,10 +69,6 @@ export default function Map() {
                   >
                     <Geography
                       geography={geo}
-                      onMouseEnter={() =>
-                        setTooltipContent(`${countryName} - ${postCount} posts`)
-                      }
-                      onMouseLeave={() => setTooltipContent("")}
                       style={{
                         default: {
                           fill: postCount > 0 ? "#00BAE2" : "#ECEFF1",

@@ -1,17 +1,13 @@
 import React, { useEffect, useState } from "react";
-
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Container from "react-bootstrap/Container";
-import appStyles from "../../App.module.css";
 import { useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import { useCurrentUser } from "../../contexts/CurrentUserContext";
+import { Col, Row, Container } from "react-bootstrap";
+import appStyles from "../../App.module.css";
+import styles from '../../styles/PostPage.module.css';
 import Post from "./Post";
 import Comment from "../comments/Comment";
-
 import CommentCreateForm from "../comments/CommentCreateForm";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import styles from '../../styles/PostPage.module.css';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
@@ -20,10 +16,9 @@ import PopularDestinations from "../../components/PopularDestinations";
 function PostPage() {
   const { id } = useParams();
   const [post, setPost] = useState({ results: [] });
-  const [popularDestinations, setPopularDestinations] = useState([]);
+  const [comments, setComments] = useState({ results: [] });
   const currentUser = useCurrentUser();
   const profile_image = currentUser?.profile_image;
-  const [comments, setComments] = useState({ results: [] });
 
   useEffect(() => {
     console.log(`Fetching post with id: ${id}`);
@@ -40,15 +35,15 @@ function PostPage() {
         console.error("Error fetching post:", err);
       }
     };
-  
+
     handleMount();
   }, [id]);
-  
+
   console.log("Posts state:", post);
   return (
     <Row className={`h-100 ${styles.Row}`}>
       <Col className={`py-2 p-0 p-lg-2 ${styles.Post}`} lg={8}>
-      <Post {...post.results[0]} setPosts={setPost} postPage />
+        <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container className={appStyles.Content}>
           {currentUser ? (
             <CommentCreateForm
@@ -63,7 +58,12 @@ function PostPage() {
           ) : null}
           {comments.results.length ? (
             <InfiniteScroll
-              children={comments.results.map((comment) => (
+              dataLength={comments.results.length}
+              loader={<Asset spinner />}
+              hasMore={!!comments.next}
+              next={() => fetchMoreData(comments, setComments)}
+            >
+              {comments.results.map((comment) => (
                 <Comment
                   key={comment.id}
                   {...comment}
@@ -71,11 +71,7 @@ function PostPage() {
                   setComments={setComments}
                 />
               ))}
-              dataLength={comments.results.length}
-              loader={<Asset spinner />}
-              hasMore={!!comments.next}
-              next={() => fetchMoreData(comments, setComments)}
-            />
+            </InfiniteScroll>
           ) : currentUser ? (
             <span>No comments yet, be the first to comment!</span>
           ) : (
@@ -84,7 +80,7 @@ function PostPage() {
         </Container>
       </Col>
       <Col className={styles.Destination}>
-      <PopularDestinations popularDestinations={popularDestinations} />
+        <PopularDestinations />
       </Col>
     </Row>
   );

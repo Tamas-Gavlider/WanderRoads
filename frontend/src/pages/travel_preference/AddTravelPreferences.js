@@ -7,8 +7,11 @@ import BtnStyle from '../../styles/Button.module.css';
 export default function AddTravelPreference() {
   const currentUser = useCurrentUser();
   const history = useHistory();
-  
-  const [formData, setFormData] = useState({
+
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [preferenceExists, setPreferenceExists] = useState(false);
+
+  const [formData] = useState({
     preferred_continent: "ANY",
     climate: "ANY",
     activity: "ANY",
@@ -17,11 +20,8 @@ export default function AddTravelPreference() {
     duration: "ANY",
   });
 
-  const [isSubmitting, setIsSubmitting] = useState(false);
-  const [preferenceExists, setPreferenceExists] = useState(false);
-
   useEffect(() => {
-    if (currentUser?.pk) {  
+    if (currentUser?.pk) {
       axios
         .get(`/travel-preference/`)
         .then((response) => {
@@ -40,7 +40,7 @@ export default function AddTravelPreference() {
 
     if (!currentUser) {
       console.error("No current user found. Redirecting to login.");
-      history.push("/signin"); 
+      history.push("/signin");
       return;
     }
 
@@ -49,12 +49,12 @@ export default function AddTravelPreference() {
     try {
       if (preferenceExists) {
         alert("You already have travel preferences.");
-        return; 
+        return;
       }
 
+      // Post the default "ANY" preferences for the user
       await axios.post(`/travel-preference/`, formData);
       history.push("/confirmation");
-
     } catch (error) {
       console.error("Error creating travel preference:", error);
     } finally {
