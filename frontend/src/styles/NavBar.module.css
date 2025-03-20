@@ -18,3 +18,13 @@
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;  
 }
+
+.Home {
+    color: #281713; 
+}
+
+.Home:hover {
+    background: linear-gradient(135deg, #ff0000, #00bae2);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;   
+}

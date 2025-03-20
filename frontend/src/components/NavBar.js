@@ -96,9 +96,9 @@ const NavBar = () => {
       fixed="top"
     >
       <Container fluid>
-        <NavLink to="/">
+        <NavLink to="/" className={styles.NavLink}>
           <Navbar.Brand>
-            <img src={logo} alt="logo" height="70" className={styles.Logo}/>
+          <i class={`fa-solid fa-house-chimney ${styles.Home}`}>Home</i>
           </Navbar.Brand>
         </NavLink>
         <Navbar.Toggle
