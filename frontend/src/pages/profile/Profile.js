@@ -1,4 +1,4 @@
-import React, { useEffect, useState, lazy } from "react";
+import React, { useEffect, useState } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
@@ -12,8 +12,6 @@ import Asset from "../../components/Asset";
 import backgroundImage from "../../assets/background.webp";
 import { Link } from "react-router-dom";
 
-
-const LazyImage = lazy(() => import("react-bootstrap/Image"));
 
 const Profile = () => {
   const { id } = useParams();
@@ -41,15 +39,13 @@ const Profile = () => {
       >
         <div className={styles.Overlay}></div>
         <div className={styles.ProfileContent}>
-          <React.Suspense fallback={<div>Loading image...</div>}>
-            <LazyImage
+            <Image
               src={profile.image}
               alt={profile.owner}
               className={styles.ProfileImage}
               roundedCircle
-              loading="lazy" 
+              
             />
-          </React.Suspense>
           <div className={styles.ProfileText}>
             <h2>
               {profile.experience} {profile.owner}
