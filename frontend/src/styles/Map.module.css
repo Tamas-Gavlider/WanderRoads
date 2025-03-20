@@ -30,9 +30,9 @@
 }
 
 .zoomControls button {
-  width: 40px;
-  height: 40px;
-  font-size: 20px;
+  width: 20px;
+  height: 20px;
+  font-size: 10px;
   font-weight: bold;
   border: none;
   background-color: #ff0000;
@@ -46,17 +46,27 @@
   background-color: #cc0000;
 }
 
-@media (max-width: 949px) and (min-width: 480px) {
+@media (min-width: 768px){
   .Map {
     margin-bottom: 100px;
     height: 700px;
   }
+  .zoomControls button {
+    width: 30px;
+  height: 30px;
+  font-size: 15px;
+}
 }
 
 @media (min-width: 1100px) {
   .Map {
-    height: 85vh; 
+    height: 70vh; 
     position: absolute;
     bottom: 10%;
+  }
+  .zoomControls button {
+    width: 40px;
+  height: 40px;
+  font-size: 20px;
   }
 }
