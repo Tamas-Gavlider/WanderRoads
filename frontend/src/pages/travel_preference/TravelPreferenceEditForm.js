@@ -7,7 +7,6 @@ import styles from "../../styles/EditTravelPreferences.module.css";
 import btnStyles from "../../styles/Button.module.css"
 
 export default function TravelPreferenceEditForm() {
-  const [error, setErrors] = useState({});
   const [preferencesData, setPreferencesData] = useState({
     preferred_continent: "",
     climate: "",
@@ -47,11 +46,9 @@ export default function TravelPreferenceEditForm() {
       await axiosReq.put(`/travel-preference/${id}/`, preferencesData);
       history.goBack();
     } catch (err) {
-      setErrors(err.response?.data || {});
+      console.error("Error updating travel preferences:", err);
     }
   };
-
-  if (error) return <p>{error}</p>;
 
   return (
     <div className={styles.EditPrefContainer}>
