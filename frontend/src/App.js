@@ -37,7 +37,7 @@ function App() {
   const profile_id = currentUser?.profile_id || ""
   const location = useLocation(); 
   const isLandingPage = location.pathname === "/"; 
-
+  console.log(profile_id)
   return (
     <div className={`${styles.App} ${isLandingPage ? styles.LandingBackground : styles.NoBackground}`}>
       < NavBar />

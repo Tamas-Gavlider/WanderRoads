@@ -1,5 +1,4 @@
 import React, { useState, useEffect } from "react";
-import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
@@ -8,7 +7,6 @@ import { Form, Row, Col, Button } from "react-bootstrap";
 import styles from "../../styles/AddTrip.module.css";
 
 export default function AddTrip() {
-  const currentUser = useCurrentUser();
   const [errors, setErrors] = useState({});
   const [tripData, setTripData] = useState({
     destination: "",

@@ -73,7 +73,7 @@ const UserList = () => {
               <Card.Body>
                 <Card.Title className="d-flex align-items-center gap-2">
                   <Link to={`/profiles/${user.id}`} className={styles.User}>
-                    <span>{user.owner}'s vibe:</span>
+                  <span>{user.owner}&#39;s vibe:</span>
                   </Link>
                   <ThemeSong theme_song={user.theme_song} />
                 </Card.Title>
