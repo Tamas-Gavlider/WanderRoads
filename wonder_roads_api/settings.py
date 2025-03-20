@@ -55,6 +55,11 @@ CLOUDINARY_STORAGE = {
     'CLOUDINARY_URL': os.environ.get('CLOUDINARY_URL'),
     'CACHE_CONTROL': 'public, max-age=31536000',
 }
+
+WHITENOISE_ADD_HEADERS = {
+    'Cache-Control': 'no-cache, no-store, must-revalidate', 
+}
+
 MEDIA_URL = '/media/'
 DEFAULT_FILE_STORAGE = 'cloudinary_storage.storage.MediaCloudinaryStorage'
 
