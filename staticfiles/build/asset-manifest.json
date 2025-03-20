@@ -1,25 +1,25 @@
 {
   "files": {
-    "main.css": "/static/css/main.e13ccf31.chunk.css",
-    "main.js": "/static/js/main.d5f38ae6.chunk.js",
-    "main.js.map": "/static/js/main.d5f38ae6.chunk.js.map",
+    "main.css": "/static/css/main.efe3ab08.chunk.css",
+    "main.js": "/static/js/main.10ef2a09.chunk.js",
+    "main.js.map": "/static/js/main.10ef2a09.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.b7a2f981.js",
     "runtime-main.js.map": "/static/js/runtime-main.b7a2f981.js.map",
     "static/css/2.4e461ce0.chunk.css": "/static/css/2.4e461ce0.chunk.css",
-    "static/js/2.21f638f2.chunk.js": "/static/js/2.21f638f2.chunk.js",
-    "static/js/2.21f638f2.chunk.js.map": "/static/js/2.21f638f2.chunk.js.map",
+    "static/js/2.73a640a8.chunk.js": "/static/js/2.73a640a8.chunk.js",
+    "static/js/2.73a640a8.chunk.js.map": "/static/js/2.73a640a8.chunk.js.map",
     "static/js/3.c6a4c494.chunk.js": "/static/js/3.c6a4c494.chunk.js",
     "static/js/3.c6a4c494.chunk.js.map": "/static/js/3.c6a4c494.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.a7c8b7c90b4378f831d3789e0908ad50.js": "/precache-manifest.a7c8b7c90b4378f831d3789e0908ad50.js",
+    "precache-manifest.47c9f6d424b8f0822131f2387ce64f60.js": "/precache-manifest.47c9f6d424b8f0822131f2387ce64f60.js",
     "service-worker.js": "/service-worker.js",
     "static/css/2.4e461ce0.chunk.css.map": "/static/css/2.4e461ce0.chunk.css.map",
-    "static/css/main.e13ccf31.chunk.css.map": "/static/css/main.e13ccf31.chunk.css.map",
-    "static/js/2.21f638f2.chunk.js.LICENSE.txt": "/static/js/2.21f638f2.chunk.js.LICENSE.txt",
+    "static/css/main.efe3ab08.chunk.css.map": "/static/css/main.efe3ab08.chunk.css.map",
+    "static/js/2.73a640a8.chunk.js.LICENSE.txt": "/static/js/2.73a640a8.chunk.js.LICENSE.txt",
     "static/media/background.webp": "/static/media/background.7bc73d79.webp",
     "static/media/bg-video.mp4": "/static/media/bg-video.cb857ea7.mp4",
     "static/media/App.module.css": "/static/media/landing_page_mobile.cecae35e.webp",
-    "static/media/logo.png": "/static/media/logo.d536d1c9.png",
+    "static/media/logo.webp": "/static/media/logo.576fac76.webp",
     "static/media/TravelRecommendation.module.css": "/static/media/recommendation-bg.8d2508f4.webp",
     "static/media/reg_img.jpg": "/static/media/reg_img.75b23e4b.jpg",
     "static/media/sign_in_img.jpg": "/static/media/sign_in_img.ed50e9ba.jpg"
@@ -27,8 +27,8 @@
   "entrypoints": [
     "static/js/runtime-main.b7a2f981.js",
     "static/css/2.4e461ce0.chunk.css",
-    "static/js/2.21f638f2.chunk.js",
-    "static/css/main.e13ccf31.chunk.css",
-    "static/js/main.d5f38ae6.chunk.js"
+    "static/js/2.73a640a8.chunk.js",
+    "static/css/main.efe3ab08.chunk.css",
+    "static/js/main.10ef2a09.chunk.js"
   ]
 }
