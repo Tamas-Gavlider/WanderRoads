@@ -14,7 +14,6 @@ import InfiniteScroll from "react-infinite-scroll-component";
 import { fetchMoreData } from "../../utils/utils";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import Loading from "../../components/Loading";
-import video from '../../assets/bg-video.mp4';
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
@@ -22,6 +21,7 @@ function PostsPage({ message, filter = "" }) {
   const { pathname } = useLocation();
   const currentUser = useCurrentUser();
   const [query, setQuery] = useState("");
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchPosts = async () => {
@@ -31,14 +31,15 @@ function PostsPage({ message, filter = "" }) {
         setHasLoaded(true);
       } catch (err) {
         console.log(err);
+        setError("Failed to load posts. Please try again.");
       }
     };
-    
+  
     setHasLoaded(false);
     const timer = setTimeout(() => {
       fetchPosts();
     }, 1000);
-
+  
     return () => {
       clearTimeout(timer);
     };
@@ -46,12 +47,8 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <Row className={`h-100 ${styles.Row}`}>
+      {error && <p className={appStyles.Error}>{error}</p>}
      <div className={styles.CreatePost}>
-     <video autoPlay muted loop>
-  <source src={video} type="video/mp4" />
-  Your browser does not support the video tag.
-</video>
-  
   <Col className="py-2 p-0 p-lg-2" lg={8}>
     <span className={styles.ShareText}> Share your journey! </span>
     <Link
