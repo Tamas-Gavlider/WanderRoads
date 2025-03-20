@@ -71,4 +71,7 @@
     .CreatePost video {
       display: none; 
     }
+    .ShareText {
+      color: #281713;
+    }
   }
