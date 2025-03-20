@@ -1,0 +1,14 @@
+.Row {
+    padding: 5px;
+  }
+.Destination {
+    margin-right: 20px;
+}
+
+  @media (max-width: 992px) {
+    .Post {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+    }
+  }

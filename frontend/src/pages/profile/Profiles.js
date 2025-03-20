@@ -5,7 +5,7 @@ import { Row, Col, Card, Dropdown, Form } from "react-bootstrap";
 import ThemeSong from "../../components/ThemeSong";
 import styles from "../../styles/Profiles.module.css";
 import btnStyles from "../../styles/Button.module.css";
-import searchStyles from '../../styles/PostsPage.module.css'
+import searchStyles from "../../styles/PostsPage.module.css";
 
 const UserList = () => {
   const [profiles, setProfiles] = useState([]);
@@ -33,16 +33,19 @@ const UserList = () => {
   return (
     <div className={styles.Users}>
       <Col lg={4} md={6} sm={6} xs={6}>
-       <i className={`fas fa-search ${searchStyles.SearchIcon}`}/>
-      <Form className={searchStyles.SearchBar} onSubmit={(event) => event.preventDefault()}>
-        <Form.Control
-          type="text"
-          placeholder="Search users..."
-          value={query}
-          onChange={(e) => setQuery(e.target.value)}
-          aria-label="serach users"
-        />
-      </Form>
+        <i className={`fas fa-search ${searchStyles.SearchIcon}`} />
+        <Form
+          className={searchStyles.SearchBar}
+          onSubmit={(event) => event.preventDefault()}
+        >
+          <Form.Control
+            type="text"
+            placeholder="Search users..."
+            value={query}
+            onChange={(e) => setQuery(e.target.value)}
+            aria-label="serach users"
+          />
+        </Form>
       </Col>
       <Dropdown onSelect={(eventKey) => setSortBy(eventKey)}>
         <Dropdown.Toggle id="dropdown-basic" className={btnStyles.Button}>
@@ -59,10 +62,17 @@ const UserList = () => {
         {profiles.map((user) => (
           <Col xs={12} sm={6} md={4} lg={3} key={user.id}>
             <Card className={`h-100 ${styles.UserCard}`}>
-              <Card.Img variant="top" src={user.image} alt={`${user.owner}'s profile picture`} />
+              <Card.Img
+                variant="top"
+                src={user.image.replace(
+                  "/upload/",
+                  "/upload/w_300,h_300,c_fill,q_auto,f_auto/"
+                )}
+                alt={`${user.owner}'s profile picture`}
+              />
               <Card.Body>
                 <Card.Title className="d-flex align-items-center gap-2">
-                  <Link to={`/profiles/${user.id}`} className={styles.User} >
+                  <Link to={`/profiles/${user.id}`} className={styles.User}>
                     <span>{user.owner}'s vibe:</span>
                   </Link>
                   <ThemeSong theme_song={user.theme_song} />

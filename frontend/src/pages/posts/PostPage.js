@@ -11,7 +11,7 @@ import Comment from "../comments/Comment";
 
 import CommentCreateForm from "../comments/CommentCreateForm";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import styles from '../../styles/PostsPage.module.css';
+import styles from '../../styles/PostPage.module.css';
 import InfiniteScroll from "react-infinite-scroll-component";
 import Asset from "../../components/Asset";
 import { fetchMoreData } from "../../utils/utils";
@@ -47,7 +47,7 @@ function PostPage() {
   console.log("Posts state:", post);
   return (
     <Row className={`h-100 ${styles.Row}`}>
-      <Col className="py-2 p-0 p-lg-2" lg={8}>
+      <Col className={`py-2 p-0 p-lg-2 ${styles.Post}`} lg={8}>
       <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container className={appStyles.Content}>
           {currentUser ? (
@@ -83,7 +83,7 @@ function PostPage() {
           )}
         </Container>
       </Col>
-      <Col>
+      <Col className={styles.Destination}>
       <PopularDestinations popularDestinations={popularDestinations} />
       </Col>
     </Row>
