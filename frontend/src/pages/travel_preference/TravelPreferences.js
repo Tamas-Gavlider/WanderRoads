@@ -45,7 +45,7 @@ export default function TravelPreferences({profileOwner}) {
   }, [profileOwner]);
 
   if (loading) return <Loading />;
-  if (error) return <p>{error}</p>;
+  if (error) return <p>{error.message || "An error occurred"}</p>;
 
   const continentCode = preferences?.preferred_continent;
   const continentName =
