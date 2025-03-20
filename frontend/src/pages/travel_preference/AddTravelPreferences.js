@@ -4,7 +4,7 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory } from "react-router-dom";
 import BtnStyle from '../../styles/Button.module.css';
 
-export default function AddTravelPreference() {
+export default function AddTravelPreferences() {
   const currentUser = useCurrentUser();
   const history = useHistory();
 

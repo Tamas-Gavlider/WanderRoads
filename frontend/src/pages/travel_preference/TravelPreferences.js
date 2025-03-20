@@ -18,14 +18,13 @@ const continentMapping = {
   SA: "South America",
 };
 
-export default function TravelPreferences({profileOwner}) {
+export default function TravelPreferences({ profileOwner }) {
   const currentUser = useCurrentUser();
   const [preferences, setPreferences] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
-
     if (profileOwner) {
       axios
         .get(`/travel-preference/?user=${profileOwner}`)
@@ -40,28 +39,38 @@ export default function TravelPreferences({profileOwner}) {
         .catch((error) => {
           setError(error);
           setLoading(false);
+          console.log(error);
         });
     }
   }, [profileOwner]);
 
   if (loading) return <Loading />;
-  if (error) return <p>{error.message || "An error occurred"}</p>;
+  if (error) {
+    if (error.response && error.response.status === 404) {
+      return (
+        <div>
+          <p>No travel preferences found.</p>
+          <AddTravelPreferences />
+        </div>
+      );
+    } else {
+      return <p>{error.message || "An error occurred"}</p>;
+    }
+  }
 
   const continentCode = preferences?.preferred_continent;
   const continentName =
     continentMapping[continentCode] || continentCode || "Not specified";
 
-    const isOwner = currentUser?.username === profileOwner
- console.log(`Is owner: ${isOwner}`)
+  const isOwner = currentUser?.username === profileOwner;
+
   return (
     <div>
       {preferences ? (
         <div>
           {/* Only show edit icon if the current user is the owner */}
           {isOwner && (
-            <Link
-              to={`/travel-preference/${preferences.id}/edit`}
-            >
+            <Link to={`/travel-preference/${preferences.id}/edit`}>
               <i className={`fa-solid fa-pen ${styles.EditIcon}`}> Edit</i>
             </Link>
           )}
