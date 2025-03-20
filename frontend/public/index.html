@@ -2,59 +2,88 @@
 <html lang="en">
   <head>
     <meta charset="utf-8" />
-    <link rel="icon" href="%PUBLIC_URL%/favicon-16x16.png" />
     <meta name="viewport" content="width=device-width, initial-scale=1" />
     <meta name="theme-color" content="#000000" />
-    <meta
-      name="description"
-      content="Web site created using create-react-app"
-    />
+    <meta name="description" content="Wander Roads - A social platform for travelers." />
+    <title>Wander Roads</title>
+
+    <link rel="icon" href="%PUBLIC_URL%/favicon-16x16.png" />
     <link rel="apple-touch-icon" href="%PUBLIC_URL%/apple-touch-icon.png" />
-    <script>
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href =
-        "https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css";
-      document.head.appendChild(link);
-    </script>
-    <!-- Google Fonts -->
+    <link rel="manifest" href="%PUBLIC_URL%/manifest.json" crossorigin="use-credentials" />
+
+    <!--
+      Preconnect improves loading speed by establishing early connections to required origins.
+      This helps speed up Google Fonts, CDN resources, and other third-party requests.
+    -->
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Kranky&family=Nanum+Myeongjo&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="preload"
-      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:ital,wght@0,400;0,700;1,400;1,700&family=Kranky&family=Nanum+Myeongjo&display=swap"
-      as="style"
-    />
-
-    <script>
-      var link = document.createElement("link");
-      link.rel = "stylesheet";
-      link.href =
-        "https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css";
-      link.integrity =
-        "sha384-QWTKZyjpPEjISv5WaRU9OFeRpok6YctnYmDr5pNlyT2bRjXh0JMhjY6hW+ALEwIH";
-      link.crossOrigin = "anonymous";
-      document.head.appendChild(link);
-    </script>
     <link rel="preconnect" href="https://cdn.jsdelivr.net" />
+
+    <!--
+      Preload key resources such as fonts to improve page performance.
+      The onload trick ensures fonts do not block page rendering.
+    -->
+    <link 
+      rel="preload" 
+      href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Kranky&display=swap" 
+      as="style"
+      onload="this.onload=null;this.rel='stylesheet'" 
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Anonymous+Pro:wght@400;700&family=Kranky&display=swap" />
+    </noscript>
+
+    <!--
+      Inline small critical styles to prevent Flash of Unstyled Content (FOUC).
+      This ensures that the main font is applied immediately.
+    -->
+    <style>
+      body {
+        font-family: "Anonymous Pro", monospace;
+        margin: 0;
+        padding: 0;
+        background-color: #f8f9fa;
+      }
+    </style>
+
+    <!--
+      Preloading the background image ensures it loads quickly without blocking rendering.
+    -->
     <link
       rel="preload"
       as="image"
       href="https://wanderroads-c8ef8cb5f31c.herokuapp.com/static/media/background.7bc73d79.webp"
     />
+
+    <!--
+      FontAwesome and Bootstrap are loaded asynchronously to improve performance.
+      They will be applied after the initial render to avoid blocking page load.
+    -->
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css"
+      media="print"
+      onload="this.onload=null;this.removeAttribute('media');"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css" />
+    </noscript>
+
+    <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css"
+      media="print"
+      onload="this.onload=null;this.removeAttribute('media');"
+    />
+    <noscript>
+      <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.3/dist/css/bootstrap.min.css" />
+    </noscript>
+
     <!--
       manifest.json provides metadata used when your web app is installed on a
       user's mobile device or desktop. See https://developers.google.com/web/fundamentals/web-app-manifest/
     -->
-    <link
-      rel="manifest"
-      href="%PUBLIC_URL%/manifest.json"
-      crossorigin="use-credentials"
-    />
+    
     <!--
       Notice the use of %PUBLIC_URL% in the tags above.
       It will be replaced with the URL of the `public` folder during the build.
@@ -64,11 +93,11 @@
       work correctly both with client-side routing and a non-root public URL.
       Learn how to configure a non-root public URL by running `npm run build`.
     -->
-    <title>Wander Roads</title>
   </head>
   <body>
     <noscript>You need to enable JavaScript to run this app.</noscript>
     <div id="root"></div>
+    
     <!--
       This HTML file is a template.
       If you open it directly in the browser, you will see an empty page.
@@ -76,7 +105,7 @@
       You can add webfonts, meta tags, or analytics to this file.
       The build step will place the bundled scripts into the <body> tag.
 
-      To begin the development, run `npm start` or `yarn start`.
+      To begin development, run `npm start` or `yarn start`.
       To create a production bundle, use `npm run build` or `yarn build`.
     -->
   </body>
