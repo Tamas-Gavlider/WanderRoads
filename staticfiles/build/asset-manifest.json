@@ -1,21 +1,21 @@
 {
   "files": {
-    "main.css": "/static/css/main.da0109eb.chunk.css",
-    "main.js": "/static/js/main.cc1ba10e.chunk.js",
-    "main.js.map": "/static/js/main.cc1ba10e.chunk.js.map",
+    "main.css": "/static/css/main.863aa981.chunk.css",
+    "main.js": "/static/js/main.a79fc529.chunk.js",
+    "main.js.map": "/static/js/main.a79fc529.chunk.js.map",
     "runtime-main.js": "/static/js/runtime-main.faf26ef1.js",
     "runtime-main.js.map": "/static/js/runtime-main.faf26ef1.js.map",
-    "static/css/2.4e461ce0.chunk.css": "/static/css/2.4e461ce0.chunk.css",
-    "static/js/2.269eacc6.chunk.js": "/static/js/2.269eacc6.chunk.js",
-    "static/js/2.269eacc6.chunk.js.map": "/static/js/2.269eacc6.chunk.js.map",
+    "static/css/2.b71989ea.chunk.css": "/static/css/2.b71989ea.chunk.css",
+    "static/js/2.07bde047.chunk.js": "/static/js/2.07bde047.chunk.js",
+    "static/js/2.07bde047.chunk.js.map": "/static/js/2.07bde047.chunk.js.map",
     "static/js/3.60a7d8eb.chunk.js": "/static/js/3.60a7d8eb.chunk.js",
     "static/js/3.60a7d8eb.chunk.js.map": "/static/js/3.60a7d8eb.chunk.js.map",
     "index.html": "/index.html",
-    "precache-manifest.beb647b132de937feef64ca454f96f42.js": "/precache-manifest.beb647b132de937feef64ca454f96f42.js",
+    "precache-manifest.ac14d66e054708b0a5dc8685e652c08e.js": "/precache-manifest.ac14d66e054708b0a5dc8685e652c08e.js",
     "service-worker.js": "/service-worker.js",
-    "static/css/2.4e461ce0.chunk.css.map": "/static/css/2.4e461ce0.chunk.css.map",
-    "static/css/main.da0109eb.chunk.css.map": "/static/css/main.da0109eb.chunk.css.map",
-    "static/js/2.269eacc6.chunk.js.LICENSE.txt": "/static/js/2.269eacc6.chunk.js.LICENSE.txt",
+    "static/css/2.b71989ea.chunk.css.map": "/static/css/2.b71989ea.chunk.css.map",
+    "static/css/main.863aa981.chunk.css.map": "/static/css/main.863aa981.chunk.css.map",
+    "static/js/2.07bde047.chunk.js.LICENSE.txt": "/static/js/2.07bde047.chunk.js.LICENSE.txt",
     "static/media/background.webp": "/static/media/background.7bc73d79.webp",
     "static/media/App.module.css": "/static/media/landing_page.c8f39d64.webp",
     "static/media/TravelRecommendation.module.css": "/static/media/recommendation-bg.8d2508f4.webp",
@@ -24,9 +24,9 @@
   },
   "entrypoints": [
     "static/js/runtime-main.faf26ef1.js",
-    "static/css/2.4e461ce0.chunk.css",
-    "static/js/2.269eacc6.chunk.js",
-    "static/css/main.da0109eb.chunk.css",
-    "static/js/main.cc1ba10e.chunk.js"
+    "static/css/2.b71989ea.chunk.css",
+    "static/js/2.07bde047.chunk.js",
+    "static/css/main.863aa981.chunk.css",
+    "static/js/main.a79fc529.chunk.js"
   ]
 }

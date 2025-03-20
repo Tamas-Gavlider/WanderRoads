@@ -47,7 +47,6 @@ function PostsPage({ message, filter = "" }) {
 
   return (
     <Row className={`h-100 ${styles.Row}`}>
-      {error && <p className={appStyles.Error}>{error}</p>}
       <div className={styles.CreatePost}>
         <Col className="py-2 p-0 p-lg-2" sm={6} md={6} lg={8}>
           <span className={styles.ShareText}> Share your journey! </span>
@@ -78,6 +77,7 @@ function PostsPage({ message, filter = "" }) {
             aria-label="search posts"
           />
         </Form>
+        {error && <p className={appStyles.Error}>{error}</p>}
         {hasLoaded ? (
           <>
             {posts.results.length ? (

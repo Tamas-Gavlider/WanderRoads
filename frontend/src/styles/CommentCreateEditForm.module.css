@@ -2,6 +2,12 @@
     border: 2px solid #281713;
     
   }
+
+  .CommentFormContainer {
+    display: flex;
+    justify-content: center; 
+    width: 100%;
+  }
   
   .Button {
     border: none;
@@ -16,4 +22,10 @@
     cursor: pointer;
     background-color: #00bae2;
     color: #ff0000;
+  }
+
+  @media (min-width: 992px) {
+    .CommentFormContainer {
+      justify-content: flex-start; 
+    }
   }
