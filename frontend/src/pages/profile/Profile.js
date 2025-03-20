@@ -1,8 +1,8 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, lazy } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Container, Image, Nav, Tab } from "react-bootstrap";
+import { Container, Nav, Tab } from "react-bootstrap";
 import styles from "../../styles/Profile.module.css";
 import ThemeSong from "../../components/ThemeSong";
 import TravelPreferences from "../travel_preference/TravelPreferences";
@@ -12,6 +12,8 @@ import Asset from "../../components/Asset";
 import backgroundImage from "../../assets/background.webp";
 import { Link } from "react-router-dom";
 
+
+const LazyImage = lazy(() => import("react-bootstrap/Image"));
 
 const Profile = () => {
   const { id } = useParams();
@@ -39,12 +41,15 @@ const Profile = () => {
       >
         <div className={styles.Overlay}></div>
         <div className={styles.ProfileContent}>
-          <Image
-            src={profile.image}
-            alt={profile.owner}
-            className={styles.ProfileImage}
-            roundedCircle
-          />
+          <React.Suspense fallback={<div>Loading image...</div>}>
+            <LazyImage
+              src={profile.image}
+              alt={profile.owner}
+              className={styles.ProfileImage}
+              roundedCircle
+              loading="lazy" 
+            />
+          </React.Suspense>
           <div className={styles.ProfileText}>
             <h2>
               {profile.experience} {profile.owner}

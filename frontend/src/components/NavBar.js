@@ -101,9 +101,7 @@ const NavBar = () => {
     >
       <Container fluid>
         <NavLink to="/" className={styles.NavLink}>
-          <Navbar.Brand>
           <i class={`fa-solid fa-house-chimney ${styles.Home}`}>Home</i>
-          </Navbar.Brand>
         </NavLink>
         <Navbar.Toggle
           ref={ref}
