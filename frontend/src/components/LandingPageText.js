@@ -13,7 +13,7 @@ function LandingPageText() {
         <Col>
           <h1 className={styles.Heading}>Explore the World, Share Your Adventures</h1>
           <p className={styles.Subheading}>Connect with travelers, share memories, and get recommendations for your next journey.</p>
-          {!currentUser && <Link to="/signup" className={btnStyles.Button}>
+          {!currentUser && <Link to="/signup" className={`${btnStyles.Button} ${styles.Button}`}>
               Start Your Journey
             </Link> }
         </Col>
