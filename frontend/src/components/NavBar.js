@@ -3,7 +3,7 @@ import Container from "react-bootstrap/Container";
 import Nav from "react-bootstrap/Nav";
 import Navbar from "react-bootstrap/Navbar";
 import styles from "../styles/NavBar.module.css";
-import { NavLink } from "react-router-dom";
+import { NavLink, useHistory } from "react-router-dom";
 import {
   useCurrentUser,
   useSetCurrentUser,
@@ -13,9 +13,11 @@ import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import Avatar from "./Avatar";
 import { removeTokenTimestamp } from "../utils/utils";
 
+
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
+  const history = useHistory();
 
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
@@ -24,6 +26,7 @@ const NavBar = () => {
       await axios.post("/dj-rest-auth/logout/");
       setCurrentUser(null);
       removeTokenTimestamp();
+      history.push("/");
     } catch (err) {
       console.log(err);
     }
@@ -32,7 +35,14 @@ const NavBar = () => {
   const loggedInLinks = (
     <>
       <NavLink
-        exact
+      exact
+        to="/"
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+      >
+        Home
+      </NavLink>
+      <NavLink
         to="/map"
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -54,27 +64,39 @@ const NavBar = () => {
         Travelers
       </NavLink>
       <NavLink
-      to="/trip/"
-      className={styles.NavLink}
-        activeClassName={styles.Active}>
-          Trips
+        to="/trip/"
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+      >
+        Trips
       </NavLink>
       <NavLink to="/" onClick={handleSignOut} className={styles.NavLink}>
         Logout
       </NavLink>
-      <NavLink to={`/profiles/${currentUser?.profile_id}`} className={styles.NavLink}>
-      {currentUser?.username}
-    </NavLink>
-    <Avatar 
-    src={currentUser?.profile_image.replace(
-      "/upload/",
-      "/upload/w_300,h_300,c_fill,q_auto,f_auto/"
-    )}
-    height={45}/>
+      <NavLink
+        to={`/profiles/${currentUser?.profile_id}`}
+        className={styles.NavLink}
+      >
+        {currentUser?.username}
+      </NavLink>
+      <Avatar
+        src={currentUser?.profile_image.replace(
+          "/upload/",
+          "/upload/w_300,h_300,c_fill,q_auto,f_auto/"
+        )}
+        height={45}
+      />
     </>
   );
   const loggedOutLinks = (
     <>
+      <NavLink
+        to="/"
+        className={styles.NavLink}
+        activeClassName={styles.Active}
+      >
+        Home
+      </NavLink>
       <NavLink
         to="/signin"
         className={styles.NavLink}
@@ -100,9 +122,6 @@ const NavBar = () => {
       fixed="top"
     >
       <Container fluid>
-        <NavLink to="/" className={styles.NavLink}>
-          <i className={`fa-solid fa-house-chimney ${styles.Home}`}>Home</i>
-        </NavLink>
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
