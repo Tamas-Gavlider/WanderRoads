@@ -8,7 +8,7 @@ function Confirmation() {
   const currentUser = useCurrentUser(); 
   return (
     <div className={`text-center ${styles.Container}`}>
-      <h2>Preferences successfully created!</h2>
+      <h2 className={styles.Header}>Preferences successfully created!</h2>
       <p>Your travel preferences have been saved successfully.</p>
       <Link to={`/profiles/${currentUser.profile_id}`} className={`btn ${btnStyles.Button}`}>
         Go back to your profile
