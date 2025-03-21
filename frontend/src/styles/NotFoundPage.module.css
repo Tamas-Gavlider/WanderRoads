@@ -17,8 +17,8 @@
     -webkit-text-fill-color: transparent;  
   }
   
-  p {
-    font-size: 25px;
+  .SubText {
+    font-size: 20px;
     background: linear-gradient(135deg, #ff0000, #00bae2);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;  
