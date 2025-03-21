@@ -40,7 +40,6 @@ const Post = (props) => {
       console.log(err);
     }
   };
-console.log(image)
 
   return (
   <Col xs={10} sm={8} md={7} lg={8}>
