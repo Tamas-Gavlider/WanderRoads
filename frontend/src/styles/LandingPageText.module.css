@@ -7,10 +7,8 @@
   text-align: center;
   color: #ff0000;
 }
+
 .Heading {
-  font-family: "Kranky", serif;
-  font-display: swap;
-  color: #ff7474;
   margin-bottom: 20px;
   background: linear-gradient(135deg, #ff7474, #f3ff50);
     -webkit-background-clip: text; 
@@ -21,11 +19,7 @@
   margin-bottom: 30px; 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgb(255, 0, 0);
-}
-
-.Button {
-  will-change: transform;
-  transition: opacity 0.3s ease-in-out;
+  font-size: medium;
 }
 
 @media (min-width: 768px) {
@@ -36,7 +30,7 @@
     font-size: 50px;
   }
   .Subheading {
-    font-size: 25px;
+    font-size: 20px;
   }
   
 }

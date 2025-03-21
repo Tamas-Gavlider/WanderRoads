@@ -39,10 +39,6 @@ export default function Map() {
 
   return (
     <div className={styles.mapContainer}>
-      <div className={styles.zoomControls}>
-        <button onClick={handleZoomIn} className="text-center">+</button>
-        <button onClick={handleZoomOut} className="text-center">−</button>
-      </div>
       <ComposableMap
         projectionConfig={{
           center: [0, 0],
