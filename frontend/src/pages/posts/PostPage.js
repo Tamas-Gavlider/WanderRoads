@@ -73,9 +73,9 @@ function PostPage() {
               ))}
             </InfiniteScroll>
           ) : currentUser ? (
-            <span>No comments yet, be the first to comment!</span>
+            <span className={styles.Comment}>No comments yet, be the first to comment!</span>
           ) : (
-            <span>No comments... yet</span>
+            <span className={styles.Comment}>No comments... yet</span>
           )}
         </Container>
       </Col>

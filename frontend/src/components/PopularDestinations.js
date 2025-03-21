@@ -3,6 +3,7 @@ import { axiosReq } from "../api/axiosDefaults";
 import 'bootstrap/dist/css/bootstrap.min.css';
 import { Accordion, Card, Button } from 'react-bootstrap';
 import styles from '../styles/PopularDestinations.module.css'
+import Loading from "./Loading";
 
 const PopularDestinations = () => {
   const [popularDestinations, setPopularDestinations] = useState([]);
@@ -28,7 +29,7 @@ const PopularDestinations = () => {
   }, []);
 
   if (!popularDestinations.length) {
-    return <p>No popular destinations yet.</p>;
+    return <Loading />;
   }
 
   return (
