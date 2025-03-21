@@ -56,8 +56,12 @@ function App() {
       <Switch>
       <Route exact path='/map' render={()=> <Map />}/>
       <Route exact path='/' render={()=> <LandingPageText/>}/>
-      <Route exact path='/signin' render={()=> < SignInForm />}/>
-      <Route exact path='/signup' render={()=> < SignUpForm/>}/>
+      {!currentUser && (
+        <>
+          <Route exact path='/signin' render={() => <SignInForm />} />
+          <Route exact path='/signup' render={() => <SignUpForm />} />
+        </>
+      )}
       <Route exact path='/confirmation' render={() => < Confirmation />}/>
       <Route path="/profiles/:id/edit/status" render= {()=> <EditStatus/>}/>
       <Route path="/profiles/:id/edit/countries" render={() => <AddCountry/>}/>
