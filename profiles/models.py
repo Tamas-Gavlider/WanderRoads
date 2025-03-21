@@ -20,7 +20,7 @@ class Profile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, blank=True, null=True)
-    image = CloudinaryField('image', default='pexels-nurseryart-346885_nj7aji')
+    image = CloudinaryField('image', default='profile_ozflyd')
     theme_song = CloudinaryField('audio',resource_type= 'video', default='travel-audio-oficial-243586_eehcqv')
     experience = models.CharField(max_length=55, choices=EXPERIENCE_LEVEL, default='Wanderer')
     visited_countries = CountryField(multiple=True, blank=True)
