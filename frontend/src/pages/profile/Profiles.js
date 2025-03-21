@@ -66,7 +66,7 @@ const UserList = () => {
                 variant="top"
                 src={user.image.replace(
                   "/upload/",
-                  "/upload/w_300,h_300,c_fill,q_auto,f_auto/"
+                  "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
                 )}
                 alt={`${user.owner}'s profile picture`}
               />
