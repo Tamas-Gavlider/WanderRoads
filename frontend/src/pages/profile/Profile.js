@@ -1,18 +1,20 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect, useState, Suspense, lazy } from "react";
 import axios from "axios";
 import { useParams } from "react-router-dom";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Container, Nav, Tab } from "react-bootstrap";
 import styles from "../../styles/Profile.module.css";
 import ThemeSong from "../../components/ThemeSong";
-import TravelPreferences from "../travel_preference/TravelPreferences";
-import TravelRecommendation from "../travel_recommendation/TravelRecommendation";
-import UserPosts from "../posts/UserPosts";
 import Asset from "../../components/Asset";
 import backgroundImage from "../../assets/background.webp";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
+import Loading from "../../components/Loading";
 
+
+const TravelPreferences = lazy(() => import("../travel_preference/TravelPreferences"));
+const TravelRecommendation = lazy(() => import("../travel_recommendation/TravelRecommendation"));
+const UserPosts = lazy(() => import("../posts/UserPosts"));
 
 const Profile = () => {
   const { id } = useParams();
@@ -87,6 +89,7 @@ const Profile = () => {
         </Nav>
 
         <Tab.Content className={styles.TabContent}>
+          <Suspense fallback={<Loading/>}>
           <Tab.Pane eventKey="posts">
             <UserPosts />
           </Tab.Pane>
@@ -141,6 +144,7 @@ const Profile = () => {
             </ul>
           </Tab.Pane>
           </>)}
+          </Suspense>
         </Tab.Content>
       </Tab.Container>
     </Container>
