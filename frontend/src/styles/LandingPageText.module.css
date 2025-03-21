@@ -7,7 +7,6 @@
   text-align: center;
   color: #ff0000;
 }
-
 .Heading {
   font-family: "Kranky", serif;
   font-weight: bold;
@@ -21,7 +20,6 @@
   margin-bottom: 30px; 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgb(255, 0, 0);
-  font-size: medium;
 }
 
 @media (min-width: 768px) {
@@ -29,7 +27,7 @@
     background: linear-gradient(135deg, #fe0000, #fb00ff);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;  
-    font-size: 60px;
+    font-size: 50px;
   }
   .Subheading {
     font-size: 25px;

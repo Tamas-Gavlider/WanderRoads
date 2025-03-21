@@ -1,6 +1,6 @@
 import React from 'react';
 import { Container, Row, Col } from 'react-bootstrap';
-import styles from '../styles/LandingPage.module.css';
+import styles from '../styles/LandingPageText.module.css';
 import btnStyles from '../styles/Button.module.css';
 import { Link } from 'react-router-dom/cjs/react-router-dom';
 import { useCurrentUser } from "../contexts/CurrentUserContext";
