@@ -15,8 +15,20 @@ class Post(models.Model):
     title = models.CharField(max_length=255,
                              blank=False, null=False)
     content = models.TextField(blank=False, null=False)
-    image = CloudinaryField('image', default='accessories-bag',
-                            blank=False, null=False)
+    image = CloudinaryField(
+        'image',
+        default='accessories-bag', 
+        blank=False, 
+        null=False,
+        eager=[{
+            'crop': 'crop',  
+            'format': 'auto',
+            'compression': 'auto',
+            'quality': 'auto:low',
+        }],
+        folder='/demo', 
+        type='private',   
+    )
     country = CountryField(max_length=100)
 
     class Meta:
