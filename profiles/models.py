@@ -21,7 +21,9 @@ class Profile(models.Model):
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, blank=True, null=True)
     image = CloudinaryField('image', default='profile_ozflyd')
-    theme_song = CloudinaryField('audio',resource_type= 'video', default='travel-audio-oficial-243586_eehcqv')
+    theme_song = CloudinaryField('audio',
+    resource_type='raw', 
+    allowed_formats=['mp3'], default='travel-audio-oficial-243586_eehcqv')
     experience = models.CharField(max_length=55, choices=EXPERIENCE_LEVEL, default='Wanderer')
     visited_countries = CountryField(multiple=True, blank=True)
     status = models.TextField(max_length=255, blank=True)

@@ -25,7 +25,12 @@ class ProfileSerializer(serializers.ModelSerializer):
             instance.visited_countries = list(set(visited_countries))  
         return super().update(instance, validated_data)
     
-
+    def validate_theme_song(self, value):
+        # Check if the file is an MP3
+        if value and not value.name.endswith('.mp3'):
+            raise serializers.ValidationError("Please upload an MP3 file.")
+        return value
+        
     class Meta:
         model = Profile
         fields = [
