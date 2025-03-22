@@ -12,7 +12,7 @@ def generate_recommendation(user: User):
         from travel_preference.models import TravelPreference
         user_preference = TravelPreference.objects.get(owner=user)
     except TravelPreference.DoesNotExist:
-        return  # Exit if the user has no preferences
+        return  
     
     # Mapping of continent codes to full names
     CONTINENT_MAP = {
@@ -23,7 +23,7 @@ def generate_recommendation(user: User):
         "SA": "south america",
         "OC": "oceania",
         "AN": "antarctica",
-        "ANY": "any",  # Ensure "ANY" is correctly mapped
+        "ANY": "any",  
     }
 
     # Convert continent code to full name (Fix: Always uppercase before mapping)
@@ -38,41 +38,43 @@ def generate_recommendation(user: User):
         "duration": user_preference.duration.lower(),
     }
 
-    # **Load travel recommendation dataset**
+    # Load travel recommendation dataset
     df = pd.read_csv('./travel_recommendation/travel_recommendations_data.csv', header=0)
 
-    # **Normalize column names and values**
+    # Normalize column names and values
     df.columns = df.columns.str.strip().str.lower().str.replace(" ", "_")
     df = df.map(lambda x: x.strip().lower() if isinstance(x, str) else x)
 
-    # **Step 1: Filter dataset by continent preference**
+    # Filter dataset by continent preference
     if preferences["continent"] != "any":
         df = df[df["continent"] == preferences["continent"]]
 
-    # **Step 2: Match count logic**
+    # Match count logic
     match_count = df.apply(lambda row: sum(
         (preferences[key] == "any" or preferences[key] == row[key])  # Match "any" with any value
         for key in preferences.keys()
     ), axis=1)
 
-    # **Step 3: Rank destinations**
+    # Rank destinations
     perfect_match = df.loc[match_count >= 5]
     best_match = df.loc[(match_count >= 4)]  # Second-best matches
 
-    # **Step 4: Select destinations (remove duplicates)**
+    # Select destinations (remove duplicates)
     primary_destination = perfect_match["destination"].iloc[0] if not perfect_match.empty else None
     additional_destinations = best_match["destination"].head(5).tolist()
 
     # Remove duplicates and filter out None values
     unique_destinations = list(set(filter(None, [primary_destination] + additional_destinations)))
 
-    # **Step 5: Return as a List**
+    # Return as a List
     if primary_destination:
         recommended_destinations = [primary_destination] + [d for d in unique_destinations if d != primary_destination]
     else:
         recommended_destinations = unique_destinations  # If no perfect match, return alternatives
-
-    # **Step 6: Save the recommendation as a JSON list**
+    
+    if len(recommended_destinations) == 0:
+        recommended_destinations = ["No recommended destinations for the given preferences."]
+    # Save the recommendation as a JSON list
     travel_recommendation, _ = TravelRecommendation.objects.get_or_create(owner=user)
     travel_recommendation.recommended_destination = recommended_destinations  # Store as a list
     travel_recommendation.save()
