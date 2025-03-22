@@ -1,6 +1,6 @@
 from rest_framework import serializers
 from django_countries.serializer_fields import CountryField
-from datetime import datetime
+from datetime import date, datetime
 from trip.models import Trip
 
 
@@ -32,6 +32,23 @@ class TripSerializer(serializers.ModelSerializer):
         representation['destination'] = instance.get_destination_display()  # Convert code to name
         
         return representation
+    def validate(self, data):
+        """
+        Custom validation to ensure:
+        - `start_date` is not in the past.
+        - `end_date` is not before `start_date`.
+        """
+        start_date = data.get("start_date")
+        end_date = data.get("end_date")
+        today = date.today()
+
+        if start_date and start_date < today:
+            raise serializers.ValidationError({"start_date": "The start date cannot be in the past."})
+
+        if start_date and end_date and end_date < start_date:
+            raise serializers.ValidationError({"end_date": "The end date cannot be before the start date."})
+
+        return data
     
     class Meta:
         model = Trip
