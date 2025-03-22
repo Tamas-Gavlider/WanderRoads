@@ -6,7 +6,7 @@ import { Container, Nav, Tab } from "react-bootstrap";
 import styles from "../../styles/Profile.module.css";
 import ThemeSong from "../../components/ThemeSong";
 import Asset from "../../components/Asset";
-import backgroundImage from "../../assets/background.webp";
+import backgroundImage from "../../assets/recommendation-bg.webp";
 import { Link } from "react-router-dom";
 import Image from "react-bootstrap/Image";
 import Loading from "../../components/Loading";
@@ -50,9 +50,9 @@ const Profile = () => {
               
             />
           <div className={styles.ProfileText}>
-            <h2>
+            <h4>
               {profile.experience} {profile.owner}
-            </h2>
+            </h4>
             <p className={styles.Status}>{profile.status || "No status set"}</p>
             <ThemeSong
               theme_song={profile.theme_song}

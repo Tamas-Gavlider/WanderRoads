@@ -43,7 +43,7 @@
   width: 150px;
   height: 150px;
   object-fit: cover;
-  border: 5px solid white;
+  border: 1px solid white;
   margin-bottom: 10px;
 }
 
@@ -59,9 +59,7 @@
 }
 
 .Status {
-  font-family: "Kranky", serif;
-  font-weight: 800;
-  font-size: 150%;
+  font-style: italic;
   color: #00bae2;
   background: linear-gradient(135deg, white, #00bae2);
   -webkit-background-clip: text;
@@ -69,7 +67,6 @@
 }
 
 .ThemeSong {
-  font-size: 1.2rem;
   margin-top: 5px;
 }
 
@@ -79,7 +76,6 @@
 
 .TabContent {
   margin-top: 20px;
-  color: #00bae2;
   padding-bottom: 10px;
 }
 
@@ -89,10 +85,6 @@
 
 .NavLink:hover {
   color: #ff0000;
-}
-
-.Active {
-  color: yellow;
 }
 
 .EditIcon {
