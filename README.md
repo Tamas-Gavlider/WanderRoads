@@ -244,6 +244,10 @@ This repository can be cloned and run locally with the following steps:
 
 I have used Chrome Developer tool while building the web page and troubleshoot any issues immediately.<br>
 The following issues were raised during my mid project meeting with my mentor:
+  - Error messages for invalid inputs on the frontend were unclear.
+  - There was a mismatch between the backend and frontend requirements: the backend did not require an image for a post, while the frontend did.
+  - The landing page lacked information on why users should register.
+  - The option to attach background music to posts was removed.
 
 #### CSS
 
@@ -294,21 +298,67 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 
 #### Automated testing
 
-Automated testing for this project was carried out with [Django TestCase](https://docs.djangoproject.com/en/4.1/topics/testing/overview/).
+Automated testing for this project was carried out with [APITestCase](https://www.django-rest-framework.org/api-guide/testing/).
 
-#### Manual Testing
+#### Backend Manual Testing 
 
-- All buttons, anchor tags, and forms were thoroughly tested to verify that they performed the expected actions.
-- Responsiveness: The application was tested on multiple screen sizes (e.g., mobile,and desktop) to confirm that the layout adapts correctly and elements adjust according to the screen size.
-- Edge Case Scenarios: Manual testing was performed for edge cases such as entering invalid data, uploading incorrect file format and checking system behavior under unusual conditions (e.g., comment is too long, image size exceed the max limit).
-- User Flow: Testing ensured that the user flow was seamless and intuitive, including actions such as logging in, making payments, sending funds, and updating account details.
+Registration
+- Tested edge cases such as short passwords, mismatched passwords, and existing usernames to ensure proper validation.
 
-Registration<br>
+Profile
+- Verified profile updates for both the profile owner and visitors.
 
-Edit profile<br>
+- Ensured validation for invalid file formats when uploading a profile image or theme song.
 
-Login and password reset<br>
+- Testing the addition of visited countries could not be performed on the backend, as the API view returned the message: "Lists are not currently supported in HTML input." The experience level is updated automatically on the frontend when countries are added, and it cannot be changed manually.
 
+Login/Logout
+- Tested login with a valid username and password.
+
+- Attempted login with a nonexistent username and an incorrect password.
+
+- Verified that logout functionality works correctly.
+
+Posts
+- Attempted to create a post without a title, content, or image, and tested validation for wrong file formats and file sizes.
+
+- Edited an existing post and tested:
+
+   - Removing the title or content (should not be allowed).
+
+   - Changing an image to an invalid file format or size.
+
+   - Editing another user's post (should not be allowed).
+
+Comments
+- Added comments to posts and verified functionality.
+
+- Tested editing and deleting comments, ensuring that only the comment owner can make changes.
+
+- Verified that comments do not exceed the maximum character limit set in the models.
+
+Travel Preferences
+- Created and manually updated travel preferences.
+
+- Confirmed that predefined choices prevent invalid inputs, ensuring users can only select from the available options.
+
+Travel Recommendation
+- Verified that travel recommendations are generated based on the user's travel preferences.
+
+- Displayed an appropriate message if no recommendations were available due to specific preferences.
+
+- Ensured that recommendations update dynamically when the user modifies their travel preferences.
+
+Trip
+- Attempted to create an upcoming trip with past start dates and end dates set before the start date to ensure validation works correctly.
+
+- Edited an existing trip and tested:
+
+  - Changing the start date to a past date (should not be allowed).
+
+  - Setting an end date earlier than the start date (should trigger an error).
+
+#### Manual Testing Frontend
 
 #### Full Testing
 
