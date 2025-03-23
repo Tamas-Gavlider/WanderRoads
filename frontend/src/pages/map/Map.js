@@ -14,7 +14,6 @@ const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
 
 export default function Map() {
   const [countryPosts, setCountryPosts] = useState({});
-  const [zoomLevel, setZoomLevel] = useState(1);
 
   useEffect(() => {
     const fetchPostCounts = async () => {
@@ -29,14 +28,6 @@ export default function Map() {
     fetchPostCounts();
   }, []);
 
-  const handleZoomIn = () => {
-    setZoomLevel((prevZoom) => Math.min(prevZoom * 1.5, 3));
-  };
-
-  const handleZoomOut = () => {
-    setZoomLevel((prevZoom) => Math.max(prevZoom / 1.5, 1));
-  };
-
   return (
     <div className={styles.mapContainer}>
       <ComposableMap
@@ -46,7 +37,7 @@ export default function Map() {
         }}
         className={styles.Map}
       >
-        <ZoomableGroup zoom={zoomLevel} minZoom={0.5} maxZoom={3} enablePan={true} >
+        <ZoomableGroup minZoom={0.5} maxZoom={3} enablePan={true} >
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
