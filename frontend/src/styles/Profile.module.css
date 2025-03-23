@@ -60,7 +60,6 @@
 
 .Status {
   font-style: italic;
-  color: #00bae2;
   background: linear-gradient(135deg, white, #00bae2);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
