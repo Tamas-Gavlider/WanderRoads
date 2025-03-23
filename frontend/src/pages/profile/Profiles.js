@@ -2,10 +2,10 @@ import React, { useEffect, useState } from "react";
 import { axiosReq } from "../../api/axiosDefaults";
 import { Link } from "react-router-dom";
 import { Row, Col, Card, Dropdown, Form } from "react-bootstrap";
-import ThemeSong from "../../components/ThemeSong";
 import styles from "../../styles/Profiles.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import searchStyles from "../../styles/PostsPage.module.css";
+import Loading from '../../components/Loading';
 
 const UserList = () => {
   const [profiles, setProfiles] = useState([]);
@@ -57,36 +57,52 @@ const UserList = () => {
           <Dropdown.Item eventKey="posts_count">Posts Count</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
-
-      <Row className="g-4">
-        {profiles.map((user) => (
-          <Col xs={12} sm={6} md={4} lg={3} key={user.id}>
-            <Card className={`h-100 ${styles.UserCard}`}>
-              <Card.Img
-                variant="top"
-                src={user.image.replace(
-                  "/upload/",
-                  "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
-                )}
-                alt={`${user.owner}'s profile picture`}
-              />
-              <Card.Body>
-                <Card.Title className="d-flex align-items-center gap-2">
-                  <Link to={`/profiles/${user.id}`} className={styles.User}>
-                  <span>{user.owner}&#39;s vibe:</span>
-                  </Link>
-                  <ThemeSong theme_song={user.theme_song} />
-                </Card.Title>
-                <Card.Text>
-                  <p className={styles.Status}>{user.status}</p>
-                  <p>Visited countries: {user.visited_countries.length}</p>
-                  <p>Total posts: {user.posts_count}</p>
-                </Card.Text>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
+      {profiles.length === 0 ? (
+        <Loading />
+      ) : (
+        <Row className="g-4">
+          {profiles.map((user) => (
+            <Col xs={12} sm={6} md={4} lg={3} key={user.id}>
+              <Card className={`h-100 ${styles.UserCard}`}>
+                <Card.Img
+                  variant="top"
+                  src={user.image.replace(
+                    "/upload/",
+                    "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
+                  )}
+                  srcSet={`
+              ${user.image.replace(
+                "/upload/",
+                "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
+              )} 200w,
+              ${user.image.replace(
+                "/upload/",
+                "/upload/w_300,h_300,c_fill,q_auto,f_auto,fl_progressive,f_webp/"
+              )} 300w
+            `}
+                  sizes="(max-width: 768px) 200px, 300px"
+                  alt={`${user.owner}'s profile picture`}
+                   loading="eager"
+                  width="300"
+                  height="300"
+                />
+                <Card.Body>
+                  <Card.Title className="d-flex align-items-center gap-2">
+                    <Link to={`/profiles/${user.id}`} className={styles.User}>
+                      <span>{user.owner}</span>
+                    </Link>
+                  </Card.Title>
+                  <Card.Text>
+                    <p className={styles.Status}>{user.status}</p>
+                    <p>Visited countries: {user.visited_countries.length}</p>
+                    <p>Total posts: {user.posts_count}</p>
+                  </Card.Text>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      )}
     </div>
   );
 };
