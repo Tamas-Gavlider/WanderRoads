@@ -5,7 +5,7 @@
 .HeroRow {
   padding: 10px 0;
   text-align: center;
-  color: #ff0000;
+  
 }
 
 .Heading {
@@ -19,6 +19,7 @@
   margin-bottom: 30px; 
   border-radius: 10px;
   box-shadow: 0 4px 8px rgb(255, 0, 0);
+  background-color: white;
 }
 
 @media (min-width: 768px) {
