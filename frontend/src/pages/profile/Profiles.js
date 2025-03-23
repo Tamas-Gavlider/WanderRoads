@@ -5,7 +5,7 @@ import { Row, Col, Card, Dropdown, Form } from "react-bootstrap";
 import styles from "../../styles/Profiles.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import searchStyles from "../../styles/PostsPage.module.css";
-import Loading from '../../components/Loading';
+import Loading from "../../components/Loading";
 
 const UserList = () => {
   const [profiles, setProfiles] = useState([]);
@@ -71,17 +71,18 @@ const UserList = () => {
                     "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
                   )}
                   srcSet={`
-              ${user.image.replace(
-                "/upload/",
-                "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
-              )} 200w,
-              ${user.image.replace(
-                "/upload/",
-                "/upload/q_auto,f_auto,fl_progressive,f_webp/"
-              )} 300w
-            `}
+    ${user.image.replace(
+      "/upload/",
+      "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
+    )} 200w,
+    ${user.image.replace(
+      "/upload/",
+      "/upload/q_auto,f_auto,fl_progressive,f_webp/"
+    )} 300w
+  `}
                   sizes="(max-width: 768px) 200px, 300px"
                   alt={`${user.owner}'s profile picture`}
+                  loading="lazy"
                 />
                 <Card.Body>
                   <Card.Title className="d-flex align-items-center gap-2">
