@@ -61,7 +61,7 @@ The Agile process emphasizes incremental development and user-focused delivery.
 
 ### Project Goals
 
-The primary goals of the app is to provide a platform for travelers to share experiences and learn about different cultures and countries. Allow users to post stories on an interactive world map, making travel memories more immersive. uggest travel destinations based on user preferences using AI-driven recommendations. Help travelers find and connect with like-minded individuals through the TravelBuddy feature.
+The primary goals of the app is to provide a platform for travelers to share experiences and learn about different cultures and countries. Allow users to post stories which are visible on an interactive world map, making travel memories more immersive. Suggest travel destinations based on user preferences using AI-driven recommendations.
 
 ### User Stories
 
@@ -77,7 +77,6 @@ The diagram below represents the database structure for WanderRoads, illustratin
 - Profile: Contains user details such as name, profile image, theme song, travel experience, visited countries, and status.
 - Post: Represents travel stories shared by users, including title, content, images, and country tags.
 - Comment: Allows users to interact with posts by leaving comments.
-- Travel Buddy: Establishes a relationship between users who have traveled together.
 - Travel Preference: Stores user preferences for travel recommendations, such as preferred continent, climate, activities, budget, and duration.
 - Travel Recommendation: AI-generated travel suggestions for users based on their preferences.
 - Trip: Logs trips taken by users, including destination, start and end dates, and notes.
@@ -131,9 +130,9 @@ Navbar is user logged out/not registered
 
 #### Profile
 
-#### Update Profile
 
-The Edit Profile page allows users to manage and update their account details conveniently. Users can:
+
+From the profile page the users can see their profile image with a background image, status, experience level following their username,theme_song, posts created by profile owner, visited countries, travel recommendations and update their account details conveniently. Users can:
 
 - Change their status.
 - Add their first name and last name.
@@ -141,29 +140,44 @@ The Edit Profile page allows users to manage and update their account details co
 - Change password
 - Change theme song.
 - Add/Remove visited countries.
-
-#### Delete Profile
-
-#### Travel Preferences
+- Add/Change travel preferences
 
 #### Add Preferences
 
+User will be directed to the add preferences page if they are setting up the preferences first time. Once the preferences created the user will be firected to the confirmaiton page.
+
 #### Edit Preferences
+
+User can edit the travel preferences anytime from the profile page by clicking on the edit button in the travel preference tab. The user can choose from the existing choices from dropdown. Based on the new preferences the travel recommendation will be regenerated.
 
 #### Travel Recommendation
 
+Travel recommendations are generated after the travel preferences set by the user. Top 5 recommended cities will be visible from the profile page. Anytime the user will update the preferences the recommendations will change. If there are no recommendations for a given preferences, an error message will show up instead of the recommended cities.
+
 #### Trip
+
+Trip page is accessible from the Navbar. Customer can track their upcoming trips by adding the destinations (country) start date of trip, and date of trip and optional notes. The trip will have a countdown showing how many days are left until the trip. If day left is less than 0 the trip will be removed from the page. 
+Start date and end date validation implemented to make sure that users cannot enter past dates for start date and the end date cannot be prior the start date.
+Regardless of when the trip was created, the trips are sorted based on the days left until the trip. If less than 6 days left until the trip the color of the Trip card will change the color of the background. Also the trips can be edited/deleted by the user which are accesible via the dropdown menu within the trip card. 
 
 #### Add Trip
 
+An upcoming trip can be added from the Trip page. It’s a simple form that allows users to select the destination country, choose the start and end dates for the trip, and add optional notes.
+
 #### Edit Trip
 
+User can edit the existing trip like adding notes, change the start/end date or destination. 
+
 #### Delete Trip
+
+In case the trip gets canceled, the user will have the option to delete it from the dropdown menu.
 
 #### Future Implementations
 
 - Trip Fundraising: Users will be able to request funds for their trips by setting up a fundraising goal. Other users can contribute to help them reach their destination.
 - Flight Search Integration: A feature will be added to allow users to search for flights directly within the platform, making trip planning more convenient.
+- Notifications for natural disasters: Users will receive notifications about natural disasters if they have an upcoming trip to the affected country.
+- Friendship and private messaging: Users can mark each other as friends and exchange private messages.
 
 ## Technologies, Languages, and Programs used
 
@@ -172,7 +186,7 @@ The Edit Profile page allows users to manage and update their account details co
 - React - A JavaScript library used for building user interfaces, particularly for single-page applications. It allows developers to build reusable UI components.
 - Javascript - A programming language used for writing dynamic code in React. It’s the primary language for frontend development in React.
 - Python - The programming language used for the project backend.
-- Django REST Framework
+- Django REST Framework - Used for building the backend API.
 - Djano Allauth - Used for authentication, registration, login & password reset.
 - gunicorn - a Python WSGI HTTP Server
 - psycopg2 - allow us to connect with a postgres database
