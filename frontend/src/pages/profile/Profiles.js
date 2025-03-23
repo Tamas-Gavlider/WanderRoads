@@ -77,14 +77,11 @@ const UserList = () => {
               )} 200w,
               ${user.image.replace(
                 "/upload/",
-                "/upload/w_300,h_300,c_fill,q_auto,f_auto,fl_progressive,f_webp/"
+                "/upload/q_auto,f_auto,fl_progressive,f_webp/"
               )} 300w
             `}
                   sizes="(max-width: 768px) 200px, 300px"
                   alt={`${user.owner}'s profile picture`}
-                   loading="eager"
-                  width="300"
-                  height="300"
                 />
                 <Card.Body>
                   <Card.Title className="d-flex align-items-center gap-2">
