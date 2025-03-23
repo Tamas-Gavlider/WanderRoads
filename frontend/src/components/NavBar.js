@@ -91,6 +91,7 @@ const NavBar = () => {
   const loggedOutLinks = (
     <>
       <NavLink
+        exact
         to="/"
         className={styles.NavLink}
         activeClassName={styles.Active}
