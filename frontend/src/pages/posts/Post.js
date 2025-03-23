@@ -46,11 +46,7 @@ const Post = (props) => {
       <Card className={styles.Post}>
         <Card.Body>
           <Media className="align-items-center justify-content-between">
-            <Link to={`/profiles/${profile_id}`} className={styles.Profile}>
-              <Avatar src={profile_image} height={55} />
-              <span className={styles.User}>{owner}</span>
-            </Link>
-            <div className="d-flex align-items-center">
+          <div className="d-flex align-items-center">
               {is_owner && postPage && (
                 <MoreDropdown
                   handleEdit={handleEdit}
@@ -61,6 +57,10 @@ const Post = (props) => {
                 {created_at} - {country_name}
               </span>
             </div>
+            <Link to={`/profiles/${profile_id}`} className={styles.Profile}>
+              <span className={styles.User}>Post by {owner}</span>
+            </Link>
+
           </Media>
         </Card.Body>
         <Link to={`/posts/${id}/`}>
