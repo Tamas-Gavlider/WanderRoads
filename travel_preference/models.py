@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from travel_recommendation.recommendation import generate_recommendation
 
 # Create your models here.
 
@@ -72,7 +73,7 @@ class TravelPreference(models.Model):
                                 default='ANY')
     budget = models.CharField(max_length=55, choices=BUDGET_CHOICES,
                               default='ANY')
-    travel_style = models.CharField(max_length=55, default="ANY"
+    travel_style = models.CharField(max_length=55, default="ANY",
                                     choices=TRAVEL_STYLE_CHOICES)
     duration = models.CharField(max_length=55, choices=DURATION_CHOICES,
                                 default="ANY")
@@ -83,8 +84,6 @@ class TravelPreference(models.Model):
         generated
         """
         super().save(*args, **kwargs)
-        from travel_recommendation.recommendation import
-        generate_recommendation
         generate_recommendation(self.owner)
 
     class Meta:
