@@ -3,7 +3,7 @@ import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
-import styles from "../../styles/EditTravelPreferences.module.css";
+import styles from "../../styles/TravelPreferenceEditForm.module.css";
 import btnStyles from "../../styles/Button.module.css"
 
 export default function TravelPreferenceEditForm() {
