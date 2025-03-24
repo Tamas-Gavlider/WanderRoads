@@ -14,8 +14,8 @@ class TravelRecommendationList(generics.ListAPIView):
 
     def get_queryset(self):
         user = self.request.user
-        travel_recommendation, created =
-        TravelRecommendation.objects.get_or_create(owner=user)
+        travel_recommendation, created = (
+        TravelRecommendation.objects.get_or_create(owner=user))
 
         # Generate recommendation if it doesn't exist
         if not travel_recommendation.recommended_destination:
