@@ -16,6 +16,8 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
   - [Typography](#typography)
   - [Features](#features)
     - [Home](#home)
+    - [Login](#login)
+    - [Register](#register)
     - [Map](#)
     - [Posts](#)
     - [Post](#)
@@ -116,17 +118,35 @@ Navbar is user logged out/not registered
 
 #### Home
 
-![Backgorund]()
+The landing page includes the text 'Explore the World, Share Your Adventures. Connect with travelers, share memories, and get recommendations for your next journey,' along with a [background image of the world map](/frontend/src/assets/landing_page.webp) that gives visitors an idea of what the page is about. The background image is visible only on larger screens. Logged-out users will see a button that directs them to the signup page, while logged-in users will only see the text.
+
+#### Login
+
+The login page includes the login form and an [image of mountains](/frontend/src/assets/sign_in_img.jpg) on larger screens. This image makes me feel relaxed and calm, so I believe it was a good choice for the login page. Below the login form, there is a link to the registration page for users who have not registered yet.
+
+#### Register
+
+The register page includes the registration form and an [image of accessories](/frontend/src/assets/reg_img.jpg) (such as a travel bag, camera lens, and shoes) on larger screens. This image conveys a 'let's go for an adventure' vibe, encouraging users to register and start their journey. Below the registration form, there is a link to the login page for users who have already registered.
 
 #### Map
 
+The map is implemented using the React Simple Maps template. Countries where posts were taken are highlighted on the map. When hovering over a country, a tooltip will display the number of posts from that country.
+
 #### Posts
+
+The posts page allows users to view all existing posts. It uses infinite scroll, making it more user-friendly without the need to click to the next page. The search bar lets users search for posts by username or country. The 'Create Post' button, with the text 'Share Your Journey,' is positioned on the right side of the screen on larger screens and at the top of the search bar on smaller screens.
 
 #### Post
 
+The post page allows users to comment on the post or visit the post owner's profile by clicking on their username. The post page has an additional feature on larger screens: the right side of the screen displays a table with popular destinations. These destinations are ranked based on the number of posts from each country.
+
 #### Create Post
 
+The 'Create Post' button is accessible from the posts page. Validations ensure that users can only upload images, not videos or other file formats. The uploaded image must meet specific requirements, such as size and height. The title, content, and country are mandatory fields.
+
 #### Edit Post
+
+Users can edit their existing posts. The edit function includes changing the post image, title, content, and country.
 
 #### Profile
 
@@ -213,9 +233,9 @@ The project is deployed using Heroku. To deploy the project:
    1. From the Heroku dashboard, click the new button in the top right corner and select create new app.
    2. Give your app a name (this must be unique), select the region that is closest to you and then click the create app button bottom left.
    3. Open the settings tab and create a new config var of DATABASE_URL and paste the database URL(the value should not have quotation marks around it).
-3. Prepare for deployment in GitPod:
+3. Prepare for deployment in VsCode:
    1. Install dj_database_url and psycopg2 (they are both needed for connecting to the external database you've just set up)<br>
-      -- pip3 install dj-database-url==2.2.0 psycopg2 --
+      -- pip3 install dj-database-url==2.3.0 psycopg2==2.9.10 --
    2. Update your requirements.txt file with the installed packages.<br>
       -- pip3 freeze --local > requirements.txt --
    3. In settings.py underneath import os, add -- import dj_database_url --.
@@ -230,24 +250,31 @@ The project is deployed using Heroku. To deploy the project:
       -- pip3 install gunicorn --
    9. Create a Procfile in the root directory. This tells Heroku to create a web dyno which runs gunicorn and serves our django app. Add the following to the file:<br>
       -- release: python manage.py makemigrations && python manage.py migrate
-      web: gunicorn wonder_roads_api.wsgi:application
-      --
-   10. Add the Heroku app and localhost (which will allow GitPod to still work) to ALLOWED_HOSTS = [] in settings.py:<br>
-       
+      web: gunicorn wonder_roads_api.wsgi:application --
+   10. Add the Heroku app and localhost to ALLOWED_HOSTS = [] in settings.py:<br>
    11. Install whitenoise. It will allow your Heroku app to serve its own static files without relying on any external file hosting services like a content delivery network (CDN). Then add it to the requirements.txt.
        <br>
-       -- pip3 install whitenoise~=5.3.0 --
+       -- pip3 install whitenoise~=6.8.2 --
        <br>
        The WhiteNoise middleware must be placed directly after the Django SecurityMiddleware in settings.py<br>
        -- 'whitenoise.middleware.WhiteNoiseMiddleware', --
+       Staticfiles for this project stored on Cloudinary so in settings.py you will need to set<br>
+       -- STATICFILES_STORAGE = "cloudinary_storage.storage.StaticCloudinaryStorage" --
    12. Add the following path to settings.py<br>
        -- STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') --
    13. Collect static files -- python3 manage.py collectstatic -- and add a runtime.txt file to your app's root directory. Check your Python version and copy the runtime closest to the one used in your IDE.
-       [Python support](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version)
+       [Python support](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version)<br>
+       Use the following command in your frontend folder to build the app and collect the files in the static folder: -- npm run build && rm -rf ../staticfiles/build && mv build ../staticfiles/. -- <br>
+       In settings.py, the following needs to be set: -- STATICFILES_DIRS = BASE_DIR / 'staticfiles' / 'build' --
    14. Save, add, commit and push the changes to GitHub.
    15. To enable automatic deploys on Heroku, go to the deploy tab and click the connect to GitHub button in the deployment method section. Search for the projects repository and then click connect. Click enable automatic deploys at the bottom of the page.
 4. Django automatically sets a secret key when you create your project, however we shouldn't use this default key in our deployed version. We can use a random key generator to create a new SECRET_KEY which we can then add to our Heroku config vars.
 5. The following entries must be added to the Heroku config vars:
+   1. ALLOWED_HOST - the url of the deployed version with https://
+   2. CLIENT_ORIGIN - the full page url including https://
+   3. CLOUDINARY_URL
+   4. DATABASE_URL
+   5. SECRET_KEY
 
 
 ### Local Deployment
@@ -258,6 +285,10 @@ This repository can be cloned and run locally with the following steps:
 - Select repository named: https://github.com/Tamas-Gavlider/WanderRoads
 - Click code toggle button and copy the url (https://github.com/Tamas-Gavlider/WanderRoads.git).
 - In your IDE, open the terminal and run the git clone command (git clone https://github.com/Tamas-Gavlider/WanderRoads.git). The repository will now be cloned in your workspace.
+
+An older version of React was used due to dependency issues with React Simple Maps: -- npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm -- <br>
+To start the app, execute the following command: -- export NODE_OPTIONS=--openssl-legacy-provider  --  <br>
+Then, start the app with: -- npm run --
 
 ### Testing
 
@@ -308,7 +339,7 @@ The following issues were raised during my mid project meeting with my mentor:
 
 #### JavaScript
 
-
+JSX code was validated with ESLint. It helps to identify and fix issues in your JavaScript and JSX code. 
 
 #### Python
 
@@ -358,6 +389,8 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 #### Automated testing
 
 Automated testing for this project was carried out with [APITestCase](https://www.django-rest-framework.org/api-guide/testing/).
+
+React tests were not created due to dependency issues. Jest required a newer version of React, but React Simple Maps was not compatible with it.
 
 #### Backend Manual Testing 
 
@@ -452,9 +485,17 @@ All screenshots used in this README file were taken by myself.
 
 ### Content
 
-[W3Schools](https://www.w3schools.com/) to review how certain libraries function and for React tutorials.
+[W3Schools](https://www.w3schools.com/) to review how certain libraries (for example Pandas) function and for React tutorials.
 
-Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects.
+[Cloudinary](https://support.cloudinary.com/hc/en-us/community/posts/360009752479-How-to-resize-before-uploading-pictures-in-Django) to resize images to improve app speed.
+
+[Simple maps](https://github.com/zcreativelabs/react-simple-maps/issues/344) - for simple maps template.
+
+[Recommendation article ](https://pub.towardsai.net/building-a-recommender-system-with-pandas-1ca0bb03fdce) helped a lot to implement the travel recommendations. 
+
+Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
+
+The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.com/)
 
 ### Acknowledgments
 
