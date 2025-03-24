@@ -10,7 +10,7 @@ import styles from "../../styles/Map.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import "bootstrap/dist/css/bootstrap.min.css";
 
-const geoUrl = "https://cdn.jsdelivr.net/npm/world-atlas@2/countries-110m.json";
+const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
 export default function Map() {
   const [countryPosts, setCountryPosts] = useState({});
