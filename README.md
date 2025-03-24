@@ -109,10 +109,10 @@ Characters that could be mistaken for one another (O, 0, I, l, 1, etc.) have dis
 
 All pages feature a fully responsive navbar that transforms into a hamburger menu on smaller screens and a [favicon](/docs/favicon.png) in the browser tab.<br>
 Navbar if user logged in
-![Logged in]()
+![Logged in](/docs/page_screenshots/navbar-logged-in.png)
 
 Navbar is user logged out/not registered
-![Logged out]()
+![Logged out](/docs/page_screenshots/navbar-logged-out.png)
 
 #### Home
 
@@ -130,8 +130,6 @@ Navbar is user logged out/not registered
 
 #### Profile
 
-
-
 From the profile page the users can see their profile image with a background image, status, experience level following their username,theme_song, posts created by profile owner, visited countries, travel recommendations and update their account details conveniently. Users can:
 
 - Change their status.
@@ -141,6 +139,8 @@ From the profile page the users can see their profile image with a background im
 - Change theme song.
 - Add/Remove visited countries.
 - Add/Change travel preferences
+
+Profile visitors can see the visited countries and preferences of the owners from the tabs and the user experience level, status and theme song. 
 
 #### Add Preferences
 
@@ -153,6 +153,10 @@ User can edit the travel preferences anytime from the profile page by clicking o
 #### Travel Recommendation
 
 Travel recommendations are generated after the travel preferences set by the user. Top 5 recommended cities will be visible from the profile page. Anytime the user will update the preferences the recommendations will change. If there are no recommendations for a given preferences, an error message will show up instead of the recommended cities.
+
+#### Travelers
+
+Travelers page will show all the existing registered users. Users can search for other users by name or sort them by number of posts or name. By click on the profile image the user will be directed to the user profile. 
 
 #### Trip
 
@@ -190,6 +194,7 @@ In case the trip gets canceled, the user will have the option to delete it from 
 - Djano Allauth - Used for authentication, registration, login & password reset.
 - gunicorn - a Python WSGI HTTP Server
 - psycopg2 - allow us to connect with a postgres database
+- [React Simple Maps](https://www.react-simple-maps.io/) - to implement the Map page 
 - PostgreSQL - The database used to store transactions data, user information, and other relevant data for the application.
 - Chrome Dev Tools - To troubleshoot, test features and solve issues with responsiveness and styling
 - GitHub - Web-based platform for version control and collaboration on software projects.
@@ -278,26 +283,33 @@ The following issues were raised during my mid project meeting with my mentor:
 
 | File                      | Result |                                                       Screenshot |
 | ------------------------- | :----: | ---------------------------------------------------------------: |
-|       |  Pass  |             |
-|       |  Pass  |               |
-|         |  Pass  |              |
-|          |  Pass  |                |
-|      |  Pass  |       |
-|     |  Pass  |      |
-|       |  Pass  |          |
-|        |  Pass  |            |
-|       |  Pass  |          |
-|       |  Pass  |           |
-|        |  Pass  |        |
-|       |  Pass  |             |
-|       |  Pass  |                |
-|  |  Pass  |   |
-|  |  Pass  |  |
-|  |  Pass  |      |
-|   |  Pass  |      |
-|   |  Pass  |    |
-|      |  Pass  |        |
-|        |  Pass  |          |
+|   Comment-Models    |  Pass  |     [comment-models](/docs/testing/pep8/comment_models.png)        |
+|    Comment-Serializers   |  Pass  |     [comment-serializers](/docs/testing/pep8/comment-serializers.png)          |
+|     Comment-Urls    |  Pass  |      [comment-urls](/docs/testing/pep8/comment-urls.png)        |
+|      Comment-Views    |  Pass  |       [comment-views](/docs/testing/pep8/comment-views.png)         |
+|  Post-Models    |  Pass  |   [post-models](/docs/testing/pep8/post-models.png)    |
+|   Post-Serializers  |  Pass  |  [post-serializers](/docs/testing/pep8/post-serializers.png)    |
+|    Post-Tests   |  Pass  |   [post-tests](/docs/testing/pep8/post-tests.png)       |
+|     Post-Urls   |  Pass  |    [post-urls](/docs/testing/pep8/post-urls.png)        |
+|   Post-Views    |  Pass  |   [post-views](/docs/testing/pep8/post-views.png)       |
+|    Profile-Admin   |  Pass  |  [profile-admin](/docs/testing/pep8/profile-admin.png)         |
+|   Profile-Models     |  Pass  |   [profile-models](/docs/testing/pep8/profile-models.png)     |
+|   Profile-Serializers    |  Pass  |   [profile-serializers](/docs/testing/pep8/profile-serializers.png)          |
+|   Profile-Urls    |  Pass  |     [profile-urls](/docs/testing/pep8/profile-urls.png)           |
+|  Profile-Views   |  Pass  | [profile-views](/docs/testing/pep8/profile-views.png)   |
+| Travel-Pref-Urls |  Pass  | [travel-pref-urls](/docs/testing/pep8/travel-pref-urls.png) |
+| Travel-Pref-Models |  Pass  |   [travel-pref-models](/docs/testing/pep8/travel-pref-models.png)   |
+| Travel-Pref-Serializers  |  Pass  |   [travel-pref-serializers](/docs/testing/pep8/travel-pref-serializers.png)   |
+|  Travel-Pref-Views |  Pass  | [travel-pref-views](/docs/testing/pep8/travel-pref-views.png)   |
+|   Recommendation-Models   |  Pass  |    [recommendation-models](/docs/testing/pep8/travel-recommendation-models.png)    |
+|   Recommendation-Recommendations     |  Pass  |    [recommendation-recommendations](/docs/testing/pep8/travel-recommendation-recommendations.png)      |
+|  Recommendation-Serializers    |  Pass  | [recommendation-serializers](/docs/testing/pep8/travel-recommendation-serializers.png)       |
+|   Recommendation-Urls     |  Pass  |   [recommendation-urls](/docs/testing/pep8/travel-recommendation-urls.png)       |
+|   Recommendation-Views   |  Pass  |    [recommendation-views](/docs/testing/pep8/travel-recommendation-views.png)    |
+|  Trip-Models      |  Pass  |   [trip-models](/docs/testing/pep8/trip-models.png)       |
+|   Trip-Serializers   |  Pass  |   [trip-serializers](/docs/testing/pep8/trip-serializers.png)     |
+|    Trip-Urls    |  Pass  |   [trip-urls](/docs/testing/pep8/trip-urls.png)       |
+|     Trip-Views   |  Pass  |   [trip-views](/docs/testing/pep8/trip-views.png)       |
 
 #### Lighthouse
 
