@@ -12,13 +12,14 @@ from wonder_roads_api.permissions import IsOwnerOrReadOnly
 
 # Create your views here.
 
+
 class ProfileList(generics.ListAPIView):
     """
     List all profiles.
     No create view as profile creation is handled by django signals.
     """
     queryset = Profile.objects.annotate(
-        posts_count= Count('owner__post', distinct= True)
+        posts_count=Count('owner__post', distinct=True)
     ).order_by('-posts_count', 'owner')
     serializer_class = ProfileSerializer
     filter_backends = [
@@ -37,7 +38,7 @@ class ProfileList(generics.ListAPIView):
         'owner__username'
     ]
 
-    
+
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
     Retrieve or update a profile if you're the owner.

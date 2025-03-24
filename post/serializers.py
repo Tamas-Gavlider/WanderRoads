@@ -41,4 +41,3 @@ class PostSerializer(serializers.ModelSerializer):
             'title', 'content', 'image', 'country',
             'comments_count', "country_name"
         ]
-        

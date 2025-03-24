@@ -64,10 +64,9 @@ class PostList(generics.ListCreateAPIView):
 
         country_data = {}
         for entry in country_post_counts:
-            country_name = countries.name(entry['country']) 
+            country_name = countries.name(entry['country'])
             country_data[country_name] = entry['post_count']
 
-       
         response = super().get(request, *args, **kwargs)
         response.data["country_post_counts"] = country_data
         return response
