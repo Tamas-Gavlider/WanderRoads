@@ -272,6 +272,39 @@ The following issues were raised during my mid project meeting with my mentor:
 
 [W3C](https://validator.w3.org/) was used to validate the CSS.
 
+| File                      | Result |                                                       Screenshot |
+| ------------------------- | :----: | ---------------------------------------------------------------: |
+|   Add-Country  |  Pass  |  [add-country](/docs/testing/w3c/add-country-css.png)     |
+|  Add-Trip   |  Pass  |  [add-trip](/docs/testing/w3c/add-trip-css.png)     |
+|  App   |  Pass  |  [app](/docs/testing/w3c/app-css.png)     |
+| Asset    |  Pass  |  [asset](/docs/testing/w3c/asset-css.png)     |
+|  Avatar   |  Pass  |       |
+|  Button   |  Pass  |       |
+|  Comment-Create-Edit-Form   |  Pass  |       |
+|   Comment  |  Pass  |       |
+|  Confirmation   |  Pass  |       |
+|  Edit-Profile   |  Pass  |       |
+|  Edit-Status   |  Pass  |       |
+|  Edit-Travel-Preferences   |  Pass  |       |
+|   Landing-Page-Text  |  Pass  |       |
+|  Loading   |  Pass  |       |
+|  Map   |  Pass  |       |
+|   More-Dropdown  |  Pass  |       |
+|  NavBar   |  Pass  |       |
+|  Not-Found-Page   |  Pass  |       |
+|  Popular-Destinations   |  Pass  |       |
+|  Post-Create-Edit-Form   |  Pass  |       |
+|  Post   |  Pass  |       |
+|  Post-Page   |  Pass  |       |
+|  Posts-Page   |  Pass  |       |
+|  Profile   |  Pass  |       |
+|  Profiles  |  Pass  |       |
+|  Sing-In-Up-Form   |  Pass  |       |
+|  Theme-Song   |  Pass  |       |
+|  Travel-Preferences   |  Pass  |       |
+|  Travel-Recommendations   |  Pass  |       |
+|  Trip   |  Pass  |       |
+|  User-Posts   |  Pass  |       |
 
 #### JavaScript
 
