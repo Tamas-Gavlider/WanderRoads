@@ -14,8 +14,8 @@ class TravelPreferenceSerializer(serializers.ModelSerializer):
         Ensure the frontend gets the correct values that match the choices
         """
         representation = super().to_representation(instance)
-        representation['preferred_continent_display'] =
-        instance.get_preferred_continent_display()
+        representation['preferred_continent_display'] = (
+         instance.get_preferred_continent_display())
 
         return representation
 
