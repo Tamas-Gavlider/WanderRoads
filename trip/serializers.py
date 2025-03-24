@@ -33,8 +33,7 @@ class TripSerializer(serializers.ModelSerializer):
         """
         representation = super().to_representation(instance)
         # Replace the destination field with the country name instead of code
-        representation['destination'] =
-        instance.get_destination_display()
+        representation['destination'] = instance.get_destination_display()
 
         return representation
 
