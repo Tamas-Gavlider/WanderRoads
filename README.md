@@ -206,7 +206,7 @@ In case the trip gets canceled, the user will have the option to delete it from 
 ## Technologies, Languages, and Programs used
 
 - CSS - Stylesheet language for styling the appearance of web pages.
-- Bootstrap - A framework for building responsive, mobile-first sites.
+- React Bootstrap - A framework for building responsive, mobile-first sites.
 - React - A JavaScript library used for building user interfaces, particularly for single-page applications. It allows developers to build reusable UI components.
 - Javascript - A programming language used for writing dynamic code in React. It’s the primary language for frontend development in React.
 - Python - The programming language used for the project backend.
@@ -214,7 +214,9 @@ In case the trip gets canceled, the user will have the option to delete it from 
 - Djano Allauth - Used for authentication, registration, login & password reset.
 - gunicorn - a Python WSGI HTTP Server
 - psycopg2 - allow us to connect with a postgres database
-- [React Simple Maps](https://www.react-simple-maps.io/) - to implement the Map page 
+- [React Simple Maps](https://www.react-simple-maps.io/) - react library to implement the Map page 
+- [PyCountry](https://pypi.org/project/pycountry/) - Python library for working with country names, codes, and related information.
+- [Cloudinary](https://cloudinary.com/) - A cloud service for hosting, managing, and delivering media files (images, videos, etc.).
 - PostgreSQL - The database used to store transactions data, user information, and other relevant data for the application.
 - Chrome Dev Tools - To troubleshoot, test features and solve issues with responsiveness and styling
 - GitHub - Web-based platform for version control and collaboration on software projects.
@@ -223,6 +225,7 @@ In case the trip gets canceled, the user will have the option to delete it from 
 - Favicon.io - To create Favicon.
 - [DBDiagram](https://dbdiagram.io/d) - To create ER Diagram
 - [FreeConvert](https://www.freeconvert.com/convert/video-to-gif) - to convert screenrecordings to GIF
+- [Font Awesome](https://fontawesome.com/) - A popular icon library that provides a collection of icons, which can be used throughout the page for various UI elements.
 
 ## Deployment & Local Development
 
@@ -378,8 +381,6 @@ JSX code was validated with ESLint. It helps to identify and fix issues in your 
 #### Lighthouse
 
 I have used Lighthouse to test the performance, accessibility, best practices and SEO of the site.
-
-
 
 #### Wave
 
