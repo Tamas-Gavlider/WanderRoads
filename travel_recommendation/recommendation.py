@@ -65,8 +65,8 @@ def generate_recommendation(user: User):
     best_match = df.loc[(match_count >= 4)]  # At least 4 preferences match
 
     # Select destinations (remove duplicates)
-    primary_destination = perfect_match["destination"].iloc[0] if not
-    perfect_match.empty else None
+    primary_destination = (
+     perfect_match["destination"].iloc[0] if not perfect_match.empty else None)
     additional_destinations = best_match["destination"].head(5).tolist()
 
     # Remove duplicates and filter out None values
