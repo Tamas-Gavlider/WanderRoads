@@ -4,7 +4,6 @@ import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Card, Col } from "react-bootstrap";
 import Media from "react-bootstrap/Media";
 import { Link, useHistory } from "react-router-dom";
-import Avatar from "../../components/Avatar";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import iconStyles from "../../styles/MoreDropdown.module.css";
@@ -14,7 +13,6 @@ const Post = (props) => {
     id,
     owner,
     profile_id,
-    profile_image,
     comments_count,
     country_name,
     title,
