@@ -11,24 +11,25 @@ class TravelRecommendationList(generics.ListAPIView):
     """
     permission_classes = [permissions.IsAuthenticated]
     serializer_class = TravelRecommendationSerializer
-    
+
     def get_queryset(self):
         user = self.request.user
-        travel_recommendation, created = TravelRecommendation.objects.get_or_create(owner=user)
-        
-        # Generate recommendation only if it doesn't exist or if the destination is empty
+        travel_recommendation, created =
+        TravelRecommendation.objects.get_or_create(owner=user)
+
+        # Generate recommendation if it doesn't exist
         if not travel_recommendation.recommended_destination:
-            generate_recommendation(user)  # Generate recommendation if not exists
+            generate_recommendation(user)
 
         return TravelRecommendation.objects.filter(owner=user)
 
+
 class TravelRecommendationDetail(generics.RetrieveDestroyAPIView):
-    """
-    Retrieve or delete a specific travel recommendation.
-    """
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = TravelRecommendationSerializer
 
     def get_queryset(self):
-        """Ensure only the user's recommendations are accessible."""
+        """
+        Ensure only the owner's recommendations are accessible.
+        """
         return TravelRecommendation.objects.filter(owner=self.request.user)

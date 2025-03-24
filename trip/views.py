@@ -8,6 +8,7 @@ from wonder_roads_api.permissions import IsOwnerOrReadOnly
 
 # Create your views here.
 
+
 class TriptList(generics.ListCreateAPIView):
     serializer_class = TripSerializer
     permission_classes = [
@@ -16,13 +17,12 @@ class TriptList(generics.ListCreateAPIView):
 
     def get_queryset(self):
         """
-        This view returns a list of all trips for the currently logged-in user.
+        Returns a list of all trips for the currently logged-in user.
         """
         return Trip.objects.filter(owner=self.request.user)
-                        
+
+
 class TripDetail(generics.RetrieveUpdateDestroyAPIView):
     permission_classes = [IsOwnerOrReadOnly]
     serializer_class = TripSerializer
     queryset = Trip.objects.all()
-        
-   
