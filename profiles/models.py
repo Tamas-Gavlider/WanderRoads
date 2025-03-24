@@ -24,7 +24,7 @@ class Profile(models.Model):
     image = CloudinaryField('image', default='default_profile_ktgpxq')
     theme_song = CloudinaryField('audio',
                                  resource_type='raw', allowed_formats=['mp3'],
-                                 default='travel-audio-oficial-243586_eehcqv')
+                                 default='travel-audio-oficial-243586_eehcqv.mp3')
     experience = models.CharField(max_length=55, choices=EXPERIENCE_LEVEL,
                                   default='Wanderer')
     visited_countries = CountryField(multiple=True, blank=True)
