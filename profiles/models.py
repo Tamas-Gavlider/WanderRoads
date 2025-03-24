@@ -20,7 +20,7 @@ class Profile(models.Model):
     created_at = models.DateTimeField(auto_now_add=True)
     updated_at = models.DateTimeField(auto_now=True)
     name = models.CharField(max_length=255, blank=True, null=True)
-    image = CloudinaryField('image', default='profile_ozflyd')
+    image = CloudinaryField('image', default='default_profile_ktgpxq')
     theme_song = CloudinaryField('audio',
     resource_type='raw', 
     allowed_formats=['mp3'], default='travel-audio-oficial-243586_eehcqv')
