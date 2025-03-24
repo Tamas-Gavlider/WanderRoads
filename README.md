@@ -278,33 +278,33 @@ The following issues were raised during my mid project meeting with my mentor:
 |  Add-Trip   |  Pass  |  [add-trip](/docs/testing/w3c/add-trip-css.png)     |
 |  App   |  Pass  |  [app](/docs/testing/w3c/app-css.png)     |
 | Asset    |  Pass  |  [asset](/docs/testing/w3c/asset-css.png)     |
-|  Avatar   |  Pass  |       |
-|  Button   |  Pass  |       |
-|  Comment-Create-Edit-Form   |  Pass  |       |
-|   Comment  |  Pass  |       |
-|  Confirmation   |  Pass  |       |
-|  Edit-Profile   |  Pass  |       |
-|  Edit-Status   |  Pass  |       |
-|  Edit-Travel-Preferences   |  Pass  |       |
-|   Landing-Page-Text  |  Pass  |       |
-|  Loading   |  Pass  |       |
-|  Map   |  Pass  |       |
-|   More-Dropdown  |  Pass  |       |
-|  NavBar   |  Pass  |       |
-|  Not-Found-Page   |  Pass  |       |
-|  Popular-Destinations   |  Pass  |       |
-|  Post-Create-Edit-Form   |  Pass  |       |
-|  Post   |  Pass  |       |
-|  Post-Page   |  Pass  |       |
-|  Posts-Page   |  Pass  |       |
-|  Profile   |  Pass  |       |
-|  Profiles  |  Pass  |       |
-|  Sing-In-Up-Form   |  Pass  |       |
-|  Theme-Song   |  Pass  |       |
-|  Travel-Preferences   |  Pass  |       |
-|  Travel-Recommendations   |  Pass  |       |
-|  Trip   |  Pass  |       |
-|  User-Posts   |  Pass  |       |
+|  Avatar   |  Pass  |   [avatar](/docs/testing/w3c/avatar-css.png)    |
+|  Button   |  Pass  |   [button](/docs/testing/w3c/button-css.png)    |
+|  Comment-Create-Edit-Form   |  Pass  |   [comment-create-edit-form](/docs/testing/w3c/comment-create-edit-form-css.png)    |
+|   Comment  |  Pass  |   [comment](/docs/testing/w3c/comment-css.png)    |
+|  Confirmation   |  Pass  |   [confirmation](/docs/testing/w3c/confirmation-css.png)     |
+|  Edit-Profile   |  Pass  |   [edit-profile](/docs/testing/w3c/edit-profile-css.png)    |
+|  Edit-Status   |  Pass  |   [edit-status](/docs/testing/w3c/edit-status-css.png)    |
+|  Edit-Travel-Preferences   |  Pass  |  [edit-travel-preferences](/docs/testing/w3c/edit-travel-preferences-css.png)     |
+|   Landing-Page-Text  |  Pass  |  [landing-page-text](/docs/testing/w3c/landing-page-text-css.png)     |
+|  Loading   |  Pass  |  [loading](/docs/testing/w3c/loading-css.png)     |
+|  Map   |  Pass  |    [map](/docs/testing/w3c/map-css.png)   |
+|   More-Dropdown  |  Pass  |   [more-dropdown](/docs/testing/w3c/moredropdown-css.png)    |
+|  NavBar   |  Pass  |   [navbar](/docs/testing/w3c/navbar-css.png)    |
+|  Not-Found-Page   |  Pass  |   [not-found-page](/docs/testing/w3c/not-found-page-css.png)    |
+|  Popular-Destinations   |  Pass  |  [popular-destinations](/docs/testing/w3c/popular-destinations-css.png)     |
+|  Post-Create-Edit-Form   |  Pass  |  [post-create-edit-form](/docs/testing/w3c/post-create-edit-form-css.png)     |
+|  Post   |  Pass  |  [post](/docs/testing/w3c/post-css.png)     |
+|  Post-Page   |  Pass  |  [post-page](/docs/testing/w3c/post-page-css.png)     |
+|  Posts-Page   |  Pass  |  [posts-page](/docs/testing/w3c/posts-page-css.png)     |
+|  Profile   |  Pass  |   [profile](/docs/testing/w3c/profile-css.png)    |
+|  Profiles  |  Pass  |   [profiles](/docs/testing/w3c/profiles-css.png)    |
+|  Sing-In-Up-Form   |  Pass  |   [sign-in-up-form](/docs/testing/w3c/sign-in-up-form-css.png)     |
+|  Theme-Song   |  Pass  |   [theme-song](/docs/testing/w3c/theme-song-css.png)    |
+|  Travel-Preferences   |  Pass  |  [travel-preferences](/docs/testing/w3c/travel-preference-css.png)     |
+|  Travel-Recommendations   |  Pass  |  [travel-recommendation](/docs/testing/w3c/travel-recommendation-css.png)     |
+|  Trip   |  Pass  |   [trip](/docs/testing/w3c/trip-css.png)    |
+|  User-Posts   |  Pass  |   [user-posts](/docs/testing/w3c/user-posts-css.png)    |
 
 #### JavaScript
 
