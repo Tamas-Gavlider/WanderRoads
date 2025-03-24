@@ -75,8 +75,8 @@ def generate_recommendation(user: User):
 
     # Return the destinations as a List
     if primary_destination:
-        recommended_destinations = [primary_destination] +
-        [d for d in unique_destinations if d != primary_destination]
+        recommended_destinations = ([primary_destination] +
+        [d for d in unique_destinations if d != primary_destination])
     else:
         # If no perfect match, return alternatives
         recommended_destinations = unique_destinations
