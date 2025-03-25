@@ -13,14 +13,13 @@
     border: none;
     color: #00bae2;
     border-radius: 100px;
-    padding: 4px 10px;
+    padding: 4px 20px;
     min-width: 45px;
     margin: 5px;
   }
   
   .Button:hover {
     cursor: pointer;
-    background-color: #00bae2;
     color: #ff0000;
   }
 
