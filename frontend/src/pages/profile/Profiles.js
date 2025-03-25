@@ -62,7 +62,7 @@ const UserList = () => {
       ) : (
         <Row className="g-4">
           {profiles.map((user) => (
-            <Col xs={12} sm={6} md={4} lg={3} key={user.id}>
+            <Col xs={6} sm={4} md={4} lg={3} key={user.id}>
               <Card className={`h-100 ${styles.UserCard}`}>
                 <Card.Img
                   variant="top"
