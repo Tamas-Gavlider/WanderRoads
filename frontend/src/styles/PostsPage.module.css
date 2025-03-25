@@ -33,7 +33,9 @@
   }
 
   .ShareIcon:hover {
-    color: #ff0000;
+    background: linear-gradient(135deg, #d9ff00, #04ff4b);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;  
   }
 
   @media (min-width: 822px) {
@@ -54,6 +56,9 @@
     
     .ShareIcon {
       font-size: 400%;
+      background: linear-gradient(135deg, #ff0000, #00bae2);
+    -webkit-background-clip: text; 
+    -webkit-text-fill-color: transparent;  
     }
   }
 
