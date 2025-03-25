@@ -226,6 +226,7 @@ In case the trip gets canceled, the user will have the option to delete it from 
 - [DBDiagram](https://dbdiagram.io/d) - To create ER Diagram
 - [FreeConvert](https://www.freeconvert.com/convert/video-to-gif) - to convert screenrecordings to GIF
 - [Font Awesome](https://fontawesome.com/) - A popular icon library that provides a collection of icons, which can be used throughout the page for various UI elements.
+- [CloudConvert](https://cloudconvert.com/jpg-to-webp) - Convert jpg images to webp format.
 
 ## Deployment & Local Development
 
@@ -497,6 +498,8 @@ All screenshots used in this README file were taken by myself.
 Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
 
 The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.com/)
+
+[React Lazy](https://www.dhiwise.com/post/implementing-react-lazy-loading-for-better-app-performance) component was added to my code after reading this article.
 
 ### Acknowledgments
 
