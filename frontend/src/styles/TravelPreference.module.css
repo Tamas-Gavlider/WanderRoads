@@ -1,10 +1,5 @@
-.EditIcon {
+.EditIcon, .PreferenceItem {
     background: linear-gradient(135deg, #ff0000, #00bae2);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;  
 }
-
-.PreferenceItem {
-    color:#00bae2
-}
-
