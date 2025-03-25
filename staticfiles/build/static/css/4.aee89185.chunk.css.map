@@ -1,0 +1,1 @@
+{"version":3,"sources":["TravelPreference.module.css"],"names":[],"mappings":"AAAA,0EACI,8CAAqD,CACrD,4BAA6B,CAC7B,mCACJ","file":"4.aee89185.chunk.css","sourcesContent":[".EditIcon, .PreferenceItem {\n    background: linear-gradient(135deg, #ff0000, #00bae2);\n    -webkit-background-clip: text; \n    -webkit-text-fill-color: transparent;  \n}\n"]}

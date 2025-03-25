@@ -1,3 +1,6 @@
+from django.utils.decorators import method_decorator
+from django.views.decorators.cache import cache_page
+from django.views.decorators.vary import vary_on_headers
 from django.http import Http404, JsonResponse
 from django.db.models import Count
 from rest_framework import permissions, generics, filters
@@ -15,7 +18,9 @@ from django_countries import countries
 class CountryListView(APIView):
     """
     API endpoint that returns all available countries
+    Cache for 24 hours
     """
+    @method_decorator(cache_page(60 * 60 * 24))
     def get(self, request):
         country_list = [{"code": code, "name": name} for code,
                         name in countries]
@@ -52,6 +57,13 @@ class PostList(generics.ListCreateAPIView):
         'comments_count',
     ]
 
+    # Cache for 15 minutes
+    @method_decorator(cache_page(60 * 15))
+    # Cache per user session
+    @method_decorator(vary_on_headers("Authorization"))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
@@ -79,9 +91,17 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
 
+    # Cache for 10 minutes
+    @method_decorator(cache_page(60 * 10))
+    # Cache per user session
+    @method_decorator(vary_on_headers("Authorization"))
+    def dispatch(self, *args, **kwargs):
+        return super().dispatch(*args, **kwargs)
+
     def get(self, request, *args, **kwargs):
         print("User making request:", request.user)
         if not request.user.is_authenticated:
             return JsonResponse({"error": "Authentication required"},
                                 status=403)
+        return super().get(request, *args, **kwargs)
         return super().get(request, *args, **kwargs)

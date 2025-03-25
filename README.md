@@ -501,6 +501,8 @@ The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.
 
 [React Lazy](https://www.dhiwise.com/post/implementing-react-lazy-loading-for-better-app-performance) component was added to my code after reading this article.
 
+[Cache control](https://www.django-rest-framework.org/api-guide/caching/) to improve lighthouse score. 
+
 ### Acknowledgments
 
 I would like to acknowledge:
