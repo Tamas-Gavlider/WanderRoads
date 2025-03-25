@@ -66,4 +66,8 @@
       flex-direction: column;
       align-items: center;
     }
+
+    .Row {
+      margin-top: -50px;
+    }
   }
