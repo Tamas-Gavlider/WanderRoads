@@ -390,7 +390,7 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 
 #### Automated testing
 
-Automated testing for this project was carried out with [APITestCase](https://www.django-rest-framework.org/api-guide/testing/).
+Automated testing for this project was carried out with [TestCases](https://docs.djangoproject.com/en/5.1/topics/testing/overview/).
 
 React tests were not created due to dependency issues. Jest required a newer version of React, but React Simple Maps was not compatible with it.
 

@@ -104,4 +104,3 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
             return JsonResponse({"error": "Authentication required"},
                                 status=403)
         return super().get(request, *args, **kwargs)
-        return super().get(request, *args, **kwargs)
