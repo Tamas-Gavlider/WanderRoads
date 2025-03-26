@@ -85,6 +85,7 @@ export default function TripEditForm() {
           onChange={handleChange}
           required
           className="text-center"
+          aria-label="destination"
         >
           <option value="">Select a country</option>
           {countries.map((c) => (
@@ -102,6 +103,7 @@ export default function TripEditForm() {
           value={tripData.start_date}
           onChange={handleChange}
           className="text-center"
+          aria-label="start-date"
         />
       </Form.Group>
       <Form.Group>
@@ -112,6 +114,7 @@ export default function TripEditForm() {
           value={tripData.end_date}
           onChange={handleChange}
           className="text-center"
+          aria-label="end-date"
         />
       </Form.Group>
       <Form.Group>
@@ -122,6 +125,7 @@ export default function TripEditForm() {
           value={tripData.notes}
           onChange={handleChange}
           className="text-center"
+          aria-label="notes"
         />
       </Form.Group>
       <Col className="py-2 mx-auto text-center" >
