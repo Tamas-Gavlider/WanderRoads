@@ -357,11 +357,11 @@ JSX code was validated with ESLint. It helps to identify and fix issues in your 
 |      Comment-Views    |  Pass  |       [comment-views](/docs/testing/pep8/comment-views.png)         |
 |  Post-Models    |  Pass  |   [post-models](/docs/testing/pep8/post-models.png)    |
 |   Post-Serializers  |  Pass  |  [post-serializers](/docs/testing/pep8/post-serializers.png)    |
-|    Post-Tests   |  Pass  |   [post-tests](/docs/testing/pep8/post-tests.png)       |
 |     Post-Urls   |  Pass  |    [post-urls](/docs/testing/pep8/post-urls.png)        |
 |   Post-Views    |  Pass  |   [post-views](/docs/testing/pep8/post-views.png)       |
 |    Profile-Admin   |  Pass  |  [profile-admin](/docs/testing/pep8/profile-admin.png)         |
 |   Profile-Models     |  Pass  |   [profile-models](/docs/testing/pep8/profile-models.png)     |
+|    Profile-Tests   |  Pass  |   [post-tests](/docs/testing/pep8/profile-tests.png)       |
 |   Profile-Serializers    |  Pass  |   [profile-serializers](/docs/testing/pep8/profile-serializers.png)          |
 |   Profile-Urls    |  Pass  |     [profile-urls](/docs/testing/pep8/profile-urls.png)           |
 |  Profile-Views   |  Pass  | [profile-views](/docs/testing/pep8/profile-views.png)   |
@@ -387,12 +387,13 @@ I have used Lighthouse to test the performance, accessibility, best practices an
 
 WAVE(Web Accessibility Evaluation Tool) allows developers to create content that is more accessible to users with disabilities. It does this by identifying accessibility and WGAC errors.
 
+| File                      | Result |                                                       Screenshot |
+| ------------------------- | :----: | ---------------------------------------------------------------: |
+|       |  Pass  |     | 
 
 #### Automated testing
 
 Automated testing for this project was carried out with [TestCases](https://docs.djangoproject.com/en/5.1/topics/testing/overview/).
-
-React tests were not created due to dependency issues. Jest required a newer version of React, but React Simple Maps was not compatible with it.
 
 #### Backend Manual Testing 
 
