@@ -246,7 +246,7 @@ The project is deployed using Heroku. To deploy the project:
    4. To prevent your database URL from being misused, you can store it in the env.py file and add this file to .gitignore to keep it secure. Using the os library, you can then retrieve the database URL in your code instead of directly including it in settings.py.
    5. In the terminal, run the show migrations command to confirm connection to the external database.<br>
       -- python3 manage.py runserver --
-   6. If you have to the database correctly, you can now run migrations to migrate the models to the new database.<br>
+   6. If you have set up the database correctly, you can now run migrations to migrate the models to the new database.<br>
       -- python3 manage.py migrate --
    7. Create a superuser for the new database.<br>
       -- python3 manage.py createsuperuser --
@@ -266,10 +266,12 @@ The project is deployed using Heroku. To deploy the project:
        -- STATICFILES_STORAGE = "cloudinary_storage.storage.StaticCloudinaryStorage" --
    12. Add the following path to settings.py<br>
        -- STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles') --
-   13. Collect static files -- python3 manage.py collectstatic -- and add a runtime.txt file to your app's root directory. Check your Python version and copy the runtime closest to the one used in your IDE.
+   13. Create a staticfiles folder in the project root directory-- mkdir staticfiles -- <br>
+       Collect admin and rest framework staticfiles-- python3 manage.py collectstatic -- <br>
+       Cd to the frontend directory and compile the react app-- npm run build && mv build ../staticfiles/. -- <br>
+       Add a runtime.txt file to your app's root directory. Check your Python version and copy the runtime closest to the one used in your IDE.
        [Python support](https://devcenter.heroku.com/articles/python-support#specifying-a-python-version)<br>
-       Use the following command in your frontend folder to build the app and collect the files in the static folder: -- npm run build && rm -rf ../staticfiles/build && mv build ../staticfiles/. -- <br>
-       In settings.py, the following needs to be set: -- STATICFILES_DIRS = BASE_DIR / 'staticfiles' / 'build' --
+       In settings.py, the following needs to be set:<br>-- STATICFILES_DIRS = BASE_DIR / 'staticfiles' / 'build' --
    14. Save, add, commit and push the changes to GitHub.
    15. To enable automatic deploys on Heroku, go to the deploy tab and click the connect to GitHub button in the deployment method section. Search for the projects repository and then click connect. Click enable automatic deploys at the bottom of the page.
 4. Django automatically sets a secret key when you create your project, however we shouldn't use this default key in our deployed version. We can use a random key generator to create a new SECRET_KEY which we can then add to our Heroku config vars.
@@ -289,10 +291,29 @@ This repository can be cloned and run locally with the following steps:
 - Select repository named: https://github.com/Tamas-Gavlider/WanderRoads
 - Click code toggle button and copy the url (https://github.com/Tamas-Gavlider/WanderRoads.git).
 - In your IDE, open the terminal and run the git clone command (git clone https://github.com/Tamas-Gavlider/WanderRoads.git). The repository will now be cloned in your workspace.
+- Navigate to the project directory 
+- Create a virtual environment:
+  1. python3 -m venv env 
+  2. source env/bin/activate
+- Install dependencios -- pip3 install -r requirements.txt --
+- Set up environment variables:
+ - Create a file named env.py and define your variables:
+   - import os
+      os.environ['DATABASE_URL'] = 'your-local-database-url'
+      os.environ['SECRET_KEY'] = 'your-secret-key'
+   - Add env.py to .gitignore.
+- Run migrations -- python3 manage.py migrate -- 
+- Create superuser -- python3 manage.py createsuperuser --
+- Run development server -- python3 manage.py runserver --
 
-An older version of React was used due to dependency issues with React Simple Maps: -- npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm -- <br>
-To start the app, execute the following command: -- export NODE_OPTIONS=--openssl-legacy-provider  --  <br>
-Then, start the app with: -- npm run --
+#### Running the React Frontend Locally
+
+Create a folder for frontend -- mkdir frontend<br>
+Navigate to the frontend directory and install the React app provided by Code Institute:<br>
+-- cd frontend --<br>
+-- npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm -- <br>
+To fix OpenSSL dependency issues, export the following variable before running the app:<br> -- export NODE_OPTIONS=--openssl-legacy-provider  --  <br>
+Then, start the React app: -- npm run --
 
 ### Testing
 
@@ -385,7 +406,33 @@ No errors after the code commented out in test file.
 
 #### Lighthouse
 
-I have used Lighthouse to test the performance, accessibility, best practices and SEO of the site.
+I have used Lighthouse to test the performance, accessibility, best practices and SEO of the site.<br>
+The Lighthouse test gave a low score for best practices due to the use of third-party cookies. I was able to slightly improve this score by adding cache control settings in settings.py, as well as in the profile and post views. Performance issues are significantly lower on mobile devices compared to desktops. To enhance performance, I set fixed image sizes across all pages, removed a second Google Font, eliminated background images on small devices, and reduced image sizes for smaller screens. Additionally, I implemented lazy loading for images and preloaded the background image, but the performance improvement on mobile was only slight.
+
+| File                      | Result |                                                       Screenshot |
+| ------------------------- | :----: | ---------------------------------------------------------------: |
+|  Landing Page   |  Pass  |  [mobile](/docs/testing/lighthouse/landing-page-mobile.png) - [desktop](/docs/testing/lighthouse/landing-page-desktop.png) | 
+|  Sign In   |  Pass  | [mobile](/docs/testing/lighthouse/sign-in-mobile.png) - [desktop](/docs/testing/lighthouse/sign-in-desktop.png)  | 
+|  Sign Up   |  Pass  |  [mobile](/docs/testing/lighthouse/sign-up-mobile.png) - [desktop](/docs/testing/lighthouse/sign-up-desktop.png)  | 
+|  Map   |  Pass  | [mobile](/docs/testing/lighthouse/map-mobile.png) - [desktop](/docs/testing/lighthouse/map-desktop.png)   | 
+|  Posts Page   |  Pass  | [mobile](/docs/testing/lighthouse/posts-page-mobile.png) - [desktop](/docs/testing/lighthouse/posts-page-desktop.png)  | 
+|   Post Page  |  Pass  | [mobile](/docs/testing/lighthouse/post-page-mobile.png) - [desktop](/docs/testing/lighthouse/post-page-desktop.png)  | 
+|  Create Post   |  Pass  | [mobile](/docs/testing/lighthouse/create-post-mobile.png) - [desktop](/docs/testing/lighthouse/create-post-desktop.png)  | 
+|  Edit Post   |  Pass  | [mobile](/docs/testing/lighthouse/edit-post-mobile.png) - [desktop](/docs/testing/lighthouse/edit-post-desktop.png)  | 
+|  Profiles   |  Pass  | [mobile](/docs/testing/lighthouse/profiles-mobile.png) - [desktop](/docs/testing/lighthouse/profiles-desktop.png)  | 
+|   Trip  |  Pass  |  [mobile](/docs/testing/lighthouse/trip-mobile.png) - [desktop](/docs/testing/lighthouse/trip-desktop.png) | 
+|  Add Trip   |  Pass  | [mobile](/docs/testing/lighthouse/add-trip-mobile.png) - [desktop](/docs/testing/lighthouse/add-trip-desktop.png)  | 
+|   Edit Trip  |  Pass  | [mobile](/docs/testing/lighthouse/edit-trip-mobile.png) - [desktop](/docs/testing/lighthouse/edit-trip-desktop.png)  | 
+|   Profile  |  Pass  | [mobile](/docs/testing/lighthouse/profile-mobile.png) - [desktop](/docs/testing/lighthouse/profile-desktop.png)  | 
+|  Change Profile Image   |  Pass  | [mobile](/docs/testing/lighthouse/change-profile-image-mobile.png) - [desktop](/docs/testing/lighthouse/change-profile-image-desktop.png)  | 
+|  Change Username   |  Pass  |  [mobile](/docs/testing/lighthouse/change-username-mobile.png) - [desktop](/docs/testing/lighthouse/change-username-desktop.png) | 
+|  Change Password   |  Pass  | [mobile](/docs/testing/lighthouse/change-password-mobile.png) - [desktop](/docs/testing/lighthouse/change-password-desktop.png)  | 
+|   Change Theme Song  |  Pass  | [mobile](/docs/testing/lighthouse/change-theme-song-mobile.png) - [desktop](/docs/testing/lighthouse/change-theme-song-desktop.png)   | 
+|  Update Status   |  Pass  | [mobile](/docs/testing/lighthouse/update-status-mobile.png) - [desktop](/docs/testing/lighthouse/update-status-desktop.png)   | 
+|  Edit Travel Preferences   |  Pass  | [mobile](/docs/testing/lighthouse/edit-travel-preferences-mobile.png) - [desktop](/docs/testing/lighthouse/edit-travel-preferences-desktop.png)   | 
+|  Confirmation   |  Pass  |  [mobile](/docs/testing/lighthouse/confirmation-mobile.png) - [desktop](/docs/testing/lighthouse/confirmation-desktop.png)  | 
+|  Not Found Page   |  Pass  | [mobile](/docs/testing/lighthouse/not-found-page-mobile.png) - [desktop](/docs/testing/lighthouse/not-found-page-desktop.png)   | 
+| Add Visited Country    |  Pass  |  [mobile](/docs/testing/lighthouse/add-visited-country-mobile.png) - [desktop](/docs/testing/lighthouse/add-visited-country-desktop.png)  | 
 
 #### Wave
 
@@ -393,6 +440,7 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 
 | File                      | Result |                                                       Screenshot |
 | ------------------------- | :----: | ---------------------------------------------------------------: |
+|   Landing Page   |  Pass  |  [landing-page](/docs/testing/wave/landing-page.png)   | 
 |   Add Visited Country    |  Pass  |  [add-visited-country](/docs/testing/wave/add-visited-countries.png)   | 
 |  Change Password  |  Pass  |  [change-password](/docs/testing/wave/change-password.png)  | 
 | Change Profile Image   |  Pass  | [change-profile-image](/docs/testing/wave/change-profile-image.png)  | 
@@ -401,6 +449,7 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 |  Create Post  |  Pass  | [create-post](/docs/testing/wave/create-post.png)  | 
 |  Edit Post  |  Pass  | [edit-post](/docs/testing/wave/edit-post.png)  | 
 |  Edit Travel Preferences  |  Pass  | [edit-travel-preferences](/docs/testing/wave/edit-travel-preferences.png)  | 
+|  Confirmation  |  Pass  | [confirmation](/docs/testing/wave/confirmation.png)  | 
 |  Map  |  Pass  | [map](/docs/testing/wave/map.png)  | 
 |  Post Page  |  Pass  | [post-page](/docs/testing/wave/post-page.png)  | 
 |  Posts Page  |  Pass  |  [posts-page](/docs/testing/wave/posts-page.png)  | 
@@ -412,6 +461,7 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 |  Add Trip  |  Pass  | [add-trip](/docs/testing/wave/add-trip.png)  | 
 |  Edit Trip  |  Pass  | [edit-trip](/docs/testing/wave/edit-trip.png)  | 
 |  Update Status  |  Pass  | [update-status](/docs/testing/wave/update-status.png)  | 
+|  Not Found Page  |  Pass  | [not-found-page](/docs/testing/wave/not-found-page.png)  | 
 
 #### Automated testing
 
@@ -420,32 +470,53 @@ Automated testing for this project was carried out with [TestCases](https://docs
 #### Backend Manual Testing 
 
 Registration
-- Tested edge cases such as short passwords, mismatched passwords, and existing usernames to ensure proper validation.
+- Tested edge cases such as short passwords, mismatched passwords, and existing usernames to ensure proper validation.<br>
+Registration validation:<br>
+![register](/docs/testing/api_test/api-registration-validation.gif)<br>
+Registration with existing username:<br>
+![regsiter_existing](/docs/testing/api_test/api-registration-existing-user.gif)
+
 
 Profile
-- Verified profile updates for both the profile owner and visitors.
+- Verified profile updates for both the profile owner and visitors. Only the owner can update their profiles.<br>
+![profile](/docs/testing/api_test/edit-profile-not-owner.png)
 
 - Ensured validation for invalid file formats when uploading a profile image or theme song.
-
-- Testing the addition of visited countries could not be performed on the backend, as the API view returned the message: "Lists are not currently supported in HTML input." The experience level is updated automatically on the frontend when countries are added, and it cannot be changed manually.
+Theme Song:
+![theme_song](/docs/testing/api_test/api-change-theme-song.gif)<br>
+Profile image test for wrong format:<br>
+![profile_img](/docs/testing/api_test/api-profile-image.png)<br>
+Profile image change with valid file:<br>
+![profile_image](/docs/testing/api_test/api-profile-image-change.gif)<br>
+- Testing the addition of visited countries could not be performed on the backend, as the API view returned the message: "Lists are not currently supported in HTML input." 
+![visited_countries](/docs/testing/api_test/profile-visited-countries.png)<br>
+The experience level is updated dynamically when countries are added, and it cannot be changed manually by the user.<br>
+![experience_level](/docs/testing/api_test/api-experience-level.gif)
 
 Login/Logout
 - Tested login with a valid username and password.
-
-- Attempted login with a nonexistent username and an incorrect password.
-
-- Verified that logout functionality works correctly.
-
+- Attempted login with a nonexistent username and an incorrect password.<br>
+![login](/docs/testing/api_test/api-login.gif)
+- Verified that logout functionality works correctly.<br>
+![logout](/docs/testing/api_test/api-logout.png)
 Posts
 - Attempted to create a post without a title, content, or image, and tested validation for wrong file formats and file sizes.
-
+Post with title:<br>
+![create_post](/docs/testing/api_test/api-post-create-missing-content.gif)<br>
+Post without image:<br>
+![create_post2](/docs/testing/api_test/api-post-without-image.gif)
+Post image size/format validation:<br>
+![post_image](/docs/testing/api_test/api-post-image-size-validation.gif)<br>
+![post_image_format](/docs/testing/api_test/api-post-image-wrong-file-format.gif)
 - Edited an existing post and tested:
 
    - Removing the title or content (should not be allowed).
 
-   - Changing an image to an invalid file format or size.
+   - Changing an image to an invalid file format or size.<br>
+   ![poset_edit_validation](/docs/testing/api_test/api-edit-post.gif)
 
-   - Editing another user's post (should not be allowed).
+   - Editing another user's post (should not be allowed).<br>
+   ![post_owner_edit](/docs/testing/api_test/edit-post-not-owner.png)
 
 Comments
 - Added comments to posts and verified functionality.
