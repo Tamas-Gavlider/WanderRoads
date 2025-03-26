@@ -45,7 +45,7 @@ function CommentCreateForm(props) {
             <Form.Control
               className={styles.Form}
               placeholder="My comment..."
-              as="textarea"
+              as="textarea";;
               value={content}
               onChange={handleChange}
               rows={2}

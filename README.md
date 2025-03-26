@@ -345,6 +345,8 @@ The following issues were raised during my mid project meeting with my mentor:
 
 JSX code was validated with ESLint. It helps to identify and fix issues in your JavaScript and JSX code. 
 
+![eslint](/docs/testing/)
+
 #### Python
 
 [Code Institute Python Linter](https://pep8ci.herokuapp.com/) was used to validate the python files.
@@ -405,6 +407,7 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 |  Sign In  |  Pass  | [sing-in](/docs/testing/wave/sign-in.png)  | 
 |  Sign Up  |  Pass  | [sign-up](/docs/testing/wave/sign-up.png)  | 
 |  Trip  |  Pass  | [trip](/docs/testing/wave/trip.png)  | 
+|  Add Trip  |  Pass  | [add-trip](/docs/testing/wave/add-trip.png)  | 
 |  Edit Trip  |  Pass  | [edit-trip](/docs/testing/wave/edit-trip.png)  | 
 |  Update Status  |  Pass  | [update-status](/docs/testing/wave/update-status.png)  | 
 
