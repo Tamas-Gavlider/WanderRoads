@@ -389,7 +389,24 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 
 | File                      | Result |                                                       Screenshot |
 | ------------------------- | :----: | ---------------------------------------------------------------: |
-|       |  Pass  |     | 
+|   Add Visited Country    |  Pass  |  [add-visited-country](/docs/testing/wave/add-visited-countries.png)   | 
+|  Change Password  |  Pass  |  [change-password](/docs/testing/wave/change-password.png)  | 
+| Change Profile Image   |  Pass  | [change-profile-image](/docs/testing/wave/change-profile-image.png)  | 
+| Change Theme Song   |  Pass  | [change-theme-song](/docs/testing/wave/change-theme-song.png)  | 
+| Change Username   |  Pass  | [change-username](/docs/testing/wave/change-username.png)  | 
+|  Create Post  |  Pass  | [create-post](/docs/testing/wave/create-post.png)  | 
+|  Edit Post  |  Pass  | [edit-post](/docs/testing/wave/edit-post.png)  | 
+|  Edit Travel Preferences  |  Pass  | [edit-travel-preferences](/docs/testing/wave/edit-travel-preferences.png)  | 
+|  Map  |  Pass  | [map](/docs/testing/wave/map.png)  | 
+|  Post Page  |  Pass  | [post-page](/docs/testing/wave/post-page.png)  | 
+|  Posts Page  |  Pass  |  [posts-page](/docs/testing/wave/posts-page.png)  | 
+|  Profile  |  Pass  |  [profile](/docs/testing/wave/profile.png) | 
+|  Profiles  |  Pass  |  [profiles](/docs/testing/wave/profiles.png) | 
+|  Sign In  |  Pass  | [sing-in](/docs/testing/wave/sign-in.png)  | 
+|  Sign Up  |  Pass  | [sign-up](/docs/testing/wave/sign-up.png)  | 
+|  Trip  |  Pass  | [trip](/docs/testing/wave/trip.png)  | 
+|  Edit Trip  |  Pass  | [edit-trip](/docs/testing/wave/edit-trip.png)  | 
+|  Update Status  |  Pass  | [update-status](/docs/testing/wave/update-status.png)  | 
 
 #### Automated testing
 
