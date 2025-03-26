@@ -344,8 +344,10 @@ The following issues were raised during my mid project meeting with my mentor:
 #### JavaScript
 
 JSX code was validated with ESLint. It helps to identify and fix issues in your JavaScript and JSX code. 
-
-![eslint](/docs/testing/)
+Errors due to the App.test file.
+![eslint-error](/docs/testing/eslint/eslint-error.png)<br>
+No errors after the code commented out in test file.
+![eslint](/docs/testing/eslint/eslint.png)
 
 #### Python
 
