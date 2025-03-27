@@ -6,7 +6,6 @@ import {
   ZoomableGroup,
 } from "react-simple-maps";
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
-import styles from "../../styles/Map.module.css";
 import { axiosReq } from "../../api/axiosDefaults";
 import "bootstrap/dist/css/bootstrap.min.css";
 
@@ -29,13 +28,12 @@ export default function Map() {
   }, []);
 
   return (
-    <div className={styles.mapContainer}>
+    <div>
       <ComposableMap
         projectionConfig={{
           center: [0, 0],
           scale: 150,
         }}
-        className={styles.Map}
       >
         <ZoomableGroup minZoom={0.5} maxZoom={3} enablePan={true} >
           <Geographies geography={geoUrl}>
