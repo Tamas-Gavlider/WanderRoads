@@ -218,11 +218,15 @@ Mobile view:<br>
 
 #### Add Trip
 
-An upcoming trip can be added from the Trip page. It’s a simple form that allows users to select the destination country, choose the start and end dates for the trip, and add optional notes.
+An upcoming trip can be added from the Trip page. It’s a simple form that allows users to select the destination country, choose the start and end dates for the trip, and add optional notes.<br>
+![add_trip_btn](/docs/page_screenshots/add-trip-btn.png)<br>
+![add_trip_form](/docs/page_screenshots/add-trip-form.png)
 
 #### Edit Trip
 
-User can edit the existing trip like adding notes, change the start/end date or destination. 
+User can edit the existing trip like adding notes, change the start/end date or destination.<br> 
+![edit_dropdown](/docs/page_screenshots/edit-trip-dropdown.png)<br>
+![edit_trip](/docs/page_screenshots/edit-trip-form.png)
 
 #### Delete Trip
 
