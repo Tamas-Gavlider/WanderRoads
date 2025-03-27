@@ -1,6 +1,3 @@
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
-from django.views.decorators.vary import vary_on_headers
 from django.http import Http404, JsonResponse
 from django.db.models import Count
 from rest_framework import permissions, generics, filters
@@ -57,13 +54,6 @@ class PostList(generics.ListCreateAPIView):
         'comments_count',
     ]
 
-    # Cache for 15 minutes
-    @method_decorator(cache_page(60 * 15))
-    # Cache per user session
-    @method_decorator(vary_on_headers("Authorization"))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
     def perform_create(self, serializer):
         serializer.save(owner=self.request.user)
 
@@ -91,15 +81,8 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
         comments_count=Count('comment', distinct=True)
     ).order_by('-created_at')
 
-    # Cache for 10 minutes
-    @method_decorator(cache_page(60 * 10))
-    # Cache per user session
-    @method_decorator(vary_on_headers("Authorization"))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
 
     def get(self, request, *args, **kwargs):
-        print("User making request:", request.user)
         if not request.user.is_authenticated:
             return JsonResponse({"error": "Authentication required"},
                                 status=403)

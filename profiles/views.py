@@ -1,6 +1,3 @@
-from django.utils.decorators import method_decorator
-from django.views.decorators.cache import cache_page
-from django.views.decorators.vary import vary_on_cookie, vary_on_headers
 from rest_framework import generics
 from django.db.models import Count
 from django.http import Http404
@@ -41,13 +38,6 @@ class ProfileList(generics.ListAPIView):
         'owner__username'
     ]
 
-    # Cache the profile list for 1 hour (3600 seconds)
-    @method_decorator(cache_page(60 * 60))
-    # Different cache for different users
-    @method_decorator(vary_on_headers("Authorization"))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
-
 
 class ProfileDetail(generics.RetrieveUpdateAPIView):
     """
@@ -57,9 +47,4 @@ class ProfileDetail(generics.RetrieveUpdateAPIView):
     queryset = Profile.objects.all()
     serializer_class = ProfileSerializer
 
-    # Cache profile details for 30 minutes
-    @method_decorator(cache_page(60 * 30))
-    # Different cache for different users
-    @method_decorator(vary_on_headers("Authorization"))
-    def dispatch(self, *args, **kwargs):
-        return super().dispatch(*args, **kwargs)
+    
