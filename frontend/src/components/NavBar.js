@@ -80,10 +80,7 @@ const NavBar = () => {
         {currentUser?.username}
       </NavLink>
       <Avatar
-        src={currentUser?.profile_image.replace(
-          "/upload/",
-          "/upload/w_300,h_300,c_fill,q_auto,f_auto/"
-        )}
+        src={currentUser?.profile_image}
         height={45}
       />
     </>
