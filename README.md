@@ -504,7 +504,7 @@ Posts
 Post with title:<br>
 ![create_post](/docs/testing/api_test/api-post-create-missing-content.gif)<br>
 Post without image:<br>
-![create_post2](/docs/testing/api_test/api-post-without-image.gif)
+![create_post2](/docs/testing/api_test/api-post-without-image.gif)<br>
 Post image size/format validation:<br>
 ![post_image](/docs/testing/api_test/api-post-image-size-validation.gif)<br>
 ![post_image_format](/docs/testing/api_test/api-post-image-wrong-file-format.gif)
@@ -519,15 +519,15 @@ Post image size/format validation:<br>
    ![post_owner_edit](/docs/testing/api_test/edit-post-not-owner.png)
 
 Comments
-- Added comments to posts and verified functionality.
-
-- Tested editing and deleting comments, ensuring that only the comment owner can make changes.
-
-- Verified that comments do not exceed the maximum character limit set in the models.
-
+- Added comments to posts and verified functionality.<br>
+![comment](/docs/testing/api_test/api-create-edit-comment.gif)
+- Tested editing and deleting comments, ensuring that only the comment owner can make changes.<br>
+![comment_owner](/docs/testing/api_test/edit-comment-not-owner.png)
+- Verified that comments do not exceed the maximum character limit set in the models.<br>
+![comment_validation](/docs/testing/api_test/comment-more-than%20250-char.png)
 Travel Preferences
-- Created and manually updated travel preferences.
-
+- Created and manually updated travel preferences.<br>
+![travel-pref](/docs/testing/api_test/edit-travel-preferences.gif)
 - Confirmed that predefined choices prevent invalid inputs, ensuring users can only select from the available options.
 
 Travel Recommendation
@@ -535,16 +535,18 @@ Travel Recommendation
 
 - Displayed an appropriate message if no recommendations were available due to specific preferences.
 
-- Ensured that recommendations update dynamically when the user modifies their travel preferences.
+- Ensured that recommendations update dynamically when the user modifies their travel preferences.<br>
+![travel-recommendation](/docs/testing/api_test/api-travel-pref-recommendation.gif)
 
 Trip
-- Attempted to create an upcoming trip with past start dates and end dates set before the start date to ensure validation works correctly.
-
+- Attempted to create an upcoming trip with past start dates and end dates set before the start date to ensure validation works correctly.<br>
+![add_trip](/docs/testing/api_test/api-add-trip.gif)
 - Edited an existing trip and tested:
 
   - Changing the start date to a past date (should not be allowed).
 
-  - Setting an end date earlier than the start date (should trigger an error).
+  - Setting an end date earlier than the start date (should trigger an error).<br>
+  ![edit_trip](/docs/testing/api_test/api-edit-trip.gif)
 
 #### Manual Testing Frontend
 
