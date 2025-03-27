@@ -33,17 +33,28 @@ export default function TripEditForm() {
   }, []);
 
   useEffect(() => {
+    if (!countries.length) return; // Ensure countries are loaded
+  
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get(`/trip/${id}`);
-        setTripData(data);
+        console.log("Fetched Trip Data:", data);
+  
+        const matchingCountry = countries.find((c) => c.name === data.destination);
+        const countryCode = matchingCountry ? matchingCountry.code : ""; 
+  
+        setTripData((prev) => ({
+          ...prev,
+          destination: countryCode,
+        }));
       } catch (err) {
         console.error("Error fetching trip details:", err);
         history.push("/");
       }
     };
+  
     fetchData();
-  }, [id, history]);
+  }, [id, history, countries]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
@@ -73,7 +84,7 @@ export default function TripEditForm() {
       setErrors(err.response?.data || {});
     }
   };
-
+  
   return (
     <Form onSubmit={handleSubmit} className="text-center">
       <Form.Group>
@@ -81,11 +92,10 @@ export default function TripEditForm() {
         <Form.Control
           as="select"
           name="destination"
-          value={tripData.destination}
+          value={tripData.destination || ""}
           onChange={handleChange}
           required
           className="text-center"
-          aria-label="destination"
         >
           <option value="">Select a country</option>
           {countries.map((c) => (

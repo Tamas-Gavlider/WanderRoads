@@ -3,7 +3,7 @@ import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
 import { useHistory } from "react-router-dom";
 import btnStyles from "../../styles/Button.module.css";
-import { Form, Row, Col, Button } from "react-bootstrap";
+import { Form, Row, Col, Button, Alert } from "react-bootstrap";
 import styles from "../../styles/AddTrip.module.css";
 
 export default function AddTrip() {
@@ -95,6 +95,11 @@ export default function AddTrip() {
                 onChange={handleChange}
               />
             </Form.Group>
+            {errors.start_date?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
           </Col>
 
           <Col xs={12} md={6} lg={6}>
@@ -107,6 +112,11 @@ export default function AddTrip() {
                 onChange={handleChange}
               />
             </Form.Group>
+             {errors.end_date?.map((message, idx) => (
+                            <Alert key={idx} variant="warning">
+                              {message}
+                            </Alert>
+                          ))}
           </Col>
 
           <Col xs={12} md={6} lg={6}>
