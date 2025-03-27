@@ -15,9 +15,7 @@ from django_countries import countries
 class CountryListView(APIView):
     """
     API endpoint that returns all available countries
-    Cache for 24 hours
     """
-    @method_decorator(cache_page(60 * 60 * 24))
     def get(self, request):
         country_list = [{"code": code, "name": name} for code,
                         name in countries]
