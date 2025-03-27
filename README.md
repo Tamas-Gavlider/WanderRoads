@@ -118,27 +118,54 @@ Navbar is user logged out/not registered
 
 #### Home
 
-The landing page includes the text 'Explore the World, Share Your Adventures. Connect with travelers, share memories, and get recommendations for your next journey,' along with a [background image of the world map](/frontend/src/assets/landing_page.webp) that gives visitors an idea of what the page is about. The background image is visible only on larger screens. Logged-out users will see a button that directs them to the signup page, while logged-in users will only see the text.
+The landing page includes the text 'Explore the World, Share Your Adventures. Connect with travelers, share memories, and get recommendations for your next journey,' along with a [background image of the world map](/frontend/src/assets/landing_page.webp) that gives visitors an idea of what the page is about. The background image is visible only on larger screens. Logged-out users will see a [button](/docs/page_screenshots/desktop-home-logged-out.png) that directs them to the signup page, while [logged-in](/docs/page_screenshots/desktop-home-logged-in.png) users will only see the text.
+Mobile view:<br>
+Logged in User
+![logged_in_user](/docs/page_screenshots/mobile-home-logged-in.png)<br>
+Logged out user
+![logged_out](/docs/page_screenshots/mobile-home-logged-out.png)
 
 #### Login
 
 The login page includes the login form and an [image of mountains](/frontend/src/assets/sign_in_img.jpg) on larger screens. This image makes me feel relaxed and calm, so I believe it was a good choice for the login page. Below the login form, there is a link to the registration page for users who have not registered yet.
+Desktop view:<br>
+![desktop](/docs/page_screenshots/login-desktop.png)
+Mobile view:<br>
+![mobile](/docs/page_screenshots/login-mobile.png)
 
 #### Register
 
 The register page includes the registration form and an [image of accessories](/frontend/src/assets/reg_img.jpg) (such as a travel bag, camera lens, and shoes) on larger screens. This image conveys a 'let's go for an adventure' vibe, encouraging users to register and start their journey. Below the registration form, there is a link to the login page for users who have already registered.
+Desktop view:<br>
+![desktop](/docs/page_screenshots/register-desktop.png)
+Mobile view:<br>
+![mobile](/docs/page_screenshots/register-mobile.png)
 
 #### Map
 
-The map is implemented using the React Simple Maps template. Countries where posts were taken are highlighted on the map. When hovering over a country, a tooltip will display the number of posts from that country.
+The [map](/docs/page_screenshots/map.png) is implemented using the React Simple Maps template. Countries where posts were taken are highlighted on the map. When hovering over a country, a tooltip will display the number of posts from that country.<br>
+Country with posts:<br>
+![country_with_posts](/docs/page_screenshots/country-with-posts.png)<br>
+Country with 0 posts:<br>
+![country_with_no_posts](/docs/page_screenshots/country-0-post.png)
 
 #### Posts
 
-The posts page allows users to view all existing posts. It uses infinite scroll, making it more user-friendly without the need to click to the next page. The search bar lets users search for posts by username or country. The 'Create Post' button, with the text 'Share Your Journey,' is positioned on the right side of the screen on larger screens and at the top of the search bar on smaller screens.
+The posts page allows users to view all existing posts. It uses infinite scroll, making it more user-friendly without the need to click to the next page. The search bar lets users search for posts by username or country. The 'Create Post' button, with the text 'Share Your Journey,' is positioned on the right side of the screen on larger screens and at the top of the search bar on smaller screens.<br>
+Desktop view:<br>
+![desktop](/docs/page_screenshots/posts-page-desktop.png)<br>
+Mobile view:<br>
+![mobile](/docs/page_screenshots/posts-page-mobile.png)
 
 #### Post
 
-The post page allows users to comment on the post or visit the post owner's profile by clicking on their username. The post page has an additional feature on larger screens: the right side of the screen displays a table with popular destinations. These destinations are ranked based on the number of posts from each country.
+The post page allows users to comment on the post or visit the post owner's profile by clicking on their username. The post page has an additional feature on larger screens: the right side of the screen displays a table with popular destinations. These destinations are ranked based on the number of posts from each country.<br>
+Desktop view:<br>
+![desktop](/docs/page_screenshots/post-page-desktop.png)<br>
+Mobile view:<br>
+![mobile](/docs/page_screenshots/post-page-mobile.png)<br>
+Popular destinations:<br>
+![popular_destinations](/docs/page_screenshots/popular-destinations.gif)
 
 #### Create Post
 
@@ -183,6 +210,11 @@ Travelers page will show all the existing registered users. Users can search for
 Trip page is accessible from the Navbar. Customer can track their upcoming trips by adding the destinations (country) start date of trip, and date of trip and optional notes. The trip will have a countdown showing how many days are left until the trip. If day left is less than 0 the trip will be removed from the page. 
 Start date and end date validation implemented to make sure that users cannot enter past dates for start date and the end date cannot be prior the start date.
 Regardless of when the trip was created, the trips are sorted based on the days left until the trip. If less than 6 days left until the trip the color of the Trip card will change the color of the background. Also the trips can be edited/deleted by the user which are accesible via the dropdown menu within the trip card. 
+<br>
+Desktop view:<br>
+![desktop](/docs/page_screenshots/trip-desktop.png)<br>
+Mobile view:<br>
+![mobile](/docs/page_screenshots/trip-mobile.png)
 
 #### Add Trip
 
