@@ -18,26 +18,25 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
     - [Home](#home)
     - [Login](#login)
     - [Register](#register)
-    - [Map](#)
-    - [Posts](#)
-    - [Post](#)
-    - [Create Post](#)
-    - [Edit Post](#)
-    - [Profile](#)
-    - [Update Profile](#)
-    - [Delete Profile](#)
+    - [Map](#map)
+    - [Posts](#posts)
+    - [Post](#post)
+    - [Create Post](#create-post)
+    - [Edit Post](#edit-post)
+    - [Profile](#profile)
     - [Travel Preferences](#)
-    - [Add Preferences](#)
-    - [Edit Preferences](#)
-    - [Travel Recommendation](#)
-    - [Trip](#)
-    - [Add Trip](#)
-    - [Edit Trip](#)
-    - [Delete Trip](#)
+    - [Add Preferences](#add-preferences)
+    - [Edit Preferences](#edit-preferences)
+    - [Travel Recommendation](#travel-recommendation)
+    - [Trip](#trip)
+    - [Add Trip](#add-trip)
+    - [Edit Trip](#edit-trip)
+    - [Delete Trip](#delete-trip)
     - [Future Implementation](#future-implementations)
 - [Technologies, Languages, and Programs used](#technologies-languages-and-programs-used)
 - [Deployment & Local Development](#deployment--local-development)
   - [Local Deployment](#local-deployment)
+    - [Running Frontend Locally](#running-the-react-frontend-locally)
   - [Testing](#testing)
     - [CSS](#css)
     - [JavaScript](#javascript)
@@ -45,7 +44,15 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
     - [Lighthouse](#lighthouse)
     - [Wave](#wave)
     - [Automated Testing](#automated-testing)
-    - [Manual Testing](#manual-testing)
+    - [Backend Manual Testing](#backend-manual-testing)
+      - [Registration](#registration)
+      - [Profile](#profile-1)
+      - [Login/Logout](#loginlogout)
+      - [Posts](#posts-1)
+      - [Comments](#comments)
+      - [Travel Preferences](#travel-preferences)
+      - [Travel Recommendation](#travel-recommendation-1)
+      - [Trip](#trip-1)
     - [Full Testing](#full-testing)
     - [Bugs](#bugs)
     - [Known Bugs](#known-bugs)
@@ -268,6 +275,7 @@ In case the trip gets canceled, the user will have the option to delete it from 
 - Google Fonts - Library of free and open-source web fonts.
 - Heroku - Used to deploy the project for hosting and managing the live application.
 - Favicon.io - To create Favicon.
+- VS Code – Used for local development.
 - [DBDiagram](https://dbdiagram.io/d) - To create ER Diagram
 - [FreeConvert](https://www.freeconvert.com/convert/video-to-gif) - to convert screenrecordings to GIF
 - [Font Awesome](https://fontawesome.com/) - A popular icon library that provides a collection of icons, which can be used throughout the page for various UI elements.
@@ -514,7 +522,7 @@ Automated testing for this project was carried out with [TestCases](https://docs
 
 #### Backend Manual Testing 
 
-Registration
+##### Registration
 - Tested edge cases such as short passwords, mismatched passwords, and existing usernames to ensure proper validation.<br>
 Registration validation:<br>
 ![register](/docs/testing/api_test/api-registration-validation.gif)<br>
@@ -522,7 +530,7 @@ Registration with existing username:<br>
 ![regsiter_existing](/docs/testing/api_test/api-registration-existing-user.gif)
 
 
-Profile
+##### Profile
 - Verified profile updates for both the profile owner and visitors. Only the owner can update their profiles.<br>
 ![profile](/docs/testing/api_test/edit-profile-not-owner.png)
 
@@ -538,13 +546,13 @@ Profile image change with valid file:<br>
 The experience level is updated dynamically when countries are added, and it cannot be changed manually by the user.<br>
 ![experience_level](/docs/testing/api_test/api-experience-level.gif)
 
-Login/Logout
+##### Login/Logout
 - Tested login with a valid username and password.
 - Attempted login with a nonexistent username and an incorrect password.<br>
 ![login](/docs/testing/api_test/api-login.gif)
 - Verified that logout functionality works correctly.<br>
 ![logout](/docs/testing/api_test/api-logout.png)
-Posts
+##### Posts
 - Attempted to create a post without a title, content, or image, and tested validation for wrong file formats and file sizes.
 Post with title:<br>
 ![create_post](/docs/testing/api_test/api-post-create-missing-content.gif)<br>
@@ -563,19 +571,19 @@ Post image size/format validation:<br>
    - Editing another user's post (should not be allowed).<br>
    ![post_owner_edit](/docs/testing/api_test/edit-post-not-owner.png)
 
-Comments
+##### Comments
 - Added comments to posts and verified functionality.<br>
 ![comment](/docs/testing/api_test/api-create-edit-comment.gif)
 - Tested editing and deleting comments, ensuring that only the comment owner can make changes.<br>
 ![comment_owner](/docs/testing/api_test/edit-comment-not-owner.png)
 - Verified that comments do not exceed the maximum character limit set in the models.<br>
 ![comment_validation](/docs/testing/api_test/comment-more-than%20250-char.png)
-Travel Preferences
+##### Travel Preferences
 - Created and manually updated travel preferences.<br>
 ![travel-pref](/docs/testing/api_test/edit-travel-preferences.gif)
 - Confirmed that predefined choices prevent invalid inputs, ensuring users can only select from the available options.
 
-Travel Recommendation
+##### Travel Recommendation
 - Verified that travel recommendations are generated based on the user's travel preferences.
 
 - Displayed an appropriate message if no recommendations were available due to specific preferences.
@@ -583,7 +591,7 @@ Travel Recommendation
 - Ensured that recommendations update dynamically when the user modifies their travel preferences.<br>
 ![travel-recommendation](/docs/testing/api_test/api-travel-pref-recommendation.gif)
 
-Trip
+##### Trip
 - Attempted to create an upcoming trip with past start dates and end dates set before the start date to ensure validation works correctly.<br>
 ![add_trip](/docs/testing/api_test/api-add-trip.gif)
 - Edited an existing trip and tested:
