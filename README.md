@@ -159,7 +159,8 @@ Mobile view:<br>
 
 #### Post
 
-The post page allows users to comment on the post or visit the post owner's profile by clicking on their username. The post page has an additional feature on larger screens: the right side of the screen displays a table with popular destinations. These destinations are ranked based on the number of posts from each country.<br>
+The post page allows users to comment on the post or visit the post owner's profile by clicking on their username. The edit/delete buttons are accssible via the dropdown from the post page as well. The post page has an additional feature on larger screens: the right side of the screen displays a table with popular destinations. These destinations are ranked based on the number of posts from each country.<br>
+![dropdown](/docs/page_screenshots/post-dropdown.png)<br>
 Desktop view:<br>
 ![desktop](/docs/page_screenshots/post-page-desktop.png)<br>
 Mobile view:<br>
@@ -173,21 +174,24 @@ The 'Create Post' button is accessible from the posts page. Validations ensure t
 
 #### Edit Post
 
-Users can edit their existing posts. The edit function includes changing the post image, title, content, and country.
+Users can edit their existing posts. The edit function includes changing the post image, title, content, and country.<br>
+![edit_post](/docs/page_screenshots/edit-post.png)
 
 #### Profile
 
-From the profile page the users can see their profile image with a background image, status, experience level following their username,theme_song, posts created by profile owner, visited countries, travel recommendations and update their account details conveniently. Users can:
+From the profile page the users can see their profile image with a background image, status, experience level following their username,theme_song, posts created by profile owner, [visited countries](/docs/page_screenshots/visited-countries.png), travel recommendations and update their account details conveniently.<br>
+![profile](/docs/page_screenshots/profile.png)<br>
+Users can:
 
 - Change their status.
-- Add their first name and last name.
 - Change username
 - Change password
 - Change theme song.
 - Add/Remove visited countries.
-- Add/Change travel preferences
-
-Profile visitors can see the visited countries and preferences of the owners from the tabs and the user experience level, status and theme song. 
+- Add/Change travel preferences<br>
+![edit-profile](/docs/page_screenshots/edit-profile.png)
+Profile visitors can see the visited countries and preferences of the owners from the tabs and the user experience level, status and theme song.<br>
+![visitor](/docs/page_screenshots/profile-not-owner.png)
 
 #### Add Preferences
 
@@ -195,15 +199,20 @@ User will be directed to the add preferences page if they are setting up the pre
 
 #### Edit Preferences
 
-User can edit the travel preferences anytime from the profile page by clicking on the edit button in the travel preference tab. The user can choose from the existing choices from dropdown. Based on the new preferences the travel recommendation will be regenerated.
+User can edit the travel preferences anytime from the profile page by clicking on the edit button in the travel preference tab. The user can choose from the existing choices from dropdown. Based on the new preferences the travel recommendation will be regenerated.<br>
+![travel-pref](/docs/page_screenshots/travel-preferences.png)<br>
+Edit form:<br>
+![edit-form](/docs/page_screenshots/travel-pref-edit.png)
 
 #### Travel Recommendation
 
-Travel recommendations are generated after the travel preferences set by the user. Top 5 recommended cities will be visible from the profile page. Anytime the user will update the preferences the recommendations will change. If there are no recommendations for a given preferences, an error message will show up instead of the recommended cities.
+Travel recommendations are generated after the travel preferences set by the user. Top 5 recommended cities will be visible from the profile page. Anytime the user will update the preferences the recommendations will change. If there are no recommendations for a given preferences, an error message will show up instead of the recommended cities.<br>
+![recommendation](/docs/page_screenshots/recommendations.png)
 
 #### Travelers
 
 Travelers page will show all the existing registered users. Users can search for other users by name or sort them by number of posts or name. By click on the profile image the user will be directed to the user profile. 
+![profiles](/docs/page_screenshots/profiles.png)
 
 #### Trip
 
@@ -627,16 +636,14 @@ All screenshots used in this README file were taken by myself.
 
 [Recommendation article ](https://pub.towardsai.net/building-a-recommender-system-with-pandas-1ca0bb03fdce) helped a lot to implement the travel recommendations. 
 
-Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
-
 The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.com/)
 
 [React Lazy](https://www.dhiwise.com/post/implementing-react-lazy-loading-for-better-app-performance) component was added to my code after reading this article.
 
-[Cache control](https://www.django-rest-framework.org/api-guide/caching/) to improve lighthouse score. 
+[StackOverFlow post](https://stackoverflow.com/questions/70850703/how-to-serialize-a-countryfield-from-django-countries) helped me to correctly use the serializes for Countryfield.
+
+Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
 
 ### Acknowledgments
 
-I would like to acknowledge:
 
-- My Code Institute mentor for her valuable advices.
