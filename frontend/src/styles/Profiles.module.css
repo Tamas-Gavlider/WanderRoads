@@ -7,14 +7,6 @@
     margin-top: 10px;
     box-shadow: 4px 8px 4px -2px #ccc,  0px 0px 6px -2px #ccc;
 }
-.User {
-    text-decoration: none;
-    color: #281713;
-}
-
-.User:hover {
-    color: #ff0000;
-}
 
 .Status {
     font-style: italic;
