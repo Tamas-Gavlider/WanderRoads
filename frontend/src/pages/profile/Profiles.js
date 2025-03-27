@@ -66,21 +66,7 @@ const UserList = () => {
               <Card className={`h-100 ${styles.UserCard}`}>
                 <Card.Img
                   variant="top"
-                  src={user.image.replace(
-                    "/upload/",
-                    "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
-                  )}
-                  srcSet={`
-    ${user.image.replace(
-      "/upload/",
-      "/upload/w_200,h_200,c_fill,q_auto,f_auto/"
-    )} 200w,
-    ${user.image.replace(
-      "/upload/",
-      "/upload/q_auto,f_auto,fl_progressive,f_webp/"
-    )} 300w
-  `}
-                  sizes="(max-width: 768px) 200px, 300px"
+                  src={user.image}
                   alt={`${user.owner}'s profile picture`}
                   loading="lazy"
                 />
