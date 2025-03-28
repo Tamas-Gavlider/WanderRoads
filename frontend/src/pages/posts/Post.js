@@ -7,12 +7,14 @@ import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
 import iconStyles from "../../styles/MoreDropdown.module.css";
+import Avatar from "../../components/Avatar";
 
 const Post = (props) => {
   const {
     id,
     owner,
     profile_id,
+    profile_image,
     comments_count,
     country_name,
     title,
@@ -56,7 +58,8 @@ const Post = (props) => {
               </span>
             </div>
             <Link to={`/profiles/${profile_id}`} className={styles.Profile}>
-              <span className={styles.User}>Post by {owner}</span>
+            <Avatar src={profile_image}/>
+              <span className={styles.User}>{owner}</span>
             </Link>
 
           </Media>
