@@ -33,6 +33,9 @@ const Post = (props) => {
   };
 
   const handleDelete = async () => {
+    const isConfirmed = window.confirm("Are you sure you want to delete this post?");
+    if (!isConfirmed) return; 
+
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
@@ -46,7 +49,7 @@ const Post = (props) => {
       <Card className={styles.Post}>
         <Card.Body>
           <Media className="align-items-center justify-content-between">
-          <div className="d-flex align-items-center">
+            <div className="d-flex align-items-center">
               {is_owner && postPage && (
                 <MoreDropdown
                   handleEdit={handleEdit}
@@ -58,10 +61,9 @@ const Post = (props) => {
               </span>
             </div>
             <Link to={`/profiles/${profile_id}`} className={styles.Profile}>
-            <Avatar src={profile_image}/>
+              <Avatar src={profile_image} />
               <span className={styles.User}>{owner}</span>
             </Link>
-
           </Media>
         </Card.Body>
         <Link to={`/posts/${id}/`}>
