@@ -1,7 +1,7 @@
-import React from "react";
+import React, { useState } from "react";
 import styles from "../../styles/Post.module.css";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
-import { Card, Col } from "react-bootstrap";
+import { Card, Col, Modal, Button } from "react-bootstrap";
 import Media from "react-bootstrap/Media";
 import { Link, useHistory } from "react-router-dom";
 import { axiosRes } from "../../api/axiosDefaults";
@@ -28,14 +28,14 @@ const Post = (props) => {
   const is_owner = currentUser?.username === owner;
   const history = useHistory();
 
+  // State to handle modal visibility
+  const [showDeleteModal, setShowDeleteModal] = useState(false);
+
   const handleEdit = () => {
     history.push(`/posts/${id}/edit`);
   };
 
   const handleDelete = async () => {
-    const isConfirmed = window.confirm("Are you sure you want to delete this post?");
-    if (!isConfirmed) return; 
-
     try {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
@@ -43,6 +43,12 @@ const Post = (props) => {
       console.log(err);
     }
   };
+
+ 
+  const handleShowDeleteModal = () => setShowDeleteModal(true);
+
+ 
+  const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
   return (
     <Col xs={10} sm={8} md={7} lg={8}>
@@ -53,7 +59,7 @@ const Post = (props) => {
               {is_owner && postPage && (
                 <MoreDropdown
                   handleEdit={handleEdit}
-                  handleDelete={handleDelete}
+                  handleDelete={handleShowDeleteModal}
                 />
               )}
               <span>
@@ -79,6 +85,20 @@ const Post = (props) => {
           {comments_count}
         </Card.Body>
       </Card>
+      <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
+        <Modal.Header closeButton>
+          <Modal.Title>Delete Post</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this post?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={handleCloseDeleteModal}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
     </Col>
   );
 };
