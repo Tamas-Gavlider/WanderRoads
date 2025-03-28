@@ -53,10 +53,8 @@ export default function AddTrip() {
       console.log({ data });
       history.push(`/trip/${data.id}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
-        console.log(errors);
       }
     }
   };
@@ -135,12 +133,12 @@ export default function AddTrip() {
         <Row className="mb-3">
           <Col xs={12} md={6} lg={12} className="d-flex justify-content-between">
             <Button
-              className={btnStyles.Button}
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
               onClick={() => history.goBack()}
             >
               Cancel
             </Button>
-            <Button className={btnStyles.Button} type="submit">
+            <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} type="submit">
               Create
             </Button>
           </Col>

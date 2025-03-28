@@ -4,8 +4,9 @@ import { useHistory, useParams } from "react-router";
 import axios from "axios";
 import { axiosReq } from "../../api/axiosDefaults";
 import Button from "react-bootstrap/Button";
-import { Col } from "react-bootstrap";
+import { Row, Col, Alert } from "react-bootstrap";
 import btnStyles from "../../styles/Button.module.css";
+import styles from '../../styles/AddTrip.module.css';
 
 export default function TripEditForm() {
   const [errors, setErrors] = useState({});
@@ -33,7 +34,7 @@ export default function TripEditForm() {
   }, []);
 
   useEffect(() => {
-    if (!countries.length) return; // Ensure countries are loaded
+    if (!countries.length) return;
   
     const fetchData = async () => {
       try {
@@ -86,7 +87,10 @@ export default function TripEditForm() {
   };
   
   return (
+    <div className={styles.Form}>
     <Form onSubmit={handleSubmit} className="text-center">
+       <Row className="mb-3">
+       <Col xs={12} md={6} lg={6}>
       <Form.Group>
         <Form.Label>Destination</Form.Label>
         <Form.Control
@@ -105,6 +109,8 @@ export default function TripEditForm() {
           ))}
         </Form.Control>
       </Form.Group>
+      </Col>
+      <Col xs={12} md={6} lg={6}>
       <Form.Group>
         <Form.Label>Start Date</Form.Label>
         <Form.Control
@@ -116,6 +122,13 @@ export default function TripEditForm() {
           aria-label="start-date"
         />
       </Form.Group>
+      {errors.start_date?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
+              </Col>
+               <Col xs={12} md={6} lg={6}>
       <Form.Group>
         <Form.Label>End Date</Form.Label>
         <Form.Control
@@ -127,6 +140,13 @@ export default function TripEditForm() {
           aria-label="end-date"
         />
       </Form.Group>
+      {errors.end_date?.map((message, idx) => (
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
+              ))}
+      </Col>
+      <Col xs={12} md={6} lg={6}>
       <Form.Group>
         <Form.Label>Notes</Form.Label>
         <Form.Control
@@ -138,16 +158,19 @@ export default function TripEditForm() {
           aria-label="notes"
         />
       </Form.Group>
-      <Col className="py-2 mx-auto text-center" >
+      </Col>
+      </Row>
+      <Row className="mb-3">
+       <Col xs={12} md={6} lg={12} className="d-flex justify-content-between">
       <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} onClick={() => history.goBack()}>
         Cancel
       </Button>
-      </Col>
-      <Col className="py-2 mx-auto text-center" >
       <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} type="submit">
         Save
       </Button>
       </Col>
+      </Row>
     </Form>
+    </div>
   );
 }
