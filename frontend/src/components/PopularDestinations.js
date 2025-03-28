@@ -34,7 +34,7 @@ const PopularDestinations = () => {
 
   return (
     <div className={`container my-4 ${styles.Container}`}>
-      <h3 className={`text-center text-danger mb-4 ${styles.Header}`}>Popular Destinations</h3>
+      <h3 className={`text-center text-danger mb-4 ${styles.Header}`}>Top Countries on WanderRoads</h3>
       <Accordion>
         {popularDestinations.map((dest, index) => {
           const title = index === 0 ? "Check the most popular" :
