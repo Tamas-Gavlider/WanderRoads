@@ -8,6 +8,7 @@ import {
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import "bootstrap/dist/css/bootstrap.min.css";
+import styles from '../../styles/Map.module.css';
 
 const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
@@ -29,11 +30,13 @@ export default function Map() {
 
   return (
     <div>
+      <h3 className={styles.Header}>See Where Users Are Posting From</h3>
       <ComposableMap
         projectionConfig={{
           center: [0, 0],
           scale: 150,
         }}
+        className={styles.Map}
       >
         <ZoomableGroup minZoom={0.5} maxZoom={3} enablePan={true} >
           <Geographies geography={geoUrl}>
