@@ -78,7 +78,7 @@ const Post = (props) => {
         <Card.Body>
           {title && <Card.Title className="text-center">{title}</Card.Title>}
           {content && <Card.Text><p className={styles.Content}>{content}</p></Card.Text>}
-          <Link to={`/posts/${id}/`}>
+          <Link to={`/posts/${id}/`} aria-label="Comment this post">
             <i className={`far fa-comments ${iconStyles.Icon}`} />
             <p className={styles.Hidden}>hidden text</p>
           </Link>

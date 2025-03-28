@@ -55,6 +55,7 @@ function CommentCreateForm(props) {
               className={styles.Button}
               disabled={!content.trim()}
               type="submit"
+              aria-label="Submit comment"
             >
               <i className={`fa-solid fa-paper-plane ${styles.Icon}`}></i>
               <span className={styles.Hidden}>Text</span>
