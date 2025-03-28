@@ -13,6 +13,8 @@
   background: linear-gradient(135deg, #ff7474, #f3ff50);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;  
+    box-shadow: 0 4px 8px rgb(255, 0, 0);
+    border-radius: 10px;
 }
 
 .Subheading {
@@ -20,14 +22,16 @@
   border-radius: 10px;
   box-shadow: 0 4px 8px rgb(255, 0, 0);
   background-color: white;
+  font-style: italic;
 }
 
 @media (min-width: 768px) {
   .Heading{
-    background: linear-gradient(135deg, #fe0000, #fb00ff);
+    background: linear-gradient(135deg, #f2ff05, #fb00ff);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;  
     font-size: 50px;
+    box-shadow: 0 4px 8px rgb(255, 0, 0);
   }
   .Subheading {
     font-size: 20px;
