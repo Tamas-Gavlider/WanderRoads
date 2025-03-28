@@ -1,18 +1,18 @@
 import React, { useState, useEffect } from "react";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import axios from "axios";
-import { Link } from "react-router-dom";
-import { Card, Container, Row, Col } from "react-bootstrap";
+import { Link, useHistory } from "react-router-dom";
+import { Card, Container, Row, Col, Button, Modal } from "react-bootstrap";
 import styles from "../../styles/Trip.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
-import { useHistory } from "react-router-dom";
 import { MoreDropdown } from "../../components/MoreDropdown";
 
 export default function Trip() {
   const currentUser = useCurrentUser();
   const [trip, setTrip] = useState(null);
   const history = useHistory();
-
+  const [showModal, setShowModal] = useState(false);
+  const [tripToDelete, setTripToDelete] = useState(null);
 
   useEffect(() => {
     if (currentUser) {
@@ -29,7 +29,7 @@ export default function Trip() {
   
           setTrip({ ...response.data, results: sortedTrips }); 
   
-          // Automatically delete expired trips from the backend
+          // Automatically delete expired trips
           const expiredTrips = response.data.results.filter((t) => t.days_until_trip < 0);
           for (let trip of expiredTrips) {
             try {
@@ -46,28 +46,39 @@ export default function Trip() {
     }
   }, [currentUser]);
 
-  
   const handleEdit = (tripId) => {
-    history.push(`/trip/${tripId}/edit`); 
+    history.push(`/trip/${tripId}/edit`);
   };
 
-  const handleDelete = async (tripId) => {
+  // Step 1: Show confirmation modal when delete is clicked
+  const confirmDelete = (tripId) => {
+    setTripToDelete(tripId);
+    setShowModal(true);
+  };
+
+  // Step 2: Perform deletion if user confirms
+  const handleDelete = async () => {
+    if (!tripToDelete) return;
+
     try {
-      await axiosRes.delete(`/trip/${tripId}`); 
+      await axiosRes.delete(`/trip/${tripToDelete}`);
       setTrip((prevTrip) => ({
         ...prevTrip,
-        results: prevTrip.results.filter((t) => t.id !== tripId), 
+        results: prevTrip.results.filter((t) => t.id !== tripToDelete),
       }));
     } catch (err) {
       console.error("Error deleting trip:", err);
     }
+
+    setShowModal(false);
+    setTripToDelete(null);
   };
 
   return (
     <Container className="mt-4">
       <div className="d-flex justify-content-start mb-3">
         <Link to="/trip/create">
-          <i className="fa-solid fa-plus">Add an upcoming trip</i> 
+          <i className="fa-solid fa-plus"> Add an upcoming trip</i>
         </Link>
       </div>
 
@@ -84,7 +95,7 @@ export default function Trip() {
                   <Card.Title>
                     <MoreDropdown
                       handleEdit={() => handleEdit(t.id)}
-                      handleDelete={() => handleDelete(t.id)}
+                      handleDelete={() => confirmDelete(t.id)}
                     />{" "}
                     {t.destination}
                   </Card.Title>
@@ -104,6 +115,22 @@ export default function Trip() {
       ) : (
         <p className="text-muted text-center">No upcoming trips...</p>
       )}
+
+      <Modal show={showModal} onHide={() => setShowModal(false)} centered>
+        <Modal.Header closeButton>
+          <Modal.Title>Confirm Delete</Modal.Title>
+        </Modal.Header>
+        <Modal.Body>Are you sure you want to delete this trip?</Modal.Body>
+        <Modal.Footer>
+          <Button variant="secondary" onClick={() => setShowModal(false)}>
+            Cancel
+          </Button>
+          <Button variant="danger" onClick={handleDelete}>
+            Delete
+          </Button>
+        </Modal.Footer>
+      </Modal>
+    
     </Container>
   );
 }
