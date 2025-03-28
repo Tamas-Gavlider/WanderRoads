@@ -33,7 +33,7 @@ export default function ProfileImageChangeForm() {
       } catch (err) {
         console.log(err);
       } finally {
-        setLoading(false); // Ensure loading is turned off
+        setLoading(false); 
       }
     };
 
