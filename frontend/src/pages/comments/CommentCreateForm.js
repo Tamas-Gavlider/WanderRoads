@@ -52,11 +52,12 @@ function CommentCreateForm(props) {
               aria-label="comment"
             />
             <button
-              className={`${styles.Button} btn`}
+              className={styles.Button}
               disabled={!content.trim()}
               type="submit"
             >
-              Post
+              <i className={`fa-solid fa-paper-plane ${styles.Icon}`}></i>
+              <span className={styles.Hidden}>Text</span>
             </button>
           </InputGroup>
         </Form.Group>
