@@ -77,6 +77,6 @@
   }
   @media (max-width: 768px) {
     .LandingBackground {
-      background-image: url("./assets/post.webp") !important;
+      background-image: none !important;
     }
   }
