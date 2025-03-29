@@ -6,6 +6,7 @@ import { Card, Container, Row, Col, Button, Modal } from "react-bootstrap";
 import styles from "../../styles/Trip.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
+import Asset from '../../components/Asset';
 
 export default function Trip() {
   const currentUser = useCurrentUser();
@@ -113,7 +114,7 @@ export default function Trip() {
           ))}
         </Row>
       ) : (
-        <p className="text-muted text-center">No upcoming trips...</p>
+        <Asset spinner/>
       )}
 
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>

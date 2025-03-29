@@ -74,7 +74,7 @@ export default function ProfileImageChangeForm() {
     <Form onSubmit={handleSubmit}>
       {loading ? (
         <div className="text-center mt-5">
-          <Asset spinner message="Loading..." />
+          <Asset spinner/>
         </div>
       ) : (
         <Row className="justify-content-center">
