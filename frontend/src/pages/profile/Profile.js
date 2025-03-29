@@ -39,16 +39,21 @@ const Profile = () => {
   const visitedCountriesList = useMemo(
     () =>
       profile?.visited_countries?.length ? (
-        <ul className="d-flex flex-wrap gap-2 list-unstyled">
-          {profile.visited_countries.map((c, index) => (
-            <li
-              key={index}
-              className={`bg-light px-3 py-1 rounded ${styles.Countries}`}
-            >
-              {c}
-            </li>
-          ))}
-        </ul>
+        <div>
+          <p>
+            <span className="fw-bold">*</span> You&apos;re rocking the {profile.experience} level! Just a few more trips and you&apos;ll rank up!
+          </p>
+          <ul className="d-flex flex-wrap gap-2 list-unstyled">
+            {profile.visited_countries.map((c, index) => (
+              <li
+                key={index}
+                className={`bg-light px-3 py-1 rounded ${styles.Countries}`}
+              >
+                {c}
+              </li>
+            ))}
+          </ul>
+        </div>
       ) : (
         <p>No countries added yet.</p>
       ),
