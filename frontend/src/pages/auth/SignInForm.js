@@ -1,6 +1,5 @@
 import React, { useState } from "react";
 import axios from "axios";
-
 import Form from "react-bootstrap/Form";
 import Alert from "react-bootstrap/Alert";
 import Button from "react-bootstrap/Button";
@@ -25,11 +24,43 @@ function SignInForm() {
     username: "",
     password: "",
   });
-  const { username, password } = signInData;
 
+  const { username, password } = signInData;
   const [errors, setErrors] = useState({});
 
   const history = useHistory();
+
+  const validateField = (name, value) => {
+    setErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+
+      if (name === "username" && value.trim() === "") {
+        newErrors.username = ["Username cannot be empty."];
+      } else {
+        delete newErrors.username;
+      }
+
+      if (name === "password" && value.length < 6) {
+        newErrors.password = ["Password must be at least 6 characters long."];
+      } else {
+        delete newErrors.password;
+      }
+
+      return newErrors;
+    });
+  };
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setSignInData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
+
+    validateField(name, value);
+  };
+
   const handleSubmit = async (event) => {
     event.preventDefault();
 
@@ -39,23 +70,16 @@ function SignInForm() {
       setTokenTimestamp(data);
       history.push("/map");
     } catch (err) {
-      setErrors(err.response?.data);
+      setErrors(err.response?.data || {});
     }
-  };
-
-  const handleChange = (event) => {
-    setSignInData({
-      ...signInData,
-      [event.target.name]: event.target.value,
-    });
   };
 
   return (
     <Container fluid>
       <Row className={styles.Row}>
         <Col className="my-auto p-0 p-md-2" md={6}>
-          <Container className={`${appStyles.Content} p-4 `}>
-            <h1 className={styles.Header}>sign in</h1>
+          <Container className={`${appStyles.Content} p-4`}>
+            <h1 className={styles.Header}>Sign In</h1>
             <Form onSubmit={handleSubmit}>
               <Form.Group controlId="username" className="mt-3">
                 <Form.Label className="d-none">Username</Form.Label>
@@ -70,9 +94,7 @@ function SignInForm() {
                 />
               </Form.Group>
               {errors.username?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
+                <Alert key={idx} variant="warning">{message}</Alert>
               ))}
 
               <Form.Group controlId="password" className="mt-3">
@@ -88,16 +110,17 @@ function SignInForm() {
                 />
               </Form.Group>
               {errors.password?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
+                <Alert key={idx} variant="warning">{message}</Alert>
               ))}
+
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`}
                 type="submit"
+                disabled={Object.keys(errors).length > 0}
               >
                 Sign in
               </Button>
+
               {errors.non_field_errors?.map((message, idx) => (
                 <Alert key={idx} variant="warning" className="mt-3">
                   {message}
@@ -115,11 +138,7 @@ function SignInForm() {
           md={6}
           className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
         >
-          <Image
-            className={`${appStyles.FillerImage}`}
-            src={image}
-            alt="signin"
-          />
+          <Image className={`${appStyles.FillerImage}`} src={image} alt="signin" />
         </Col>
       </Row>
     </Container>
