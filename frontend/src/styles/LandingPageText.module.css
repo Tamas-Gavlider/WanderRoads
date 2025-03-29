@@ -10,7 +10,7 @@
 
 .Heading {
   margin-bottom: 20px;
-  background: linear-gradient(135deg, #ff7474, #f3ff50);
+  background: linear-gradient(135deg, #ff7474, #00bae2);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;  
     box-shadow: 0 4px 8px rgb(255, 0, 0);
@@ -27,7 +27,7 @@
 
 @media (min-width: 768px) {
   .Heading{
-    background: linear-gradient(135deg, #f2ff05, #fb00ff);
+    background: linear-gradient(135deg, #ff5353, #fffb03);
     -webkit-background-clip: text; 
     -webkit-text-fill-color: transparent;  
     font-size: 50px;
