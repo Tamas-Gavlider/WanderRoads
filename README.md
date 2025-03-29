@@ -92,7 +92,9 @@ The diagram below represents the database structure for WanderRoads, illustratin
 
 The database follows a relational structure, with users having a one-to-one relationship with profiles, while other entities, such as posts, comments, and trips, are linked through one-to-many relationships.
 
-![Models](/docs/erd.png)
+![Models](/docs/erd.png)<br>
+
+The frontend architecture for WanderRoads was designed and documented in an [Excel file](/docs/frontend.xlsx), outlining the structure and component hierarchy.
 
 ### Colour Scheme
 
@@ -630,13 +632,15 @@ The following bugs were identified during the testing:
 
 The background image was downloaded from [Pexels](https://www.pexels.com/).
 <br>
+The default theme song was downloaded from [Pixabay](https://pixabay.com/).
+<br>
 The favicon logo was created on [FreeLogoDesign](https://www.freelogodesign.org/)
 <br>
 All screenshots used in this README file were taken by myself.
 
 ### Content
 
-[W3Schools](https://www.w3schools.com/) to review how certain libraries (for example Pandas) function and for React tutorials.
+[W3Schools](https://www.w3schools.com/) to review how certain libraries (for example Pandas) function and for React tutorials and errors handling.
 
 [Cloudinary](https://support.cloudinary.com/hc/en-us/community/posts/360009752479-How-to-resize-before-uploading-pictures-in-Django) to resize images to improve app speed.
 
