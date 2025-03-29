@@ -40,7 +40,7 @@ function SignInForm() {
         delete newErrors.username;
       }
 
-      if (name === "password" && value.length < 5) {
+      if (name === "password" && value.length < 8) {
         newErrors.password = ["Password must be at least 8 characters long."];
       } else {
         delete newErrors.password;
