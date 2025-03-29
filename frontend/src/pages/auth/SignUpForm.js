@@ -1,127 +1,143 @@
 import React, { useState } from "react";
-import axios from "axios";
 import { Link, useHistory } from "react-router-dom";
-import Form from "react-bootstrap/Form";
-import Alert from "react-bootstrap/Alert";
-import Button from "react-bootstrap/Button";
-import Col from "react-bootstrap/Col";
-import Row from "react-bootstrap/Row";
-import Image from "react-bootstrap/Image";
-import Container from "react-bootstrap/Container";
 import styles from "../../styles/SignInUpForm.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import appStyles from "../../App.module.css";
-import { useSetCurrentUser } from "../../contexts/CurrentUserContext";
+import reg_img from "../../assets/reg_img.webp";
+import {
+  Form,
+  Button,
+  Col,
+  Image,
+  Row,
+  Container,
+  Alert,
+} from "react-bootstrap";
+import axios from "axios";
 import { useRedirect } from "../../hooks/useRedirect";
-import { setTokenTimestamp } from "../../utils/utils";
-import image from "../../assets/sign_in_img.webp";
 
-function SignInForm() {
-  const setCurrentUser = useSetCurrentUser();
+
+const SignUpForm = () => {
   useRedirect("loggedIn");
-
-  const [signInData, setSignInData] = useState({
+  const [signUpData, setSignUpData] = useState({
     username: "",
-    password: "",
+    password1: "",
+    password2: "",
   });
-  const { username, password } = signInData;
+  const { username, password1, password2 } = signUpData;
 
   const [errors, setErrors] = useState({});
+
   const history = useHistory();
 
-  const validateForm = () => {
-    let newErrors = {};
-    if (!username.trim()) newErrors.username = ["Username is required."];
-    if (!password.trim()) newErrors.password = ["Password is required."];
-    if (password.length > 0 && password.length < 6)
-      newErrors.password = ["Password must be at least 6 characters."];
-    setErrors(newErrors);
-    return Object.keys(newErrors).length === 0;
-  };
-
-  const handleSubmit = async (event) => {
-    event.preventDefault();
-    if (!validateForm()) return;
-
-    try {
-      const { data } = await axios.post("/dj-rest-auth/login/", signInData);
-      setCurrentUser(data.user);
-      setTokenTimestamp(data);
-      history.push("/map");
-    } catch (err) {
-      setErrors(err.response?.data || {});
-    }
-  };
-
   const handleChange = (event) => {
-    setSignInData({
-      ...signInData,
+    setSignUpData({
+      ...signUpData,
       [event.target.name]: event.target.value,
     });
   };
 
+  const handleSubmit = async (event) => {
+    event.preventDefault();
+    try {
+      await axios.post("/dj-rest-auth/registration/", signUpData);
+      history.push("/signin");
+    } catch (err) {
+      setErrors(err.response?.data);
+    }
+  };
+
   return (
-    <Container fluid>
-      <Row className={styles.Row}>
-        <Col className="my-auto p-0 p-md-2" md={6}>
-          <Container className={`${appStyles.Content} p-4 `}>
-            <h1 className={styles.Header}>Sign In</h1>
-            <Form onSubmit={handleSubmit}>
-              <Form.Group controlId="username" className="mt-3">
-                <Form.Label className="d-none">Username</Form.Label>
-                <Form.Control
-                  type="text"
-                  placeholder="Username"
-                  name="username"
-                  className={styles.Input}
-                  value={username}
-                  onChange={handleChange}
-                  aria-label="Username"
-                />
-              </Form.Group>
-              {errors.username?.map((msg, idx) => (
-                <Alert key={idx} variant="warning">{msg}</Alert>
-              ))}
+    <Container className= {styles.Container} fluid>
+    <Row className={styles.Row}>
+      <Col className="my-auto py-2 p-md-2 d-flex align-items-center" md={6}>
+        <Container className={`${appStyles.Content} p-4 `}>
+          <h1 className={styles.Header}>sign up</h1>
 
-              <Form.Group controlId="password" className="mt-3">
-                <Form.Label className="d-none">Password</Form.Label>
-                <Form.Control
-                  type="password"
-                  placeholder="Password"
-                  name="password"
-                  className={styles.Input}
-                  value={password}
-                  onChange={handleChange}
-                  aria-label="Password"
-                />
-              </Form.Group>
-              {errors.password?.map((msg, idx) => (
-                <Alert key={idx} variant="warning">{msg}</Alert>
-              ))}
+          <Form onSubmit={handleSubmit}>
+            <Form.Group controlId="username" as={Row} className="mb-3">
+              <Form.Label className="d-none">username</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="text"
+                placeholder="Username"
+                name="username"
+                value={username}
+                onChange={handleChange}
+                aria-label="Username"
+              />
+            </Form.Group>
+            {errors.username?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
-              <Button
-                className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`}
-                type="submit"
-              >
-                Sign in
-              </Button>
-              {errors.non_field_errors?.map((msg, idx) => (
-                <Alert key={idx} variant="warning" className="mt-3">{msg}</Alert>
-              ))}
-            </Form>
-          </Container>
-          <Container className="mt-3">
-            <Link className={styles.Link} to="/signup">
-              Don&apos;t have an account? Sign up now!
-            </Link>
-          </Container>
-        </Col>
-        <Col md={6} className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}>
-          <Image className={`${appStyles.FillerImage}`} src={image} alt="signin" />
-        </Col>
-      </Row>
+            <Form.Group controlId="password1" as={Row} className="mb-3">
+              <Form.Label className="d-none">Password</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="password"
+                placeholder="Password"
+                name="password1"
+                value={password1}
+                onChange={handleChange}
+                aria-label="password1"
+              />
+            </Form.Group>
+            {errors.password1?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+
+            <Form.Group controlId="password2" as={Row} className="mb-3">
+              <Form.Label className="d-none">Confirm password</Form.Label>
+              <Form.Control
+                className={styles.Input}
+                type="password"
+                placeholder="Confirm password"
+                name="password2"
+                value={password2}
+                onChange={handleChange}
+                aria-label="password2"
+              />
+            </Form.Group>
+            {errors.password2?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
+
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
+              type="submit"
+            >
+              Sign up
+            </Button>
+            {errors.non_field_errors?.map((message, idx) => (
+              <Alert key={idx} variant="warning" className="mt-3">
+                {message}
+              </Alert>
+            ))}
+          </Form>
+        </Container>
+      </Col>
+      <Col
+        md={6}
+        className="d-none d-md-flex align-items-center justify-content-center"
+      >
+        <Image className={appStyles.FillerImageRegister} src={reg_img} fluid alt="signup" />
+      </Col>
+      <Container className='mt-3'>
+        <Link className={`${styles.Link} ${styles.SignInLink}`} to="/signin">
+          Already have an account?
+          Sign in
+        </Link>
+      </Container>
+    </Row>
     </Container>
   );
-}
+};
 
-export default SignInForm;
+export default SignUpForm;
