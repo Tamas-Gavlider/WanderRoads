@@ -62,19 +62,31 @@ export default function TripEditForm() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    
+  
     setTripData((prev) => ({
       ...prev,
       [name]: value,
     }));
-
-    if (name === "end_date") {
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        end_date: new Date(value) < new Date(tripData.start_date) ? 
-                  "End date cannot be earlier than start date." : "",
-      }));
-    }
+  
+    setErrors((prevErrors) => {
+      const newErrors = { ...prevErrors };
+  
+      if (name === "start_date" || name === "end_date") {
+        if (new Date(tripData.end_date) < new Date(value)) {
+          newErrors.end_date = "End date cannot be earlier than start date.";
+        } else {
+          delete newErrors.end_date;
+        }
+  
+        if (new Date(tripData.start_date) > new Date(value)) {
+          newErrors.start_date = "Start date cannot be later than end date.";
+        } else {
+          delete newErrors.start_date;
+        }
+      }
+  
+      return newErrors;
+    });
   };
 
   const handleSubmit = async (event) => {
