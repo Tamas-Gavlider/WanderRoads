@@ -6,7 +6,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Button from "react-bootstrap/Button";
 import { Row, Col, Alert } from "react-bootstrap";
 import btnStyles from "../../styles/Button.module.css";
-import styles from '../../styles/AddTrip.module.css';
+import styles from "../../styles/AddTrip.module.css";
 
 export default function TripEditForm() {
   const [errors, setErrors] = useState({});
@@ -17,6 +17,7 @@ export default function TripEditForm() {
     end_date: "",
     notes: "",
   });
+
   const { id } = useParams();
   const history = useHistory();
 
@@ -35,46 +36,56 @@ export default function TripEditForm() {
 
   useEffect(() => {
     if (!countries.length) return;
-  
+
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get(`/trip/${id}`);
         console.log("Fetched Trip Data:", data);
-  
+
+        const formattedStartDate = data.start_date ? data.start_date.split("T")[0] : "";
+        const formattedEndDate = data.end_date ? data.end_date.split("T")[0] : "";
+
         const matchingCountry = countries.find((c) => c.name === data.destination);
-        const countryCode = matchingCountry ? matchingCountry.code : ""; 
-  
-        setTripData((prev) => ({
-          ...prev,
-          destination: countryCode,
-        }));
+        const countryCode = matchingCountry ? matchingCountry.code : "";
+
+        setTripData({
+          destination: countryCode || "",
+          start_date: formattedStartDate,
+          end_date: formattedEndDate,
+          notes: data.notes || "",
+        });
       } catch (err) {
         console.error("Error fetching trip details:", err);
         history.push("/");
       }
     };
-  
+
     fetchData();
   }, [id, history, countries]);
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-    const updatedTripData = { ...tripData, [name]: value };
-    if (name === "end_date" && updatedTripData.end_date < updatedTripData.start_date) {
-      setErrors({ ...errors, end_date: "End date cannot be earlier than start date." });
-    } else {
-      setErrors({ ...errors, end_date: "" }); 
-    }
+    
+    setTripData((prev) => ({
+      ...prev,
+      [name]: value,
+    }));
 
-    setTripData(updatedTripData);
+    if (name === "end_date") {
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        end_date: new Date(value) < new Date(tripData.start_date) ? 
+                  "End date cannot be earlier than start date." : "",
+      }));
+    }
   };
 
-  
   const handleSubmit = async (event) => {
     event.preventDefault();
+
     if (new Date(tripData.end_date) < new Date(tripData.start_date)) {
-      setErrors({ ...errors, end_date: "End date cannot be earlier than start date." });
-      return; 
+      setErrors((prev) => ({ ...prev, end_date: "End date cannot be earlier than start date." }));
+      return;
     }
 
     try {
@@ -85,92 +96,92 @@ export default function TripEditForm() {
       setErrors(err.response?.data || {});
     }
   };
-  
+
   return (
     <div className={styles.Form}>
-    <Form onSubmit={handleSubmit} className="text-center">
-       <Row className="mb-3">
-       <Col xs={12} md={6} lg={6}>
-      <Form.Group>
-        <Form.Label>Destination</Form.Label>
-        <Form.Control
-          as="select"
-          name="destination"
-          value={tripData.destination || ""}
-          onChange={handleChange}
-          required
-          className="text-center"
-        >
-          <option value="">Select a country</option>
-          {countries.map((c) => (
-            <option key={c.code} value={c.code}>
-              {c.name}
-            </option>
-          ))}
-        </Form.Control>
-      </Form.Group>
-      </Col>
-      <Col xs={12} md={6} lg={6}>
-      <Form.Group>
-        <Form.Label>Start Date</Form.Label>
-        <Form.Control
-          type="date"
-          name="start_date"
-          value={tripData.start_date}
-          onChange={handleChange}
-          className="text-center"
-          aria-label="start-date"
-        />
-      </Form.Group>
-      {errors.start_date?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-              ))}
-              </Col>
-               <Col xs={12} md={6} lg={6}>
-      <Form.Group>
-        <Form.Label>End Date</Form.Label>
-        <Form.Control
-          type="date"
-          name="end_date"
-          value={tripData.end_date}
-          onChange={handleChange}
-          className="text-center"
-          aria-label="end-date"
-        />
-      </Form.Group>
-      {errors.end_date?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-              ))}
-      </Col>
-      <Col xs={12} md={6} lg={6}>
-      <Form.Group>
-        <Form.Label>Notes</Form.Label>
-        <Form.Control
-          type="text"
-          name="notes"
-          value={tripData.notes}
-          onChange={handleChange}
-          className="text-center"
-          aria-label="notes"
-        />
-      </Form.Group>
-      </Col>
-      </Row>
-      <Row className="mb-3">
-       <Col xs={12} md={6} lg={12} className="d-flex justify-content-between">
-      <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} onClick={() => history.goBack()}>
-        Cancel
-      </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} type="submit">
-        Save
-      </Button>
-      </Col>
-      </Row>
-    </Form>
+      <Form onSubmit={handleSubmit} className="text-center">
+        <Row className="mb-3">
+          <Col xs={12} md={6}>
+            <Form.Group>
+              <Form.Label>Destination</Form.Label>
+              <Form.Control
+                as="select"
+                name="destination"
+                value={tripData.destination || ""}
+                onChange={handleChange}
+                required
+                className="text-center"
+              >
+                <option value="">Select a country</option>
+                {countries.map((c) => (
+                  <option key={c.code} value={c.code}>
+                    {c.name}
+                  </option>
+                ))}
+              </Form.Control>
+            </Form.Group>
+          </Col>
+
+          <Col xs={12} md={6}>
+            <Form.Group>
+              <Form.Label>Start Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="start_date"
+                value={tripData.start_date || ""}
+                onChange={handleChange}
+                className="text-center"
+                aria-label="start-date"
+              />
+            </Form.Group>
+            {errors.start_date && (
+              <Alert variant="warning">{errors.start_date}</Alert>
+            )}
+          </Col>
+
+          <Col xs={12} md={6}>
+            <Form.Group>
+              <Form.Label>End Date</Form.Label>
+              <Form.Control
+                type="date"
+                name="end_date"
+                value={tripData.end_date || ""}
+                onChange={handleChange}
+                className="text-center"
+                aria-label="end-date"
+              />
+            </Form.Group>
+            {errors.end_date && (
+              <Alert variant="warning">{errors.end_date}</Alert>
+            )}
+          </Col>
+
+          <Col xs={12} md={6}>
+            <Form.Group>
+              <Form.Label>Notes</Form.Label>
+              <Form.Control
+                type="text"
+                name="notes"
+                value={tripData.notes}
+                onChange={handleChange}
+                className="text-center"
+                aria-label="notes"
+              />
+            </Form.Group>
+          </Col>
+        </Row>
+
+        <Row className="mb-3">
+          <Col xs={12} className="d-flex justify-content-between">
+            <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} onClick={() => history.goBack()}>
+              Cancel
+            </Button>
+            <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} type="submit">
+              Save
+            </Button>
+          </Col>
+        </Row>
+      </Form>
     </div>
   );
 }
