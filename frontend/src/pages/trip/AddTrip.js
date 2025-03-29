@@ -44,16 +44,13 @@ export default function AddTrip() {
       const newErrors = { ...prevErrors };
   
       if (name === "start_date" || name === "end_date") {
-        if (name === "end_date" && new Date(value) < new Date(tripData.start_date)) {
+        const updatedStartDate = name === "start_date" ? new Date(value) : new Date(tripData.start_date);
+        const updatedEndDate = name === "end_date" ? new Date(value) : new Date(tripData.end_date);
+  
+        if (updatedStartDate && updatedEndDate && updatedEndDate < updatedStartDate) {
           newErrors.end_date = ["End date cannot be earlier than start date."];
         } else {
           delete newErrors.end_date;
-        }
-  
-        if (name === "start_date" && new Date(tripData.end_date) < new Date(value)) {
-          newErrors.start_date = ["Start date cannot be later than end date."];
-        } else {
-          delete newErrors.start_date;
         }
       }
   
