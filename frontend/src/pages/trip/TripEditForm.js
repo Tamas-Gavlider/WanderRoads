@@ -42,16 +42,13 @@ export default function TripEditForm() {
         const { data } = await axiosReq.get(`/trip/${id}`);
         console.log("Fetched Trip Data:", data);
 
-        const formattedStartDate = data.start_date ? data.start_date.split("T")[0] : "";
-        const formattedEndDate = data.end_date ? data.end_date.split("T")[0] : "";
-
         const matchingCountry = countries.find((c) => c.name === data.destination);
         const countryCode = matchingCountry ? matchingCountry.code : "";
 
         setTripData({
           destination: countryCode || "",
-          start_date: formattedStartDate,
-          end_date: formattedEndDate,
+          start_date: data.start_date,
+          end_date: data.end_date,
           notes: data.notes || "",
         });
       } catch (err) {
