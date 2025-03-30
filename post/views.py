@@ -85,3 +85,16 @@ class PostDetail(generics.RetrieveUpdateDestroyAPIView):
             return JsonResponse({"error": "Authentication required"},
                                 status=403)
         return super().get(request, *args, **kwargs)
+    
+    def update(self, request, *args, **kwargs):
+        partial = kwargs.pop('partial', False)
+        instance = self.get_object()
+
+        keep_old_image = request.data.get("keep_old_image") == "true"
+
+        if keep_old_image and "image" not in request.FILES:
+            request.data._mutable = True  
+            request.data.pop("image", None) 
+            request.data._mutable = False  
+
+        return super().update(request, *args, **kwargs)

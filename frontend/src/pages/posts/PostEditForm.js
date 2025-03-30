@@ -35,22 +35,28 @@ function PostEditForm() {
       setLoading(true);
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-        const { title, content, image, country, is_owner } = data;
-
-        if (is_owner) {
-          setPostData({ title, content, image, country });
+  
+        if (data.is_owner) {
+          setPostData({
+            title: data.title,
+            content: data.content,
+            image: data.image,
+            country: data.country
+          });
         } else {
           history.push("/");
         }
+  
       } catch (err) {
         console.log(err);
       } finally {
         setLoading(false);
       }
     };
-
+  
     handleMount();
   }, [history, id]);
+  
 
   const handleChange = (event) => {
     setPostData({
@@ -88,10 +94,9 @@ function PostEditForm() {
   
     formData.append("title", title);
     formData.append("content", content);
+
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
-    } else if (image) {
-      formData.append("image", image);
     }
     
     formData.append("country", country);
