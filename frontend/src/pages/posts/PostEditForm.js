@@ -12,10 +12,11 @@ import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
+import Asset from "../../components/Asset";  
 
 function PostEditForm() {
   const [errors, setErrors] = useState({});
-
+  const [loading, setLoading] = useState(true);
   const [postData, setPostData] = useState({
     title: "",
     content: "",
@@ -31,6 +32,7 @@ function PostEditForm() {
 
   useEffect(() => {
     const handleMount = async () => {
+      setLoading(true);
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
         const { title, content, image, country, is_owner } = data;
@@ -42,11 +44,30 @@ function PostEditForm() {
         }
       } catch (err) {
         console.log(err);
+      } finally {
+        setLoading(false);
       }
     };
 
     handleMount();
   }, [history, id]);
+
+  const handleChange = (event) => {
+    setPostData({
+      ...postData,
+      [event.target.name]: event.target.value,
+    });
+  };
+
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(image);
+      setPostData({
+        ...postData,
+        image: URL.createObjectURL(event.target.files[0]),
+      });
+    }
+  };
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -61,44 +82,13 @@ function PostEditForm() {
     fetchCountries();
   }, []);
 
-  const handleChange = (event) => {
-    const { name, value } = event.target;
-    setPostData((prevData) => ({
-      ...prevData,
-      [name]: value,
-    }));
-
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      [name]: undefined,
-    }));
-  };
-  
-  const [newImage, setNewImage] = useState(false);
-
-  const handleChangeImage = (event) => {
-  if (event.target.files.length) {
-    URL.revokeObjectURL(image);
-    setPostData((prevData) => ({
-      ...prevData,
-      image: URL.createObjectURL(event.target.files[0]),
-    }));
-    setNewImage(true);
-    setErrors((prevErrors) => ({
-      ...prevErrors,
-      image: undefined,
-    }));
-  }
-};
-
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
 
     formData.append("title", title);
     formData.append("content", content);
-
-    if (newImage && imageInput?.current?.files[0]) {
+    if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
     formData.append("country", country);
@@ -107,6 +97,7 @@ function PostEditForm() {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
     } catch (err) {
+      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -117,39 +108,27 @@ function PostEditForm() {
     <div className="text-center">
       <Form.Group>
         <Form.Label>Title</Form.Label>
-        <Form.Control
-          type="text"
-          name="title"
-          value={title}
-          onChange={handleChange}
-          aria-label="title"
-        />
+        <Form.Control type="text" name="title" value={title} onChange={handleChange} aria-label="title" />
       </Form.Group>
-      {errors?.title && <Alert variant="warning">{errors.title[0]}</Alert>}
+      {errors?.title?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Content</Form.Label>
-        <Form.Control
-          as="textarea"
-          rows={6}
-          name="content"
-          value={content}
-          onChange={handleChange}
-          aria-label="content"
-        />
+        <Form.Control as="textarea" rows={6} name="content" value={content} onChange={handleChange} aria-label="content" />
       </Form.Group>
-      {errors?.content && <Alert variant="warning">{errors.content[0]}</Alert>}
+      {errors?.content?.map((message, idx) => (
+        <Alert variant="warning" key={idx}>
+          {message}
+        </Alert>
+      ))}
 
       <Form.Group>
         <Form.Label>Country</Form.Label>
-        <Form.Control
-          as="select"
-          name="country"
-          value={country}
-          onChange={handleChange}
-          required
-          aria-label="country"
-        >
+        <Form.Control as="select" name="country" value={country} onChange={handleChange} required aria-label="country">
           <option value="">Select a country</option>
           {countries.map((c) => (
             <option key={c.code} value={c.code}>
@@ -158,7 +137,6 @@ function PostEditForm() {
           ))}
         </Form.Control>
       </Form.Group>
-      {errors?.country && <Alert variant="warning">{errors.country[0]}</Alert>}
 
       <Button className={btnStyles.Button} onClick={() => history.goBack()}>
         Cancel
@@ -173,30 +151,28 @@ function PostEditForm() {
     <Form onSubmit={handleSubmit}>
       <Row>
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
-          <Container
-            className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
-          >
+          <Container className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}>
             <Form.Group className="text-center">
               <figure>
-                <Image className={appStyles.Image} src={image} rounded alt="post image" />
+                {loading ? (
+                  <Asset spinner message="Loading image..." />
+                ) : (
+                  <Image className={appStyles.Image} src={image} rounded alt="post image" onLoad={() => setLoading(false)} />
+                )}
               </figure>
               <div>
-                <Form.Label
-                  className={`${btnStyles.Button} btn`}
-                  htmlFor="image-upload"
-                >
+                <Form.Label className={`${btnStyles.Button} btn`} htmlFor="image-upload">
                   Change the image
                 </Form.Label>
               </div>
 
-              <Form.File
-                id="image-upload"
-                accept="image/*"
-                onChange={handleChangeImage}
-                ref={imageInput}
-              />
+              <Form.File id="image-upload" accept="image/*" onChange={handleChangeImage} ref={imageInput} />
             </Form.Group>
-            {errors?.image && <Alert variant="warning">{errors.image[0]}</Alert>}
+            {errors?.image?.map((message, idx) => (
+              <Alert variant="warning" key={idx}>
+                {message}
+              </Alert>
+            ))}
 
             <div className="d-md-none">{textFields}</div>
           </Container>
