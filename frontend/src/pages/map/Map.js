@@ -8,7 +8,7 @@ import {
 import { OverlayTrigger, Tooltip } from "react-bootstrap";
 import { axiosReq } from "../../api/axiosDefaults";
 import "bootstrap/dist/css/bootstrap.min.css";
-import styles from '../../styles/Map.module.css';
+import styles from "../../styles/Map.module.css";
 
 const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
@@ -29,16 +29,17 @@ export default function Map() {
   }, []);
 
   return (
-    <div>
+    <div className={styles.MapContainer}>
       <h3 className={styles.Header}>See Where Users Are Posting From</h3>
       <ComposableMap
+      tabIndex={-1}
         projectionConfig={{
           center: [0, 0],
           scale: 150,
         }}
         className={styles.Map}
       >
-        <ZoomableGroup minZoom={0.5} maxZoom={3} enablePan={true} >
+        <ZoomableGroup minZoom={0.5} maxZoom={3} enablePan={true}>
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
@@ -51,12 +52,14 @@ export default function Map() {
                     placement="top"
                     overlay={
                       <Tooltip id={`tooltip-${geo.rsmKey}`}>
-                        {countryName} - {postCount} {postCount < 2 ? 'post' : 'posts'}
+                        {countryName} - {postCount}{" "}
+                        {postCount < 2 ? "post" : "posts"}
                       </Tooltip>
                     }
                   >
                     <Geography
                       geography={geo}
+                      focusable={false}
                       style={{
                         default: {
                           fill: postCount > 0 ? "#00BAE2" : "#ECEFF1",
@@ -64,8 +67,16 @@ export default function Map() {
                           strokeWidth: 0.5,
                           outline: "none",
                         },
-                        hover: { fill: "#00BAE2", stroke: "#000", strokeWidth: 1 },
-                        pressed: { stroke: "#000", strokeWidth: 1 },
+                        hover: {
+                          fill: "#00BAE2",
+                          stroke: "#000",
+                          strokeWidth: 1,
+                        },
+                        pressed: {
+                          stroke: "#000",
+                          strokeWidth: 0,
+                          outline: "none",
+                        },
                       }}
                     />
                   </OverlayTrigger>

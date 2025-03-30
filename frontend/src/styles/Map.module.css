@@ -9,4 +9,10 @@
 .Map {
     margin-top: -10%;
     position: fixed;
+    border: none !important;
+}
+
+.MapContainer svg:focus,
+.MapContainer svg *:focus {
+  outline: none;
 }
