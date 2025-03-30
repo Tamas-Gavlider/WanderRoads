@@ -1,5 +1,4 @@
 import React, { useEffect, useRef, useState } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -7,11 +6,10 @@ import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
 import Alert from "react-bootstrap/Alert";
 import Image from "react-bootstrap/Image";
-import axios from 'axios'
+import axios from "axios";
 import styles from "../../styles/PostCreateEditForm.module.css";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
-
 import { useHistory, useParams } from "react-router";
 import { axiosReq } from "../../api/axiosDefaults";
 
@@ -24,8 +22,8 @@ function PostEditForm() {
     image: "",
     country: "",
   });
-  const { title, content, image, country } = postData;
 
+  const { title, content, image, country } = postData;
   const [countries, setCountries] = useState([]);
   const imageInput = useRef(null);
   const history = useHistory();
@@ -37,9 +35,11 @@ function PostEditForm() {
         const { data } = await axiosReq.get(`/posts/${id}/`);
         const { title, content, image, country, is_owner } = data;
 
-        is_owner
-          ? setPostData({ title, content, image, country })
-          : history.push("/");
+        if (is_owner) {
+          setPostData({ title, content, image, country });
+        } else {
+          history.push("/");
+        }
       } catch (err) {
         console.log(err);
       }
@@ -47,23 +47,6 @@ function PostEditForm() {
 
     handleMount();
   }, [history, id]);
-
-  const handleChange = (event) => {
-    setPostData({
-      ...postData,
-      [event.target.name]: event.target.value,
-    });
-  };
-
-  const handleChangeImage = (event) => {
-    if (event.target.files.length) {
-      URL.revokeObjectURL(image);
-      setPostData({
-        ...postData,
-        image: URL.createObjectURL(event.target.files[0]),
-      });
-    }
-  };
 
   useEffect(() => {
     const fetchCountries = async () => {
@@ -77,6 +60,33 @@ function PostEditForm() {
 
     fetchCountries();
   }, []);
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+    setPostData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: undefined,
+    }));
+  };
+
+  const handleChangeImage = (event) => {
+    if (event.target.files.length) {
+      URL.revokeObjectURL(image);
+      setPostData((prevData) => ({
+        ...prevData,
+        image: URL.createObjectURL(event.target.files[0]),
+      }));
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        image: undefined,
+      }));
+    }
+  };
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -94,7 +104,6 @@ function PostEditForm() {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -113,11 +122,7 @@ function PostEditForm() {
           aria-label="title"
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+      {errors?.title && <Alert variant="warning">{errors.title[0]}</Alert>}
 
       <Form.Group>
         <Form.Label>Content</Form.Label>
@@ -130,11 +135,8 @@ function PostEditForm() {
           aria-label="content"
         />
       </Form.Group>
-      {errors?.content?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+      {errors?.content && <Alert variant="warning">{errors.content[0]}</Alert>}
+
       <Form.Group>
         <Form.Label>Country</Form.Label>
         <Form.Control
@@ -153,11 +155,13 @@ function PostEditForm() {
           ))}
         </Form.Control>
       </Form.Group>
+      {errors?.country && <Alert variant="warning">{errors.country[0]}</Alert>}
+
       <Button className={btnStyles.Button} onClick={() => history.goBack()}>
-        cancel
+        Cancel
       </Button>
       <Button className={btnStyles.Button} type="submit">
-        save
+        Save
       </Button>
     </div>
   );
@@ -171,7 +175,7 @@ function PostEditForm() {
           >
             <Form.Group className="text-center">
               <figure>
-                <Image className={appStyles.Image} src={image} rounded alt="post image"/>
+                <Image className={appStyles.Image} src={image} rounded alt="post image" />
               </figure>
               <div>
                 <Form.Label
@@ -189,11 +193,7 @@ function PostEditForm() {
                 ref={imageInput}
               />
             </Form.Group>
-            {errors?.image?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {errors?.image && <Alert variant="warning">{errors.image[0]}</Alert>}
 
             <div className="d-md-none">{textFields}</div>
           </Container>

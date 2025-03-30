@@ -53,7 +53,6 @@ function PostCreateForm() {
       [name]: value,
     }));
 
-    // Remove the error message for this field
     setErrors((prevErrors) => ({
       ...prevErrors,
       [name]: undefined,
@@ -67,7 +66,6 @@ function PostCreateForm() {
         ...prevData,
         image: URL.createObjectURL(event.target.files[0]),
       }));
-      // Remove image-related error if any
       setErrors((prevErrors) => ({
         ...prevErrors,
         image: undefined,
