@@ -1,17 +1,17 @@
 import React, { useState } from "react";
 import styles from "../styles/Avatar.module.css";
-import { Spinner } from "react-bootstrap"; // Import the Spinner component
+import Asset from "./Asset"; 
 
 const Avatar = ({ src, height = 45, text }) => {
-  const [loading, setLoading] = useState(true); // State to manage loading status
+  const [loading, setLoading] = useState(true);
 
   const handleImageLoad = () => {
-    setLoading(false); // Set loading to false once the image is loaded
+    setLoading(false);
   };
 
   return (
-    <span>
-      {loading && <Spinner animation="border" variant="danger" />} 
+    <span className={styles.AvatarContainer}>
+      {loading && <Asset spinner message="Loading..." />}
       <img
         className={styles.Avatar}
         src={src}
