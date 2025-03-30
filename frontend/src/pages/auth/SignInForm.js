@@ -34,16 +34,20 @@ function SignInForm() {
     setErrors((prevErrors) => {
       const newErrors = { ...prevErrors };
 
-      if (name === "username" && value.trim() === "") {
-        newErrors.username = ["Username cannot be empty."];
-      } else {
-        delete newErrors.username;
+      if (name === "username") {
+        if (value.trim() === "") {
+          newErrors.username = ["Username cannot be empty."];
+        } else {
+          delete newErrors.username;
+        }
       }
 
-      if (name === "password" && value.length < 8) {
-        newErrors.password = ["Password must be at least 8 characters long."];
-      } else {
-        delete newErrors.password;
+      if (name === "password") {
+        if (value.length < 8) {
+          newErrors.password = ["Password must be at least 8 characters long."];
+        } else {
+          delete newErrors.password;
+        }
       }
 
       return newErrors;
@@ -63,16 +67,37 @@ function SignInForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+  
+    const newErrors = {};
+    if (!username.trim()) newErrors.username = ["Username cannot be empty."];
+    if (!password.trim()) newErrors.password = ["Password cannot be empty."];
+  
+    if (Object.keys(newErrors).length > 0) {
+      setErrors(newErrors);
+      return;
+    }
+  
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
       setTokenTimestamp(data);
       history.push("/map");
     } catch (err) {
-      setErrors(err.response?.data || {});
+      if (err.response?.data) {
+        const formattedErrors = { ...err.response.data };
+  
+        if (formattedErrors.username?.includes("This field may not be blank.")) {
+          formattedErrors.username = ["Username cannot be empty."];
+        }
+        if (formattedErrors.password?.includes("This field may not be blank.")) {
+          formattedErrors.password = ["Password cannot be empty."];
+        }
+  
+        setErrors(formattedErrors);
+      }
     }
   };
+  
 
   return (
     <Container fluid>
@@ -94,7 +119,9 @@ function SignInForm() {
                 />
               </Form.Group>
               {errors.username?.map((message, idx) => (
-                <Alert key={idx} variant="warning">{message}</Alert>
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
               ))}
 
               <Form.Group controlId="password" className="mt-3">
@@ -110,17 +137,18 @@ function SignInForm() {
                 />
               </Form.Group>
               {errors.password?.map((message, idx) => (
-                <Alert key={idx} variant="warning">{message}</Alert>
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
               ))}
 
               <Button
                 className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`}
                 type="submit"
-                disabled={Object.keys(errors).length > 0}
+                disabled={errors.username || errors.password}
               >
                 Sign in
               </Button>
-
               {errors.non_field_errors?.map((message, idx) => (
                 <Alert key={idx} variant="warning" className="mt-3">
                   {message}
@@ -138,7 +166,11 @@ function SignInForm() {
           md={6}
           className={`my-auto d-none d-md-block p-2 ${styles.SignInCol}`}
         >
-          <Image className={`${appStyles.FillerImage}`} src={image} alt="signin" />
+          <Image
+            className={`${appStyles.FillerImage}`}
+            src={image}
+            alt="signin"
+          />
         </Col>
       </Row>
     </Container>
