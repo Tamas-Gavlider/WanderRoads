@@ -12,6 +12,8 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
   - [User Stories](#user-stories)
 - [Design](#design)
   - [Structure](#structure)
+    - [Frontend Architecture](#frontend-architecture)
+      - [Reusable Components](#reusable-components)
   - [Colour Scheme](#colour-scheme)
   - [Typography](#typography)
   - [Features](#features)
@@ -94,7 +96,17 @@ The database follows a relational structure, with users having a one-to-one rela
 
 ![Models](/docs/erd.png)<br>
 
+#### Frontend architecture 
+
 The frontend architecture for WanderRoads was designed and documented in an [Excel file](/docs/frontend.xlsx), outlining the structure and component hierarchy.
+
+##### Reusable Components 
+
+- Asset 
+- Avatar
+- Loading
+- MoreDropdown
+- ThemeSong
 
 ### Colour Scheme
 
