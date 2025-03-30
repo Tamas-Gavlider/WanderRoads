@@ -85,14 +85,17 @@ function PostEditForm() {
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
+  
     formData.append("title", title);
     formData.append("content", content);
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
+    } else if (image) {
+      formData.append("image", image);
     }
+    
     formData.append("country", country);
-
+  
     try {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
