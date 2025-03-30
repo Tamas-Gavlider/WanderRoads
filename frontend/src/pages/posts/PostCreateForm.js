@@ -1,5 +1,4 @@
 import React, { useRef, useState, useEffect } from "react";
-
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Row from "react-bootstrap/Row";
@@ -48,19 +47,31 @@ function PostCreateForm() {
   }, []);
 
   const handleChange = (event) => {
-    setPostData({
-      ...postData,
-      [event.target.name]: event.target.value,
-    });
+    const { name, value } = event.target;
+    setPostData((prevData) => ({
+      ...prevData,
+      [name]: value,
+    }));
+
+    // Remove the error message for this field
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      [name]: undefined,
+    }));
   };
 
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
-      setPostData({
-        ...postData,
+      setPostData((prevData) => ({
+        ...prevData,
         image: URL.createObjectURL(event.target.files[0]),
-      });
+      }));
+      // Remove image-related error if any
+      setErrors((prevErrors) => ({
+        ...prevErrors,
+        image: undefined,
+      }));
     }
   };
 
@@ -75,10 +86,8 @@ function PostCreateForm() {
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      console.log({ data });
       history.push(`/posts/${data.id}`);
     } catch (err) {
-      console.log(err);
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -97,11 +106,9 @@ function PostCreateForm() {
           aria-label="title"
         />
       </Form.Group>
-      {errors?.title?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+      {errors?.title && (
+        <Alert variant="warning">{errors.title[0]}</Alert>
+      )}
 
       <Form.Group>
         <Form.Label>Content</Form.Label>
@@ -114,11 +121,9 @@ function PostCreateForm() {
           aria-label="content"
         />
       </Form.Group>
-      {errors?.content?.map((message, idx) => (
-        <Alert variant="warning" key={idx}>
-          {message}
-        </Alert>
-      ))}
+      {errors?.content && (
+        <Alert variant="warning">{errors.content[0]}</Alert>
+      )}
 
       <Form.Group>
         <Form.Label>Country</Form.Label>
@@ -139,10 +144,10 @@ function PostCreateForm() {
         </Form.Control>
       </Form.Group>
       <Button className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`} type="submit">
-        create
+        Create
       </Button>
       <Button className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`} onClick={() => history.goBack()}>
-        cancel
+        Cancel
       </Button>
     </div>
   );
@@ -188,11 +193,9 @@ function PostCreateForm() {
                 ref={imageInput}
               />
             </Form.Group>
-            {errors?.image?.map((message, idx) => (
-              <Alert variant="warning" key={idx}>
-                {message}
-              </Alert>
-            ))}
+            {errors?.image && (
+              <Alert variant="warning">{errors.image[0]}</Alert>
+            )}
 
             <div className="d-md-none">{textFields}</div>
           </Container>
