@@ -8,7 +8,7 @@ class PostSerializer(serializers.ModelSerializer):
     is_owner = serializers.SerializerMethodField()
     profile_id = serializers.ReadOnlyField(source='owner.profile.id')
     profile_image = serializers.ReadOnlyField(source='owner.profile.image.url')
-    image = serializers.ImageField(required=True)
+    image = serializers.ImageField(required=False)
     country = CountryField()
     country_name = serializers.SerializerMethodField()
     comments_count = serializers.ReadOnlyField()
