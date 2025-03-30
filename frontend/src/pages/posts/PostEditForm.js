@@ -73,20 +73,23 @@ function PostEditForm() {
       [name]: undefined,
     }));
   };
+  
+  const [newImage, setNewImage] = useState(false);
 
   const handleChangeImage = (event) => {
-    if (event.target.files.length) {
-      URL.revokeObjectURL(image);
-      setPostData((prevData) => ({
-        ...prevData,
-        image: URL.createObjectURL(event.target.files[0]),
-      }));
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        image: undefined,
-      }));
-    }
-  };
+  if (event.target.files.length) {
+    URL.revokeObjectURL(image);
+    setPostData((prevData) => ({
+      ...prevData,
+      image: URL.createObjectURL(event.target.files[0]),
+    }));
+    setNewImage(true);
+    setErrors((prevErrors) => ({
+      ...prevErrors,
+      image: undefined,
+    }));
+  }
+};
 
   const handleSubmit = async (event) => {
     event.preventDefault();
@@ -95,7 +98,7 @@ function PostEditForm() {
     formData.append("title", title);
     formData.append("content", content);
 
-    if (imageInput?.current?.files[0]) {
+    if (newImage && imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
     formData.append("country", country);
