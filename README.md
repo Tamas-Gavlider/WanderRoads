@@ -462,7 +462,7 @@ No errors after the code commented out in test file.
 #### Lighthouse
 
 I have used Lighthouse to test the performance, accessibility, best practices and SEO of the site.<br>
-The Lighthouse test gave a low score for best practices due to the use of third-party cookies. I was able to slightly improve this score by adding cache control settings in settings.py, as well as in the profile and post views. Performance issues are significantly lower on mobile devices compared to desktops. To enhance performance, I set fixed image sizes across all pages, removed a second Google Font, eliminated background images on small devices, and reduced image sizes for smaller screens. Additionally, I implemented lazy loading for images and preloaded the background image, but the performance improvement on mobile was only slight.
+The Lighthouse test gave a low score for best practices due to the use of third-party cookies. I was able to slightly improve this score by adding cache control settings in settings.py, as well as in the profile and post views. Performance issues are significantly lower on mobile devices compared to desktops. To enhance performance, I removed a second Google Font, eliminated background images on small devices, and reduced image sizes for smaller screens. Additionally, I implemented lazy loading for images, but the performance improvement on mobile was only slight.
 
 | File                      | Result |                                                       Screenshot |
 | ------------------------- | :----: | ---------------------------------------------------------------: |
