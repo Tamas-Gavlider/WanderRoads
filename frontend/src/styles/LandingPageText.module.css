@@ -10,11 +10,10 @@
 
 .Heading {
   margin-bottom: 20px;
-  background: linear-gradient(135deg, #ff7474, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
     box-shadow: 0 4px 8px rgb(255, 0, 0);
     border-radius: 10px;
+    background-color: white;
+    font-style: italic;
 }
 
 .Subheading {
@@ -23,13 +22,12 @@
   box-shadow: 0 4px 8px rgb(255, 0, 0);
   background-color: white;
   font-style: italic;
+  
 }
 
 @media (min-width: 768px) {
   .Heading{
-    background: linear-gradient(135deg, #ff5353, #fffb03);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
+    background-color: white;
     font-size: 50px;
     box-shadow: 0 4px 8px rgb(255, 0, 0);
   }
