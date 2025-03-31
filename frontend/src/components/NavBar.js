@@ -76,6 +76,7 @@ const NavBar = () => {
       <NavLink
         to={`/profiles/${currentUser?.profile_id}`}
         className={styles.NavLink}
+        activeClassName={styles.Active}
       >
         {currentUser?.username}
       </NavLink>

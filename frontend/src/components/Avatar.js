@@ -12,6 +12,7 @@ const Avatar = ({ src, height = 45, text }) => {
   return (
     <span className={styles.AvatarContainer}>
       {loading && <Asset spinner message="Loading..." />}
+      {text}
       <img
         className={styles.Avatar}
         src={src}
@@ -21,7 +22,6 @@ const Avatar = ({ src, height = 45, text }) => {
         onLoad={handleImageLoad}
         style={loading ? { visibility: "hidden" } : {}}
       />
-      {text}
     </span>
   );
 };
