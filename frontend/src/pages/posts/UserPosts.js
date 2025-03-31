@@ -6,7 +6,7 @@ import { Link } from "react-router-dom";
 import styles from '../../styles/UserPosts.module.css'
 
 const UserPosts = () => {
-  const { id } = useParams(); // Get profile ID from the URL
+  const { id } = useParams();
   const [userPosts, setUserPosts] = useState([]);
 
   useEffect(() => {

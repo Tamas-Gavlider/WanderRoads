@@ -14,6 +14,7 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
   - [Structure](#structure)
     - [Frontend Architecture](#frontend-architecture)
       - [Reusable Components](#reusable-components)
+      - [Components](#components)
   - [Colour Scheme](#colour-scheme)
   - [Typography](#typography)
   - [Features](#features)
@@ -26,7 +27,7 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
     - [Create Post](#create-post)
     - [Edit Post](#edit-post)
     - [Profile](#profile)
-    - [Travel Preferences](#)
+    - [Travel Preferences](#travel-preferences)
     - [Add Preferences](#add-preferences)
     - [Edit Preferences](#edit-preferences)
     - [Travel Recommendation](#travel-recommendation)
@@ -98,15 +99,73 @@ The database follows a relational structure, with users having a one-to-one rela
 
 #### Frontend architecture 
 
-The frontend architecture for WanderRoads was designed and documented in an [Excel file](/docs/frontend.xlsx), outlining the structure and component hierarchy.
+The frontend architecture for WanderRoads was designed and documented in an [Excel file](/docs/frontend.xlsx), outlining the structure and component hierarchy.<br>
+Additionally, the initial UI wireframes, which served as a foundation for the design, are shown below. The final implementation differ from these initial designs.<br>
+Home page
+![Home](/docs/wireframes/home-page.png)<br>
+Login page
+![Login-Register](/docs/wireframes/login-page.png)<br>
+Map page<br>
+![Map](/docs/wireframes/map.png)<br>
+Profile<br>
+![Profile](/docs/wireframes/profile.png)<br>
+Edit Profile<br>
+![Edit Profile](/docs/wireframes/edit-profile.png)<br>
+Post page<br>
+![Post](/docs/wireframes/post.png)<br>
+Users page<br>
+![Users](/docs/wireframes/users.png)
 
 ##### Reusable Components 
 
-- Asset 
-- Avatar
-- Loading
-- MoreDropdown
-- ThemeSong
+- Asset - This component designed to display a spinner, an image, or a message based on the provided props. It is useful for handling loading states, placeholders, or error messages across the application.
+- Avatar - Designed to display a user's profile image. It includes a loading state that shows a spinner while the image is being loaded.
+- Loading -  A simple animated airplane icon to indicate a loading state. It can be used anywhere in the application where content is being fetched or processed. I used this loading component on the post page because I didn't want to overuse the spinner. A loading airplane catches the user's eye without making them focus too much on the loading process.
+- MoreDropdown - A reusable three-dot menu that provides quick access to actions like editing and deleting. It is designed using React-Bootstrap’s Dropdown.
+- ThemeSong - The ThemeSong component allows users to play or mute a background theme song. It is designed with a simple button that toggles the play/pause state and updates the corresponding volume icon dynamically.
+
+#### Components
+
+- Axios Defaults - This component configures Axios for making API requests within the app. It sets a default base URL for API calls. 
+- Landing Page Text - This component displays the main landing page content for the app, welcoming users and inviting them to start their journey.
+- NavBar - This navigation bar component is responsible for rendering different navigation options based on the user's authentication status.
+- Not Found Page - This component handles the 404 error page for any unknown or invalid URLs.
+- Popular Destinations - The component displays the top countries with the most posts on WanderRoads. It fetches post count data from the API and dynamically displays the most popular countries based on the number of posts.
+- Current User Context - The component is a context provider that manages the authentication state of the current user, handles token refresh logic, and ensures that the user remains logged in across sessions. It leverages React Context and Axios interceptors for API requests and responses.
+- Click Outside Toggle - A custom hook that provides functionality to manage the state of an expandable UI element (a dropdown menu or a mobile navbar). It ensures that the element collapses when a user clicks outside of it.
+- Redirect - The hook handles user redirection based on their authentication status. It attempts to refresh the user's token and redirects them based on whether they are logged in or logged out.
+- Sign In Form - The component handles user sign-in with validation, error handling, and redirection upon successful login. 
+- Sign Up Form - It handles user registration by validating input fields, displaying error messages, and submitting the form to the backend.
+- Comment - The component is responsible for rendering individual comments on posts. It supports the following functionality:
+  - Display Comment
+  - Edit Comment 
+  - Delete Comment
+  - Profile Link
+- Comment Create Form - This component allows users to create and submit new comments on a post. 
+- Comment Edit Form - This component allows users to edit the content of their comments. 
+- Map - The component displays an interactive world map where users can view the number of posts made from different countries. The map is created using react-simple-maps and allows zooming and panning. The map is based on the world’s geography, fetched from an external URL (world-atlas data).
+- Post - The component is responsible for displaying individual posts on the platform. 
+- Post Create Form - The component is used to create a new post with a title, content, image, and country. 
+- Post Edit Form - This component allows users to edit an existing post. 
+- Post Page - The component allows users to view a specific post along with its associated comments.
+- Posts Page - The component is designed to display a list of posts with features like search, infinite scroll, and an option to create new posts. 
+- User Posts - The component is designed to fetch and display posts created by a specific user. 
+- Add Country - The component allows users to select and add a country to their visited countries list.
+- Change Theme Song - The component allows users to upload and update their profile's theme song.
+- Edit Status - The component allows users to update their status on their profile. 
+- Profile - The component is used to display a user's profile page, including personal information, posts, visited countries, travel preferences, and other editable fields.
+- Profile Image Change Form - The  component is a form used for updating the profile image of a user.
+- Profiles - The component is displaying a list of users, with search and sorting capabilities. 
+- Username Form - The component allows users to update their username. 
+- User Password Form - The component allows users to update their password. 
+- Add Travel Preferences - The component allows users to add their travel preferences to their profile.
+- Confirmation - The component serves as a confirmation page after the user successfully adds or updates their travel preferences. Initially, after creating travel preferences, the user was supposed to be redirected directly to their profile. However, after submitting the preference form, the profile_id in the user context was set to undefined, which caused issues with redirection. This confirmation page was introduced as a workaround to ensure a smooth user experience.
+- Travel Preference Edit Form - The component allows users to edit their travel preferences. It fetches the existing preferences using the user's preference ID and pre-fills a form with the current data. 
+- Travel Preferences - The component displays a user's travel preferences on their profile. It retrieves data from the backend and presents preferences in an organized layout.
+- Travel Recommendation -  The component fetches and displays personalized travel recommendations based on the user's travel preferences.
+- Add Trip - The component allows users to add a new trip by selecting a destination, specifying start and end dates, and adding optional notes. 
+- Trip - The component displays a list of upcoming trips for the logged-in user. It allows users to edit or delete trips and automatically removes expired trips from the system.
+- Trip Edit Form - This component allows the user to edit an existing trip. It pre-fills the form with the trip's data and allows changes to the destination, start date, end date, and notes. The form validates the dates to ensure the start date is not later than the end date. Upon successful form submission, the updated trip data is sent to the backend.
 
 ### Colour Scheme
 
@@ -213,6 +272,10 @@ Users can:
 ![edit-profile](/docs/page_screenshots/edit-profile.png)
 Profile visitors can see the visited countries and preferences of the owners from the tabs and the user experience level, status and theme song.<br>
 ![visitor](/docs/page_screenshots/profile-not-owner.png)
+
+#### Travel Preferences
+
+User can set up/edit their preferences from the profile page. Based on the preferences the travel recommendation will be regenerated.
 
 #### Add Preferences
 
@@ -379,7 +442,7 @@ Create a folder for frontend -- mkdir frontend<br>
 Navigate to the frontend directory and install the React app provided by Code Institute:<br>
 -- cd frontend --<br>
 -- npx create-react-app . --template git+https://github.com/Code-Institute-Org/cra-template-moments.git --use-npm -- <br>
-To fix OpenSSL dependency issues, export the following variable before running the app:<br> -- export NODE_OPTIONS=--openssl-legacy-provider  --  <br>
+To fix OpenSSL dependency issues, execute the following command in terminal before running the app:<br> -- export NODE_OPTIONS=--openssl-legacy-provider  --  <br>
 Then, start the React app: -- npm run --
 
 ### Testing
@@ -617,6 +680,36 @@ Post image size/format validation:<br>
 
 #### Manual Testing Frontend
 
+##### Logged out user
+
+##### Sign Up
+
+##### Sing In
+
+##### Log Out
+
+##### Map
+
+##### Create/Edit/Delete Post
+
+##### Create/Edit/Delete Comment
+
+##### Profile
+
+###### Edit Status
+
+###### Change Profile Image
+
+###### Change Theme Song
+
+###### Add Visited Countries
+
+###### Change username
+
+###### Change password
+
+###### Profile Visitor 
+
 #### Full Testing
 
 Full testing was performed on the following devices:
@@ -635,6 +728,9 @@ Full testing was performed on the following devices:
 Bugs were tracked throughout the project as [GitHub issues](https://github.com/users/Tamas-Gavlider/projects/5/views/1).
 The following bugs were identified during the testing:
 
+- If a user visits a profile and the profile owner hasn't set any travel preferences yet, the "Add Travel Preferences" button will be visible. However, if the visitor clicks on it, an error message saying, "You already have preferences," will appear.
+
+- The issue where the edit post could not be submitted without updating the image has been fixed, but the image was not made a required field.
 
 #### Known Bugs
 
