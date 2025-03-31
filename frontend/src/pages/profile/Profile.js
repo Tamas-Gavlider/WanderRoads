@@ -41,7 +41,9 @@ const Profile = () => {
       profile?.visited_countries?.length ? (
         <div>
           <p>
-            <span className="fw-bold">*</span> You&apos;re rocking the {profile.experience} level! Just a few more trips and you&apos;ll rank up!
+            <span className="fw-bold">*</span> You&apos;re rocking the{" "}
+            {profile.experience} level! Just a few more trips and you&apos;ll
+            rank up!
           </p>
           <ul className="d-flex flex-wrap gap-2 list-unstyled">
             {profile.visited_countries.map((c, index) => (
@@ -61,7 +63,7 @@ const Profile = () => {
   );
 
   if (!profile) {
-    return <Asset />;
+    return <Asset spinner />;
   }
 
   return (
@@ -83,7 +85,10 @@ const Profile = () => {
               {profile.experience} {profile.owner}
             </h4>
             <p className={styles.Status}>{profile.status || "No status set"}</p>
-            <ThemeSong theme_song={profile.theme_song} className={styles.ThemeSong} />
+            <ThemeSong
+              theme_song={profile.theme_song}
+              className={styles.ThemeSong}
+            />
           </div>
         </div>
       </div>
@@ -127,11 +132,22 @@ const Profile = () => {
               <UserPosts />
             </Tab.Pane>
             <Tab.Pane eventKey="preferences">
-              <TravelPreferences profileOwner={profile?.owner} />
+              {profile?.preferences ? (
+                <TravelPreferences profileOwner={profile?.owner} />
+              ) : isOwner ? (
+                <></>
+              ) : (
+                <p>This user has not set any travel preferences yet.</p>
+              )}
             </Tab.Pane>
-            <Tab.Pane eventKey="visited_countries">{visitedCountriesList}</Tab.Pane>
+            <Tab.Pane eventKey="visited_countries">
+              {visitedCountriesList}
+            </Tab.Pane>
             {isOwner && (
               <>
+                <Tab.Pane eventKey="preferences">
+                  <TravelPreferences profileOwner={profile?.owner} />
+                </Tab.Pane>
                 <Tab.Pane eventKey="recommendations">
                   <TravelRecommendation />
                 </Tab.Pane>
