@@ -114,7 +114,7 @@ export default function Trip() {
           ))}
         </Row>
       ) : (
-        <Asset spinner/>
+        <Asset spinner message="Searching for trips..."/>
       )}
 
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
