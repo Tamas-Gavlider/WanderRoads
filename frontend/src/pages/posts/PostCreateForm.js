@@ -29,7 +29,6 @@ function PostCreateForm() {
 
   const { title, content, image, country } = postData;
   const [countries, setCountries] = useState([]);
-
   const imageInput = useRef(null);
   const history = useHistory();
 
@@ -62,14 +61,10 @@ function PostCreateForm() {
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
-      setPostData((prevData) => ({
-        ...prevData,
+      setPostData({
+        ...postData,
         image: URL.createObjectURL(event.target.files[0]),
-      }));
-      setErrors((prevErrors) => ({
-        ...prevErrors,
-        image: undefined,
-      }));
+      });
     }
   };
 
