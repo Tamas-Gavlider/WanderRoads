@@ -706,13 +706,20 @@ Test the logout functionality to ensure that the user is signed out when they cl
 
 ##### Map
 
-Test whether the map dynamically updates the number of posts based on newly created posts.
+Test whether the map dynamically updates the number of posts based on newly created posts.<br>
 Before new post:<br>
 ![before-post](/docs/testing/frontend_test/map-before-new-post.png)<br>
 After new post:<br>
 ![after-post](/docs/testing/frontend_test/map-after-new-post.png)
 
 ##### Create/Edit/Delete Post
+
+Test to ensure that the create, edit, and delete functions work correctly and that users receive errors if any fields are blank or if the image does not meet the required criteria.
+
+![create-post](/docs/testing/frontend_test/create-post-validation.gif)<br>
+
+Validate image upload requirements:<br>
+![create-post-2](/docs/testing/frontend_test/create-post-validation-2.gif)<br>
 
 ##### Create/Edit/Delete Comment
 
