@@ -732,6 +732,8 @@ The following bugs were identified during the testing:
 
 - The issue where the edit post could not be submitted without updating the image has been fixed, but the image was not made a required field.
 
+- Cache was added to the Post model in the backend; however, it caused an issue on the frontend. When a post was created, it did not immediately appear on the posts page or the map. The cache was removed from the post views to fix this issue.
+
 #### Known Bugs
 
 ## Credits
