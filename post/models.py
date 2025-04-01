@@ -15,7 +15,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255,
                              blank=False, null=False)
     content = models.TextField(blank=False, null=False)
-    image = CloudinaryField('image', default='accessories-bag')
+    image = CloudinaryField('image', default='samples/ecommerce/accessories-bag.jpg')
     country = CountryField(max_length=100)
 
     class Meta:
