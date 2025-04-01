@@ -682,13 +682,35 @@ Post image size/format validation:<br>
 
 ##### Logged out user
 
+Test to ensure that logged-out users and visitors cannot access specific pages without registering or signing in.
+
+![user](/docs/testing/frontend_test/test-logged-out-user.gif)
+
 ##### Sign Up
+
+Test the sign-up form to ensure that users cannot submit it with blank fields, create a profile with an existing username, or use a short/weak password.
+
+![sign-up](/docs/testing/frontend_test/sign-up-validation.gif)
 
 ##### Sing In
 
+Test the sign-in form to ensure that users cannot sing in with blank fields, invalid password or wrong username.
+
+![sign-in](/docs/testing/frontend_test/sign-in-validation.gif)
+
 ##### Log Out
 
+Test the logout functionality to ensure that the user is signed out when they click on the logout link in the navbar.
+
+![logout](/docs/testing/frontend_test/logout.gif)
+
 ##### Map
+
+Test whether the map dynamically updates the number of posts based on newly created posts.
+Before new post:<br>
+![before-post](/docs/testing/frontend_test/map-before-new-post.png)<br>
+After new post:<br>
+![after-post](/docs/testing/frontend_test/map-after-new-post.png)
 
 ##### Create/Edit/Delete Post
 
