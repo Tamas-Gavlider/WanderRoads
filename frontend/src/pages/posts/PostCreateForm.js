@@ -81,10 +81,6 @@ function PostCreateForm() {
 
     try {
       const { data } = await axiosReq.post("/posts/", formData);
-      setPostData((prevData) => ({
-        ...prevData,
-        image: data.image_url,
-      }));
       history.push(`/posts/${data.id}`);
     } catch (err) {
       if (err.response?.status !== 401) {
@@ -105,9 +101,7 @@ function PostCreateForm() {
           aria-label="title"
         />
       </Form.Group>
-      {errors?.title && (
-        <Alert variant="warning">{errors.title[0]}</Alert>
-      )}
+      {errors?.title && <Alert variant="warning">{errors.title[0]}</Alert>}
 
       <Form.Group>
         <Form.Label>Content</Form.Label>
@@ -120,9 +114,7 @@ function PostCreateForm() {
           aria-label="content"
         />
       </Form.Group>
-      {errors?.content && (
-        <Alert variant="warning">{errors.content[0]}</Alert>
-      )}
+      {errors?.content && <Alert variant="warning">{errors.content[0]}</Alert>}
 
       <Form.Group>
         <Form.Label>Country</Form.Label>
@@ -142,10 +134,16 @@ function PostCreateForm() {
           ))}
         </Form.Control>
       </Form.Group>
-      <Button className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`} type="submit">
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`}
+        type="submit"
+      >
         Create
       </Button>
-      <Button className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`} onClick={() => history.goBack()}>
+      <Button
+        className={`${btnStyles.Button} ${btnStyles.Wide} mt-3`}
+        onClick={() => history.goBack()}
+      >
         Cancel
       </Button>
     </div>

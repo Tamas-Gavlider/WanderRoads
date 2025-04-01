@@ -13,6 +13,12 @@ class PostSerializer(serializers.ModelSerializer):
     country_name = serializers.SerializerMethodField()
     comments_count = serializers.ReadOnlyField()
 
+    def get_image(self, obj):
+        return obj.image.url if obj.image else (
+                                            'https://res.cloudinary.com'
+                                            '/dfi7tw6ox/image/upload'
+                                            '/v1742568417/profile_ozflyd.webp')
+
     def validate_image(self, value):
         if value.size > 2 * 1024 * 1024:
             raise serializers.ValidationError('Image size larger than 2MB!')
