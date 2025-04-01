@@ -723,6 +723,14 @@ Validate image upload requirements:<br>
 
 ##### Create/Edit/Delete Comment
 
+Test to verify that comments can be edited and deleted, and ensure that the user cannot submit a comment if the field is empty. Also, confirm that the buttons for canceling edits and deletions are functioning correctly.<br>
+
+Comment on own post:<br>
+![edit-del-own-comment](/docs/testing/frontend_test/edit-delete-own-comment.gif)<br>
+
+Comment on other users' posts:<br>
+![edit-del-comment-visitor](/docs/testing/frontend_test/edit-comment-visitor.gif)
+
 ##### Profile
 
 ###### Edit Status
