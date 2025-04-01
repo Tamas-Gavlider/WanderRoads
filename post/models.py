@@ -15,7 +15,7 @@ class Post(models.Model):
     title = models.CharField(max_length=255,
                              blank=False, null=False)
     content = models.TextField(blank=False, null=False)
-    image = CloudinaryField('image', default='pexels-nurseryart-346885_nj7aji')
+    image = CloudinaryField('image', default='profile_ozflyd')
     country = CountryField(max_length=100)
 
     class Meta:
