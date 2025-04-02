@@ -132,22 +132,13 @@ const Profile = () => {
               <UserPosts />
             </Tab.Pane>
             <Tab.Pane eventKey="preferences">
-              {profile?.preferences ? (
                 <TravelPreferences profileOwner={profile?.owner} />
-              ) : isOwner ? (
-                <></>
-              ) : (
-                <p>This user has not set any travel preferences yet.</p>
-              )}
             </Tab.Pane>
             <Tab.Pane eventKey="visited_countries">
               {visitedCountriesList}
             </Tab.Pane>
             {isOwner && (
               <>
-                <Tab.Pane eventKey="preferences">
-                  <TravelPreferences profileOwner={profile?.owner} />
-                </Tab.Pane>
                 <Tab.Pane eventKey="recommendations">
                   <TravelRecommendation />
                 </Tab.Pane>

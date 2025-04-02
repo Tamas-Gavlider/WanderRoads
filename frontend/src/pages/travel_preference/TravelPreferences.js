@@ -149,7 +149,6 @@ export default function TravelPreferences({ profileOwner }) {
         </div>
       ) : (
         <div>
-        <p>{error.message || "An error occurred"}</p>
         <AddTravelPreferences />
         </div>
       )}
