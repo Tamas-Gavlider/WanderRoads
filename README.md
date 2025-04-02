@@ -56,6 +56,22 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
       - [Travel Preferences](#travel-preferences)
       - [Travel Recommendation](#travel-recommendation-1)
       - [Trip](#trip-1)
+    - [Frontend Manual Testing](#manual-testing-frontend)
+      - [Logged Out User](#logged-out-user)
+      - [Sign Up](#sign-up)
+      - [Sign In](#sing-in)
+      - [Log Out](#log-out)
+      - [Map](#map-1)
+      - [Create/Edit/Delete Post](#createeditdelete-post)
+      - [Create/Edit/Detele Comment](#createeditdelete-comment)
+      - [Profile](#profile-2)
+      - [Edit Status](#edit-status)
+      - [Change Profile Image](#change-profile-image)
+      - [Change Theme Song](#change-theme-song)
+      - [Add Visited Countries](#add-visited-countries)
+      - [Change Username](#change-username)
+      - [Change Password](#change-password)
+      - [Profile Visitor](#profile-visitor)
     - [Full Testing](#full-testing)
     - [Bugs](#bugs)
     - [Known Bugs](#known-bugs)
@@ -120,7 +136,7 @@ Users page<br>
 
 - Asset - This component designed to display a spinner, an image, or a message based on the provided props. It is useful for handling loading states, placeholders, or error messages across the application.
 - Avatar - Designed to display a user's profile image. It includes a loading state that shows a spinner while the image is being loaded.
-- Loading -  A simple animated airplane icon to indicate a loading state. It can be used anywhere in the application where content is being fetched or processed. I used this loading component on the post page because I didn't want to overuse the spinner. A loading airplane catches the user's eye without making them focus too much on the loading process.
+- Loading -  A simple animated airplane icon to indicate a loading state. It can be used anywhere in the application where content is being fetched or processed. I used this loading component on the post and travelers pages because I didn't want to overuse the spinner. A loading airplane catches the user's eye without making them focus too much on the loading process.
 - MoreDropdown - A reusable three-dot menu that provides quick access to actions like editing and deleting. It is designed using React-Bootstrap’s Dropdown.
 - ThemeSong - The ThemeSong component allows users to play or mute a background theme song. It is designed with a simple button that toggles the play/pause state and updates the corresponding volume icon dynamically.
 
@@ -678,9 +694,9 @@ Post image size/format validation:<br>
   - Setting an end date earlier than the start date (should trigger an error).<br>
   ![edit_trip](/docs/testing/api_test/api-edit-trip.gif)
 
-#### Manual Testing Frontend
+#### Frontend Manual Testing
 
-##### Logged out user
+##### Logged Out User
 
 Test to ensure that logged-out users and visitors cannot access specific pages without registering or signing in.
 
@@ -777,13 +793,13 @@ Test to add the same country twice:<br>
 Test to verify the experience level update:<br>
 ![add-country2](/docs/testing/frontend_test/add-visited-country-2.gif)
 
-###### Change username
+###### Change Username
 
 Test updating the username for an existing user and leaving it field blank.
 
 ![username-update](/docs/testing/frontend_test/change-username.gif)
 
-###### Change password
+###### Change Password
 
 Test updating the password when the two fields do not match, are left blank, or the password is too short.
 
@@ -792,6 +808,8 @@ Test updating the password when the two fields do not match, are left blank, or 
 ###### Profile Visitor 
 
 Test to verify that profile visitors cannot edit the profile owner's details and do not have access to the edit section or travel recommendations.
+
+![profile-visitor](/docs/testing/frontend_test/profile-visitor.gif)
 
 #### Full Testing
 
@@ -816,6 +834,8 @@ The following bugs were identified during the testing:
 - The issue where the edit post could not be submitted without updating the image has been fixed, but the image was not made a required field.
 
 - Cache was added to the Post model in the backend; however, it caused an issue on the frontend. When a post was created, it did not immediately appear on the posts page or the map. The cache was removed from the post views to fix this issue.
+
+- Visitors could not see the profile owner's preferences due to a logical error in the add travel preference file.
 
 #### Known Bugs
 
@@ -849,6 +869,10 @@ The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.
 
 Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
 
+[Stackoverflow post](https://stackoverflow.com/questions/66558497/how-to-use-country-name-as-default-instead-of-code-in-django-countries-package) and [GitHub post](https://github.com/SmileyChris/django-countries/blob/main/README.rst) provided guidance on how to use the country name instead of the code across all pages.
+
 ### Acknowledgments
 
+I would like to acknowledge my mentor, Julia Konovalova, for her valuable input and feedback.
 
+I also appreciate the valuable support from Code Institute tutors: Oisín Tohak, for helping configure JWT and REST Auth serializers, and Rebecca Tracey Timoney, for troubleshooting the bug where posts did not appear on the post page but only on the posts page.
