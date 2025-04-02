@@ -733,19 +733,65 @@ Comment on other users' posts:<br>
 
 ##### Profile
 
+Testing the profile page:
+
+ - Click the theme song button to verify if the song plays.
+
+ - Open "My Posts" from the posts panel and check if they load correctly.
+
+ - Click each button in the update tab to ensure it redirects to the correct form.
+ 
+ - You can create new travel preferences or edit existing ones.
+
+ - Upon creating or editing preferences, ensure that the travel recommendations are generated and updated correctly according to the new preferences.
+
+ ![profile](/docs/testing/frontend_test/profile.gif)
+
 ###### Edit Status
+
+Test updating the user status.
+
+![edit-status](/docs/testing/frontend_test/update-status.gif)
 
 ###### Change Profile Image
 
+Test updating the profile image. Test upload with different file sizes. 
+
+![change-profile-img](/docs/testing/frontend_test/change-profile-image-validation.gif)
+
+![change-profile-img2](/docs/testing/frontend_test/change-profile-image-validation-2.gif)
+
 ###### Change Theme Song
+
+Test updating the theme song. Only mp3 files can be uploaded.
+
+![change-theme-song](/docs/testing/frontend_test/update-theme-song.gif)
 
 ###### Add Visited Countries
 
+Test adding and deleting visited countries and verify whether the experience level updates based on the number of countries.
+
+Test to add the same country twice:<br>
+![add-country](/docs/testing/frontend_test/add-visited-country.gif)
+
+Test to verify the experience level update:<br>
+![add-country2](/docs/testing/frontend_test/add-visited-country-2.gif)
+
 ###### Change username
+
+Test updating the username for an existing user and leaving it field blank.
+
+![username-update](/docs/testing/frontend_test/change-username.gif)
 
 ###### Change password
 
+Test updating the password when the two fields do not match, are left blank, or the password is too short.
+
+![change-password](/docs/testing/frontend_test/change-password.gif)
+
 ###### Profile Visitor 
+
+Test to verify that profile visitors cannot edit the profile owner's details and do not have access to the edit section or travel recommendations.
 
 #### Full Testing
 

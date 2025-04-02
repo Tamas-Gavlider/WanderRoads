@@ -13,6 +13,7 @@ class PostSerializer(serializers.ModelSerializer):
     country_name = serializers.SerializerMethodField()
     comments_count = serializers.ReadOnlyField()
 
+    # Submit the post create form without an image and use the defualt one
     def get_image(self, obj):
         return obj.image.url if obj.image else (
                                             'https://res.cloudinary.com'
