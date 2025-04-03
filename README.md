@@ -31,6 +31,7 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
     - [Add Preferences](#add-preferences)
     - [Edit Preferences](#edit-preferences)
     - [Travel Recommendation](#travel-recommendation)
+    - [Travelers](#travelers)
     - [Trip](#trip)
     - [Add Trip](#add-trip)
     - [Edit Trip](#edit-trip)
@@ -53,13 +54,13 @@ The live deployed site can be found [here](https://wanderroads-c8ef8cb5f31c.hero
       - [Login/Logout](#loginlogout)
       - [Posts](#posts-1)
       - [Comments](#comments)
-      - [Travel Preferences](#travel-preferences)
+      - [Travel Preferences](#travel-preferences-1)
       - [Travel Recommendation](#travel-recommendation-1)
       - [Trip](#trip-1)
-    - [Frontend Manual Testing](#manual-testing-frontend)
+    - [Frontend Manual Testing](#frontend-manual-testing)
       - [Logged Out User](#logged-out-user)
       - [Sign Up](#sign-up)
-      - [Sign In](#sing-in)
+      - [Sign In](#sign-in)
       - [Log Out](#log-out)
       - [Map](#map-1)
       - [Create/Edit/Delete Post](#createeditdelete-post)
@@ -223,7 +224,7 @@ Logged out user
 
 #### Login
 
-The login page includes the login form and an [image of mountains](/frontend/src/assets/sign_in_img.jpg) on larger screens. This image makes me feel relaxed and calm, so I believe it was a good choice for the login page. Below the login form, there is a link to the registration page for users who have not registered yet.
+The login page includes the login form and an image of mountains on larger screens. This image makes me feel relaxed and calm, so I believe it was a good choice for the login page. Below the login form, there is a link to the registration page for users who have not registered yet.
 Desktop view:<br>
 ![desktop](/docs/page_screenshots/login-desktop.png)
 Mobile view:<br>
@@ -231,7 +232,7 @@ Mobile view:<br>
 
 #### Register
 
-The register page includes the registration form and an [image of accessories](/frontend/src/assets/reg_img.jpg) (such as a travel bag, camera lens, and shoes) on larger screens. This image conveys a 'let's go for an adventure' vibe, encouraging users to register and start their journey. Below the registration form, there is a link to the login page for users who have already registered.
+The register page includes the registration form and an image of accessories (such as a travel bag, camera lens, and shoes) on larger screens. This image conveys a 'let's go for an adventure' vibe, encouraging users to register and start their journey. Below the registration form, there is a link to the login page for users who have already registered.
 Desktop view:<br>
 ![desktop](/docs/page_screenshots/register-desktop.png)
 Mobile view:<br>
@@ -295,7 +296,9 @@ User can set up/edit their preferences from the profile page. Based on the prefe
 
 #### Add Preferences
 
-User will be directed to the add preferences page if they are setting up the preferences first time. Once the preferences created the user will be firected to the confirmaiton page.
+User will be directed to the add preferences page if they are setting up the preferences first time. Once the preferences created the user will be directed to the confirmaiton page.
+
+![create-preferences](/docs/page_screenshots/create-preferences.gif)
 
 #### Edit Preferences
 
@@ -347,6 +350,8 @@ In case the trip gets canceled, the user will have the option to delete it from 
 - Flight Search Integration: A feature will be added to allow users to search for flights directly within the platform, making trip planning more convenient.
 - Notifications for natural disasters: Users will receive notifications about natural disasters if they have an upcoming trip to the affected country.
 - Friendship and private messaging: Users can mark each other as friends and exchange private messages.
+- Create a separate folder in the profile where users can check their past trips.
+- From the map page, if a given country has X number of posts, clicking on the country will direct the user to the posts page, where the posts will be filtered for that country.
 
 ## Technologies, Languages, and Programs used
 
@@ -357,6 +362,7 @@ In case the trip gets canceled, the user will have the option to delete it from 
 - Python - The programming language used for the project backend.
 - Django REST Framework - Used for building the backend API.
 - Djano Allauth - Used for authentication, registration, login & password reset.
+- ESLint - For maintaining code quality and consistent formatting.
 - gunicorn - a Python WSGI HTTP Server
 - psycopg2 - allow us to connect with a postgres database
 - [React Simple Maps](https://www.react-simple-maps.io/) - react library to implement the Map page 
@@ -422,7 +428,7 @@ The project is deployed using Heroku. To deploy the project:
    15. To enable automatic deploys on Heroku, go to the deploy tab and click the connect to GitHub button in the deployment method section. Search for the projects repository and then click connect. Click enable automatic deploys at the bottom of the page.
 4. Django automatically sets a secret key when you create your project, however we shouldn't use this default key in our deployed version. We can use a random key generator to create a new SECRET_KEY which we can then add to our Heroku config vars.
 5. The following entries must be added to the Heroku config vars:
-   1. ALLOWED_HOST - the url of the deployed version with https://
+   1. ALLOWED_HOST - the url of the deployed version without https://
    2. CLIENT_ORIGIN - the full page url including https://
    3. CLOUDINARY_URL
    4. DATABASE_URL
@@ -510,7 +516,7 @@ The following issues were raised during my mid project meeting with my mentor:
 
 #### JavaScript
 
-JSX code was validated with ESLint. It helps to identify and fix issues in your JavaScript and JSX code. 
+JSX code was validated with ESLint. It helps to identify and fix issues in JavaScript and JSX code. 
 Errors due to the App.test file.
 ![eslint-error](/docs/testing/eslint/eslint-error.png)<br>
 No errors after the code commented out in test file.
@@ -601,7 +607,7 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 |  Posts Page  |  Pass  |  [posts-page](/docs/testing/wave/posts-page.png)  | 
 |  Profile  |  Pass  |  [profile](/docs/testing/wave/profile.png) | 
 |  Profiles  |  Pass  |  [profiles](/docs/testing/wave/profiles.png) | 
-|  Sign In  |  Pass  | [sing-in](/docs/testing/wave/sign-in.png)  | 
+|  Sign In  |  Pass  | [sign-in](/docs/testing/wave/sign-in.png)  | 
 |  Sign Up  |  Pass  | [sign-up](/docs/testing/wave/sign-up.png)  | 
 |  Trip  |  Pass  | [trip](/docs/testing/wave/trip.png)  | 
 |  Add Trip  |  Pass  | [add-trip](/docs/testing/wave/add-trip.png)  | 
@@ -628,12 +634,14 @@ Registration with existing username:<br>
 ![profile](/docs/testing/api_test/edit-profile-not-owner.png)
 
 - Ensured validation for invalid file formats when uploading a profile image or theme song.
-Theme Song:
-![theme_song](/docs/testing/api_test/api-change-theme-song.gif)<br>
-Profile image test for wrong format:<br>
-![profile_img](/docs/testing/api_test/api-profile-image.png)<br>
-Profile image change with valid file:<br>
-![profile_image](/docs/testing/api_test/api-profile-image-change.gif)<br>
+
+  Theme Song:
+
+  ![theme_song](/docs/testing/api_test/api-change-theme-song.gif)<br>
+  Profile image test for wrong format:<br>
+  ![profile_img](/docs/testing/api_test/api-profile-image.png)<br>
+  Profile image change with valid file:<br>
+  ![profile_image](/docs/testing/api_test/api-profile-image-change.gif)<br>
 - Testing the addition of visited countries could not be performed on the backend, as the API view returned the message: "Lists are not currently supported in HTML input." 
 ![visited_countries](/docs/testing/api_test/profile-visited-countries.png)<br>
 The experience level is updated dynamically when countries are added, and it cannot be changed manually by the user.<br>
@@ -649,8 +657,6 @@ The experience level is updated dynamically when countries are added, and it can
 - Attempted to create a post without a title, content, or image, and tested validation for wrong file formats and file sizes.
 Post with title:<br>
 ![create_post](/docs/testing/api_test/api-post-create-missing-content.gif)<br>
-Post without image:<br>
-![create_post2](/docs/testing/api_test/api-post-without-image.gif)<br>
 Post image size/format validation:<br>
 ![post_image](/docs/testing/api_test/api-post-image-size-validation.gif)<br>
 ![post_image_format](/docs/testing/api_test/api-post-image-wrong-file-format.gif)
@@ -708,9 +714,9 @@ Test the sign-up form to ensure that users cannot submit it with blank fields, c
 
 ![sign-up](/docs/testing/frontend_test/sign-up-validation.gif)
 
-##### Sing In
+##### Sign In
 
-Test the sign-in form to ensure that users cannot sing in with blank fields, invalid password or wrong username.
+Test the sign-in form to ensure that users cannot sign in with blank fields, invalid password or wrong username.
 
 ![sign-in](/docs/testing/frontend_test/sign-in-validation.gif)
 
@@ -826,16 +832,16 @@ Full testing was performed on the following devices:
 
 #### Bugs
 
-Bugs were tracked throughout the project as [GitHub issues](https://github.com/users/Tamas-Gavlider/projects/5/views/1).
+Bugs were tracked throughout the project as [GitHub issues](https://github.com/users/Tamas-Gavlider/projects/8).
 The following bugs were identified during the testing:
 
-- If a user visits a profile and the profile owner hasn't set any travel preferences yet, the "Add Travel Preferences" button will be visible. However, if the visitor clicks on it, an error message saying, "You already have preferences," will appear.
+- If a user visits a profile and the profile owner hasn't set any travel preferences yet, the "Add Travel Preferences" button will be visible. However, if the visitor clicks on it, an error message saying, "You already have preferences," will appear. This was caused by a logical error. Fixed by conditional statement.
 
-- The issue where the edit post could not be submitted without updating the image has been fixed, but the image was not made a required field.
+- The issue where the edit post could not be submitted without updating the image has been fixed, it was caused by the backend where the image was set as required field.
 
 - Cache was added to the Post model in the backend; however, it caused an issue on the frontend. When a post was created, it did not immediately appear on the posts page or the map. The cache was removed from the post views to fix this issue.
 
-- Visitors could not see the profile owner's preferences due to a logical error in the add travel preference file.
+- Visitors could not see the profile owner's preferences due to a logical error in the add travel preference file. Fixed by conditional statement.
 
 #### Known Bugs
 
@@ -867,12 +873,12 @@ The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.
 
 [StackOverFlow post](https://stackoverflow.com/questions/70850703/how-to-serialize-a-countryfield-from-django-countries) helped me to correctly use the serializes for Countryfield.
 
-Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
-
 [Stackoverflow post](https://stackoverflow.com/questions/66558497/how-to-use-country-name-as-default-instead-of-code-in-django-countries-package) and [GitHub post](https://github.com/SmileyChris/django-countries/blob/main/README.rst) provided guidance on how to use the country name instead of the code across all pages.
+
+Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
 
 ### Acknowledgments
 
-I would like to acknowledge my mentor, Julia Konovalova, for her valuable input and feedback.
+I would like to acknowledge my mentor, Julia Konovalova, for her valuable inputs and feedback.
 
 I also appreciate the valuable support from Code Institute tutors: Oisín Tohak, for helping configure JWT and REST Auth serializers, and Rebecca Tracey Timoney, for troubleshooting the bug where posts did not appear on the post page but only on the posts page.
