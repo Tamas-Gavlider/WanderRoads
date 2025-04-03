@@ -875,6 +875,8 @@ The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.
 
 [Stackoverflow post](https://stackoverflow.com/questions/66558497/how-to-use-country-name-as-default-instead-of-code-in-django-countries-package) and [GitHub post](https://github.com/SmileyChris/django-countries/blob/main/README.rst) provided guidance on how to use the country name instead of the code across all pages.
 
+[StackOverFlow post](https://stackoverflow.com/questions/31820389/can-to-representation-in-django-rest-framework-access-the-normal-fields) and [DRF documentation](https://www.django-rest-framework.org/api-guide/relations/) to ensure the frontend gets the correct values that match the travel preference choices.
+
 Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
 
 ### Acknowledgments
