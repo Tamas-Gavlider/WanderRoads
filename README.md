@@ -89,7 +89,7 @@ The Agile process emphasizes incremental development and user-focused delivery.
 
 ### Project Goals
 
-The primary goals of the app is to provide a platform for travelers to share experiences and learn about different cultures and countries. Allow users to post stories which are visible on an interactive world map, making travel memories more immersive. Suggest travel destinations based on user preferences using AI-driven recommendations.
+The primary goal of the app is to provide a platform for travelers to share experiences and learn about different cultures and countries. Allow users to post stories which are visible on an interactive world map, making travel memories more immersive. Suggest travel destinations based on user preferences using AI-driven recommendations.
 
 ### User Stories
 
@@ -159,7 +159,7 @@ Users page<br>
   - Profile Link
 - Comment Create Form - This component allows users to create and submit new comments on a post. 
 - Comment Edit Form - This component allows users to edit the content of their comments. 
-- Map - The component displays an interactive world map where users can view the number of posts made from different countries. The map is created using react-simple-maps and allows zooming and panning. The map is based on the world’s geography, fetched from an external URL (world-atlas data).
+- Map - The component displays an interactive world map where users can view the number of posts made from different countries. The map is created using react-simple-maps. The map is based on the world’s geography, fetched from an external URL (world-atlas data).
 - Post - The component is responsible for displaying individual posts on the platform. 
 - Post Create Form - The component is used to create a new post with a title, content, image, and country. 
 - Post Edit Form - This component allows users to edit an existing post. 
@@ -169,7 +169,7 @@ Users page<br>
 - Add Country - The component allows users to select and add a country to their visited countries list.
 - Change Theme Song - The component allows users to upload and update their profile's theme song.
 - Edit Status - The component allows users to update their status on their profile. 
-- Profile - The component is used to display a user's profile page, including personal information, posts, visited countries, travel preferences, and other editable fields.
+- Profile - The component is used to display a user's profile page, including personal information, posts, visited countries, travel preferences, recommendations and other editable fields.
 - Profile Image Change Form - The  component is a form used for updating the profile image of a user.
 - Profiles - The component is displaying a list of users, with search and sorting capabilities. 
 - Username Form - The component allows users to update their username. 
