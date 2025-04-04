@@ -91,21 +91,21 @@ const UserPasswordForm = () => {
                 {message}
               </Alert>
             ))}
-            <Col className="py-2 mx-auto text-center" >
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Wide}`}
-              onClick={() => history.goBack()}
-            >
-              cancel
-            </Button>
+            <Col className="py-2 mx-auto text-center">
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.Wide}`}
+                onClick={() => history.goBack()}
+              >
+                cancel
+              </Button>
             </Col>
-            <Col className="py-2 mx-auto text-center" >
-            <Button
-              type="submit"
-              className={`${btnStyles.Button} ${btnStyles.Wide}`}
-            >
-              save
-            </Button>
+            <Col className="py-2 mx-auto text-center">
+              <Button
+                type="submit"
+                className={`${btnStyles.Button} ${btnStyles.Wide}`}
+              >
+                save
+              </Button>
             </Col>
           </Form>
         </Container>

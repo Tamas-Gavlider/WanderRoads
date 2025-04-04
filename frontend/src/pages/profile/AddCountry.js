@@ -27,7 +27,6 @@ export default function AddCountry() {
     fetchProfile();
   }, [id]);
 
-  
   useEffect(() => {
     const fetchCountries = async () => {
       try {
@@ -63,7 +62,9 @@ export default function AddCountry() {
   };
 
   return (
-    <Container className={`d-flex flex-column justify-content-center ${styles.Container}`}>
+    <Container
+      className={`d-flex flex-column justify-content-center ${styles.Container}`}
+    >
       <Form.Group controlId="countrySelect">
         <Form.Label>Select a Country</Form.Label>
         <Form.Control

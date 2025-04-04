@@ -94,7 +94,9 @@ const SignUpForm = () => {
                 />
               </Form.Group>
               {errors.username?.map((message, idx) => (
-                <Alert key={idx} variant="warning">{message}</Alert>
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
               ))}
 
               <Form.Group controlId="password1" className="mt-3">
@@ -110,7 +112,9 @@ const SignUpForm = () => {
                 />
               </Form.Group>
               {errors.password1?.map((message, idx) => (
-                <Alert key={idx} variant="warning">{message}</Alert>
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
               ))}
 
               <Form.Group controlId="password2" className="mt-3">
@@ -126,7 +130,9 @@ const SignUpForm = () => {
                 />
               </Form.Group>
               {errors.password2?.map((message, idx) => (
-                <Alert key={idx} variant="warning">{message}</Alert>
+                <Alert key={idx} variant="warning">
+                  {message}
+                </Alert>
               ))}
 
               <Button
@@ -145,10 +151,18 @@ const SignUpForm = () => {
             </Form>
           </Container>
         </Col>
-        <Col md={6} className="d-none d-md-flex align-items-center justify-content-center">
-          <Image className={appStyles.FillerImageRegister} src={reg_img} fluid alt="signup" />
+        <Col
+          md={6}
+          className="d-none d-md-flex align-items-center justify-content-center"
+        >
+          <Image
+            className={appStyles.FillerImageRegister}
+            src={reg_img}
+            fluid
+            alt="signup"
+          />
         </Col>
-        <Container className='mt-3'>
+        <Container className="mt-3">
           <Link className={`${styles.Link} ${styles.SignInLink}`} to="/signin">
             Already have an account? Sign in
           </Link>

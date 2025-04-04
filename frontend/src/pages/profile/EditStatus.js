@@ -41,7 +41,7 @@ export default function EditStatus() {
           className={`mt-3 ${btnStyles.Button} ${styles.SaveButton}`}
           onClick={handleSave}
         >
-         Update Status
+          Update Status
         </Button>
       </div>
     </Container>

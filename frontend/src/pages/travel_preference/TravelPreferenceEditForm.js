@@ -4,7 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import styles from "../../styles/TravelPreferenceEditForm.module.css";
-import btnStyles from "../../styles/Button.module.css"
+import btnStyles from "../../styles/Button.module.css";
 
 export default function TravelPreferenceEditForm() {
   const [preferencesData, setPreferencesData] = useState({
@@ -174,5 +174,5 @@ export default function TravelPreferenceEditForm() {
         </Button>
       </Form>
     </div>
-  );
+  )
 }

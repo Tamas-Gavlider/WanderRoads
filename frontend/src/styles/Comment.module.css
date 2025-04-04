@@ -1,14 +1,14 @@
 .Owner {
-    font-weight: bold;
-    background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
-    margin-right: 8px;
-  }
-  
-  .Date {
-    font-weight: lighter;
-    background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
-  }
+  font-weight: bold;
+  background: linear-gradient(135deg, #ff0000, #00bae2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-right: 8px;
+}
+
+.Date {
+  font-weight: lighter;
+  background: linear-gradient(135deg, #ff0000, #00bae2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

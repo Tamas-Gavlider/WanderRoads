@@ -8,7 +8,7 @@ import Alert from "react-bootstrap/Alert";
 import Row from "react-bootstrap/Row";
 import Col from "react-bootstrap/Col";
 import Container from "react-bootstrap/Container";
-import Asset from '../../components/Asset';
+import Asset from "../../components/Asset";
 import appStyles from "../../App.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
@@ -33,7 +33,7 @@ export default function ProfileImageChangeForm() {
       } catch (err) {
         console.log(err);
       } finally {
-        setLoading(false); 
+        setLoading(false);
       }
     };
 
@@ -74,7 +74,7 @@ export default function ProfileImageChangeForm() {
     <Form onSubmit={handleSubmit}>
       {loading ? (
         <div className="text-center mt-5">
-          <Asset spinner/>
+          <Asset spinner />
         </div>
       ) : (
         <Row className="justify-content-center">
@@ -84,10 +84,18 @@ export default function ProfileImageChangeForm() {
             >
               <Form.Group className="text-center">
                 <figure>
-                  <Image className={appStyles.Image} src={profile.image} rounded alt="Profile" />
+                  <Image
+                    className={appStyles.Image}
+                    src={profile.image}
+                    rounded
+                    alt="Profile"
+                  />
                 </figure>
                 <div>
-                  <Form.Label className={`${btnStyles.Button} ${btnStyles.Wide} btn`} htmlFor="image-upload">
+                  <Form.Label
+                    className={`${btnStyles.Button} ${btnStyles.Wide} btn`}
+                    htmlFor="image-upload"
+                  >
                     Change the image
                   </Form.Label>
                 </div>
@@ -101,12 +109,18 @@ export default function ProfileImageChangeForm() {
                 />
 
                 <Col className="py-2 mx-auto text-center">
-                  <Button className={`${btnStyles.Button} ${btnStyles.Wide} btn`} type="submit">
+                  <Button
+                    className={`${btnStyles.Button} ${btnStyles.Wide} btn`}
+                    type="submit"
+                  >
                     Save
                   </Button>
                 </Col>
                 <Col className="py-2 mx-auto text-center">
-                  <Button className={`${btnStyles.Button} ${btnStyles.Wide} btn`} onClick={() => history.goBack()}>
+                  <Button
+                    className={`${btnStyles.Button} ${btnStyles.Wide} btn`}
+                    onClick={() => history.goBack()}
+                  >
                     Cancel
                   </Button>
                 </Col>

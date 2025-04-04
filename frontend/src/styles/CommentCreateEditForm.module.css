@@ -1,37 +1,37 @@
 .Form {
-    border: 2px solid #281713;
-    
-  }
+  border: 2px solid #281713;
 
+}
+
+.CommentFormContainer {
+  display: flex;
+  justify-content: center;
+  width: 100%;
+}
+
+.Button {
+  border: none;
+  color: #00bae2;
+  background-color: white;
+  border-radius: 100px;
+  padding: 4px 20px;
+  font-size: 25px;
+}
+
+.Button:hover {
+  color: #ff0000;
+}
+
+.Icon {
+  color: #00bae2;
+}
+
+.Hidden {
+  display: none;
+}
+
+@media (min-width: 992px) {
   .CommentFormContainer {
-    display: flex;
-    justify-content: center; 
-    width: 100%;
+    justify-content: flex-start;
   }
-  
-  .Button {
-    border: none;
-    color: #00bae2;
-    background-color: white;
-    border-radius: 100px;
-    padding: 4px 20px;
-    font-size: 25px;
-  }
-  
-  .Button:hover {
-    color: #ff0000;
-  }
-  
-  .Icon {
-    color: #00bae2;
-  }
-
-  .Hidden {
-    display: none;
-  }
-
-  @media (min-width: 992px) {
-    .CommentFormContainer {
-      justify-content: flex-start; 
-    }
-  }
+}

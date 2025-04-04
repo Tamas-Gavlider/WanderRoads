@@ -64,17 +64,17 @@ const UserList = () => {
           {profiles.map((user) => (
             <Col xs={6} sm={4} md={4} lg={3} key={user.id}>
               <Card className={`h-100 ${styles.UserCard}`}>
-              <Link to={`/profiles/${user.id}`} className={styles.User}>
-                <Card.Img
-                  variant="top"
-                  src={user.image}
-                  alt={`${user.owner}'s profile picture`}
-                  loading="lazy"
-                />
+                <Link to={`/profiles/${user.id}`} className={styles.User}>
+                  <Card.Img
+                    variant="top"
+                    src={user.image}
+                    alt={`${user.owner}'s profile picture`}
+                    loading="lazy"
+                  />
                 </Link>
                 <Card.Body>
                   <Card.Title className="d-flex align-items-center gap-2">
-                      <span>{user.owner}</span>
+                    <span>{user.owner}</span>
                   </Card.Title>
                   <Card.Text>
                     <p className={styles.Status}>{user.status}</p>

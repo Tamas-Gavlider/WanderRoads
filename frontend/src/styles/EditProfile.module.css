@@ -1,40 +1,40 @@
 .Audio:hover {
-    color: #ff0000;
+  color: #ff0000;
 }
 
 .Delete:hover {
-    background-color: #00bae2;
+  background-color: #00bae2;
 }
 
 .Status {
-    padding-bottom: 15px;
+  padding-bottom: 15px;
 }
 
 .ThemeSongContainer {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    justify-content: center; 
-    height: 80vh; 
-    background: white; 
-    padding: 4rem;
-    margin-top: 5px;
-    border-radius: 10px;
-    box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
-  }
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 80vh;
+  background: white;
+  padding: 4rem;
+  margin-top: 5px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.2);
+}
 
-  .MoodDescription {
-    font-size: 1.2rem;
-    font-weight: 600;
-    background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
-    margin-bottom: 1rem; 
-    text-align: center;
-  }
+.MoodDescription {
+  font-size: 1.2rem;
+  font-weight: 600;
+  background: linear-gradient(135deg, #ff0000, #00bae2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-bottom: 1rem;
+  text-align: center;
+}
 
-  .Heading {
-    background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
-  }
+.Heading {
+  background: linear-gradient(135deg, #ff0000, #00bae2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}

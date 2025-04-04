@@ -1,13 +1,13 @@
 .DropdownItem {
-    display: inline-block;
-    max-width: 40%;
-    padding: 0px;
-  }
-  
+  display: inline-block;
+  max-width: 40%;
+  padding: 0px;
+}
+
 .Icon {
   color: #ff0000;
   padding-right: 5px;
-  font-size:larger;
+  font-size: larger;
 }
 
 .Icon:hover {

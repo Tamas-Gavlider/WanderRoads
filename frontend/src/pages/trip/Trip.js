@@ -6,7 +6,7 @@ import { Card, Container, Row, Col, Button, Modal } from "react-bootstrap";
 import styles from "../../styles/Trip.module.css";
 import { axiosRes } from "../../api/axiosDefaults";
 import { MoreDropdown } from "../../components/MoreDropdown";
-import Asset from '../../components/Asset';
+import Asset from "../../components/Asset";
 
 export default function Trip() {
   const currentUser = useCurrentUser();
@@ -21,17 +21,23 @@ export default function Trip() {
         .get("/trip/")
         .then(async (response) => {
           console.log("Trip: ", response.data);
-  
+
           // Filter out expired trips
-          const validTrips = response.data.results.filter((t) => t.days_until_trip >= 0);
-  
-          // Sort trips by start_date 
-          const sortedTrips = validTrips.sort((a, b) => new Date(a.start_date) - new Date(b.start_date));
-  
-          setTrip({ ...response.data, results: sortedTrips }); 
-  
+          const validTrips = response.data.results.filter(
+            (t) => t.days_until_trip >= 0
+          );
+
+          // Sort trips by start_date
+          const sortedTrips = validTrips.sort(
+            (a, b) => new Date(a.start_date) - new Date(b.start_date)
+          );
+
+          setTrip({ ...response.data, results: sortedTrips });
+
           // Automatically delete expired trips
-          const expiredTrips = response.data.results.filter((t) => t.days_until_trip < 0);
+          const expiredTrips = response.data.results.filter(
+            (t) => t.days_until_trip < 0
+          );
           for (let trip of expiredTrips) {
             try {
               await axiosRes.delete(`/trip/${trip.id}`);
@@ -51,13 +57,13 @@ export default function Trip() {
     history.push(`/trip/${tripId}/edit`);
   };
 
-  // Step 1: Show confirmation modal when delete is clicked
+  // Show confirmation modal when delete is clicked
   const confirmDelete = (tripId) => {
     setTripToDelete(tripId);
     setShowModal(true);
   };
 
-  // Step 2: Perform deletion if user confirms
+  // Perform deletion if user confirms
   const handleDelete = async () => {
     if (!tripToDelete) return;
 
@@ -114,7 +120,7 @@ export default function Trip() {
           ))}
         </Row>
       ) : (
-        <Asset spinner message="Searching for trips..."/>
+        <Asset spinner message="Searching for trips..." />
       )}
 
       <Modal show={showModal} onHide={() => setShowModal(false)} centered>
@@ -131,7 +137,6 @@ export default function Trip() {
           </Button>
         </Modal.Footer>
       </Modal>
-    
     </Container>
   );
 }

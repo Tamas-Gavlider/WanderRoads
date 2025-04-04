@@ -55,7 +55,10 @@ export default function ChangeThemeSong() {
       <h2 className={styles.Heading}>🎶 Change Your Theme Song</h2>
 
       <div className={styles.MoodDescription}>
-        <p>Let others know your mood – add your favorite music theme song to your profile!</p>
+        <p>
+          Let others know your mood – add your favorite music theme song to your
+          profile!
+        </p>
       </div>
 
       <div className={styles.SongCard}>
@@ -63,8 +66,12 @@ export default function ChangeThemeSong() {
           <Form.Label className={styles.UploadLabel}>
             <i className="fa-solid fa-music"></i> Upload a New Theme Song
           </Form.Label>
-          <Form.File accept="audio/mpeg" onChange={handleThemeSongUpload} className={styles.UploadButton} />
-          
+          <Form.File
+            accept="audio/mpeg"
+            onChange={handleThemeSongUpload}
+            className={styles.UploadButton}
+          />
+
           {themeSong && (
             <div className={styles.SongPreview}>
               <p>

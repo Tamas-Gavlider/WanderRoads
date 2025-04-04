@@ -15,6 +15,6 @@
 
 .Active {
     background: linear-gradient(to right top, #00bae2, #40a3ff, #c173ef, #ff0093, #ff0000);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }

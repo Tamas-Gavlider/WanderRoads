@@ -536,6 +536,7 @@ No errors after the code commented out in test file.
 |   Post-Serializers  |  Pass  |  [post-serializers](/docs/testing/pep8/post-serializers.png)    |
 |     Post-Urls   |  Pass  |    [post-urls](/docs/testing/pep8/post-urls.png)        |
 |   Post-Views    |  Pass  |   [post-views](/docs/testing/pep8/post-views.png)       |
+|   Post-Tests    |  Pass  |   [post-views](/docs/testing/pep8/post-tests.png)       |
 |    Profile-Admin   |  Pass  |  [profile-admin](/docs/testing/pep8/profile-admin.png)         |
 |   Profile-Models     |  Pass  |   [profile-models](/docs/testing/pep8/profile-models.png)     |
 |    Profile-Tests   |  Pass  |   [post-tests](/docs/testing/pep8/profile-tests.png)       |
@@ -546,11 +547,13 @@ No errors after the code commented out in test file.
 | Travel-Pref-Models |  Pass  |   [travel-pref-models](/docs/testing/pep8/travel-pref-models.png)   |
 | Travel-Pref-Serializers  |  Pass  |   [travel-pref-serializers](/docs/testing/pep8/travel-pref-serializers.png)   |
 |  Travel-Pref-Views |  Pass  | [travel-pref-views](/docs/testing/pep8/travel-pref-views.png)   |
+|  Travel-Pref-Tests |  Pass  | [travel-pref-views](/docs/testing/pep8/travel-pref-tests.png)   |
 |   Recommendation-Models   |  Pass  |    [recommendation-models](/docs/testing/pep8/travel-recommendation-models.png)    |
 |   Recommendation-Recommendations     |  Pass  |    [recommendation-recommendations](/docs/testing/pep8/travel-recommendation-recommendations.png)      |
 |  Recommendation-Serializers    |  Pass  | [recommendation-serializers](/docs/testing/pep8/travel-recommendation-serializers.png)       |
 |   Recommendation-Urls     |  Pass  |   [recommendation-urls](/docs/testing/pep8/travel-recommendation-urls.png)       |
 |   Recommendation-Views   |  Pass  |    [recommendation-views](/docs/testing/pep8/travel-recommendation-views.png)    |
+|   Recommendation-Test     |  Pass  |   [recommendation-urls](/docs/testing/pep8/recommendation-test.png)       |
 |  Trip-Models      |  Pass  |   [trip-models](/docs/testing/pep8/trip-models.png)       |
 |   Trip-Serializers   |  Pass  |   [trip-serializers](/docs/testing/pep8/trip-serializers.png)     |
 |    Trip-Urls    |  Pass  |   [trip-urls](/docs/testing/pep8/trip-urls.png)       |

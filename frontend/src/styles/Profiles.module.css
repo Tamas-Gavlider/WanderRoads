@@ -5,15 +5,15 @@
 
 .UserCard {
     margin-top: 10px;
-    box-shadow: 4px 8px 4px -2px #ccc,  0px 0px 6px -2px #ccc;
+    box-shadow: 4px 8px 4px -2px #ccc, 0px 0px 6px -2px #ccc;
 }
 
 .Status {
     font-style: italic;
     background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
-  }
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+}
 
 .SearchField {
     width: 42%;

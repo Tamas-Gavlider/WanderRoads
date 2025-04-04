@@ -1,27 +1,26 @@
 .Container {
-    display: inline-block; 
-  }
-  
-  .Hidden {
-    display: none;
-  }
-  
-  .Button {
-    background: none; 
-    border: none;      
-    padding: 0;        
-    cursor: pointer;   
-    display: inline-flex; 
-    align-items: center;
-  }
-  
-  .Button i {
-    color: #00bae2; 
-    font-size: 2rem; 
-    transition: color 0.3s ease; 
-  }
-  
-  .Button:hover i {
-    color: #ff0000; 
-  }
-  
+  display: inline-block;
+}
+
+.Hidden {
+  display: none;
+}
+
+.Button {
+  background: none;
+  border: none;
+  padding: 0;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+}
+
+.Button i {
+  color: #00bae2;
+  font-size: 2rem;
+  transition: color 0.3s ease;
+}
+
+.Button:hover i {
+  color: #ff0000;
+}

@@ -1,14 +1,17 @@
 .Row {
-    padding: 5px;
-  }
-.Destination {
-    margin-right: 20px;
+  padding: 5px;
 }
 
-  @media (max-width: 991px) {
-    .Post, .Comment {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-    }
+.Destination {
+  margin-right: 20px;
+}
+
+@media (max-width: 991px) {
+
+  .Post,
+  .Comment {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
   }
+}

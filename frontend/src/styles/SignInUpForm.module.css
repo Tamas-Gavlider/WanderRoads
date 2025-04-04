@@ -1,6 +1,7 @@
 .Row {
   height: calc(100vh - 81px);
 }
+
 .Input {
   background: #ffffff;
   border: 1px solid black !important;
@@ -42,8 +43,9 @@
   height: 375px;
 }
 
- /* Smaller Screen Optimization */
- @media (max-width: 768px) { 
+/* Smaller Screen Optimization */
+@media (max-width: 768px) {
+
   /* Moves the sign in Link closer to the reg form */
   .SignInLink {
     margin-top: -80px;

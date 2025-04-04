@@ -32,7 +32,7 @@ export default function Map() {
     <div className={styles.MapContainer}>
       <h3 className={styles.Header}>See Where Users Are Posting From</h3>
       <ComposableMap
-      tabIndex={-1}
+        tabIndex={-1}
         projectionConfig={{
           center: [0, 0],
           scale: 150,

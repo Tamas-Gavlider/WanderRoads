@@ -1,7 +1,7 @@
 .PreferenceItem {
     background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
 }
 
 .EditIcon {
@@ -9,6 +9,6 @@
 }
 
 .EditIcon:hover {
-    cursor:pointer;
-    color:#00bae2;
+    cursor: pointer;
+    color: #00bae2;
 }

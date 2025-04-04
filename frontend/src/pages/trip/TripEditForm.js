@@ -42,7 +42,9 @@ export default function TripEditForm() {
         const { data } = await axiosReq.get(`/trip/${id}`);
         console.log("Fetched Trip Data:", data);
 
-        const matchingCountry = countries.find((c) => c.name === data.destination);
+        const matchingCountry = countries.find(
+          (c) => c.name === data.destination
+        );
         const countryCode = matchingCountry ? matchingCountry.code : "";
 
         setTripData({
@@ -62,32 +64,44 @@ export default function TripEditForm() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     setTripData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  
+
     setErrors((prevErrors) => {
       const newErrors = { ...prevErrors };
-  
+
       if (name === "start_date" || name === "end_date") {
-        const updatedStartDate = name === "start_date" ? new Date(value) : new Date(tripData.start_date);
-        const updatedEndDate = name === "end_date" ? new Date(value) : new Date(tripData.end_date);
-  
-        if (updatedStartDate && updatedEndDate && updatedEndDate < updatedStartDate) {
+        const updatedStartDate =
+          name === "start_date"
+            ? new Date(value)
+            : new Date(tripData.start_date);
+        const updatedEndDate =
+          name === "end_date" ? new Date(value) : new Date(tripData.end_date);
+
+        if (
+          updatedStartDate &&
+          updatedEndDate &&
+          updatedEndDate < updatedStartDate
+        ) {
           newErrors.end_date = "End date cannot be earlier than start date.";
         } else {
           delete newErrors.end_date;
         }
-  
-        if (updatedStartDate && updatedEndDate && updatedStartDate > updatedEndDate) {
+
+        if (
+          updatedStartDate &&
+          updatedEndDate &&
+          updatedStartDate > updatedEndDate
+        ) {
           newErrors.start_date = "Start date cannot be later than end date.";
         } else {
           delete newErrors.start_date;
         }
       }
-  
+
       return newErrors;
     });
   };
@@ -96,7 +110,10 @@ export default function TripEditForm() {
     event.preventDefault();
 
     if (new Date(tripData.end_date) < new Date(tripData.start_date)) {
-      setErrors((prev) => ({ ...prev, end_date: "End date cannot be earlier than start date." }));
+      setErrors((prev) => ({
+        ...prev,
+        end_date: "End date cannot be earlier than start date.",
+      }));
       return;
     }
 
@@ -185,10 +202,16 @@ export default function TripEditForm() {
 
         <Row className="mb-3">
           <Col xs={12} className="d-flex justify-content-between">
-            <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} onClick={() => history.goBack()}>
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
+              onClick={() => history.goBack()}
+            >
               Cancel
             </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} type="submit">
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
+              type="submit"
+            >
               Save
             </Button>
           </Col>

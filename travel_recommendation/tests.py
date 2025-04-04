@@ -7,7 +7,7 @@ from .recommendation import generate_recommendation
 
 # Create your tests here.
 
-class TravelPreferenceTests(TestCase):
+class TravelRecommendationTests(TestCase):
 
     def setUp(self):
         """Create a user for testing."""

@@ -1,69 +1,64 @@
-
 .StatusContainer {
-    min-height: 50vh;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    padding: 20px;
-    background: white; 
-  }
-  
-  .StatusCard {
-    background: white;
-    border-radius: 15px;
-    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
-    padding: 30px;
-    width: 100%;
-    max-width: 500px;
-    text-align: center;
-    animation: fadeIn 0.3s ease-in-out;
-  }
-  
- 
-  .StatusHeading {
-    font-size: 24px;
-    font-weight: bold;
-    background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
-    display: inline-block;
-    margin-bottom: 15px;
-  }
-  
+  min-height: 50vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 20px;
+  background: white;
+}
 
-  .StatusInput {
-    width: 100%;
-    padding: 12px;
-    border-radius: 8px;
-    border: 2px solid #00bae2; 
-    font-size: 16px;
-    transition: all 0.2s ease-in-out;
-  }
-  
-  .StatusInput:focus {
-    border-color: #ff0000; /* Red focus color */
-    box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
-  }
-  
+.StatusCard {
+  background: white;
+  border-radius: 15px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.15);
+  padding: 30px;
+  width: 100%;
+  max-width: 500px;
+  text-align: center;
+  animation: fadeIn 0.3s ease-in-out;
+}
 
-  .SaveButton {
-    background: linear-gradient(135deg, #ff0000, #00bae2);
-    border: none;
-    border-radius: 8px;
-    padding: 12px 18px;
-    font-size: 16px;
-    font-weight: bold;
-    color: white;
-    cursor: pointer;
-    margin-top: 15px;
-    width: 100%;
-    box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
-    transition: all 0.3s ease-in-out;
-  }
-  
-  .SaveButton:hover {
-    background: linear-gradient(135deg, #d00000, #009ad6); /* Darker hover effect */
-    transform: translateY(-2px);
-  }
-  
-  
+.StatusHeading {
+  font-size: 24px;
+  font-weight: bold;
+  background: linear-gradient(135deg, #ff0000, #00bae2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  display: inline-block;
+  margin-bottom: 15px;
+}
+
+.StatusInput {
+  width: 100%;
+  padding: 12px;
+  border-radius: 8px;
+  border: 2px solid #00bae2;
+  font-size: 16px;
+  transition: all 0.2s ease-in-out;
+}
+
+.StatusInput:focus {
+  border-color: #ff0000;
+  box-shadow: 0 0 5px rgba(255, 0, 0, 0.5);
+}
+
+.SaveButton {
+  background: linear-gradient(135deg, #ff0000, #00bae2);
+  border: none;
+  border-radius: 8px;
+  padding: 12px 18px;
+  font-size: 16px;
+  font-weight: bold;
+  color: white;
+  cursor: pointer;
+  margin-top: 15px;
+  width: 100%;
+  box-shadow: 0 4px 10px rgba(255, 0, 0, 0.2);
+  transition: all 0.3s ease-in-out;
+}
+
+.SaveButton:hover {
+  background: linear-gradient(135deg, #d00000, #009ad6);
+  /* Darker hover effect */
+  transform: translateY(-2px);
+}

@@ -2,7 +2,7 @@ import React, { useState, useEffect, useMemo } from "react";
 import axios from "axios";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { useHistory, useParams } from "react-router-dom";
-import BtnStyle from '../../styles/Button.module.css';
+import BtnStyle from "../../styles/Button.module.css";
 
 export default function AddTravelPreferences() {
   const currentUser = useCurrentUser();
@@ -19,10 +19,10 @@ export default function AddTravelPreferences() {
     travel_style: "ANY",
     duration: "ANY",
   });
-  
+
   const { id } = useParams();
   const [profile, setProfile] = useState(null);
- 
+
   useEffect(() => {
     axios
       .get(`/profiles/${id}`)
@@ -34,7 +34,6 @@ export default function AddTravelPreferences() {
     () => currentUser?.username === profile?.owner,
     [currentUser, profile?.owner]
   );
-
 
   useEffect(() => {
     if (currentUser?.pk) {
@@ -80,12 +79,19 @@ export default function AddTravelPreferences() {
 
   return (
     <div className="text-center">
-      { isOwner ? 
-      (<form onSubmit={handleSubmit}>
-        <button type="submit" disabled={isSubmitting} className={BtnStyle.Button}>
-          Add your Travel Preferences
-        </button>
-      </form> ) : (<></>)}
+      {isOwner ? (
+        <form onSubmit={handleSubmit}>
+          <button
+            type="submit"
+            disabled={isSubmitting}
+            className={BtnStyle.Button}
+          >
+            Add your Travel Preferences
+          </button>
+        </form>
+      ) : (
+        <></>
+      )}
     </div>
   );
 }

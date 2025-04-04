@@ -6,9 +6,9 @@
 
 .Countries {
   background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
-    border: 1px solid;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  border: 1px solid;
 }
 
 .HeroSection {
@@ -54,9 +54,9 @@
   align-items: center;
   font-weight: 800;
   font-style: italic;
-  background: linear-gradient(135deg, white,  #00bae2);
-    -webkit-background-clip: text;
-    -webkit-text-fill-color: transparent;
+  background: linear-gradient(135deg, white, #00bae2);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .Status {
@@ -90,10 +90,10 @@
 .EditIcon {
   text-decoration: none;
   background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
 }
 
 .EditIcon:hover {
-   color: #ff0000;
+  color: #ff0000;
 }

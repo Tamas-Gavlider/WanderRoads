@@ -67,16 +67,16 @@ function SignInForm() {
 
   const handleSubmit = async (event) => {
     event.preventDefault();
-  
+
     const newErrors = {};
     if (!username.trim()) newErrors.username = ["Username cannot be empty."];
     if (!password.trim()) newErrors.password = ["Password cannot be empty."];
-  
+
     if (Object.keys(newErrors).length > 0) {
       setErrors(newErrors);
       return;
     }
-  
+
     try {
       const { data } = await axios.post("/dj-rest-auth/login/", signInData);
       setCurrentUser(data.user);
@@ -85,19 +85,22 @@ function SignInForm() {
     } catch (err) {
       if (err.response?.data) {
         const formattedErrors = { ...err.response.data };
-  
-        if (formattedErrors.username?.includes("This field may not be blank.")) {
+
+        if (
+          formattedErrors.username?.includes("This field may not be blank.")
+        ) {
           formattedErrors.username = ["Username cannot be empty."];
         }
-        if (formattedErrors.password?.includes("This field may not be blank.")) {
+        if (
+          formattedErrors.password?.includes("This field may not be blank.")
+        ) {
           formattedErrors.password = ["Password cannot be empty."];
         }
-  
+
         setErrors(formattedErrors);
       }
     }
   };
-  
 
   return (
     <Container fluid>

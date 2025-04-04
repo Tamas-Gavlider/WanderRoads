@@ -149,7 +149,7 @@ export default function TravelPreferences({ profileOwner }) {
         </div>
       ) : (
         <div>
-        <AddTravelPreferences />
+          <AddTravelPreferences />
         </div>
       )}
     </div>

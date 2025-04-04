@@ -29,11 +29,13 @@ export default function TravelRecommendation() {
 
       {recommendation && recommendation.results.length > 0 ? (
         <ListGroup horizontal="md" className={styles.ListContainer}>
-          {recommendation.results[0].recommended_destination.map((destination, index) => (
-            <ListGroup.Item key={index} className={styles.ListItem}>
-              {capitalize(destination)}
-            </ListGroup.Item>
-          ))}
+          {recommendation.results[0].recommended_destination.map(
+            (destination, index) => (
+              <ListGroup.Item key={index} className={styles.ListItem}>
+                {capitalize(destination)}
+              </ListGroup.Item>
+            )
+          )}
         </ListGroup>
       ) : (
         <p className={styles.NoData}>No recommendations available.</p>

@@ -8,7 +8,7 @@
   margin-right: 2px;
   min-width: 20px;
   background-color: #00bae2 !important;
-  color: #281713 !important; 
+  color: #281713 !important;
   text-decoration: none;
 }
 
@@ -32,13 +32,12 @@
 }
 
 .Button:disabled {
-  background-color: #d3d3d3; 
-  color: #888; 
-  cursor: not-allowed; 
+  background-color: #d3d3d3;
+  color: #888;
+  cursor: not-allowed;
 }
 
 .Wide {
   padding: 10px 50px;
   width: 100%;
 }
-

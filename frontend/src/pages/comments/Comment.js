@@ -32,17 +32,19 @@ const Comment = (props) => {
 
       if (setPost) {
         setPost((prevPost) => ({
-          results: prevPost?.results?.map((post) => ({
-            ...post,
-            comments_count: Math.max(0, post.comments_count - 1),
-          })) || [],
+          results:
+            prevPost?.results?.map((post) => ({
+              ...post,
+              comments_count: Math.max(0, post.comments_count - 1),
+            })) || [],
         }));
       }
 
       if (setComments) {
         setComments((prevComments) => ({
           ...prevComments,
-          results: prevComments?.results?.filter((comment) => comment.id !== id) || [],
+          results:
+            prevComments?.results?.filter((comment) => comment.id !== id) || [],
         }));
       }
 

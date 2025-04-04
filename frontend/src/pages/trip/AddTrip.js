@@ -34,26 +34,34 @@ export default function AddTrip() {
 
   const handleChange = (event) => {
     const { name, value } = event.target;
-  
+
     setTripData((prev) => ({
       ...prev,
       [name]: value,
     }));
-  
+
     setErrors((prevErrors) => {
       const newErrors = { ...prevErrors };
-  
+
       if (name === "start_date" || name === "end_date") {
-        const updatedStartDate = name === "start_date" ? new Date(value) : new Date(tripData.start_date);
-        const updatedEndDate = name === "end_date" ? new Date(value) : new Date(tripData.end_date);
-  
-        if (updatedStartDate && updatedEndDate && updatedEndDate < updatedStartDate) {
+        const updatedStartDate =
+          name === "start_date"
+            ? new Date(value)
+            : new Date(tripData.start_date);
+        const updatedEndDate =
+          name === "end_date" ? new Date(value) : new Date(tripData.end_date);
+
+        if (
+          updatedStartDate &&
+          updatedEndDate &&
+          updatedEndDate < updatedStartDate
+        ) {
           newErrors.end_date = ["End date cannot be earlier than start date."];
         } else {
           delete newErrors.end_date;
         }
       }
-  
+
       return newErrors;
     });
   };
@@ -113,10 +121,10 @@ export default function AddTrip() {
               />
             </Form.Group>
             {errors.start_date?.map((message, idx) => (
-                <Alert key={idx} variant="warning">
-                  {message}
-                </Alert>
-              ))}
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
           </Col>
 
           <Col xs={12} md={6} lg={6}>
@@ -129,11 +137,11 @@ export default function AddTrip() {
                 onChange={handleChange}
               />
             </Form.Group>
-             {errors.end_date?.map((message, idx) => (
-                            <Alert key={idx} variant="warning">
-                              {message}
-                            </Alert>
-                          ))}
+            {errors.end_date?.map((message, idx) => (
+              <Alert key={idx} variant="warning">
+                {message}
+              </Alert>
+            ))}
           </Col>
 
           <Col xs={12} md={6} lg={6}>
@@ -150,14 +158,22 @@ export default function AddTrip() {
         </Row>
 
         <Row className="mb-3">
-          <Col xs={12} md={6} lg={12} className="d-flex justify-content-between">
+          <Col
+            xs={12}
+            md={6}
+            lg={12}
+            className="d-flex justify-content-between"
+          >
             <Button
               className={`${btnStyles.Button} ${btnStyles.Wide}`}
               onClick={() => history.goBack()}
             >
               Cancel
             </Button>
-            <Button className={`${btnStyles.Button} ${btnStyles.Wide}`} type="submit">
+            <Button
+              className={`${btnStyles.Button} ${btnStyles.Wide}`}
+              type="submit"
+            >
               Create
             </Button>
           </Col>

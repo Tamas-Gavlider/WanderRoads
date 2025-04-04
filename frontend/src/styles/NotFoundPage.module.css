@@ -3,24 +3,23 @@
     font-family: "Kranky", serif;
     padding-top: 20px;
     background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
-    
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
+
   }
 
   .Text {
     margin-top: 70px;
     font-family: "Kranky", serif;
-    font-size: 10px; 
+    font-size: 10px;
     background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  
+
   .SubText {
     font-size: 20px;
     background: linear-gradient(135deg, #ff0000, #00bae2);
-    -webkit-background-clip: text; 
-    -webkit-text-fill-color: transparent;  
+    -webkit-background-clip: text;
+    -webkit-text-fill-color: transparent;
   }
-  

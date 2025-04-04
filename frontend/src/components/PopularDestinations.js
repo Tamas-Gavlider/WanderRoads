@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { axiosReq } from "../api/axiosDefaults";
-import 'bootstrap/dist/css/bootstrap.min.css';
-import { Accordion, Card, Button } from 'react-bootstrap';
-import styles from '../styles/PopularDestinations.module.css'
+import "bootstrap/dist/css/bootstrap.min.css";
+import { Accordion, Card, Button } from "react-bootstrap";
+import styles from "../styles/PopularDestinations.module.css";
 import Loading from "./Loading";
 
 const PopularDestinations = () => {
@@ -34,24 +34,36 @@ const PopularDestinations = () => {
 
   return (
     <div className={`container my-4 ${styles.Container}`}>
-      <h3 className={`text-center text-danger mb-4 ${styles.Header}`}>Top Countries on WanderRoads</h3>
+      <h3 className={`text-center text-danger mb-4 ${styles.Header}`}>
+        Top Countries on WanderRoads
+      </h3>
       <Accordion>
         {popularDestinations.map((dest, index) => {
-          const title = index === 0 ? "Check the most popular" :
-                        index === 1 ? "Check the second most popular" :
-                        index === 2 ? `Check the third most popular`:
-                         `Check the ${index + 1}th most popular`
+          const title =
+            index === 0
+              ? "Check the most popular"
+              : index === 1
+              ? "Check the second most popular"
+              : index === 2
+              ? `Check the third most popular`
+              : `Check the ${index + 1}th most popular`;
 
           return (
             <Card key={index} className={styles.Card}>
               <Card.Header className={styles.Accordion}>
-                <Accordion.Toggle as={Button} variant="link" eventKey={String(index)} className={styles.Title}>
+                <Accordion.Toggle
+                  as={Button}
+                  variant="link"
+                  eventKey={String(index)}
+                  className={styles.Title}
+                >
                   {title} country
                 </Accordion.Toggle>
               </Card.Header>
               <Accordion.Collapse eventKey={String(index)}>
                 <Card.Body className={styles.CardBody}>
-                {dest.count} {dest.count > 1 ? "posts" : "post"} from {dest.country}
+                  {dest.count} {dest.count > 1 ? "posts" : "post"} from{" "}
+                  {dest.country}
                 </Card.Body>
               </Accordion.Collapse>
             </Card>

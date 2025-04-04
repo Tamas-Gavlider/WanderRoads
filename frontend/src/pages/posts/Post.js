@@ -44,10 +44,8 @@ const Post = (props) => {
     }
   };
 
- 
   const handleShowDeleteModal = () => setShowDeleteModal(true);
 
- 
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
 
   return (
@@ -73,11 +71,20 @@ const Post = (props) => {
           </Media>
         </Card.Body>
         <Link to={`/posts/${id}/`}>
-          <Card.Img src={image} alt={title} loading="lazy" className={styles.Image} />
+          <Card.Img
+            src={image}
+            alt={title}
+            loading="lazy"
+            className={styles.Image}
+          />
         </Link>
         <Card.Body>
           {title && <Card.Title className="text-center">{title}</Card.Title>}
-          {content && <Card.Text><p className={styles.Content}>{content}</p></Card.Text>}
+          {content && (
+            <Card.Text>
+              <p className={styles.Content}>{content}</p>
+            </Card.Text>
+          )}
           <Link to={`/posts/${id}/`} aria-label="Comment this post">
             <i className={`far fa-comments ${iconStyles.Icon}`} />
             <p className={styles.Hidden}>hidden text</p>

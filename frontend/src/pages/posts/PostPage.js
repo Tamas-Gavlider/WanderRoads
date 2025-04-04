@@ -4,7 +4,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useCurrentUser } from "../../contexts/CurrentUserContext";
 import { Col, Row, Container } from "react-bootstrap";
 import appStyles from "../../App.module.css";
-import styles from '../../styles/PostPage.module.css';
+import styles from "../../styles/PostPage.module.css";
 import Post from "./Post";
 import Comment from "../comments/Comment";
 import CommentCreateForm from "../comments/CommentCreateForm";
@@ -73,7 +73,9 @@ function PostPage() {
               ))}
             </InfiniteScroll>
           ) : currentUser ? (
-            <span className={styles.Comment}>No comments yet, be the first to comment!</span>
+            <span className={styles.Comment}>
+              No comments yet, be the first to comment!
+            </span>
           ) : (
             <span className={styles.Comment}>No comments... yet</span>
           )}

@@ -13,7 +13,6 @@ import useClickOutsideToggle from "../hooks/useClickOutsideToggle";
 import Avatar from "./Avatar";
 import { removeTokenTimestamp } from "../utils/utils";
 
-
 const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
@@ -35,7 +34,7 @@ const NavBar = () => {
   const loggedInLinks = (
     <>
       <NavLink
-      exact
+        exact
         to="/"
         className={styles.NavLink}
         activeClassName={styles.Active}
@@ -80,10 +79,7 @@ const NavBar = () => {
       >
         {currentUser?.username}
       </NavLink>
-      <Avatar
-        src={currentUser?.profile_image}
-        height={45}
-      />
+      <Avatar src={currentUser?.profile_image} height={45} />
     </>
   );
   const loggedOutLinks = (

@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import styles from "../styles/Avatar.module.css";
-import Asset from "./Asset"; 
+import Asset from "./Asset";
 
 const Avatar = ({ src, height = 45, text }) => {
   const [loading, setLoading] = useState(true);
