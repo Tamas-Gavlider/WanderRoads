@@ -28,14 +28,14 @@ const Profile = () => {
     axios
       .get(`/profiles/${id}`)
       .then((response) => setProfile(response.data))
-      .catch((error) => console.error("Error fetching profile:", error));
+      .catch(() => {/* Silently ignore the error or handle it silently */} );
   }, [id]);
-
+  // Check if the current user is the owner of this profile
   const isOwner = useMemo(
-    () => currentUser?.username === profile?.owner,
-    [currentUser, profile?.owner]
+    () => currentUser?.username === profile?.owner, // Compare the current user's username with the profile owner
+    [currentUser, profile?.owner] // Recalculate whenever currentUser or profile changes
   );
-
+  // Render the list of visited countries for the user, or display a message if none are added
   const visitedCountriesList = useMemo(
     () =>
       profile?.visited_countries?.length ? (
@@ -59,21 +59,24 @@ const Profile = () => {
       ) : (
         <p>No countries added yet.</p>
       ),
-    [profile?.visited_countries]
+    [profile?.visited_countries] // Change whenever the visited countries list changes
   );
-
+  // If the profile data is not yet loaded, show a loading spinner
   if (!profile) {
     return <Asset spinner />;
   }
 
   return (
     <Container className={styles.ProfileContainer}>
+      {/* Render the profile header section with the background image, profile picture, and theme song */}
       <div
         className={styles.HeroSection}
         style={{ backgroundImage: `url(${backgroundImageUrl})` }}
       >
-        <div className={styles.Overlay}></div>
+        <div className={styles.Overlay}></div>{" "}
+        {/* Overlay for the background image */}
         <div className={styles.ProfileContent}>
+          {/* Profile image */}
           <Image
             src={profile.image}
             alt={profile.owner}
@@ -92,7 +95,8 @@ const Profile = () => {
           </div>
         </div>
       </div>
-
+      {/* Tab container to display different sections like Posts, Visited Countries, Preferences, etc.
+      The active tab will determine which content is displayed below */}
       <Tab.Container defaultActiveKey="posts">
         <Nav variant="tabs" className={styles.ProfileNav}>
           <Nav.Item>
@@ -137,11 +141,13 @@ const Profile = () => {
             <Tab.Pane eventKey="visited_countries">
               {visitedCountriesList}
             </Tab.Pane>
+            {/* Tabs visible only for the profile owner */}
             {isOwner && (
               <>
                 <Tab.Pane eventKey="recommendations">
                   <TravelRecommendation />
                 </Tab.Pane>
+
                 <Tab.Pane eventKey="edit_profile">
                   <ul className="list-group">
                     <li className="list-group-item">

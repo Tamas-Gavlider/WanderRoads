@@ -19,13 +19,13 @@ export default function TravelPreferenceEditForm() {
   const { id } = useParams();
   const history = useHistory();
 
+  // Fetch existing travel preferences when the component mounts
   useEffect(() => {
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get(`/travel-preference/${id}/`);
         setPreferencesData(data);
-      } catch (err) {
-        console.error("Error fetching travel preferences:", err);
+      } catch {
         history.push("/");
       }
     };
@@ -40,13 +40,14 @@ export default function TravelPreferenceEditForm() {
     });
   };
 
+  // Handles form submission, update travel preferences in the backend.
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axiosReq.put(`/travel-preference/${id}/`, preferencesData);
       history.goBack();
-    } catch (err) {
-      console.error("Error updating travel preferences:", err);
+    } catch {
+      // Silently ignore the error or handle it silently
     }
   };
 
@@ -54,6 +55,7 @@ export default function TravelPreferenceEditForm() {
     <div className={styles.EditPrefContainer}>
       <h2 className={styles.EditPrefHeading}>Edit Travel Preferences</h2>
       <Form onSubmit={handleSubmit} className={styles.EditPrefForm}>
+        {/* Dropdown for selecting preferred continent */}
         <Form.Group>
           <Form.Label>Preferred Continent</Form.Label>
           <Form.Control
@@ -73,7 +75,7 @@ export default function TravelPreferenceEditForm() {
             <option value="AN">Antarctica</option>
           </Form.Control>
         </Form.Group>
-
+        {/* Dropdown for selecting climate */}
         <Form.Group>
           <Form.Label>Climate</Form.Label>
           <Form.Control
@@ -90,7 +92,7 @@ export default function TravelPreferenceEditForm() {
             <option value="MILD">Mild</option>
           </Form.Control>
         </Form.Group>
-
+        {/* Dropdown for selecting activity */}
         <Form.Group>
           <Form.Label>Activity</Form.Label>
           <Form.Control
@@ -109,7 +111,7 @@ export default function TravelPreferenceEditForm() {
             <option value="FOOD">Food & Culinary</option>
           </Form.Control>
         </Form.Group>
-
+        {/* Dropdown for selecting budget */}
         <Form.Group>
           <Form.Label>Budget</Form.Label>
           <Form.Control
@@ -125,7 +127,7 @@ export default function TravelPreferenceEditForm() {
             <option value="HIGH">Luxury</option>
           </Form.Control>
         </Form.Group>
-
+        {/* Dropdown for selecting travel style */}
         <Form.Group>
           <Form.Label>Travel Style</Form.Label>
           <Form.Control
@@ -142,7 +144,7 @@ export default function TravelPreferenceEditForm() {
             <option value="LUXURY">Luxury Travel</option>
           </Form.Control>
         </Form.Group>
-
+        {/* Dropdown for selecting duration */}
         <Form.Group>
           <Form.Label>Duration</Form.Label>
           <Form.Control
@@ -174,5 +176,5 @@ export default function TravelPreferenceEditForm() {
         </Button>
       </Form>
     </div>
-  )
+  );
 }

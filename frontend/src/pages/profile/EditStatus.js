@@ -17,7 +17,7 @@ export default function EditStatus() {
       await axios.put(`/profiles/${id}`, { status });
       history.goBack();
     } catch (error) {
-      console.error("Error updating status:", error);
+      //console.error("Error updating status:", error);
     }
   };
 

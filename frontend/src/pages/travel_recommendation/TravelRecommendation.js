@@ -15,12 +15,13 @@ export default function TravelRecommendation() {
         .then((response) => {
           setRecommendation(response.data);
         })
-        .catch((error) => {
-          console.error("Error fetching travel preferences:", error);
+        .catch(() => {
+         // Silently ignore the error or handle it silently
         });
     }
   }, [currentUser]);
 
+  // Capitalize the first letter of each word in a city name
   const capitalize = (str) => str.charAt(0).toUpperCase() + str.slice(1);
 
   return (
@@ -28,6 +29,7 @@ export default function TravelRecommendation() {
       <h4 className={styles.Heading}>Places You May Enjoy</h4>
 
       {recommendation && recommendation.results.length > 0 ? (
+        // Display recommended destinations
         <ListGroup horizontal="md" className={styles.ListContainer}>
           {recommendation.results[0].recommended_destination.map(
             (destination, index) => (

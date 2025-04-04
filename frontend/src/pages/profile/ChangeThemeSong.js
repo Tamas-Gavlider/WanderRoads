@@ -18,26 +18,28 @@ export default function ChangeThemeSong() {
         const { data } = await axios.get(`/profiles/${id}`);
         setThemeSong(data.theme_song || null);
       } catch (error) {
-        console.error("Error fetching profile:", error);
+        // console.error("Error fetching profile:", error);
       }
     };
 
     fetchProfile();
   }, [id]);
-
+  // Handle file upload for the theme song (MP3 only)
   const handleThemeSongUpload = (e) => {
     if (e.target.files.length) {
       const file = e.target.files[0];
+      // Check if the uploaded file is an MP3
       if (file.type !== "audio/mpeg") {
-        alert("Please upload an MP3 file.");
+        alert("Please upload an MP3 file."); // If not an MP3, show alert and return
         return;
       }
       setThemeSong(file);
     }
   };
-
+  // Handle saving the uploaded theme song
   const handleSave = async () => {
     const formData = new FormData();
+    // Append the theme song to the FormData object if it's a valid file
     if (themeSong instanceof File) {
       formData.append("theme_song", themeSong);
     }
@@ -46,11 +48,12 @@ export default function ChangeThemeSong() {
       await axios.put(`/profiles/${id}`, formData);
       history.goBack();
     } catch (error) {
-      console.error("Error updating theme song:", error);
+      // console.error("Error updating theme song:", error);
     }
   };
 
   return (
+    // Container for the theme song section, using custom styles for layout
     <Container className={styles.ThemeSongContainer}>
       <h2 className={styles.Heading}>🎶 Change Your Theme Song</h2>
 
@@ -71,7 +74,7 @@ export default function ChangeThemeSong() {
             onChange={handleThemeSongUpload}
             className={styles.UploadButton}
           />
-
+          {/* Display the currently selected theme song, if available */}
           {themeSong && (
             <div className={styles.SongPreview}>
               <p>

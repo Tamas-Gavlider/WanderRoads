@@ -16,16 +16,18 @@ export default function AddTrip() {
   });
 
   const { destination, start_date, end_date, notes } = tripData;
+  // List of available countries fetched from the API.
   const [countries, setCountries] = useState([]);
   const history = useHistory();
-
+  
+  // Fetch the list of available countries from the API when the component mounts.
   useEffect(() => {
     const fetchCountries = async () => {
       try {
         const { data } = await axios.get("/countries/");
         setCountries(data);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
+      } catch  {
+        // Silently ignore the error or handle it silently
       }
     };
 
@@ -50,7 +52,7 @@ export default function AddTrip() {
             : new Date(tripData.start_date);
         const updatedEndDate =
           name === "end_date" ? new Date(value) : new Date(tripData.end_date);
-
+        // Ensure the end date is not before the start date.
         if (
           updatedStartDate &&
           updatedEndDate &&
@@ -65,7 +67,8 @@ export default function AddTrip() {
       return newErrors;
     });
   };
-
+  
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -77,7 +80,6 @@ export default function AddTrip() {
 
     try {
       const { data } = await axiosReq.post("/trip/", formData);
-      console.log({ data });
       history.push(`/trip/${data.id}`);
     } catch (err) {
       if (err.response?.status !== 401) {

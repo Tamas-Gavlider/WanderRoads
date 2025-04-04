@@ -21,13 +21,14 @@ export default function TripEditForm() {
   const { id } = useParams();
   const history = useHistory();
 
+  // Fetch the list of available countries from the API when the component mounts.
   useEffect(() => {
     const fetchCountries = async () => {
       try {
         const { data } = await axios.get("/countries/");
         setCountries(data);
-      } catch (error) {
-        console.error("Error fetching countries:", error);
+      } catch {
+        // Silently ignore the error or handle it silently
       }
     };
 
@@ -35,13 +36,12 @@ export default function TripEditForm() {
   }, []);
 
   useEffect(() => {
-    if (!countries.length) return;
+    if (!countries.length) return; // Ensure countries are loaded before fetching trip data
 
     const fetchData = async () => {
       try {
         const { data } = await axiosReq.get(`/trip/${id}`);
-        console.log("Fetched Trip Data:", data);
-
+        // Find the corresponding country code for the destination
         const matchingCountry = countries.find(
           (c) => c.name === data.destination
         );
@@ -54,7 +54,7 @@ export default function TripEditForm() {
           notes: data.notes || "",
         });
       } catch (err) {
-        console.error("Error fetching trip details:", err);
+        // console.error("Error fetching trip details:", err);
         history.push("/");
       }
     };
@@ -81,6 +81,7 @@ export default function TripEditForm() {
         const updatedEndDate =
           name === "end_date" ? new Date(value) : new Date(tripData.end_date);
 
+        // Ensure the end date is not before the start date.
         if (
           updatedStartDate &&
           updatedEndDate &&
@@ -91,6 +92,7 @@ export default function TripEditForm() {
           delete newErrors.end_date;
         }
 
+        // Ensure the start date is not after the end date.
         if (
           updatedStartDate &&
           updatedEndDate &&
@@ -106,9 +108,10 @@ export default function TripEditForm() {
     });
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
-
+    // Prevent submission if end date is earlier than start date.
     if (new Date(tripData.end_date) < new Date(tripData.start_date)) {
       setErrors((prev) => ({
         ...prev,
@@ -121,7 +124,7 @@ export default function TripEditForm() {
       await axiosReq.put(`/trip/${id}`, tripData);
       history.goBack();
     } catch (err) {
-      console.error(err);
+      // console.error(err);
       setErrors(err.response?.data || {});
     }
   };

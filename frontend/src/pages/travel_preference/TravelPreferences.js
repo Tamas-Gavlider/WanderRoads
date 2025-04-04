@@ -24,6 +24,7 @@ export default function TravelPreferences({ profileOwner }) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
 
+  // Fetch travel preferences for the profile owner
   useEffect(() => {
     if (profileOwner) {
       axios
@@ -39,12 +40,13 @@ export default function TravelPreferences({ profileOwner }) {
         .catch((error) => {
           setError(error);
           setLoading(false);
-          console.log(error);
+          // console.log(error);
         });
     }
   }, [profileOwner]);
-
+  // Show a loading screen while data is being fetched
   if (loading) return <Loading />;
+
   if (error) {
     if (error.response && error.response.status === 404) {
       return (
@@ -58,6 +60,7 @@ export default function TravelPreferences({ profileOwner }) {
     }
   }
 
+  // Retrieve the full name of the preferred continent, or fallback if not found
   const continentCode = preferences?.preferred_continent;
   const continentName =
     continentMapping[continentCode] || continentCode || "Not specified";
@@ -74,7 +77,7 @@ export default function TravelPreferences({ profileOwner }) {
               <i className={`fa-solid fa-pen ${styles.EditIcon}`}> Edit</i>
             </Link>
           )}
-
+          {/* Display travel preferences */}
           <Row>
             <Col xs={4} sm={4} md={4} lg={4}>
               <OverlayTrigger
@@ -149,6 +152,7 @@ export default function TravelPreferences({ profileOwner }) {
         </div>
       ) : (
         <div>
+          {/* If no preferences exist, prompt the user to add them */}
           <AddTravelPreferences />
         </div>
       )}

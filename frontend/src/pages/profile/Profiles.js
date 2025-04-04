@@ -9,12 +9,13 @@ import Loading from "../../components/Loading";
 
 const UserList = () => {
   const [profiles, setProfiles] = useState([]);
-  const [sortBy, setSortBy] = useState("owner");
+  const [sortBy, setSortBy] = useState("owner"); // Default sorting by 'owner'
   const [query, setQuery] = useState("");
 
   useEffect(() => {
     const fetchProfiles = async () => {
       try {
+        // Fetch profiles from the API, applying sorting and search filters
         const { data } = await axiosReq.get(
           `/profiles/?ordering=${sortBy}&search=${query}`
         );
@@ -23,15 +24,17 @@ const UserList = () => {
         console.error("Error fetching profiles:", err);
       }
     };
+    // Debounce the API call by 500ms to avoid excessive requests
     const timer = setTimeout(() => {
       fetchProfiles();
     }, 500);
 
-    return () => clearTimeout(timer);
-  }, [sortBy, query]);
+    return () => clearTimeout(timer); // Cleanup on component unmount or when dependencies change
+  }, [sortBy, query]); // Effect runs when sortBy or query changes
 
   return (
     <div className={styles.Users}>
+      {/* Search Bar for searching users */}
       <Col lg={4} md={6} sm={6} xs={6}>
         <i className={`fas fa-search ${searchStyles.SearchIcon}`} />
         <Form
@@ -47,6 +50,7 @@ const UserList = () => {
           />
         </Form>
       </Col>
+      {/* Dropdown menu to select sorting method */}
       <Dropdown onSelect={(eventKey) => setSortBy(eventKey)}>
         <Dropdown.Toggle id="dropdown-basic" className={btnStyles.Button}>
           Sort By: {sortBy === "owner" ? "Username" : "Posts Count"}
@@ -57,14 +61,17 @@ const UserList = () => {
           <Dropdown.Item eventKey="posts_count">Posts Count</Dropdown.Item>
         </Dropdown.Menu>
       </Dropdown>
+      {/* Conditionally render profiles or loading spinner */}
       {profiles.length === 0 ? (
         <Loading />
       ) : (
         <Row className="g-4">
+          {/* Loop through the profiles and display each one */}
           {profiles.map((user) => (
             <Col xs={6} sm={4} md={4} lg={3} key={user.id}>
               <Card className={`h-100 ${styles.UserCard}`}>
                 <Link to={`/profiles/${user.id}`} className={styles.User}>
+                  {/* Profile image linking to user profile page */}
                   <Card.Img
                     variant="top"
                     src={user.image}
@@ -73,6 +80,7 @@ const UserList = () => {
                   />
                 </Link>
                 <Card.Body>
+                  {/* Display user details */}
                   <Card.Title className="d-flex align-items-center gap-2">
                     <span>{user.owner}</span>
                   </Card.Title>

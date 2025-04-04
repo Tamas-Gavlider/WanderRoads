@@ -19,19 +19,19 @@ export default function ProfileImageChangeForm() {
 
   const history = useHistory();
   const { id } = useParams();
-  const imageInput = useRef(null);
+  const imageInput = useRef(null); // Reference to the file input for image upload
 
   useEffect(() => {
     const handleMount = async () => {
       try {
         const { data } = await axiosReq.get(`/profiles/${id}`);
         if (data.is_owner) {
-          setProfile({ image: data.image });
+          setProfile({ image: data.image }); // Set the profile image if the user is the owner
         } else {
           history.push("/");
         }
       } catch (err) {
-        console.log(err);
+        //console.log(err);
       } finally {
         setLoading(false);
       }
@@ -39,34 +39,33 @@ export default function ProfileImageChangeForm() {
 
     handleMount();
   }, [history, id]);
-
+  // Handle the image change when a user selects a new file
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(profile.image);
       setProfile({
         ...profile,
-        image: URL.createObjectURL(event.target.files[0]),
+        image: URL.createObjectURL(event.target.files[0]), // Update profile image with new selected image
       });
     }
   };
-
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
-
+    // Append the new image file if selected
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
 
     try {
-      setLoading(true);
+      setLoading(true); // Set loading state to true while submitting the form
       await axiosReq.put(`/profiles/${id}`, formData);
       history.push(`/profiles/${id}`);
     } catch (err) {
-      console.log(err);
       setErrors(err.response?.data || {});
     } finally {
-      setLoading(false);
+      setLoading(false); // Stop loading after the API call finishes
     }
   };
 
@@ -74,6 +73,7 @@ export default function ProfileImageChangeForm() {
     <Form onSubmit={handleSubmit}>
       {loading ? (
         <div className="text-center mt-5">
+          {/* Show loading spinner while fetching data */}
           <Asset spinner />
         </div>
       ) : (
@@ -92,6 +92,7 @@ export default function ProfileImageChangeForm() {
                   />
                 </figure>
                 <div>
+                  {/* Button for changing the profile image */}
                   <Form.Label
                     className={`${btnStyles.Button} ${btnStyles.Wide} btn`}
                     htmlFor="image-upload"
@@ -99,7 +100,7 @@ export default function ProfileImageChangeForm() {
                     Change the image
                   </Form.Label>
                 </div>
-
+                {/* File input for selecting a new image */}
                 <Form.Control
                   type="file"
                   id="image-upload"
@@ -107,7 +108,7 @@ export default function ProfileImageChangeForm() {
                   onChange={handleChangeImage}
                   ref={imageInput}
                 />
-
+                {/* Submit button for saving the new image */}
                 <Col className="py-2 mx-auto text-center">
                   <Button
                     className={`${btnStyles.Button} ${btnStyles.Wide} btn`}
@@ -116,6 +117,7 @@ export default function ProfileImageChangeForm() {
                     Save
                   </Button>
                 </Col>
+                {/* Cancel button to go back to the previous page */}
                 <Col className="py-2 mx-auto text-center">
                   <Button
                     className={`${btnStyles.Button} ${btnStyles.Wide} btn`}
@@ -125,7 +127,7 @@ export default function ProfileImageChangeForm() {
                   </Button>
                 </Col>
               </Form.Group>
-
+              {/* Display errors if any occur during form submission */}
               {errors.image?.map((message, idx) => (
                 <Alert variant="warning" key={idx}>
                   {message}

@@ -20,7 +20,7 @@ export default function Trip() {
       axios
         .get("/trip/")
         .then(async (response) => {
-          console.log("Trip: ", response.data);
+          // console.log("Trip: ", response.data);
 
           // Filter out expired trips
           const validTrips = response.data.results.filter(
@@ -41,14 +41,14 @@ export default function Trip() {
           for (let trip of expiredTrips) {
             try {
               await axiosRes.delete(`/trip/${trip.id}`);
-              console.log(`Deleted expired trip: ${trip.destination}`);
-            } catch (err) {
-              console.error(`Error deleting expired trip ${trip.id}:`, err);
+              // console.log(`Deleted expired trip: ${trip.destination}`);
+            } catch {
+              // Silently ignore the error or handle it silently
             }
           }
         })
-        .catch((error) => {
-          console.error("Error fetching trips:", error);
+        .catch(() => {
+          // Silently ignore the error or handle it silently
         });
     }
   }, [currentUser]);
@@ -73,8 +73,8 @@ export default function Trip() {
         ...prevTrip,
         results: prevTrip.results.filter((t) => t.id !== tripToDelete),
       }));
-    } catch (err) {
-      console.error("Error deleting trip:", err);
+    } catch {
+      // Silently ignore the error or handle it silently
     }
 
     setShowModal(false);
