@@ -28,13 +28,15 @@ const UsernameForm = () => {
   const setCurrentUser = useSetCurrentUser();
 
   useEffect(() => {
+    // Ensure that only the owner of the profile can access this form
     if (currentUser?.profile_id?.toString() === id) {
-      setUsername(currentUser.username);
+      setUsername(currentUser.username); // Pre-fill current username
     } else {
       history.push("/");
     }
   }, [currentUser, history, id]);
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -47,7 +49,6 @@ const UsernameForm = () => {
       }));
       history.goBack();
     } catch (err) {
-      // console.log(err);
       setErrors(err.response?.data);
     }
   };
@@ -68,26 +69,27 @@ const UsernameForm = () => {
                 aria-label="username"
               />
             </Form.Group>
+            {/* Display validation errors related to the username */}
             {errors?.username?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
               </Alert>
             ))}
-            <Col className="py-2 mx-auto text-center" >
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Wide}`}
-              onClick={() => history.goBack()}
-            >
-              cancel
-            </Button>
+            <Col className="py-2 mx-auto text-center">
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.Wide}`}
+                onClick={() => history.goBack()}
+              >
+                cancel
+              </Button>
             </Col>
-            <Col className="py-2 mx-auto text-center" >
-            <Button
-              className={`${btnStyles.Button} ${btnStyles.Wide}`}
-              type="submit"
-            >
-              save
-            </Button>
+            <Col className="py-2 mx-auto text-center">
+              <Button
+                className={`${btnStyles.Button} ${btnStyles.Wide}`}
+                type="submit"
+              >
+                save
+              </Button>
             </Col>
           </Form>
         </Container>

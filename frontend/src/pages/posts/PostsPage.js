@@ -17,12 +17,12 @@ import Loading from "../../components/Loading";
 
 function PostsPage({ message, filter = "" }) {
   const [posts, setPosts] = useState({ results: [] });
-  const [hasLoaded, setHasLoaded] = useState(false);
+  const [hasLoaded, setHasLoaded] = useState(false); // Tracks if posts are loaded
   const { pathname } = useLocation();
   const currentUser = useCurrentUser();
-  const [query, setQuery] = useState("");
+  const [query, setQuery] = useState(""); // Search input value
   const [error, setError] = useState(null);
-
+  // Fetch posts on initial render and when filter/query/path/user changes
   useEffect(() => {
     const fetchPosts = async () => {
       try {
@@ -30,12 +30,12 @@ function PostsPage({ message, filter = "" }) {
         setPosts(data);
         setHasLoaded(true);
       } catch (err) {
-        console.log(err);
         setError("Failed to load posts. Please try again.");
       }
     };
 
-    setHasLoaded(false);
+    setHasLoaded(false); // Reset loading state before fetch
+    // Debounce search: wait 1 second before fetching
     const timer = setTimeout(() => {
       fetchPosts();
     }, 1000);
@@ -62,8 +62,10 @@ function PostsPage({ message, filter = "" }) {
           </Link>
         </Col>
       </div>
+      {/* Main column with search bar and post list */}
       <Col className="py-2 p-0 p-lg-2" lg={8}>
         <i className={`fas fa-search ${styles.SearchIcon}`}></i>
+        {/* Search bar form (live search) */}
         <Form
           className={styles.SearchBar}
           onSubmit={(event) => event.preventDefault()}
@@ -77,7 +79,9 @@ function PostsPage({ message, filter = "" }) {
             aria-label="search posts"
           />
         </Form>
+        {/* Display any error message */}
         {error && <p className={appStyles.Error}>{error}</p>}
+        {/* Once posts are loaded, show either list or empty message */}
         {hasLoaded ? (
           <>
             {posts.results.length ? (

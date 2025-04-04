@@ -37,7 +37,7 @@ export default function AddCountry() {
         const { data } = await axios.get("/countries/");
         setCountries(data); // Store countries in state
       } catch (error) {
-        // console.error("Error fetching countries:", error);
+       // Silently ignore the error - keep comment to avoid parsing error 
       }
     };
 

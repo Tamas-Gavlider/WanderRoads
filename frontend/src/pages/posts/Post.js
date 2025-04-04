@@ -40,10 +40,11 @@ const Post = (props) => {
       await axiosRes.delete(`/posts/${id}/`);
       history.goBack();
     } catch (err) {
-      console.log(err);
+     // Silently ignore the error - keep comment to avoid parsing error 
     }
   };
 
+  // Show/Hide delete confirmation modal
   const handleShowDeleteModal = () => setShowDeleteModal(true);
 
   const handleCloseDeleteModal = () => setShowDeleteModal(false);
@@ -54,6 +55,7 @@ const Post = (props) => {
         <Card.Body>
           <Media className="align-items-center justify-content-between">
             <div className="d-flex align-items-center">
+              {/* Show dropdown only if owner and on individual post page */}
               {is_owner && postPage && (
                 <MoreDropdown
                   handleEdit={handleEdit}
@@ -70,6 +72,7 @@ const Post = (props) => {
             </Link>
           </Media>
         </Card.Body>
+        {/* Post Image with link to post detail */}
         <Link to={`/posts/${id}/`}>
           <Card.Img
             src={image}
@@ -78,6 +81,7 @@ const Post = (props) => {
             className={styles.Image}
           />
         </Link>
+        {/* Post Title and Content */}
         <Card.Body>
           {title && <Card.Title className="text-center">{title}</Card.Title>}
           {content && (
@@ -85,6 +89,7 @@ const Post = (props) => {
               <p className={styles.Content}>{content}</p>
             </Card.Text>
           )}
+          {/* Comments Icon and Count */}
           <Link to={`/posts/${id}/`} aria-label="Comment this post">
             <i className={`far fa-comments ${iconStyles.Icon}`} />
             <p className={styles.Hidden}>hidden text</p>
@@ -92,6 +97,7 @@ const Post = (props) => {
           {comments_count}
         </Card.Body>
       </Card>
+      {/* Delete Confirmation Modal */}
       <Modal show={showDeleteModal} onHide={handleCloseDeleteModal}>
         <Modal.Header closeButton>
           <Modal.Title>Delete Post</Modal.Title>

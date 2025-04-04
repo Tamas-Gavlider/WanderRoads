@@ -20,8 +20,6 @@ export default function Trip() {
       axios
         .get("/trip/")
         .then(async (response) => {
-          // console.log("Trip: ", response.data);
-
           // Filter out expired trips
           const validTrips = response.data.results.filter(
             (t) => t.days_until_trip >= 0
@@ -41,14 +39,13 @@ export default function Trip() {
           for (let trip of expiredTrips) {
             try {
               await axiosRes.delete(`/trip/${trip.id}`);
-              // console.log(`Deleted expired trip: ${trip.destination}`);
             } catch {
-              // Silently ignore the error or handle it silently
+              // Silently ignore the error - keep comment to avoid parsing error
             }
           }
         })
         .catch(() => {
-          // Silently ignore the error or handle it silently
+          // Silently ignore the error - keep comment to avoid parsing error
         });
     }
   }, [currentUser]);

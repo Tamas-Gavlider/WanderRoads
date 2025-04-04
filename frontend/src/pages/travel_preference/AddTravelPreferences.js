@@ -63,7 +63,6 @@ export default function AddTravelPreferences() {
     e.preventDefault();
 
     if (!currentUser) {
-      // console.error("No current user found. Redirecting to login.");
       history.push("/signin");
       return;
     }

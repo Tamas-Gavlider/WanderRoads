@@ -31,7 +31,7 @@ export default function ProfileImageChangeForm() {
           history.push("/");
         }
       } catch (err) {
-        //console.log(err);
+       // Silently ignore the error - keep comment to avoid parsing error 
       } finally {
         setLoading(false);
       }

@@ -28,7 +28,7 @@ const Profile = () => {
     axios
       .get(`/profiles/${id}`)
       .then((response) => setProfile(response.data))
-      .catch(() => {/* Silently ignore the error or handle it silently */} );
+      .catch(() => {/* // Silently ignore the error - keep comment to avoid parsing error  */} );
   }, [id]);
   // Check if the current user is the owner of this profile
   const isOwner = useMemo(

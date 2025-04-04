@@ -17,6 +17,7 @@ import { axiosReq } from "../../api/axiosDefaults";
 import { useRedirect } from "../../hooks/useRedirect";
 
 function PostCreateForm() {
+  // Redirect logged-out users to login
   useRedirect("loggedOut");
   const [errors, setErrors] = useState({});
 
@@ -28,23 +29,25 @@ function PostCreateForm() {
   });
 
   const { title, content, image, country } = postData;
+  // Holds the list of countries for the dropdown
   const [countries, setCountries] = useState([]);
   const imageInput = useRef(null);
   const history = useHistory();
 
   useEffect(() => {
+    // Fetch list of countries for the country dropdown
     const fetchCountries = async () => {
       try {
         const { data } = await axios.get("/countries/");
         setCountries(data);
       } catch (error) {
-        console.error("Error fetching countries:", error);
+        // Silently ignore the error - keep comment to avoid parsing error 
       }
     };
 
     fetchCountries();
   }, []);
-
+  // Update form field values and clear any related errors
   const handleChange = (event) => {
     const { name, value } = event.target;
     setPostData((prevData) => ({
@@ -56,8 +59,8 @@ function PostCreateForm() {
       ...prevErrors,
       [name]: undefined,
     }));
-  };
-
+  };  
+  // Update the image preview when a new image is selected
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
       URL.revokeObjectURL(image);
@@ -67,7 +70,7 @@ function PostCreateForm() {
       });
     }
   };
-
+  // Submit the form 
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
@@ -88,7 +91,7 @@ function PostCreateForm() {
       }
     }
   };
-
+  // Form fields for title, content, and country selection
   const textFields = (
     <div className="text-center">
       <Form.Group>
@@ -157,6 +160,7 @@ function PostCreateForm() {
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
+              {/* Display image preview if image is selected, otherwise show upload icon */}
               {image ? (
                 <>
                   <figure>

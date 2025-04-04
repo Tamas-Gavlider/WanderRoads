@@ -40,7 +40,6 @@ export default function TravelPreferences({ profileOwner }) {
         .catch((error) => {
           setError(error);
           setLoading(false);
-          // console.log(error);
         });
     }
   }, [profileOwner]);

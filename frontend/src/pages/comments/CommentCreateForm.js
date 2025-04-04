@@ -8,10 +8,12 @@ function CommentCreateForm(props) {
   const { post, setPost, setComments } = props;
   const [content, setContent] = useState("");
 
+  // Handle the change in the textarea
   const handleChange = (event) => {
     setContent(event.target.value);
   };
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
@@ -19,21 +21,23 @@ function CommentCreateForm(props) {
         content,
         post,
       });
+      // Update the comments state with the new comment
       setComments((prevComments) => ({
         ...prevComments,
-        results: [data, ...prevComments.results],
+        results: [data, ...prevComments.results], // Add the new comment at the beginning of the list
       }));
+      // Update the post's comment count
       setPost((prevPost) => ({
         results: [
           {
             ...prevPost.results[0],
-            comments_count: prevPost.results[0].comments_count + 1,
+            comments_count: prevPost.results[0].comments_count + 1, // Increment comment count
           },
         ],
       }));
       setContent("");
     } catch (err) {
-      console.log(err);
+      // Silently ignore the error - keep comment to avoid parsing error
     }
   };
 
@@ -42,6 +46,7 @@ function CommentCreateForm(props) {
       <Form className="mt-2 w-50" onSubmit={handleSubmit}>
         <Form.Group>
           <InputGroup>
+            {/* Text area for entering the comment */}
             <Form.Control
               className={styles.Form}
               placeholder="My comment..."
@@ -51,6 +56,7 @@ function CommentCreateForm(props) {
               rows={2}
               aria-label="comment"
             />
+            {/* Submit button */}
             <button
               className={styles.Button}
               disabled={!content.trim()}

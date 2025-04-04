@@ -9,17 +9,18 @@ function CommentEditForm(props) {
   const { id, content, setShowEditForm, setComments } = props;
 
   const [formContent, setFormContent] = useState(content);
-
+  // Handle changes in the textarea input
   const handleChange = (event) => {
     setFormContent(event.target.value);
   };
-
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axiosRes.put(`/comments/${id}/`, {
-        content: formContent.trim(),
+        content: formContent.trim(), // Trim the content before updating
       });
+      // Update the comments state to reflect the updated comment
       setComments((prevComments) => ({
         ...prevComments,
         results: prevComments.results.map((comment) => {
@@ -34,7 +35,7 @@ function CommentEditForm(props) {
       }));
       setShowEditForm(false);
     } catch (err) {
-      console.log(err);
+      // Silently ignore the error - keep comment to avoid parsing error
     }
   };
 
@@ -50,6 +51,7 @@ function CommentEditForm(props) {
         />
       </Form.Group>
       <div className="text-right">
+        {/* Cancel button to close the edit form without saving */}
         <button
           className={styles.Button}
           onClick={() => setShowEditForm(false)}
@@ -57,6 +59,7 @@ function CommentEditForm(props) {
         >
           Cancel
         </button>
+        {/* Save button to submit the edited content */}
         <button
           className={styles.Button}
           disabled={!content.trim()}

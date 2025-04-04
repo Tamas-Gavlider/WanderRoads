@@ -10,19 +10,22 @@ import { axiosReq } from "../../api/axiosDefaults";
 import "bootstrap/dist/css/bootstrap.min.css";
 import styles from "../../styles/Map.module.css";
 
+// GeoJSON URL for world map data
 const geoUrl = "https://unpkg.com/world-atlas@2.0.2/countries-110m.json";
 
 export default function Map() {
+  // State to store the count of posts per country
   const [countryPosts, setCountryPosts] = useState({});
 
   useEffect(() => {
     const fetchPostCounts = async () => {
       try {
+        // Make an API request to fetch the post counts per country
         const { data } = await axiosReq.get("/posts/");
-        const postCounts = data.country_post_counts || {};
+        const postCounts = data.country_post_counts || {}; // Retrieve post counts from response
         setCountryPosts(postCounts);
       } catch (err) {
-        console.error("Error fetching post counts:", err);
+        // Silently ignore the error - keep comment to avoid parsing error
       }
     };
     fetchPostCounts();
@@ -40,13 +43,16 @@ export default function Map() {
         className={styles.Map}
       >
         <ZoomableGroup minZoom={0.5} maxZoom={3} enablePan={true}>
+          {/* Render the countries on the map */}
           <Geographies geography={geoUrl}>
             {({ geographies }) =>
               geographies.map((geo) => {
+                // Map over all the countries in the GeoJSON data
                 const countryName = geo.properties.name;
                 const postCount = countryPosts[countryName] || 0;
 
                 return (
+                  // OverlayTooltip: Shows the country name and post count when hovered
                   <OverlayTrigger
                     key={geo.rsmKey}
                     placement="top"
@@ -57,6 +63,7 @@ export default function Map() {
                       </Tooltip>
                     }
                   >
+                    {/* Render each country with different styles based on post count */}
                     <Geography
                       geography={geo}
                       focusable={false}

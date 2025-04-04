@@ -27,6 +27,7 @@ const UserPasswordForm = () => {
 
   const [errors, setErrors] = useState({});
 
+  // Handle form input changes
   const handleChange = (event) => {
     setUserData({
       ...userData,
@@ -35,19 +36,19 @@ const UserPasswordForm = () => {
   };
 
   useEffect(() => {
+    // redirect user if they are not the owner of this profile
     if (currentUser?.profile_id?.toString() !== id) {
-      // redirect user if they are not the owner of this profile
       history.push("/");
     }
   }, [currentUser, history, id]);
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     try {
       await axiosRes.post("/dj-rest-auth/password/change/", userData);
       history.goBack();
     } catch (err) {
-      //console.log(err);
       setErrors(err.response?.data);
     }
   };
@@ -69,6 +70,7 @@ const UserPasswordForm = () => {
                 aria-label="new password"
               />
             </Form.Group>
+            {/* Display validation errors for first password input */}
             {errors?.new_password1?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}
@@ -86,6 +88,7 @@ const UserPasswordForm = () => {
                 aria-label="confirm new password"
               />
             </Form.Group>
+            {/* Display validation errors for second password input */}
             {errors?.new_password2?.map((message, idx) => (
               <Alert key={idx} variant="warning">
                 {message}

@@ -25,17 +25,19 @@ function PostEditForm() {
   });
 
   const { title, content, image, country } = postData;
+  // Countries list for dropdown
   const [countries, setCountries] = useState([]);
+  // Ref to access the file input directly
   const imageInput = useRef(null);
   const history = useHistory();
   const { id } = useParams();
 
   useEffect(() => {
     const handleMount = async () => {
-      setLoading(true);
+      setLoading(true); // Start loading spinner
       try {
         const { data } = await axiosReq.get(`/posts/${id}/`);
-
+        // Only allow editing if the user is the owner
         if (data.is_owner) {
           setPostData({
             title: data.title,
@@ -47,25 +49,28 @@ function PostEditForm() {
           history.push("/");
         }
       } catch (err) {
-        console.log(err);
+        // Silently ignore the error - keep comment to avoid parsing error
       } finally {
-        setLoading(false);
+        setLoading(false); // Stop loading spinner
       }
     };
 
     handleMount();
   }, [history, id]);
 
+  // Handle text input changes
   const handleChange = (event) => {
     setPostData({
       ...postData,
       [event.target.name]: event.target.value,
     });
   };
-
+  // Handle image input changes
   const handleChangeImage = (event) => {
     if (event.target.files.length) {
+      // Revoke old image preview URL
       URL.revokeObjectURL(image);
+      // Create new preview URL for the selected image
       setPostData({
         ...postData,
         image: URL.createObjectURL(event.target.files[0]),
@@ -73,26 +78,28 @@ function PostEditForm() {
     }
   };
 
+  // Fetch list of countries for the dropdown
   useEffect(() => {
     const fetchCountries = async () => {
       try {
         const { data } = await axios.get("/countries/");
         setCountries(data);
       } catch (error) {
-        console.error("Error fetching countries:", error);
+        // Silently ignore the error - keep comment to avoid parsing error
       }
     };
 
     fetchCountries();
   }, []);
 
+  // Handle form submission
   const handleSubmit = async (event) => {
     event.preventDefault();
     const formData = new FormData();
 
     formData.append("title", title);
     formData.append("content", content);
-
+    // Append new image file if it exists
     if (imageInput?.current?.files[0]) {
       formData.append("image", imageInput.current.files[0]);
     }
@@ -103,7 +110,7 @@ function PostEditForm() {
       await axiosReq.put(`/posts/${id}/`, formData);
       history.push(`/posts/${id}`);
     } catch (err) {
-      console.log(err);
+      // Silently ignore the error - keep comment to avoid parsing error
       if (err.response?.status !== 401) {
         setErrors(err.response?.data);
       }
@@ -144,7 +151,7 @@ function PostEditForm() {
           {message}
         </Alert>
       ))}
-
+      {/* Country dropdown */}
       <Form.Group>
         <Form.Label>Country</Form.Label>
         <Form.Control
@@ -176,12 +183,14 @@ function PostEditForm() {
   return (
     <Form onSubmit={handleSubmit}>
       <Row>
+        {/* Image section */}
         <Col className="py-2 p-0 p-md-2" md={7} lg={8}>
           <Container
             className={`${appStyles.Content} ${styles.Container} d-flex flex-column justify-content-center`}
           >
             <Form.Group className="text-center">
               <figure>
+                {/* Show loading spinner or the image */}
                 {loading ? (
                   <Asset spinner message="Loading image..." />
                 ) : (
@@ -194,6 +203,7 @@ function PostEditForm() {
                   />
                 )}
               </figure>
+              {/* Image upload label */}
               <div>
                 <Form.Label
                   className={`${btnStyles.Button} btn`}
@@ -202,7 +212,7 @@ function PostEditForm() {
                   Change the image
                 </Form.Label>
               </div>
-
+              {/* Image upload input */}
               <Form.File
                 id="image-upload"
                 accept="image/*"
@@ -215,10 +225,11 @@ function PostEditForm() {
                 {message}
               </Alert>
             ))}
-
+            {/* Show text fields below image on mobile */}
             <div className="d-md-none">{textFields}</div>
           </Container>
         </Col>
+        {/* Text fields on side for larger screens */}
         <Col md={5} lg={4} className="d-none d-md-block p-0 p-md-2">
           <Container className={appStyles.Content}>{textFields}</Container>
         </Col>

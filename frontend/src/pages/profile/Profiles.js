@@ -21,7 +21,7 @@ const UserList = () => {
         );
         setProfiles(data.results);
       } catch (err) {
-        console.error("Error fetching profiles:", err);
+        // Silently ignore the error - keep comment to avoid parsing error 
       }
     };
     // Debounce the API call by 500ms to avoid excessive requests

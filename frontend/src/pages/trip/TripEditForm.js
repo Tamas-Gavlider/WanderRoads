@@ -53,8 +53,7 @@ export default function TripEditForm() {
           end_date: data.end_date,
           notes: data.notes || "",
         });
-      } catch (err) {
-        // console.error("Error fetching trip details:", err);
+      } catch {
         history.push("/");
       }
     };
@@ -124,7 +123,6 @@ export default function TripEditForm() {
       await axiosReq.put(`/trip/${id}`, tripData);
       history.goBack();
     } catch (err) {
-      // console.error(err);
       setErrors(err.response?.data || {});
     }
   };

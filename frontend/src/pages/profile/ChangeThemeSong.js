@@ -48,7 +48,7 @@ export default function ChangeThemeSong() {
       await axios.put(`/profiles/${id}`, formData);
       history.goBack();
     } catch (error) {
-      // console.error("Error updating theme song:", error);
+     // Silently ignore the error - keep comment to avoid parsing error 
     }
   };
 

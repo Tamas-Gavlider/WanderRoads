@@ -16,7 +16,7 @@ export default function TravelRecommendation() {
           setRecommendation(response.data);
         })
         .catch(() => {
-         // Silently ignore the error or handle it silently
+         // Silently ignore the error - keep comment to avoid parsing error 
         });
     }
   }, [currentUser]);

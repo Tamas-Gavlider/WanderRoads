@@ -21,27 +21,24 @@ function PostPage() {
   const profile_image = currentUser?.profile_image;
 
   useEffect(() => {
-    console.log(`Fetching post with id: ${id}`);
     const handleMount = async () => {
       try {
         const [{ data: post }, { data: comments }] = await Promise.all([
           axiosReq.get(`/posts/${id}/`),
           axiosReq.get(`/comments/?post=${id}`),
         ]);
-        console.log("Fetched post:", post);
         setPost({ results: [post] });
         setComments(comments);
       } catch (err) {
-        console.error("Error fetching post:", err);
+        // Silently ignore the error - keep comment to avoid parsing error 
       }
     };
 
     handleMount();
   }, [id]);
-
-  console.log("Posts state:", post);
   return (
     <Row className={`h-100 ${styles.Row}`}>
+      {/* Left column: main post and comments */}
       <Col className={`py-2 p-0 p-lg-2 ${styles.Post}`} lg={8}>
         <Post {...post.results[0]} setPosts={setPost} postPage />
         <Container className={appStyles.Content}>
@@ -52,10 +49,11 @@ function PostPage() {
               post={id}
               setPost={setPost}
               setComments={setComments}
-            />
+            /> 
           ) : comments.results.length ? (
             "Comments"
           ) : null}
+          {/* If there are comments, render them with infinite scroll */}
           {comments.results.length ? (
             <InfiniteScroll
               dataLength={comments.results.length}
@@ -81,6 +79,7 @@ function PostPage() {
           )}
         </Container>
       </Col>
+       {/* Right column: popular destinations sidebar */}
       <Col className={styles.Destination}>
         <PopularDestinations />
       </Col>

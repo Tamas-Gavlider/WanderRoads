@@ -26,6 +26,7 @@ const Comment = (props) => {
   const [showDeleteModal, setShowDeleteModal] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
 
+  // Function to handle comment deletion
   const handleDelete = async () => {
     try {
       await axiosRes.delete(`/comments/${id}/`);
@@ -39,7 +40,7 @@ const Comment = (props) => {
             })) || [],
         }));
       }
-
+      // If comments data is being updated, remove the deleted comment from the list
       if (setComments) {
         setComments((prevComments) => ({
           ...prevComments,
@@ -48,7 +49,7 @@ const Comment = (props) => {
         }));
       }
 
-      setShowDeleteModal(false);
+      setShowDeleteModal(false); // Close the delete confirmation modal after successful deletion
     } catch (err) {
       setErrorMessage("Failed to delete comment. Please try again.");
     }
@@ -62,8 +63,10 @@ const Comment = (props) => {
           <Avatar src={profile_image} />
         </Link>
         <Media.Body className="align-self-center ml-2">
+          {/* Display owner name and comment update date */}
           <span className={styles.Owner}>{owner}</span>
           <span className={styles.Date}>{updated_at}</span>
+          {/* Show either the comment content or the edit form */}
           {showEditForm ? (
             <CommentEditForm
               id={id}
@@ -77,6 +80,7 @@ const Comment = (props) => {
             <p>{content}</p>
           )}
         </Media.Body>
+        {/* Show MoreDropdown (edit/delete options) if the user is the owner of the comment */}
         {is_owner && !showEditForm && (
           <MoreDropdown
             handleEdit={() => setShowEditForm(true)}
@@ -84,12 +88,14 @@ const Comment = (props) => {
           />
         )}
       </Media>
+      {/* Delete Confirmation Modal */}
       <Modal show={showDeleteModal} onHide={() => setShowDeleteModal(false)}>
         <Modal.Header closeButton>
           <Modal.Title>Confirm Delete</Modal.Title>
         </Modal.Header>
         <Modal.Body>
           Are you sure you want to delete this comment?
+          {/* Display error message if any */}
           {errorMessage && <p className="text-danger mt-2">{errorMessage}</p>}
         </Modal.Body>
         <Modal.Footer>
