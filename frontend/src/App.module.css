@@ -1,82 +1,85 @@
-
 .App {
-    font-family: "Anonymous Pro", serif;
-    background-color: white !important;
-    min-height: 100vh;
+  font-family: "Anonymous Pro", serif;
+  background-color: white !important;
+  min-height: 100vh;
 }
 
-  a:hover {
-    text-decoration:none;
-  }
-  
-  .Main {
-    padding-top: 70px;
-    padding-left: 10px;
-    padding-right: 10px;
-  }
-  
-  .Content {
-    padding: 10px;
-    border-radius: 20%;
-  }
+a:hover {
+  text-decoration: none;
+}
 
-  .FillerImage {
-    object-fit: cover;
-    height: 100%;
-    width: 100%;
-    max-height: 60vh;
-  }
+.Main {
+  padding-top: 70px;
+  padding-left: 10px;
+  padding-right: 10px;
+}
 
-  .FillerImageRegister {
-    object-fit: cover;
-    height: 70%;
-    width: 80%;
-    
+.Content {
+  padding: 10px;
+  border-radius: 20%;
+}
+
+.FillerImage {
+  object-fit: cover;
+  height: 100%;
+  width: 100%;
+  max-height: 60vh;
+}
+
+.FillerImageRegister {
+  object-fit: cover;
+  height: 70%;
+  width: 80%;
+
+}
+
+.Image {
+  max-height: 40vh;
+  max-width: 100%;
+  object-fit: contain;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+a {
+  color: #555555;
+  transition: color ease-in-out 0.3s;
+}
+
+a:hover {
+  text-decoration: none;
+}
+
+input[type="file"] {
+  display: none;
+}
+
+figure {
+  text-align: center;
+  display: inline-block;
+}
+
+/* scrollbar */
+*::-webkit-scrollbar {
+  width: 5px;
+}
+
+*::-webkit-scrollbar-track {
+  background: #f1f1f1;
+}
+
+*::-webkit-scrollbar-thumb {
+  background: #888;
+}
+
+*::-webkit-scrollbar-thumb:hover {
+  background: #555;
+}
+
+@media (max-width: 768px) {
+  .LandingBackground {
+    background-image: none !important;
   }
-  
-  .Image {
-    max-height: 40vh;
-    max-width: 100%;
-    object-fit: contain;
-  }
-  
-  * {
-    box-sizing: border-box;
-  }
-  
-  a {
-    color: #555555;
-    transition: color ease-in-out 0.3s;
-  }
-  
-  a:hover {
-    text-decoration: none;
-  }
-  
-  input[type="file"] {
-    display: none;
-  }
-  
-  figure {
-    text-align: center;
-    display: inline-block;
-  }
-  
-  /* scrollbar */
-  *::-webkit-scrollbar {
-    width: 5px;
-  }
-  *::-webkit-scrollbar-track {
-    background: #f1f1f1;
-  }
-  *::-webkit-scrollbar-thumb {
-    background: #888;
-  }
-  *::-webkit-scrollbar-thumb:hover {
-    background: #555;
-  }
-  @media (max-width: 768px) {
-    .LandingBackground {
-      background-image: none !important;
-    }
-  }
+}
