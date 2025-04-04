@@ -617,7 +617,9 @@ WAVE(Web Accessibility Evaluation Tool) allows developers to create content that
 
 #### Automated testing
 
-Automated testing for this project was carried out with [TestCases](https://docs.djangoproject.com/en/5.1/topics/testing/overview/).
+Automated testing for this project was carried out with [TestCases](https://docs.djangoproject.com/en/5.1/topics/testing/overview/) and [APITestCases](https://www.django-rest-framework.org/api-guide/testing/).
+
+![tests](/docs/testing/automated_tests/test-cases.png)
 
 #### Backend Manual Testing 
 
@@ -865,7 +867,7 @@ All screenshots used in this README file were taken by myself.
 
 [Simple maps](https://github.com/zcreativelabs/react-simple-maps/issues/344) - for simple maps template.
 
-[Recommendation article ](https://pub.towardsai.net/building-a-recommender-system-with-pandas-1ca0bb03fdce) helped a lot to implement the travel recommendations. 
+[Recommendation article ](https://pub.towardsai.net/building-a-recommender-system-with-pandas-1ca0bb03fdce) and [StackOverFlow post](https://stackoverflow.com/questions/62664042/how-to-normalize-columns-in-a-dataframe) helped a lot to implement the travel recommendations and work with the csv file in pandas. 
 
 The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.com/)
 
