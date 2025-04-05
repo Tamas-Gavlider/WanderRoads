@@ -846,6 +846,12 @@ The following bugs were identified during the testing:
 
 - Visitors could not see the profile owner's preferences due to a logical error in the add travel preference file. Fixed by conditional statement.
 
+- For unknown reason the create post was not clickable if the screen size was in the 822px - 991px range. To resolve this bug, I have modified the custom css for the share post button.
+
+- The posts were not displaying in full width. This was resolved by removing the min-height in the custom CSS for the posts.
+
+- Long usernames were overflowing on the Travelers page. This was fixed by truncating the text and showing an ellipsis if it was too long.
+
 #### Known Bugs
 
 No bugs have been identified that remain unfixed during testing.

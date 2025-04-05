@@ -2,7 +2,7 @@
   padding: 5px;
 }
 
-/* Hidden text to fix an error in Wave */
+/* Hidden text to fix an error in Wave*/
 .Hidden {
   display: none;
 }
@@ -39,8 +39,8 @@
   -webkit-text-fill-color: transparent;
 }
 
-/* Applies to screens 822px wide and larger  */
-@media (min-width: 822px) {
+/* Applies to screens 992px wide and larger */
+@media (min-width: 992px) {
   .CreatePost {
     position: fixed;
     top: 86px;
@@ -65,8 +65,8 @@
   }
 }
 
-/* Applies to screens 821px wide and smaller */
-@media (max-width: 821px) {
+/* Applies to screens 991px wide and smaller */
+@media (max-width: 991px) {
   .ShareText {
     color: #281713;
   }

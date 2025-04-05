@@ -21,7 +21,7 @@ const UserList = () => {
         );
         setProfiles(data.results);
       } catch (err) {
-        // Silently ignore the error - keep comment to avoid parsing error 
+        // Silently ignore the error - keep comment to avoid parsing error
       }
     };
     // Debounce the API call by 500ms to avoid excessive requests
@@ -77,12 +77,13 @@ const UserList = () => {
                     src={user.image}
                     alt={`${user.owner}'s profile picture`}
                     loading="lazy"
+                    className={styles.Image}
                   />
                 </Link>
                 <Card.Body>
                   {/* Display user details */}
                   <Card.Title className="d-flex align-items-center gap-2">
-                    <span>{user.owner}</span>
+                    <span className={styles.Owner}>{user.owner}</span>
                   </Card.Title>
                   <Card.Text>
                     <p className={styles.Status}>{user.status}</p>

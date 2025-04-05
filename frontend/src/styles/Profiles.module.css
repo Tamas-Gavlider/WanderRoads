@@ -8,6 +8,14 @@
     box-shadow: 4px 8px 4px -2px #ccc, 0px 0px 6px -2px #ccc;
 }
 
+/* Ensures all profile images have the same size and consistent styling */
+.Image {
+    width: 100%;
+    height: 200px;
+    object-fit: cover;
+    border-radius: 8px;
+}
+
 .Status {
     font-style: italic;
     background: linear-gradient(135deg, #ff0000, #00bae2);
@@ -17,4 +25,11 @@
 
 .SearchField {
     width: 42%;
+}
+
+/* Prevents long usernames from overflowing */
+.Owner {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
 }
