@@ -292,7 +292,7 @@ Profile visitors can see the visited countries and preferences of the owners fro
 
 #### Travel Preferences
 
-User can set up/edit their preferences from the profile page. Based on the preferences the travel recommendation will be regenerated.
+Users can create and update their travel preferences, which are used to generate AI-driven recommendations for destinations. Preferences include factors like budget, climate, activities, and travel style. Once preferences are set, users can view a list of suggested destinations based on their input.
 
 #### Add Preferences
 
@@ -491,7 +491,7 @@ The following issues were raised during my mid project meeting with my mentor:
 |  Comment-Create-Edit-Form   |  Pass  |   [comment-create-edit-form](/docs/testing/w3c/comment-create-edit-form-css.png)    |
 |   Comment  |  Pass  |   [comment](/docs/testing/w3c/comment-css.png)    |
 |  Confirmation   |  Pass  |   [confirmation](/docs/testing/w3c/confirmation-css.png)     |
-|  Change Theme Song   |  Pass  |   [edit-profile](/docs/testing/w3c/change-theme-song-css.png)    |
+|  Change Theme Song   |  Pass  |   [change-theme-song](/docs/testing/w3c/change-theme-song-css.png)    |
 |  Edit-Status   |  Pass  |   [edit-status](/docs/testing/w3c/edit-status-css.png)    |
 |  Edit-Travel-Preferences   |  Pass  |  [edit-travel-preferences](/docs/testing/w3c/edit-travel-preferences-css.png)     |
 |   Landing-Page-Text  |  Pass  |  [landing-page-text](/docs/testing/w3c/landing-page-text-css.png)     |
@@ -536,10 +536,10 @@ No errors after the code commented out in test file.
 |   Post-Serializers  |  Pass  |  [post-serializers](/docs/testing/pep8/post-serializers.png)    |
 |     Post-Urls   |  Pass  |    [post-urls](/docs/testing/pep8/post-urls.png)        |
 |   Post-Views    |  Pass  |   [post-views](/docs/testing/pep8/post-views.png)       |
-|   Post-Tests    |  Pass  |   [post-views](/docs/testing/pep8/post-tests.png)       |
+|   Post-Tests    |  Pass  |   [post-tests](/docs/testing/pep8/post-tests.png)       |
 |    Profile-Admin   |  Pass  |  [profile-admin](/docs/testing/pep8/profile-admin.png)         |
 |   Profile-Models     |  Pass  |   [profile-models](/docs/testing/pep8/profile-models.png)     |
-|    Profile-Tests   |  Pass  |   [post-tests](/docs/testing/pep8/profile-tests.png)       |
+|    Profile-Tests   |  Pass  |   [profile-tests](/docs/testing/pep8/profile-tests.png)       |
 |   Profile-Serializers    |  Pass  |   [profile-serializers](/docs/testing/pep8/profile-serializers.png)          |
 |   Profile-Urls    |  Pass  |     [profile-urls](/docs/testing/pep8/profile-urls.png)           |
 |  Profile-Views   |  Pass  | [profile-views](/docs/testing/pep8/profile-views.png)   |
@@ -547,13 +547,13 @@ No errors after the code commented out in test file.
 | Travel-Pref-Models |  Pass  |   [travel-pref-models](/docs/testing/pep8/travel-pref-models.png)   |
 | Travel-Pref-Serializers  |  Pass  |   [travel-pref-serializers](/docs/testing/pep8/travel-pref-serializers.png)   |
 |  Travel-Pref-Views |  Pass  | [travel-pref-views](/docs/testing/pep8/travel-pref-views.png)   |
-|  Travel-Pref-Tests |  Pass  | [travel-pref-views](/docs/testing/pep8/travel-pref-tests.png)   |
+|  Travel-Pref-Tests |  Pass  | [travel-pref-tests](/docs/testing/pep8/travel-pref-tests.png)   |
 |   Recommendation-Models   |  Pass  |    [recommendation-models](/docs/testing/pep8/travel-recommendation-models.png)    |
 |   Recommendation-Recommendations     |  Pass  |    [recommendation-recommendations](/docs/testing/pep8/travel-recommendation-recommendations.png)      |
 |  Recommendation-Serializers    |  Pass  | [recommendation-serializers](/docs/testing/pep8/travel-recommendation-serializers.png)       |
 |   Recommendation-Urls     |  Pass  |   [recommendation-urls](/docs/testing/pep8/travel-recommendation-urls.png)       |
 |   Recommendation-Views   |  Pass  |    [recommendation-views](/docs/testing/pep8/travel-recommendation-views.png)    |
-|   Recommendation-Test     |  Pass  |   [recommendation-urls](/docs/testing/pep8/recommendation-test.png)       |
+|   Recommendation-Tests     |  Pass  |   [recommendation-tests](/docs/testing/pep8/recommendation-test.png)       |
 |  Trip-Models      |  Pass  |   [trip-models](/docs/testing/pep8/trip-models.png)       |
 |   Trip-Serializers   |  Pass  |   [trip-serializers](/docs/testing/pep8/trip-serializers.png)     |
 |    Trip-Urls    |  Pass  |   [trip-urls](/docs/testing/pep8/trip-urls.png)       |
@@ -832,8 +832,6 @@ Full testing was performed on the following devices:
 - Laptop:
   - Macbook Pro 2019 13 inch screen - tested browsers Safari and Chrome
   - Mackbook Pro 2014 15 inch screen - tested browsers Safari, Chrome and Firefox
-- Desktop:
-  - iMac 2013 21.5 inch - tested browsers Safari and Chrome
 
 #### Bugs
 
@@ -850,11 +848,13 @@ The following bugs were identified during the testing:
 
 #### Known Bugs
 
+No bugs have been identified that remain unfixed during testing.
+
 ## Credits
 
 ### Media
 
-The background image was downloaded from [Pexels](https://www.pexels.com/).
+The background image,default post image, sign in and sign up page images were downloaded from [Pexels](https://www.pexels.com/).
 <br>
 The default theme song was downloaded from [Pixabay](https://pixabay.com/).
 <br>
@@ -866,7 +866,7 @@ All screenshots used in this README file were taken by myself.
 
 [W3Schools](https://www.w3schools.com/) to review how certain libraries (for example Pandas) function and for React tutorials and errors handling.
 
-[Cloudinary](https://support.cloudinary.com/hc/en-us/community/posts/360009752479-How-to-resize-before-uploading-pictures-in-Django) to resize images to improve app speed.
+[Cloudinary](https://support.cloudinary.com/hc/en-us/community/posts/360009752479-How-to-resize-before-uploading-pictures-in-Django) to resize images to improve app speed - in the end, it was not used because the image became pixelated.
 
 [Simple maps](https://github.com/zcreativelabs/react-simple-maps/issues/344) - for simple maps template.
 
@@ -882,7 +882,7 @@ The travel recommendation csv file was generated with [ChatGPT](https://chatgpt.
 
 [StackOverFlow post](https://stackoverflow.com/questions/31820389/can-to-representation-in-django-rest-framework-access-the-normal-fields) and [DRF documentation](https://www.django-rest-framework.org/api-guide/relations/) to ensure the frontend gets the correct values that match the travel preference choices.
 
-Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image from the DRF API project in my own API model.
+Additionally, I utilized the Moments and DRF API project from Code Institute to grasp basic functionalities and logic, applying these concepts to my own projects. I used the same default profile image and upload post image from the DRF API project in my own API model.
 
 ### Acknowledgments
 
