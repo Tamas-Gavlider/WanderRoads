@@ -18,6 +18,7 @@ function LandingPageText() {
             Connect with travelers, share memories, and get recommendations for
             your next journey.
           </p>
+          {/* Show 'Start Your Journey' button only if the user is not logged in */}
           {!currentUser && (
             <Link to="/signup" className={btnStyles.Button}>
               Start Your Journey

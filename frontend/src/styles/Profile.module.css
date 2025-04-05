@@ -4,6 +4,7 @@
   padding-top: 20px;
 }
 
+/* Gradient text effect for the visited countries section */
 .Countries {
   background: linear-gradient(135deg, #ff0000, #00bae2);
   -webkit-background-clip: text;
@@ -21,6 +22,7 @@
   align-items: center;
 }
 
+/* Dark overlay for the hero image */
 .Overlay {
   position: absolute;
   top: 0;
@@ -30,6 +32,7 @@
   background: rgba(0, 0, 0, 0.5);
 }
 
+/* Main content inside the profile hero section */
 .ProfileContent {
   position: relative;
   display: flex;

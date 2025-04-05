@@ -2,6 +2,7 @@
   display: inline-block;
 }
 
+/* Hidden element to resolve error in wave */
 .Hidden {
   display: none;
 }

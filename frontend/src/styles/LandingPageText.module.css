@@ -26,6 +26,7 @@
 
 }
 
+ /* These styles apply when the screen is 768px or wider */
 @media (min-width: 768px) {
   .Heading {
     background-color: white;

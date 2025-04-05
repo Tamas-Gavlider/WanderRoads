@@ -491,7 +491,7 @@ The following issues were raised during my mid project meeting with my mentor:
 |  Comment-Create-Edit-Form   |  Pass  |   [comment-create-edit-form](/docs/testing/w3c/comment-create-edit-form-css.png)    |
 |   Comment  |  Pass  |   [comment](/docs/testing/w3c/comment-css.png)    |
 |  Confirmation   |  Pass  |   [confirmation](/docs/testing/w3c/confirmation-css.png)     |
-|  Edit-Profile   |  Pass  |   [edit-profile](/docs/testing/w3c/edit-profile-css.png)    |
+|  Change Theme Song   |  Pass  |   [edit-profile](/docs/testing/w3c/change-theme-song-css.png)    |
 |  Edit-Status   |  Pass  |   [edit-status](/docs/testing/w3c/edit-status-css.png)    |
 |  Edit-Travel-Preferences   |  Pass  |  [edit-travel-preferences](/docs/testing/w3c/edit-travel-preferences-css.png)     |
 |   Landing-Page-Text  |  Pass  |  [landing-page-text](/docs/testing/w3c/landing-page-text-css.png)     |

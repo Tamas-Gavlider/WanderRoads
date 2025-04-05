@@ -17,9 +17,10 @@ const NavBar = () => {
   const currentUser = useCurrentUser();
   const setCurrentUser = useSetCurrentUser();
   const history = useHistory();
-
+  // Custom hook to handle collapsing the navbar when clicking outside
   const { expanded, setExpanded, ref } = useClickOutsideToggle();
 
+  // Handle user logout
   const handleSignOut = async () => {
     try {
       await axios.post("/dj-rest-auth/logout/");
@@ -30,7 +31,7 @@ const NavBar = () => {
       console.log(err);
     }
   };
-
+  // Links shown when a user is logged in
   const loggedInLinks = (
     <>
       <NavLink
@@ -82,6 +83,7 @@ const NavBar = () => {
       <Avatar src={currentUser?.profile_image} height={45} />
     </>
   );
+  // Links shown when no user is logged in
   const loggedOutLinks = (
     <>
       <NavLink
@@ -117,6 +119,7 @@ const NavBar = () => {
       fixed="top"
     >
       <Container fluid>
+        {/* Hamburger toggle for mobile view */}
         <Navbar.Toggle
           ref={ref}
           onClick={() => setExpanded(!expanded)}
@@ -124,6 +127,7 @@ const NavBar = () => {
         />
         <Navbar.Collapse id="basic-navbar-nav">
           <Nav className="ms-auto">
+            {/* Show different links based on user login status */}
             {currentUser ? loggedInLinks : loggedOutLinks}
           </Nav>
         </Navbar.Collapse>

@@ -5,15 +5,17 @@ import { Accordion, Card, Button } from "react-bootstrap";
 import styles from "../styles/PopularDestinations.module.css";
 import Loading from "./Loading";
 
+// Displays the top 6 countries based on the number of posts shared by users
 const PopularDestinations = () => {
   const [popularDestinations, setPopularDestinations] = useState([]);
 
   useEffect(() => {
+    // Fetch post counts by country and sort them to get the most popular destinations
     const fetchPostCounts = async () => {
       try {
         const { data } = await axiosReq.get("/posts/");
         const postCounts = data.country_post_counts || {};
-
+        // Convert the country-post mapping to an array and sort by post count
         const sortedDestinations = Object.entries(postCounts)
           .map(([country, count]) => ({ country, count }))
           .sort((a, b) => b.count - a.count)
@@ -27,7 +29,7 @@ const PopularDestinations = () => {
 
     fetchPostCounts();
   }, []);
-
+  // Show loading spinner while data is being fetched
   if (!popularDestinations.length) {
     return <Loading />;
   }
@@ -39,6 +41,7 @@ const PopularDestinations = () => {
       </h3>
       <Accordion>
         {popularDestinations.map((dest, index) => {
+          // Generates the accordion title based on rank
           const title =
             index === 0
               ? "Check the most popular"

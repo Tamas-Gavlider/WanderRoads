@@ -2,6 +2,7 @@
   padding: 5px;
 }
 
+/* Hidden text to fix an error in Wave */
 .Hidden {
   display: none;
 }
@@ -25,8 +26,8 @@
   color: #ff0000;
 }
 
+/* Create post style */
 .CreatePost {
-  font-family: "Kranky", serif;
   font-size: 140%;
   color: #00bae2;
   margin-top: 60px;
@@ -38,6 +39,7 @@
   -webkit-text-fill-color: transparent;
 }
 
+/* Applies to screens 822px wide and larger  */
 @media (min-width: 822px) {
   .CreatePost {
     position: fixed;
@@ -63,6 +65,7 @@
   }
 }
 
+/* Applies to screens 821px wide and smaller */
 @media (max-width: 821px) {
   .ShareText {
     color: #281713;

@@ -4,7 +4,7 @@ import axios from "axios";
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Container from "react-bootstrap/Container";
-import styles from "../../styles/EditProfile.module.css";
+import styles from "../../styles/ChangeThemeSong.module.css";
 import btnStyles from "../../styles/Button.module.css";
 
 export default function ChangeThemeSong() {
@@ -48,7 +48,7 @@ export default function ChangeThemeSong() {
       await axios.put(`/profiles/${id}`, formData);
       history.goBack();
     } catch (error) {
-     // Silently ignore the error - keep comment to avoid parsing error 
+      // Silently ignore the error - keep comment to avoid parsing error
     }
   };
 
@@ -64,19 +64,15 @@ export default function ChangeThemeSong() {
         </p>
       </div>
 
-      <div className={styles.SongCard}>
-        <Form.Group controlId="themeSong" className={styles.UploadSection}>
+      <div>
+        <Form.Group controlId="themeSong">
           <Form.Label className={styles.UploadLabel}>
             <i className="fa-solid fa-music"></i> Upload a New Theme Song
           </Form.Label>
-          <Form.File
-            accept="audio/mpeg"
-            onChange={handleThemeSongUpload}
-            className={styles.UploadButton}
-          />
+          <Form.File accept="audio/mpeg" onChange={handleThemeSongUpload} />
           {/* Display the currently selected theme song, if available */}
           {themeSong && (
-            <div className={styles.SongPreview}>
+            <div>
               <p>
                 <i className="fas fa-headphones"></i> Now Selected:{" "}
                 {themeSong instanceof File
@@ -91,7 +87,7 @@ export default function ChangeThemeSong() {
       <Button
         variant="success"
         onClick={handleSave}
-        className={`mt-3 ${btnStyles.Button} ${styles.SaveButton}`}
+        className={`mt-3 ${btnStyles.Button}`}
       >
         <i className="fas fa-check"></i> Save Changes
       </Button>

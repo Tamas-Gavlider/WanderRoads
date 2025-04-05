@@ -35,6 +35,7 @@ function App() {
   const currentUser = useCurrentUser();
   const profile_id = currentUser?.profile_id || "";
   const location = useLocation();
+  // Conditionally set background image on landing page
   const isLandingPage = location.pathname === "/";
 
   return (
@@ -52,15 +53,21 @@ function App() {
       {
         <Container fluid className={styles.Main}>
           <Switch>
+            {/* Route for Map page */}
             <Route exact path="/map" render={() => <Map />} />
+            {/* Landing page */}
             <Route exact path="/" render={() => <LandingPageText />} />
+            {/* Conditional rendering for authentication routes */}
             {!currentUser && (
               <>
+                {/* Routes for users not authenticated */}
                 <Route exact path="/signin" render={() => <SignInForm />} />
                 <Route exact path="/signup" render={() => <SignUpForm />} />
               </>
             )}
+            {/* Route for Confirmation page after travel preferences are set */}
             <Route exact path="/confirmation" render={() => <Confirmation />} />
+            {/* Routes related to user profile editing */}
             <Route
               path="/profiles/:id/edit/status"
               render={() => <EditStatus />}
@@ -88,9 +95,11 @@ function App() {
               render={() => <UserPasswordForm />}
             />
             <Route path="/profiles/:id" render={() => <Profile />} />
+            {/* Routes related to trip creation/editing */}
             <Route path="/trip/:id/edit" render={() => <TripEditForm />} />
             <Route path="/trip/create" render={() => <AddTrip />} />
             <Route path="/trip/" render={() => <Trip />} />
+            {/* Routes for travel preferences */}
             <Route
               path="/travel-preference/:id/edit"
               render={() => <TravelPreferenceEditForm />}
@@ -103,6 +112,7 @@ function App() {
               path="/travel-recommendation/"
               render={() => <TravelRecommendation />}
             />
+            {/* Routes related to posts */}
             <Route
               exact
               path="/posts/create"
@@ -124,8 +134,11 @@ function App() {
                 />
               )}
             />
+            {/* Route for searching and viewing other users */}
             <Route exact path="/travelers/" render={() => <Profiles />} />
+            {/* Logout route */}
             <Route exact path="/logout" render={() => <h1>Logout</h1>} />
+            {/* 404 not found page */}
             <Route render={() => <NotFoundPage />} />
           </Switch>
         </Container>

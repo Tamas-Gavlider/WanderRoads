@@ -5,17 +5,17 @@
     background: linear-gradient(135deg, #41f456, #00bae2)
 }
 
-.Soon {
-    border-radius: 15px;
-    color: #281713;
-    transition: all 0.3s ease-in-out;
-    background: linear-gradient(135deg, #d6d635, #ff0000)
-}
-
 i {
     color: #281713;
 }
 
 i:hover {
     color: #ff0000;
+}
+/* Style for trip if trip starts within 5 days */
+.Soon {
+    border-radius: 15px;
+    color: #281713;
+    transition: all 0.3s ease-in-out;
+    background: linear-gradient(135deg, #d6d635, #ff0000)
 }

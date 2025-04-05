@@ -4,7 +4,8 @@ import styles from "../styles/ThemeSong.module.css";
 export default function ThemeSong(props) {
   const [isMuted, setIsMuted] = useState(true);
   const audioRef = useRef(null);
-
+  
+  // Toggle mute/unmute: if currently muted, play audio; otherwise, pause it
   const toggleMute = () => {
     if (audioRef.current) {
       if (isMuted) {

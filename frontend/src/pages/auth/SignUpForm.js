@@ -168,6 +168,7 @@ const SignUpForm = () => {
             alt="signup"
           />
         </Col>
+        {/* Link to sign in page */}
         <Container className="mt-3">
           <Link className={`${styles.Link} ${styles.SignInLink}`} to="/signin">
             Already have an account? Sign in

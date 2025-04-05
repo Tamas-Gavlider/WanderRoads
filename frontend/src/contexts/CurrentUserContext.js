@@ -14,7 +14,7 @@ export const useSetCurrentUser = () => useContext(SetCurrentUserContext);
 export const CurrentUserProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const history = useHistory();
-
+  // Function to fetch the current user when the app first loads
   const handleMount = async () => {
     try {
       const { data } = await axiosRes.get("/dj-rest-auth/user/");
@@ -23,18 +23,20 @@ export const CurrentUserProvider = ({ children }) => {
       console.log(err);
     }
   };
-
+  // Run handleMount on first render to set current user if token is valid
   useEffect(() => {
     handleMount();
   }, []);
 
   useMemo(() => {
+    // Request interceptor: refresh token before sending request if needed
     axiosReq.interceptors.request.use(
       async (config) => {
         if (shouldRefreshToken()) {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (err) {
+            // If refresh fails, log out the user and redirect to sign in
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
                 history.push("/signin");
@@ -51,7 +53,7 @@ export const CurrentUserProvider = ({ children }) => {
         return Promise.reject(err);
       }
     );
-
+    // Response interceptor: catch 401 errors and attempt token refresh
     axiosRes.interceptors.response.use(
       (response) => response,
       async (err) => {
@@ -59,6 +61,7 @@ export const CurrentUserProvider = ({ children }) => {
           try {
             await axios.post("/dj-rest-auth/token/refresh/");
           } catch (err) {
+            // If refresh fails again here, log out the user
             setCurrentUser((prevCurrentUser) => {
               if (prevCurrentUser) {
                 history.push("/signin");
@@ -67,6 +70,7 @@ export const CurrentUserProvider = ({ children }) => {
             });
             removeTokenTimestamp();
           }
+          // Retry original request after token refresh
           return axios(err.config);
         }
         return Promise.reject(err);
