@@ -18,7 +18,7 @@ export default function ChangeThemeSong() {
         const { data } = await axios.get(`/profiles/${id}`);
         setThemeSong(data.theme_song || null);
       } catch (error) {
-        // console.error("Error fetching profile:", error);
+        // Silently ignore the error or handle it silently
       }
     };
 
