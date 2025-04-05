@@ -28,7 +28,7 @@ export default function TripEditForm() {
         const { data } = await axios.get("/countries/");
         setCountries(data);
       } catch {
-        // Silently ignore the error or handle it silently
+        // Silently ignore the error - keep comment to avoid parsing error 
       }
     };
 

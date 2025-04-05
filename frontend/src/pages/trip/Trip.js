@@ -71,7 +71,7 @@ export default function Trip() {
         results: prevTrip.results.filter((t) => t.id !== tripToDelete),
       }));
     } catch {
-      // Silently ignore the error or handle it silently
+      // Silently ignore the error - keep comment to avoid parsing error
     }
 
     setShowModal(false);
