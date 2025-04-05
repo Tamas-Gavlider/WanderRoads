@@ -23,7 +23,7 @@ export default function AddCountry() {
         const { data } = await axios.get(`/profiles/${id}`);
         setVisitedCountries(data.visited_countries || []);
       } catch (error) {
-        // Silently ignore the error or handle it silently
+        // Silently ignore the error - keep comment to avoid parsing error 
       }
     };
 
