@@ -23,7 +23,7 @@ export default function AddCountry() {
         const { data } = await axios.get(`/profiles/${id}`);
         setVisitedCountries(data.visited_countries || []);
       } catch (error) {
-        // console.error("Error fetching profile:", error);
+        // Silently ignore the error or handle it silently
       }
     };
 
@@ -62,7 +62,7 @@ export default function AddCountry() {
       });
       history.goBack();
     } catch (error) {
-      // console.error("Error updating visited countries:", error);
+      // Silently ignore the error or handle it silently
     }
   };
 
