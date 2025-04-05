@@ -49,7 +49,7 @@ export default function AddTravelPreferences() {
           }
         })
         .catch(() => {
-         // eslint-disable-next-line no-empty
+          // Silently ignore the error or handle it silently
         });
     }
   }, [currentUser]);
